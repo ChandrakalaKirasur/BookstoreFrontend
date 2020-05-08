@@ -12,11 +12,10 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.0",
-<<<<<<< HEAD
-    "@angular/cdk": "^8.2.3",
-=======
-    "@angular/cdk": "~8.2.0",
->>>>>>> 1c4679d8a818917e775c1ef2d6be6caa7a345d1f
+
+
+    
+    
     "@angular/common": "~8.2.0",
     "@angular/compiler": "~8.2.0",
     "@angular/core": "~8.2.0",
