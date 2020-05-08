@@ -31,8 +31,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-
+import { ViewCartComponent } from './components/view-cart/view-cart.component';
 
 
 @NgModule({
@@ -40,7 +39,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    ViewCartComponent,
+   
   ],
   imports: [
     BrowserModule,

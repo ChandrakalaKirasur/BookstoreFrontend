@@ -1,24 +1,26 @@
 <div class="backcontainer" fxLayout="column" fxLayoutAlign="start none">
-<div style=" background-color: whitesmoke;">
     <mat-toolbar>
     <mat-toolbar-row>
     
         <button  (click)="onCart()" class="cart">
             <mat-icon color="primary"> 
-                <img class="bookimage" src="assets/images/bookimage.png" > 
+                <img class="bookimage" src="assets/images/education@2x.png" > 
             </mat-icon>   
          </button>
 
-        <div style="color: white;">BookStore</div>
+        <div class="booktext">BookStore</div>
     <div class="searchIcon" fxLayout="row" fxLayoutAlign="center center" style="margin-left:123px;">
+        <div class="iconcam">
+        <mat-icon style="padding-top: 5px;">searchIcon</mat-icon>  
+        </div>
       <input class="searchInput" placeholder="Search..."   (click)="onsearch()"  autocomplete="off" >
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end center"  style="margin-left: 347px" >
-    <div style="height: 30px;font-size: large;color: white;">Cart</div>
+    <div style="height: 30px;font-size: large;color: white;"  (click)="onCart()">Cart</div>
     <button  (click)="onCart()" class="cart">
         <mat-icon color="primary"> 
-            <img class="image" src="assets/images/cartbest.png"  > 
+            <img class="image" src="assets/images/supermarket@2x.png"  > 
         </mat-icon>   
      </button>
      </div>
@@ -45,8 +47,11 @@
         </div>
     </mat-toolbar-row>
    </mat-toolbar>
+<!-- </div> -->
+    <mat-sidenav-container>
+<mat-sidenav-content > 
+    <router-outlet></router-outlet>
+ </mat-sidenav-content>
+</mat-sidenav-container>
 </div>
 
-</div>
-
-<!-- <app-cart></app-cart> -->
