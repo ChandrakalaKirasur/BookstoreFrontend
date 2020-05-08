@@ -1,0 +1,89 @@
+.backcontainer{
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+    
+  }
+  .search{
+    background-color: whitesmoke;
+    border-radius: 4px;
+    width: 40px;
+    height: 42px;
+  }
+  .searchInput{
+    padding: 0px;
+    min-width: 67px;
+    border:none;
+    outline: none;
+    height: 41px;
+    width: 550px;
+    font-size: large;
+    padding: 5px;
+    padding-left: 18px;
+    background-color: whitesmoke;
+    height: 33px;
+    border-radius: 5px;
+  }
+  .searchIcon{
+   width: 561px;
+    margin-left:23%;
+    outline: none;
+    border-color: 1px whitesmoke;
+  }
+  .search_icon{
+    margin-left: 100%;
+    position: absolute;
+  }
+  .mat-toolbar-row, .mat-toolbar-single-row {
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 16px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    background-color: #9d2b51;
+}
+
+.mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+}
+.image{
+    height: 33px;
+    width: 40px;
+  }
+.image3{
+    height: 33px;
+    width: 40px;
+  }
+.image2{
+    height: 44px;
+    width: 44px;
+    border-radius: 34px;
+  }
+.iconcam{
+    margin-top: -49px;
+    margin-left: 82px;
+  }
+.bookimage{
+    height: 50px;
+    width: 62px;
+    margin-left: 148px;
+    padding-top: 0px;
+  }
+  .cart{
+    margin-left: 0px;
+    width: 69px;
+    background-color: #9d2b51;
+    border: none;
+    outline: blanchedalmond;
+  }
