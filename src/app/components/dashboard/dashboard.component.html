@@ -44,25 +44,23 @@
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
-    <mat-sidenav-container>
-        <mat-sidenav-content > 
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+    <!-- <mat-sidenav-container> -->
+        <!-- <mat-sidenav-content >  -->
+            <!-- <router-outlet></router-outlet> -->
+        <!-- </mat-sidenav-content> -->
+    <!-- </mat-sidenav-container> -->
     <mat-card-content>
         <div style="padding-top: 8px;padding-bottom: 8px;font-weight: 400;font-size: 25px;">
             Books <small style="font-size: 12px;">(128 itmes)</small>
         </div>
-        <div *ngFor="let image of images" fxLayout="column" style="padding-bottom: 10px;">
-            <app-books [image]="image"></app-books>
-        </div>
-        <!-- <div> -->
-            <!-- <app-pagination></app-pagination> -->
-        <!-- </div> -->
+        <div *ngFor="let colors of images" fxLayout="row">
+            <div *ngFor="let image of colors" class="colorsList" class="book">
+                <app-books [image]="image"></app-books>
+            </div>
+          </div>
     </mat-card-content>
     <mat-card-footer class="footer">
         <app-footer></app-footer>
     </mat-card-footer>
   </mat-card>
 </div>
-

@@ -3,11 +3,10 @@
     height: 100%;
     width: 100%;
     left: 0;
-    position :fixed;
     top: 0;
-    overflow: hidden;
     position: fixed;
     display: flex;
+    margin-bottom: -10px;
   }
   .search{
     background-color: whitesmoke;
@@ -138,10 +137,20 @@ height: 34px;
     position: absolute;
     bottom: 0;
     width: 100%;
+    max-height: 100%;
+    margin-top: 50%;
+    margin-bottom: -20px;
+    padding-bottom: 10px;
   }
   .page{
     padding: 5px;
   }
   mat-card-content{
-    margin-left: 10%;
+    margin-left: 7%;
+  }
+  .book{
+    padding-bottom: 10px;
+    flex-direction: row;
+    padding: 10px;
+    padding-bottom: 9%;
   }

@@ -1,23 +1,23 @@
 mat-card {
-  height: 200px;
-  width: 150px;
+  height: 290px;
+  width: 235px;
   margin: 0;
   background-color: #F5F5F5;
 }
 
 img {
   background-size: cover;
-  margin: -16px -48px;
+  margin-left: 35px;
   margin-bottom: 2px;
-  height: 100px;
   border-radius: 4px;
   padding: 2px;
-  width: 150px;
+  width: 105px;
+  height: 135px;
   box-shadow: 0 0 8px 8px #fff inset;
 }
 .mat-title {
   margin-bottom: 10px;
-  line-height: 0.5;
+  line-height: 1.5;
   color: #0A0102;
   opacity: 1;
   font: Regular 14px/17px Lato;
