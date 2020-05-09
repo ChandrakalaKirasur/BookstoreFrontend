@@ -4,102 +4,36 @@
     width: 100%;
     left: 0;
     top: 0;
-    overflow: hidden;
     position: fixed;
     display: flex;
-    
+    margin-bottom: -10px;
   }
-  .bookimg{
-    width: 31px;
-     height: 24px;
-     background-color: #A03037;
-     border: none;
-     outline: blanchedalmond;
-     position: absolute;
-     margin-left: 187px;
-   }
-  .bookicon{
-    background-color: #A03037;
-    border:none;
-    outline: none;
+  mat-card{
+    display:flex;
+    flex-direction: column;
+    flex-shrink: 0;
   }
-
-.booktext{
-color: #FFFFFF;
-margin-top: -36px;
-margin-left: 85px;
-  }
-   .search_icon{
-    margin-left: 100%;
+  .footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
     position: absolute;
-  }
-  .iconcam{
-    
-    background-color: #FFFFFF;
-    height: 35px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    margin-left: -10%
-    }
-    .searchInput{
-      border: none;
-      outline: none;
-  top: 14px;
-  left: 334px;
-  width: 490px;
-  height: 33px;
-  background: #FCFCFC 0% 0% no-repeat padding-box;
-  border-radius: 5px;
-  border-top-left-radius: 0%;
-  border-bottom-left-radius: 0%;
-  opacity: 1;
-  height: 33px;
-   margin-left: -2px;
-  padding-left: 13px;
-    }
-  .carttext{
-    color: #FFFFFF;
-    opacity: 1;
-    
-  }
-  .cartimg{
-    top: 19px;
-left: 1166px;
-width: 20px;
-height: 39px;
-opacity: 1;
-background-color: #A03037;
-border:none;
-outline: none;
-  }
-  .search{
-    background-color: whitesmoke;
-    border-radius: 4px;
-    width: 40px;
-    height: 42px;
-  }
-  
-  .mat-toolbar-row, .mat-toolbar-single-row {
-    display: flex;
-    box-sizing: border-box;
-    padding: 0 16px;
+    bottom: 0;
     width: 100%;
+    max-height: 100%;
+    margin-top: 50%;
+    margin-bottom: -20px;
+    padding-bottom: 10px;
+  }
+  .page{
+    padding: 5px;
+  }
+  mat-card-content{
+    margin-left: 7%;
+  }
+  .book{
+    padding-bottom: 10px;
     flex-direction: row;
-    align-items: center;
-    white-space: nowrap;
-    background-color: #A03037;
-}
-
-.mat-icon {
-    background-repeat: no-repeat;
-    display: inline-block;
-    fill: currentColor;
-    height: 24px;
-    width: 24px;
-}
-
-.profile{
-  height: 44px;
-  width: 44px;
-  border-radius: 34px;
-}
+    padding: 10px;
+    padding-bottom: 9%;
+  }

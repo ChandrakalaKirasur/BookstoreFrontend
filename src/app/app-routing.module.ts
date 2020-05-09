@@ -10,7 +10,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: "viewCart",
+        path: "viewcart",
         component: ViewCartComponent
       },
     ]
