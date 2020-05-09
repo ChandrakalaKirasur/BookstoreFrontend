@@ -5,10 +5,6 @@ import { ViewCartComponent } from './components/view-cart/view-cart.component';
 
 
 const routes: Routes = [
-  // {
-  //     path: "viewCart",
-  //     component: ViewCartComponent
-  // },
     {
     path:"dashboard",
     component: DashboardComponent,
