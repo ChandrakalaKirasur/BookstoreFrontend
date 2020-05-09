@@ -12,7 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-
+import { FooterComponent } from './components/footer/footer.component';
+import { BooksComponent } from './components/books/books.component';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,6 +33,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ViewCartComponent } from './components/view-cart/view-cart.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { ViewCartComponent } from './components/view-cart/view-cart.component';
     RegisterComponent,
     DashboardComponent,
     ViewCartComponent,
-   
+    FooterComponent,
+    BooksComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,63 @@
+mat-card {
+  height: 200px;
+  width: 150px;
+  margin: 0;
+  background-color: #F5F5F5;
+}
+
+img {
+  background-size: cover;
+  margin: -16px -48px;
+  margin-bottom: 2px;
+  height: 100px;
+  border-radius: 4px;
+  padding: 2px;
+  width: 150px;
+  box-shadow: 0 0 8px 8px #fff inset;
+}
+.mat-title {
+  margin-bottom: 10px;
+  line-height: 0.5;
+  color: #0A0102;
+  opacity: 1;
+  font: Regular 14px/17px Lato;
+}
+mat-card-content {
+  margin-right: -10px;
+}
+button {
+  width: 100%;
+}
+.mat-card-actions,
+.mat-card-content,
+.mat-card-subtitle {
+  display: block;
+  margin-bottom: 0px;
+  font: Regular 10px/12px Lato;
+}
+
+.mat-subheading-1 {
+  position: relative;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font: Bold 12px/15px Lato;
+}
+.box1{
+  font-size: 11px;
+  text-align: center;
+  color: white;
+  background-color:#A03037;
+  border-radius: 1px;
+  border: none;
+  opacity: 1;
+}
+.box{
+  font-size: 11px;
+  text-align: center;
+  padding: 3%;
+  border: 1px solid #9D9D9D;
+  font: Medium 11px/13px Lato;
+  color: #0A0102;
+  opacity: 1;
+}

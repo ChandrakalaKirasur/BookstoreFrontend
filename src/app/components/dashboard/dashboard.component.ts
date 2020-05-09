@@ -7,7 +7,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+    images=[
+      { image: "assets/images/education@2x.png" },
+      { image: "assets/images/supermarket@2x.png" },
+    ];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
