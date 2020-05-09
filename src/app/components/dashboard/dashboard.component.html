@@ -50,14 +50,14 @@
         <!-- </mat-sidenav-content> -->
     <!-- </mat-sidenav-container> -->
     <mat-card-content>
-        <div style="padding-top: 8px;padding-bottom: 8px;font-weight: 400;font-size: 25px;">
+        <div style="padding-top: 8px;padding-bottom: 8px;font: Regular 25px/30px Lato;color: #0A0102;">
             Books <small style="font-size: 12px;">(128 itmes)</small>
         </div>
         <div *ngFor="let colors of images" fxLayout="row">
             <div *ngFor="let image of colors" class="colorsList" class="book">
                 <app-books [image]="image"></app-books>
             </div>
-          </div>
+        </div>
     </mat-card-content>
     <mat-card-footer class="footer">
         <app-footer></app-footer>
