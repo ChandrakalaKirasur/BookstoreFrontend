@@ -34,6 +34,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ViewCartComponent } from './components/view-cart/view-cart.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     FooterComponent,
     BooksComponent,
     PaginationComponent,
+    OrderSuccessComponent,
   ],
   imports: [
     BrowserModule,

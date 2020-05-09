@@ -1,19 +1,110 @@
-<div  fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="5px" style="margin-top: -4%;">
-<mat-card  class="matcard2">
-<div class="mycart">
-    My cart
-    <div class="done" fxLayout="column" fxLayoutAlign="end end">
-        <button  mat-raised-button id="doneLabel" color="primary"(click)="onClose()" >done</button>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-card class="matcard1">
+    <div class="mycart">
+      My cart
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <img class="bookimg" src="assets/images/Image 11@2x.png" />
+      <div class="booktitle" fxLayout="column" fxLayoutAlign="start start">
+        Don't Make Me Think
+        <div class="subtitle" fxLayout="column" fxLayoutAlign="start start">
+          <div class="sub">by Steve Krug</div>
+          <div class="rupee">
+            Rs. 1500
+          </div>
+        </div>
       </div>
-</div>
-</mat-card>
-<br>
-<mat-card id="notesHoover"  class="matcard2">
+    </div>
+  </mat-card>
+  <div fxLayout="row" fxLayoutAlign="end end" class="placebutton">
+    <button
+      mat-raised-button
+      style="background-color: #3371b5;"
+      (click)="onOpen()"
+      *ngIf="!open"
+    >
+      Place order
+    </button>
+  </div>
+  <br />
+  <mat-card class="mat" *ngIf="!open">
+    <!-- <img class="bookimg" src="assets/images/Group 4132@2x.png" > -->
+    <div>
+      Customer Details
+    </div>
+  </mat-card>
 
-</mat-card>
-<br>
-<mat-card id="notesHoover"  class="matcard2">
+  <mat-card class="matcard1" *ngIf="open">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Password</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Enter your FirstName"
+        required
+        id="passwordlogin"
+        [formControl]="password"
+      />
+      <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+      <mat-hint>Enter Password</mat-hint>
+    </mat-form-field>
 
-</mat-card >
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Password</mat-label>
 
+      <input
+        type="text"
+        matInput
+        placeholder="Enter your LastName"
+        required
+        id="passwordlogin"
+        [formControl]="password"
+      />
+      <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+      <mat-hint>Enter Password</mat-hint>
+    </mat-form-field>
+  </mat-card>
+  <br />
+  <mat-card class="mat" *ngIf="!open">
+    <div>
+      Order summery
+    </div>
+  </mat-card>
+
+  <mat-card class="matcard2" *ngIf="open">
+    <div class="ordersummery">
+      Order summery
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <img class="bookimg" src="assets/images/Image 11@2x.png" />
+      <div class="booktitle2" fxLayout="column" fxLayoutAlign="start start">
+        Don't Make Me Think
+        <div class="subtitle" fxLayout="column" fxLayoutAlign="start start">
+          <div class="sub">by Steve Krug</div>
+          <div class="rupee">
+            Rs. 1500
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="checkout">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onOpen()"
+        style="background-color: #3371b5;"
+      >
+        Checkout
+      </button>
+    </div>
+    <!-- <div fxLayout="row" fxLayoutAlign="start center">
+      <img class="bookimg" src="assets/images/Image 11@2x.png" />
+      <div class="booktitle2" fxLayout="column" fxLayoutAlign="start center">
+        Don't Make Me Think
+        <div class="subtitle">by Steve Krug</div>
+      </div>
+    </div>
+     -->
+  </mat-card>
+  <br /><br />
 </div>
