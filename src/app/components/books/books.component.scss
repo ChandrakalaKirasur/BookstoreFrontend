@@ -1,14 +1,27 @@
 mat-card {
   height: 290px;
-  width: 235px;
-  margin: 0;
-  background-color: #F5F5F5;
+  width: 205px;
+  margin: -10px;
+  margin-left: 10px;
 }
-
+mat-card-header{
+  width: 116%;
+  height: 171px;
+  background-color: #F5F5F5;
+  margin-top: -16px;
+  margin-left: -16px;
+}
+mat-card-actions{
+  padding-top: 8px;
+}
+mat-card-content {
+  margin-right: -10px;
+}
 img {
   background-size: cover;
-  margin-left: 35px;
+  margin-left: 14.5%;
   margin-bottom: 2px;
+  margin-top: 18px;
   border-radius: 4px;
   padding: 2px;
   width: 105px;
@@ -16,31 +29,32 @@ img {
   box-shadow: 0 0 8px 8px #fff inset;
 }
 .mat-title {
-  margin-bottom: 10px;
-  line-height: 1.5;
+  margin-bottom: 2px;
+  line-height: 1.7;
   color: #0A0102;
+  padding-bottom: 1%;
+  margin-top: 12px;
   opacity: 1;
   font: Regular 14px/17px Lato;
-}
-mat-card-content {
-  margin-right: -10px;
 }
 button {
   width: 100%;
 }
 .mat-card-actions,
 .mat-card-content,
+.mat-subheading-1,
+.mat-title,
 .mat-card-subtitle {
   display: block;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
+  margin-left: 4px;
   font: Regular 10px/12px Lato;
 }
 
 .mat-subheading-1 {
   position: relative;
   margin: 0px;
-  margin-top: 10px;
-  margin-bottom: 6px;
+  margin-left: 4px;
   font: Bold 12px/15px Lato;
 }
 .box1{
@@ -48,16 +62,21 @@ button {
   text-align: center;
   color: white;
   background-color:#A03037;
-  border-radius: 1px;
+  border-radius: 3px;
   border: none;
   opacity: 1;
+  width: 93px;
+  height: 29px;
+  margin-left: 4px;
 }
 .box{
   font-size: 11px;
   text-align: center;
-  padding: 3%;
   border: 1px solid #9D9D9D;
   font: Medium 11px/13px Lato;
   color: #0A0102;
+  border-radius: 3px;
   opacity: 1;
+  width: 83px;
+  height: 30px;
 }
