@@ -1,6 +1,11 @@
 <div  fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="5px" style="margin-top: -4%;">
-<mat-card id="notesHoover"  class="matcard2">
-
+<mat-card  class="matcard2">
+<div class="mycart">
+    My cart
+    <div class="done" fxLayout="column" fxLayoutAlign="end end">
+        <button  mat-raised-button id="doneLabel" color="primary"(click)="onClose()" >done</button>
+      </div>
+</div>
 </mat-card>
 <br>
 <mat-card id="notesHoover"  class="matcard2">
