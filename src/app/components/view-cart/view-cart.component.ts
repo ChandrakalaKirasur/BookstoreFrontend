@@ -14,4 +14,9 @@ export class ViewCartComponent implements OnInit {
   onOpen() {
     this.open = true;
   }
+
+  open2: boolean;
+  onOpen2() {
+    this.open2 = true;
+  }
 }
