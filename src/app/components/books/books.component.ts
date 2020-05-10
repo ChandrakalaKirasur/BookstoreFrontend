@@ -1,21 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from "@angular/material";
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss']
+  selector: "app-books",
+  templateUrl: "./books.component.html",
+  styleUrls: ["./books.component.scss"],
 })
 export class BooksComponent implements OnInit {
   @Input() image: String;
-  
-  constructor(
-    private _matSnackBar: MatSnackBar,
-  ) { }
+  isAdded: boolean = false;
+  isOutOfStock: boolean = true;
+  constructor(private _matSnackBar: MatSnackBar) {}
 
-  ngOnInit(
-  ) {
+  ngOnInit() {}
+  addToCart() {
+    this.isAdded = true;
   }
-
+  removeFromCart() {
+    this.isAdded = false;
+  }
 }
