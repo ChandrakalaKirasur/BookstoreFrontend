@@ -53,11 +53,9 @@
       </mat-menu>
     </div>
   </div>
-  <div class="bookCard" fxLayoutAlign="space-between end">
-    <div *ngFor="let colors of images" fxLayout="row">
-      <div *ngFor="let image of colors" class="colorsList" class="book">
-        <app-books [image]="image"></app-books>
-      </div>
+  <div *ngFor="let colors of images" fxLayout="row">
+    <div *ngFor="let image of colors" class="colorsList" class="book">
+      <app-books [image]="image"></app-books>
     </div>
   </div>
 </mat-card-content>
