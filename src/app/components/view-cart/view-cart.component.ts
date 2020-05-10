@@ -6,6 +6,24 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./view-cart.component.scss"],
 })
 export class ViewCartComponent implements OnInit {
+  images = [
+    [
+      {
+        // colorCode: "rgba(198, 222, 255,1)",
+        // name: "Blue",
+        img: "dontmake.png",
+      },
+      {
+        img: "dontmake.png",
+      },
+      {
+        img: "dontmake.png",
+      },
+      {
+        img: "dontmake.png",
+      },
+    ],
+  ];
   constructor() {}
 
   ngOnInit() {}

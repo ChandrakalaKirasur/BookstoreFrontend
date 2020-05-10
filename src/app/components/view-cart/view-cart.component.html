@@ -11,12 +11,32 @@
         </div>
         <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
         <div class="sub">by Steve Krug</div>
-        <div class="rupee">
+        <div style="margin-bottom: 30px; font: Bold 18px/15px Lato;">
           Rs. 1500
         </div>
         <!-- </div> -->
         <!-- </div> -->
       </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayOutGap="10px"
+      style="margin-right: 268px;"
+    >
+      <div>
+        <button mat-icon-button (click)="personadd()">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </div>
+
+      <div class="quantity">{{ 1 }}</div>
+      <div>
+        <button mat-icon-button (click)="personadd()">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+      &nbsp; Remove
     </div>
     <div fxLayout="column" fxLayoutAlign="end end">
       <button mat-raised-button class="button" (click)="onOpen()" *ngIf="!open">
@@ -40,11 +60,30 @@
     <div class="custom">
       Customer Details
     </div>
+    <button
+      (click)="personadd()"
+      style="
+        margin-left: 708px;
+        margin-top: -21px;
+        border: none;
+        outline: none;
+      "
+    >
+      <div class="custom2" fxLayout="row" fxLayoutAlign="end start">
+        Edit
+      </div>
+    </button>
     <div class="custom">
       <div fxLayout="row" fxLayoutAlign="start center">
         <mat-form-field appearance="outline" class="input">
           <mat-label>Name</mat-label>
-          <input type="text" matInput placeholder="Enter your Name" required />
+          <input
+            type="text"
+            matInput
+            placeholder="Enter your Name"
+            required
+            autocomplete="off"
+          />
           <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
           <!-- <mat-hint>Enter Name</mat-hint> -->
         </mat-form-field>
@@ -57,6 +96,7 @@
               matInput
               placeholder="Enter your phoneNumber"
               required
+              autocomplete="off"
             />
             <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
             <!-- <mat-hint>Enter phoneNumber</mat-hint> -->
@@ -72,6 +112,7 @@
             matInput
             placeholder="Enter your pincode"
             required
+            autocomplete="off"
           />
           <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
           <!-- <mat-hint>Enter pincode</mat-hint> -->
@@ -84,6 +125,7 @@
               matInput
               placeholder="Enter your Locality"
               required
+              autocomplete="off"
             />
             <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
             <!-- <mat-hint>Enter Locality</mat-hint> -->
@@ -99,6 +141,7 @@
           matInput
           placeholder="Address"
           required
+          autocomplete="off"
           style="height: 80px;"
         />
         <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
@@ -119,6 +162,7 @@
             matInput
             placeholder="Enter your city/town"
             required
+            autocomplete="off"
           />
           <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
           <!-- <mat-hint>Enter Name</mat-hint> -->
@@ -131,6 +175,7 @@
               matInput
               placeholder="Enter your landmark"
               required
+              autocomplete="off"
             />
             <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
             <!-- <mat-hint>Enter phoneNumber</mat-hint> -->

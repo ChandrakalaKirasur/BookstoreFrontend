@@ -11,7 +11,6 @@
 .cartdetails {
   display: flex;
   margin-left: 36px;
-  // flex-direction: column;
   position: relative;
 }
 .bookdetails {
@@ -26,7 +25,6 @@
   height: 62px;
   font-size: larger;
   font: bold;
-  //margin-left: 36px;
 }
 .booktitle {
   width: 161px;
@@ -36,17 +34,33 @@
   opacity: 1;
   display: flex;
 }
-
+.quantity {
+  top: 284px;
+  left: 346px;
+  width: 50px;
+  height: 24px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #dbdbdb;
+  border-radius: 1px;
+  opacity: 1;
+  text-align: center;
+  padding-top: 8px;
+}
+.color {
+  background-color: #dbdbdb;
+}
+.quantitybuttons {
+  background: #fafafa;
+  opacity: 1;
+}
 .booktitle2 {
   width: 190px;
   text-align: left;
-  //font: Regular 14px/17px Lato;
   letter-spacing: 0px;
   color: #0a0102;
   opacity: 1;
   margin-left: 17%;
   position: relative;
-  //margin-top: -10%;
 }
 
 .sub {
@@ -56,14 +70,9 @@
 }
 
 .mat {
-  // background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
   width: 750px;
-  // margin-bottom: 100px;
-  //height: 60px;
-  // width: 60%;
-  // width: 750px;
 }
 .mat2 {
   display: flex;
@@ -81,28 +90,14 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  // width: 60%;
   width: 750px;
-  //height: 241px;
-  //margin-bottom: 10px;
-  // margin-bottom: 0px;
-  //padding-bottom: 4%;
-  // position: relative;
-  //padding-bottom: 5%;
-  // margin-top: 21px;
 }
 .matcardincr {
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  //width: 60%;
   width: 750px;
-  // height: 260px;
-  //margin-bottom: 10px;
-  //margin-bottom: 0px;
-  // position: relative;
   padding-bottom: 4.2%;
-  // margin-top: 21px;
 }
 .button {
   font-size: 17px;
@@ -121,9 +116,8 @@
 }
 
 .input {
-  height: 67px;
   width: 251px;
-  // position: relative;
+  height: 69px;
 }
 .fieldtop {
   margin-top: 21px;
