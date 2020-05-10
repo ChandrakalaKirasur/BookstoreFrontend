@@ -35,6 +35,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ViewCartComponent } from './components/view-cart/view-cart.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
+import { GetbooksComponent } from './components/getbooks/getbooks.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { OrderSuccessComponent } from './components/order-success/order-success.
     BooksComponent,
     PaginationComponent,
     OrderSuccessComponent,
+    GetbooksComponent,
   ],
   imports: [
     BrowserModule,
