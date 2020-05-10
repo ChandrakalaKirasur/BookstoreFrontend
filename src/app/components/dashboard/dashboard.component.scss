@@ -4,9 +4,6 @@
   width: 100%;
   left: 0;
   top: 0;
-  overflow-y: scroll;
-  //  overflow: hidden;
-  // overflow: scroll;
   position: fixed;
   display: flex;
 }
@@ -138,17 +135,8 @@ mat-card {
   bottom: 0;
   width: 100%;
   max-height: 100%;
-  margin-top: 50%;
+  margin-top: 30%;
 }
 .page {
   padding: 5px;
-}
-mat-card-content {
-  margin-left: 7%;
-}
-.book {
-  padding-bottom: 10px;
-  flex-direction: row;
-  padding: 10px;
-  padding-bottom: 9%;
 }
