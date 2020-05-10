@@ -22,6 +22,15 @@ mat-card-content {
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #e2e2e2;
   border-radius: 2px;
-  opacity: 1;
+  // opacity: 1;
   margin-right: -4.5px;
+}
+#menu:hover {
+  visibility: visible;
+  transition-delay: 0s;
+}
+div.myMenu {
+  border-radius: 0px;
+  border: 1px solid #e2e2e2;
+  background-color: #ffffff 0% 0% no-repeat padding-box;
 }

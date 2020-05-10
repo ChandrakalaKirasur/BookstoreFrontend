@@ -8,10 +8,13 @@
         class="sort"
         fxLayout="row"
         fxLayoutAlign="space-between end"
-        [matMenuTriggerFor]="menu1"
+        [matMenuTriggerFor]="menu"
       >
-        <div style="font-size: 12px; padding-bottom: 5%;">
-          {{ sort }}
+        <div
+          style="font-size: 12px; padding-bottom: 5%;"
+          (click)="doSorting(sort)"
+        >
+          <label>{{ sort }}</label>
         </div>
         <div>
           <mat-icon style="color: #0a0102; opacity: 0.75;"
@@ -19,14 +22,13 @@
           >
         </div>
       </button>
-      <mat-menu #menu1="matMenu" autocomplete="off">
+      <mat-menu #menu="matMenu" class="myMenu">
         <div
           style="
             width: 151px;
             height: auto;
             text-align: left;
-            padding-left: 10px;
-            border-radius: -10px;
+            padding-left: 8px;
           "
         >
           <div
@@ -37,23 +39,25 @@
           </div>
           <div
             style="font-size: 12px; padding-bottom: 5%;"
-            (click)="sortByHighToLow()"
+            (click)="doSorting(sortTech2)"
           >
-            <label>Price:High to Low</label>
+            <label>{{ sortTech2 }}</label>
           </div>
           <div
             style="font-size: 12px; padding-bottom: 5%;"
-            (click)="sortByNewArrivals()"
+            (click)="doSorting(sortTech3)"
           >
-            <label>Newest Arrivals</label>
+            <label>{{ sortTech3 }}</label>
           </div>
         </div>
       </mat-menu>
     </div>
   </div>
-  <div *ngFor="let colors of images" fxLayout="row">
-    <div *ngFor="let image of colors" class="colorsList" class="book">
-      <app-books [image]="image"></app-books>
+  <div class="bookCard" fxLayoutAlign="space-between end">
+    <div *ngFor="let colors of images" fxLayout="row">
+      <div *ngFor="let image of colors" class="colorsList" class="book">
+        <app-books [image]="image"></app-books>
+      </div>
     </div>
   </div>
 </mat-card-content>
