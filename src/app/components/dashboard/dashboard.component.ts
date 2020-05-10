@@ -26,20 +26,20 @@ export class DashboardComponent implements OnInit {
         name: "Pink",
       },
     ],
-    // [
-    // {
-    // colorCode: "rgba(233, 171, 23,1)", name: "Yellow"
-    // },
-    // {
-    // colorCode: "rgba(249, 150, 107,1)", name: "Orange"
-    // },
-    // {
-    // colorCode: "rgba(255,255,255,1)", name: "white"
-    // },
-    // {
-    // colorCode: "rgba(230, 169, 236,1)", name: "Pink"
-    // },
-    // ]
+    [
+    {
+    colorCode: "rgba(233, 171, 23,1)", name: "Yellow"
+    },
+    {
+    colorCode: "rgba(249, 150, 107,1)", name: "Orange"
+    },
+    {
+    colorCode: "rgba(255,255,255,1)", name: "white"
+    },
+    {
+    colorCode: "rgba(230, 169, 236,1)", name: "Pink"
+    },
+    ]
   ];
   constructor(private route: ActivatedRoute, private router: Router) {}
 
