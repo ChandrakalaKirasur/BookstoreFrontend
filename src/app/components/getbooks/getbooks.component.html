@@ -11,7 +11,7 @@
         [matMenuTriggerFor]="menu1"
       >
         <div style="font-size: 12px; padding-bottom: 5%;">
-          Sort by relevance
+          {{ sort }}
         </div>
         <div>
           <mat-icon style="color: #0a0102; opacity: 0.75;"
@@ -19,23 +19,33 @@
           >
         </div>
       </button>
-      <mat-menu #menu1="matMenu">
+      <mat-menu #menu1="matMenu" autocomplete="off">
         <div
           style="
-            width: 161px;
+            width: 151px;
             height: auto;
             text-align: left;
             padding-left: 10px;
+            border-radius: -10px;
           "
         >
-          <div style="font-size: 12px; padding-bottom: 5%;">
-            Price:Low to High
+          <div
+            style="font-size: 12px; padding-bottom: 5%;"
+            (click)="doSorting(sortTech1)"
+          >
+            <label>{{ sortTech1 }}</label>
           </div>
-          <div style="font-size: 12px; padding-bottom: 5%;">
-            Price:High to Low
+          <div
+            style="font-size: 12px; padding-bottom: 5%;"
+            (click)="sortByHighToLow()"
+          >
+            <label>Price:High to Low</label>
           </div>
-          <div style="font-size: 12px; padding-bottom: 5%;">
-            Newest Arrivals
+          <div
+            style="font-size: 12px; padding-bottom: 5%;"
+            (click)="sortByNewArrivals()"
+          >
+            <label>Newest Arrivals</label>
           </div>
         </div>
       </mat-menu>
