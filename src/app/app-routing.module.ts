@@ -1,28 +1,28 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ViewCartComponent } from './components/view-cart/view-cart.component';
-
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { ViewCartComponent } from "./components/view-cart/view-cart.component";
+import { OrderSuccessComponent } from "./components/order-success/order-success.component";
 
 const routes: Routes = [
-  // {
-  //     path: "viewCart",
-  //     component: ViewCartComponent
-  // },
-    {
-    path:"dashboard",
+  {
+    path: "",
     component: DashboardComponent,
     children: [
       {
-        path: "viewCart",
-        component: ViewCartComponent
+        path: "viewcart",
+        component: ViewCartComponent,
       },
-    ]
-  }
-]
+      {
+        path: "ordersucess",
+        component: OrderSuccessComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

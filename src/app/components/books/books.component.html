@@ -1,18 +1,20 @@
-<div class="book-container">
-    <mat-card>
+<mat-card
+  autocomplete="off"
+  role="combobox" flex="column" class="book">
+    <div class="header" style="background-color: #F5F5F5;">
         <mat-card-header>
-            <img mat-card-image fxLayoutAlign="center start" src="assets/images/dontmake.jpg" alt="Book Photo">
+            <img mat-card-image fxLayoutAlign="center start" src="assets/images/dontmake.png" alt="Book Photo">
         </mat-card-header>
+    </div>
+    <div class="content">
         <mat-card-content>
-            <div class="mat-title">Don't Make Me Think</div>
-            <mat-card-subtitle style="size: 10px;color: #9D9D9D;">by Author name</mat-card-subtitle>
+            <div class="mat-title" style="font: Regular 14px/17px Lato;">Don't Make Me Think</div>
+            <mat-card-subtitle style="color: #9D9D9D;margin-top: -20px;">by Steve Krug</mat-card-subtitle>
             <div class="mat-subheading-1">Rs. 1500</div>
         </mat-card-content>
-        <mat-card-actions div fxLayout="row" fxLayoutGap="1%" >
-            <button class="box1"
-                >ADD TO BAG</button>
-            <button class="box"
-                >WISHLIST</button>
+        <mat-card-actions fxLayout="row" fxLayoutGap="7%" >
+            <button class="box1">ADD TO BAG</button>
+            <button class="box">WISHLIST</button>
         </mat-card-actions>
-    </mat-card>
-</div>
+    </div>
+</mat-card>

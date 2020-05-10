@@ -1,0 +1,56 @@
+.sucessimg {
+  display: flex;
+  position: relative;
+  top: 36px;
+  //left: 177px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  // margin-bottom: 170px;
+  height: 225px;
+  width: 170px;
+  margin-right: 3%;
+}
+.ordermsg {
+  font: Bold 23px/30px Lato;
+  text-transform: capitalize;
+  opacity: 1;
+  margin-top: -4%;
+}
+.orderdetails {
+  text-align: center;
+  width: 348px;
+  letter-spacing: 0px;
+  color: #333232;
+  opacity: 1;
+  margin-top: 7%;
+  margin-bottom: 2%;
+}
+table {
+  width: 100%;
+}
+.matcard1 {
+  display: flex;
+  flex-direction: column;
+  width: 54%;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  color: #333232;
+  font-size: 12px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 13px;
+  width: 33.33%;
+}
+tr:nth-child(odd) {
+  background-color: #dcdcdc;
+}
