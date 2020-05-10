@@ -53,9 +53,27 @@
       </mat-menu>
     </div>
   </div>
-  <div *ngFor="let colors of images" fxLayout="row">
-    <div *ngFor="let image of colors" class="colorsList" class="book">
+  <!-- <div *ngFor="let colors of images" fxLayout="row"> -->
+  <!-- <div *ngFor="let image of colors" class="colorsList" class="book"> -->
+  <!-- <app-books [image]="image"></app-books> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <div class="display-books-container">
+    <div
+      class="display-notes"
+      fxLayout="row"
+      *ngFor="
+        let image of images
+          | search: searchBookOnTitle
+          | sortBooks: sortBy
+          | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }
+      "
+    >
       <app-books [image]="image"></app-books>
     </div>
+  </div>
+  <div class="paginator">
+    <pagination-controls (pageChange)="page = $event" id="first" align="center">
+    </pagination-controls>
   </div>
 </mat-card-content>

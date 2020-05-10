@@ -34,3 +34,24 @@ div.myMenu {
   border: 1px solid #e2e2e2;
   background-color: #ffffff 0% 0% no-repeat padding-box;
 }
+////////////
+.display-books-container {
+  margin: 0 7%;
+}
+// simple making the note fit to page
+.display-notes {
+  position: relative;
+  flex-wrap: wrap;
+  padding: 10px;
+  display: block;
+  justify-content: space-between;
+  align-items: flex-start;
+  float: left;
+}
+app-book {
+  padding: 10px, 0;
+}
+#first {
+  position: relative;
+  display: block;
+}
