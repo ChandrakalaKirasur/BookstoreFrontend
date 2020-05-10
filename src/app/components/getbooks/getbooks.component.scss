@@ -1,10 +1,15 @@
 mat-card-content {
-    margin-left: 7%;
-  }
-  .book {
-    padding-bottom: 10px;
-    flex-direction: row;
-    padding: 10px;
-    padding-bottom: 9%;
-  }
-  
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.book {
+  padding-bottom: 10px;
+  flex-direction: row;
+  padding: 10px;
+  padding-bottom: 30px;
+}
+.bookheader {
+  flex-direction: row;
+  padding-bottom: 2.8%;
+  margin-left: 1.8%;
+}
