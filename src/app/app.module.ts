@@ -37,7 +37,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { GetbooksComponent } from './components/getbooks/getbooks.component';
 
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +73,7 @@ import { GetbooksComponent } from './components/getbooks/getbooks.component';
     MatInputModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
+    MatProgressBarModule
 
   ],
   providers: [],

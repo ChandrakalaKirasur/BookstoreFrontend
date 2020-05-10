@@ -1,31 +1,33 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  
   <mat-card class="box">
-    <mat-card-header>
+    <mat-progress-bar
+    mode="indeterminate"  [value]="progress" ></mat-progress-bar> 
+    <mat-card-header >
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
+    <br>
     <form class="example-form">
       <mat-card-content>
         <mat-form-field appearance="outline" class="example-full-width">
             <mat-label >Email</mat-label>
-            
-            <input type="email" matInput placeholder="Enter your email"    required>
+            <input type="email" matInput placeholder="Enter your email"   required>
             <mat-icon matSuffix> mail_outline</mat-icon>
             <mat-hint>Email</mat-hint>
           </mat-form-field>
          <mat-form-field appearance="outline" class="example-full-width">
         <mat-label >Password</mat-label>
-        <input type="password" matInput placeholder="Enter your password"    required>
-        <mat-icon matSuffix>no_encryption</mat-icon>
-        <mat-hint>Password</mat-hint>
+        <input type="password" matInput placeholder="Enter your password" [type]="!hide ? 'password' : 'text'"   required>
+        <mat-icon matSuffix (click)="hide =! hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-hint >Password</mat-hint>
       </mat-form-field>
       </mat-card-content>
       <div   fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2px" >
-      <button   mat-button color="accent" class="btn-block1">Sign in</button>
-      <button    mat-button color="primary" class="btn-block2">Sign Up</button>
+      <button   mat-button color="accent" class="btn-block1" (click)="login()">Sign in</button>
+      <button   mat-button color="primary" class="btn-block2">Sign Up</button>
     </div>
-    <div   fxLayout="row" fxLayoutAlign="center center"  >
-        
-        <button   mat-button color="primary" class="btn-block3">Forget Password?</button>
+    <div  fxLayout="row" fxLayoutAlign="center center" >  
+        <button  mat-button color="primary" class="btn-block3">Forget Password?</button>
       </div>
     </form>
   </mat-card>
