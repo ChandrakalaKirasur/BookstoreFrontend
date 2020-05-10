@@ -9,7 +9,7 @@
         <div class="booktext">BookStore</div>
       </div>
       <div
-        class="searchIcon"
+        style="position: relative;"
         fxLayout="row"
         fxLayoutAlign="center center"
         style="margin-left: 123px;"
@@ -27,27 +27,24 @@
         />
       </div>
 
-      <div
-        fxLayout="row"
-        fxLayoutAlign="end center"
-        style="margin-left: 347px;"
-      >
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 19%;">
         <div class="carttext" (click)="onCart()">Cart</div>
         <button (click)="onCart()" class="cartimg">
           <mat-icon color="primary">
             <img class="image" src="assets/images/supermarket@2x.png" />
           </mat-icon>
         </button>
-      </div>
-      <div
+        <!-- </div> -->
+        <!-- <div
         fxLayout="row"
         fxLayoutAlign="end center"
         style="margin-left: 79px; position: inherit;"
-      >
+        > -->
         <button
           mat-icon-button
           fxShow="true"
           width="30"
+          style="margin-left: 37px;"
           [matMenuTriggerFor]="beforeMenu"
         >
           <img class="profile" src="assets/images/Indian-Army-4.jpg" />
