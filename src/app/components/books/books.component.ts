@@ -10,7 +10,7 @@ import { MatSnackBar } from "@angular/material";
 export class BooksComponent implements OnInit {
   @Input() image: String;
   isAdded: boolean = false;
-  isOutOfStock: boolean = true;
+  isOutOfStock: boolean = false;
   constructor(private _matSnackBar: MatSnackBar) {}
 
   ngOnInit() {}

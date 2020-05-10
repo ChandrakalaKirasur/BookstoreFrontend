@@ -46,6 +46,7 @@
         WISHLIST
       </button>
       <button
+        *ngIf="isOutOfStock"
         class="boxOutOfStockWishList"
         id="add-to-wishlist"
         (click)="addToWishList()"

@@ -3,19 +3,47 @@
     <div style="font-size: 25px;" class="books">
       Books <small style="font-size: 12px;">(128 itmes)</small>
     </div>
-    <div fxLayout="row" fxLayoutAlign="space-between end">
-      <button class="sort">
-        Sort by relevance
-        <mat-icon style="color: #0a0102; opacity: 1;">expand_more</mat-icon>
+    <div>
+      <button
+        class="sort"
+        fxLayout="row"
+        fxLayoutAlign="space-between end"
+        [matMenuTriggerFor]="menu1"
+      >
+        <div style="font-size: 12px; padding-bottom: 5%;">
+          Sort by relevance
+        </div>
+        <div>
+          <mat-icon style="color: #0a0102; opacity: 0.75;"
+            >expand_more</mat-icon
+          >
+        </div>
       </button>
+      <mat-menu #menu1="matMenu">
+        <div
+          style="
+            width: 161px;
+            height: auto;
+            text-align: left;
+            padding-left: 10px;
+          "
+        >
+          <div style="font-size: 12px; padding-bottom: 5%;">
+            Price:Low to High
+          </div>
+          <div style="font-size: 12px; padding-bottom: 5%;">
+            Price:High to Low
+          </div>
+          <div style="font-size: 12px; padding-bottom: 5%;">
+            Newest Arrivals
+          </div>
+        </div>
+      </mat-menu>
     </div>
   </div>
   <div *ngFor="let colors of images" fxLayout="row">
     <div *ngFor="let image of colors" class="colorsList" class="book">
       <app-books [image]="image"></app-books>
     </div>
-  </div>
-  <div>
-    <app-pagination></app-pagination>
   </div>
 </mat-card-content>
