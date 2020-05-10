@@ -59,22 +59,34 @@ html,body
 .login-wrapper .btn-block1{
     font-size: 18px;
     //  color: green;
-    width:50%;
-    margin-left: -10px;
+    // width:50%;
+    // margin-left: -10px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    background-color:#A03037;
+    border-radius: 3px;
+    border: none;
+    opacity: 1;
     // background-image: url(/assets/images/bookstore.jpg);
 }
 .login-wrapper .btn-block2{
     font-size: 18px;
-   
-    width:50%;
-     margin-left: 197px;
-   
+    text-align: center;
+    color: white;
+    background-color:#A03037;
+    border-radius: 3px;
+    border: none;
+    opacity: 1;   
 }
 .login-wrapper .btn-block3{
-    margin-top: 10px;
     font-size: 18px;
-     color: red;
-    width:50%;
+    text-align: center;
+    color: white;
+    background-color:#A03037;
+    border-radius: 3px;
+    border: none;
+    opacity: 1; 
    
 }
 .login-wrapper mat-card-header{

@@ -6,6 +6,8 @@ import { OrderSuccessComponent } from "./components/order-success/order-success.
 import { GetbooksComponent } from './components/getbooks/getbooks.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { RestpasswordComponent } from './components/restpassword/restpassword.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,14 @@ const routes: Routes = [
   component:  LoginComponent,
   }
  ,
+ {
+  path: "forget",
+  component:  ForgetpasswordComponent,
+ },
+ {
+ path: "reset",
+  component:  RestpasswordComponent,
+ },
   {
     
     path: "",

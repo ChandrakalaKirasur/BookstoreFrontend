@@ -38,6 +38,8 @@ import { OrderSuccessComponent } from './components/order-success/order-success.
 import { GetbooksComponent } from './components/getbooks/getbooks.component';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { RestpasswordComponent } from './components/restpassword/restpassword.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     PaginationComponent,
     OrderSuccessComponent,
     GetbooksComponent,
+    ForgetpasswordComponent,
+    RestpasswordComponent,
   ],
   imports: [
     BrowserModule,
