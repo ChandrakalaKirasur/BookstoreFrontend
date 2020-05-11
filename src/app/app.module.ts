@@ -43,6 +43,7 @@ import { ForgetpasswordComponent } from "./components/forgetpassword/forgetpassw
 import { RestpasswordComponent } from "./components/restpassword/restpassword.component";
 
 import { MatRadioModule } from "@angular/material/radio";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +83,7 @@ import { MatRadioModule } from "@angular/material/radio";
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatRadioModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
