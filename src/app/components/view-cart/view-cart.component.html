@@ -1,110 +1,242 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <mat-card class="matcard1">
+<div role="combobox" flex="column" style="margin-left: 280px;">
+  <mat-card class="matcard1" [ngClass]="open == true ? 'matcardincr' : 'dummy'">
     <div class="mycart">
-      My cart
+      My cart&nbsp;(2)
     </div>
-    <div fxLayout="row" fxLayoutAlign="start center">
+    <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
       <img class="bookimg" src="assets/images/Image 11@2x.png" />
-      <div class="booktitle" fxLayout="column" fxLayoutAlign="start start">
-        Don't Make Me Think
-        <div class="subtitle" fxLayout="column" fxLayoutAlign="start start">
-          <div class="sub">by Steve Krug</div>
-          <div class="rupee">
-            Rs. 1500
-          </div>
+      <div class="bookdetails">
+        <div class="booktitle">
+          Don't Make Me Think
         </div>
+        <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
+        <div class="sub">by Steve Krug</div>
+        <div style="margin-bottom: 30px; font: Bold 18px/15px Lato;">
+          Rs. 1500
+        </div>
+        <!-- </div> -->
+        <!-- </div> -->
       </div>
     </div>
-  </mat-card>
-  <div fxLayout="row" fxLayoutAlign="end end" class="placebutton">
-    <button
-      mat-raised-button
-      style="background-color: #3371b5;"
-      (click)="onOpen()"
-      *ngIf="!open"
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayOutGap="10px"
+      style="margin-right: 268px;"
     >
-      Place order
-    </button>
-  </div>
+      <div>
+        <button mat-icon-button (click)="personadd()">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </div>
+
+      <div class="quantity">{{ 1 }}</div>
+      <div>
+        <button mat-icon-button (click)="personadd()">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+      &nbsp; Remove
+    </div>
+    <div fxLayout="column" fxLayoutAlign="end end">
+      <button mat-raised-button class="button" (click)="onOpen()" *ngIf="!open">
+        Place order
+      </button>
+    </div>
+  </mat-card>
+
   <br />
   <mat-card class="mat" *ngIf="!open">
-    <!-- <img class="bookimg" src="assets/images/Group 4132@2x.png" > -->
     <div>
       Customer Details
     </div>
   </mat-card>
 
-  <mat-card class="matcard1" *ngIf="open">
-    <mat-form-field appearance="outline" class="input">
-      <mat-label>Password</mat-label>
-      <input
-        type="text"
-        matInput
-        placeholder="Enter your FirstName"
-        required
-        id="passwordlogin"
-        [formControl]="password"
-      />
-      <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
-      <mat-hint>Enter Password</mat-hint>
-    </mat-form-field>
+  <mat-card
+    class="matcard1"
+    *ngIf="open"
+    [ngClass]="open2 == true ? 'matcardincr' : ''"
+  >
+    <div class="custom">
+      Customer Details
+    </div>
+    <button
+      (click)="personadd()"
+      style="
+        margin-left: 708px;
+        margin-top: -21px;
+        border: none;
+        outline: none;
+      "
+    >
+      <div class="custom2" fxLayout="row" fxLayoutAlign="end start">
+        Edit
+      </div>
+    </button>
+    <div class="custom">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>Name</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Enter your Name"
+            required
+            autocomplete="off"
+          />
+          <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+          <!-- <mat-hint>Enter Name</mat-hint> -->
+        </mat-form-field>
+        <div style="margin-left: 7px;">
+          <!-- &nbsp; -->
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>phoneNumber</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Enter your phoneNumber"
+              required
+              autocomplete="off"
+            />
+            <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+            <!-- <mat-hint>Enter phoneNumber</mat-hint> -->
+          </mat-form-field>
+        </div>
+      </div>
 
-    <mat-form-field appearance="outline" class="input">
-      <mat-label>Password</mat-label>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>pincode</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Enter your pincode"
+            required
+            autocomplete="off"
+          />
+          <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+          <!-- <mat-hint>Enter pincode</mat-hint> -->
+        </mat-form-field>
+        <div style="margin-left: 7px;">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Locality</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Enter your Locality"
+              required
+              autocomplete="off"
+            />
+            <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+            <!-- <mat-hint>Enter Locality</mat-hint> -->
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- <div class="addiv"> -->
+      <mat-form-field appearance="outline" class="address">
+        <mat-label>Address</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Address"
+          required
+          autocomplete="off"
+          style="height: 80px;"
+        />
+        <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+        <!-- <mat-hint>Enter phoneNumber</mat-hint> -->
+      </mat-form-field>
+      <!-- </div> -->
+      <!-- <div class="fieldtop"> -->
+      <br />
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        style="margin-top: 21px;"
+      >
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>City/town</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Enter your city/town"
+            required
+            autocomplete="off"
+          />
+          <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+          <!-- <mat-hint>Enter Name</mat-hint> -->
+        </mat-form-field>
+        <div style="margin-left: 7px;">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Landmark</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Enter your landmark"
+              required
+              autocomplete="off"
+            />
+            <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+            <!-- <mat-hint>Enter phoneNumber</mat-hint> -->
+          </mat-form-field>
+        </div>
+      </div>
+      <br />
+      <div fxLayout="row" fxLayoutAlign="start center">Type</div>
+      <br />
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <mat-radio-group aria-label="Select an option" fxLayoutGap="110px">
+          <mat-radio-button value="1">Home</mat-radio-button>
+          <mat-radio-button value="2">Work</mat-radio-button>
+          <mat-radio-button value="3">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
 
-      <input
-        type="text"
-        matInput
-        placeholder="Enter your LastName"
-        required
-        id="passwordlogin"
-        [formControl]="password"
-      />
-      <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
-      <mat-hint>Enter Password</mat-hint>
-    </mat-form-field>
+      <div fxLayout="column" fxLayoutAlign="end end">
+        <button
+          mat-raised-button
+          *ngIf="!open2"
+          class="button"
+          (click)="onOpen2()"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
   </mat-card>
+
   <br />
-  <mat-card class="mat" *ngIf="!open">
+  <mat-card class="mat2" *ngIf="!open2">
     <div>
       Order summery
     </div>
   </mat-card>
 
-  <mat-card class="matcard2" *ngIf="open">
-    <div class="ordersummery">
-      Order summery
+  <mat-card class="matcard2" *ngIf="open2">
+    <div class="mycart">
+      My cart&nbsp;(2)
     </div>
-    <div fxLayout="row" fxLayoutAlign="start center">
+    <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
       <img class="bookimg" src="assets/images/Image 11@2x.png" />
-      <div class="booktitle2" fxLayout="column" fxLayoutAlign="start start">
-        Don't Make Me Think
-        <div class="subtitle" fxLayout="column" fxLayoutAlign="start start">
-          <div class="sub">by Steve Krug</div>
-          <div class="rupee">
-            Rs. 1500
-          </div>
+      <div class="bookdetails">
+        <div class="booktitle">
+          Don't Make Me Think
         </div>
+        <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
+        <div class="sub">by Steve Krug</div>
+        <div class="rupee">
+          Rs. 1500
+        </div>
+        <!-- </div> -->
+        <!-- </div> -->
       </div>
     </div>
-    <div class="checkout">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="onOpen()"
-        style="background-color: #3371b5;"
-      >
+    <div fxLayout="column" fxLayoutAlign="end end">
+      <button mat-raised-button class="button" (click)="onOpen2()">
         Checkout
       </button>
     </div>
-    <!-- <div fxLayout="row" fxLayoutAlign="start center">
-      <img class="bookimg" src="assets/images/Image 11@2x.png" />
-      <div class="booktitle2" fxLayout="column" fxLayoutAlign="start center">
-        Don't Make Me Think
-        <div class="subtitle">by Steve Krug</div>
-      </div>
-    </div>
-     -->
   </mat-card>
   <br /><br />
 </div>
