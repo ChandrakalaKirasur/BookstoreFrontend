@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-view-cart",
@@ -6,24 +7,16 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./view-cart.component.scss"],
 })
 export class ViewCartComponent implements OnInit {
-  images = [
-    [
-      {
-        // colorCode: "rgba(198, 222, 255,1)",
-        // name: "Blue",
-        img: "dontmake.png",
-      },
-      {
-        img: "dontmake.png",
-      },
-      {
-        img: "dontmake.png",
-      },
-      {
-        img: "dontmake.png",
-      },
-    ],
-  ];
+  email = new FormControl("", [Validators.required, Validators.email]);
+
+  emailValidation() {
+    return this.email.hasError("required")
+      ? ""
+      : this.email.hasError("email")
+      ? ""
+      : "";
+  }
+
   constructor() {}
 
   ngOnInit() {}

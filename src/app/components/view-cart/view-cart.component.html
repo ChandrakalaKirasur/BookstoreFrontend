@@ -69,15 +69,17 @@
       <div fxLayout="row" fxLayoutAlign="start center">
         <mat-form-field appearance="outline" class="input">
           <mat-label>Name</mat-label>
+          <mat-error *ngIf="email.invalid"> {{ emailValidation() }}</mat-error>
           <input
             type="text"
             matInput
             placeholder="Enter your Name"
             [matAutocomplete]="isDisabled"
+            [formControl]="email"
             required
             [disabled]="!fields"
           />
-          <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
+          <!-- <mat-error *ngIf="email.invalid"> {{ emailValidation() }}</mat-error> -->
           <!-- <mat-hint>Enter Name</mat-hint> -->
         </mat-form-field>
         <div style="margin-left: 7px;">
