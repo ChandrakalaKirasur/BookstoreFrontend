@@ -11,24 +11,33 @@
       <mat-card-content>
         <mat-form-field appearance="outline" class="example-full-width">
             <mat-label >Email</mat-label>
-            <input type="email" matInput placeholder="Enter your email"   required>
+            <mat-error *ngIf="email.invalid">{{getErrorEmail()}}</mat-error>
+            <input type="email" matInput placeholder="Enter your email" [(ngModel)]="login.email" [formControl]="email" required>
             <mat-icon matSuffix> mail_outline</mat-icon>
             <mat-hint>Email</mat-hint>
           </mat-form-field>
          <mat-form-field appearance="outline" class="example-full-width">
         <mat-label >Password</mat-label>
-        <input type="password" matInput placeholder="Enter your password" [type]="!hide ? 'password' : 'text'"   required>
+        <mat-error *ngIf="password.invalid ">{{getErrorPassword()}}</mat-error>
+        <input type="password" matInput placeholder="Enter your password" [type]="!hide ? 'password' : 'text'" [(ngModel)]="login.password"[formControl]="password"  required>
         <mat-icon matSuffix (click)="hide =! hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-hint >Password</mat-hint>
       </mat-form-field>
       </mat-card-content>
       <div   fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="140px" >
-      <button   mat-button  class="btn-block1" (click)="login()">Sign in</button>
-      <button   mat-button color="primary" class="btn-block2">Sign Up</button>
+      <button   mat-button  class="btn-block1" (click)="onLogin()">Sign in</button>
+      <button   mat-button color="primary" class="btn-block2" routerLink="/register">Sign Up</button>
     </div>
+    <ngx-spinner 
+          bdColor="rgba(51,51,51,0.8)"
+          size="medium"
+          color="#fff"
+          type="ball-scale-multiple">
+        
+          <p style="font-size: 20px; color: rgb(233, 221, 221)">Loading...</ngx-spinner>
     <br>
     <div  fxLayout="row" fxLayoutAlign="center center" >  
-        <button  mat-button color="primary" class="btn-block3">Forget Password?</button>
+        <button  mat-button color="primary" class="btn-block3" routerLink="/forget">Forget Password?</button>
       </div>
     </form>
   </mat-card>

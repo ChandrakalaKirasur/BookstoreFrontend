@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 /* Angular Flex Layout */
 import { FlexLayoutModule } from "@angular/flex-layout";
+// import { NgxPaginationModule } from "ngx-pagination";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -37,6 +38,7 @@ import { ViewCartComponent } from "./components/view-cart/view-cart.component";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { OrderSuccessComponent } from "./components/order-success/order-success.component";
 import { GetbooksComponent } from "./components/getbooks/getbooks.component";
+import { SortBooksPipe } from "./pipes/sort-books.pipe";
 
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { ForgetpasswordComponent } from "./components/forgetpassword/forgetpassword.component";
@@ -56,6 +58,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     PaginationComponent,
     OrderSuccessComponent,
     GetbooksComponent,
+    SortBooksPipe,
     ForgetpasswordComponent,
     RestpasswordComponent,
   ],
@@ -66,6 +69,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
+    // NgxPaginationModule,
     MatFormFieldModule,
     MatIconModule,
     MatCardModule,
