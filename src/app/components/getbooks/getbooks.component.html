@@ -54,16 +54,11 @@
     </div>
   </div>
   <div fxLayout="column" fxLayoutAlign="center center">
-    <div
-      *ngFor="let colors of images"
-      fxLayout="row"
-      fxLayoutAlign="center center"
-      class="display-notes"
-    >
+    <div *ngFor="let colors of images" fxLayout="row" class="display-notes">
       <div
         *ngFor="
           let image of colors
-            | paginate: { itemsPerPage: 4, currentPage: page, id: 'first' }
+            | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }
         "
         class="colorsList"
         class="book"

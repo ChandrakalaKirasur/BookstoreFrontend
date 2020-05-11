@@ -1,17 +1,13 @@
-mat-card-content {
-  margin-left: 10%;
-  margin-right: 10%;
-}
 .book {
   padding-bottom: 10px;
   flex-direction: row;
   padding: 10px;
-  padding-bottom: 30px;
 }
 .bookheader {
   flex-direction: row;
-  padding-bottom: 2.8%;
-  margin-left: 1.8%;
+  padding-bottom: 2%;
+  margin-left: 11.4%;
+  margin-right: 10.2%;
 }
 .sort {
   text-align: center;
@@ -20,9 +16,9 @@ mat-card-content {
   height: 30px;
   font: Regular 12px/15px Lato;
   background: #ffffff 0% 0% no-repeat padding-box;
-  border: 1px solid #e2e2e2;
+  border: 1px solid #837070;
   border-radius: 2px;
-  // opacity: 1;
+  opacity: 1;
   margin-right: -4.5px;
 }
 #menu:hover {
@@ -34,21 +30,18 @@ div.myMenu {
   border: 1px solid #e2e2e2;
   background-color: #ffffff 0% 0% no-repeat padding-box;
 }
-.display-books-container {
-  margin: 0 7%;
-}
-// simple making the note fit to page
+// card fitting to page
 .display-notes {
   position: relative;
   flex-wrap: wrap;
   padding: 10px;
   display: block;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   float: left;
 }
-app-book {
-  padding: 10px, 0;
+app-books {
+  padding: 10px, 10px;
 }
 #first {
   position: relative;

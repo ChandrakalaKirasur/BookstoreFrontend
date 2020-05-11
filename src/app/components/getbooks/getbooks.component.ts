@@ -8,8 +8,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 })
 export class GetbooksComponent implements OnInit {
   sort: any = "Sort by relevance";
-  sortTech1: any = "Price:Low to High";
-  sortTech2: any = "Price:High to Low";
+  sortTech1: any = "Price : Low to High";
+  sortTech2: any = "Price : High to Low";
   sortTech3: any = "Newest Arrivals";
   images = [
     [
@@ -57,23 +57,23 @@ export class GetbooksComponent implements OnInit {
   doSorting(option: any) {
     this.sort = option;
     if (option == "Sort by relevance") {
-      this.sortTech1 = "Price:Low to High";
-      this.sortTech2 = "Price:High to Low";
+      this.sortTech1 = "Price : Low to High";
+      this.sortTech2 = "Price : High to Low";
       this.sortTech3 = "Newest Arrivals";
     }
-    if (option == "Price:Low to High") {
-      this.sortTech1 = "Price:High to Low";
+    if (option == "Price : Low to High") {
+      this.sortTech1 = "Price : High to Low";
       this.sortTech2 = "Sort by relevance";
       this.sortTech3 = "Newest Arrivals";
     }
-    if (option == "Price:High to Low") {
-      this.sortTech1 = "Price:Low to High";
+    if (option == "Price : High to Low") {
+      this.sortTech1 = "Price : Low to High";
       this.sortTech2 = "Sort by relevance";
       this.sortTech3 = "Newest Arrivals";
     }
     if (option == "Newest Arrivals") {
-      this.sortTech1 = "Price:Low to High";
-      this.sortTech2 = "Price:High to Low";
+      this.sortTech1 = "Price : Low to High";
+      this.sortTech2 = "Price : High to Low";
       this.sortTech3 = "Sort by relevance";
     }
   }
