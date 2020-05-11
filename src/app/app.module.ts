@@ -40,6 +40,12 @@ import { OrderSuccessComponent } from "./components/order-success/order-success.
 import { GetbooksComponent } from "./components/getbooks/getbooks.component";
 import { SortBooksPipe } from "./pipes/sort-books.pipe";
 
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { ForgetpasswordComponent } from "./components/forgetpassword/forgetpassword.component";
+import { RestpasswordComponent } from "./components/restpassword/restpassword.component";
+
+import { MatRadioModule } from "@angular/material/radio";
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +59,8 @@ import { SortBooksPipe } from "./pipes/sort-books.pipe";
     OrderSuccessComponent,
     GetbooksComponent,
     SortBooksPipe,
+    ForgetpasswordComponent,
+    RestpasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +85,9 @@ import { SortBooksPipe } from "./pipes/sort-books.pipe";
     MatInputModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
+    MatProgressBarModule,
+    MatRadioModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
