@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 /* Angular Flex Layout */
 import { FlexLayoutModule } from "@angular/flex-layout";
-// import { NgxPaginationModule } from "ngx-pagination";
+import { NgxPaginationModule } from "ngx-pagination";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -30,7 +30,6 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
 import { MatMenuModule } from "@angular/material/menu";
-
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
@@ -46,6 +45,7 @@ import { RestpasswordComponent } from "./components/restpassword/restpassword.co
 
 import { MatRadioModule } from "@angular/material/radio";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +69,8 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
-    // NgxPaginationModule,
+    NgxPaginationModule,
+    NgxSpinnerModule,
     MatFormFieldModule,
     MatIconModule,
     MatCardModule,
