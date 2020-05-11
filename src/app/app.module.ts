@@ -87,7 +87,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatRadioModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
