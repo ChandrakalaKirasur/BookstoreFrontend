@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { MatSnackBar } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-register',
@@ -14,10 +17,14 @@ export class RegisterComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl(this.user.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)])
   mobile = new FormControl(this.user.phoneNumber, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
-
-  constructor() { }
-
+  showSpinner = false;
+  constructor(private snackBar: MatSnackBar, 
+    public formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router) { }
+    private spinner: NgxSpinnerService
   ngOnInit() {
+    
   }
 
   nameValidation() {
@@ -37,6 +44,26 @@ export class RegisterComponent implements OnInit {
     return this.password.hasError('required') ? 'You must enter a value' :
       this.password.hasError('password') ? 'Min 6 Elements' : '';
   }
+onSubmit()
+{
+  console.log(this.user)
+  
+  console.log(this.password)
+localStorage.setItem("name",this.user.name)
+localStorage.setItem("emailId",this.user.emailId)
+localStorage.setItem("password",this.user.password)
+localStorage.setItem("phoneNumber",this.user.phoneNumber)
+this.spinner.show();
+        this.snackBar.open(
+          "Registered Successfully",
+          "undo",
+          { duration: 50000 }
+        )
+        this.spinner.hide()
+        this.router.navigate(['/login'])
+      
+}
+
 
 
 }
