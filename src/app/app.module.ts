@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 /* Angular Flex Layout */
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { NgxPaginationModule } from "ngx-pagination";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -29,7 +30,6 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
 import { MatMenuModule } from "@angular/material/menu";
-
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
@@ -37,12 +37,14 @@ import { ViewCartComponent } from "./components/view-cart/view-cart.component";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { OrderSuccessComponent } from "./components/order-success/order-success.component";
 import { GetbooksComponent } from "./components/getbooks/getbooks.component";
+import { SortBooksPipe } from "./pipes/sort-books.pipe";
 
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { ForgetpasswordComponent } from "./components/forgetpassword/forgetpassword.component";
 import { RestpasswordComponent } from "./components/restpassword/restpassword.component";
 
 import { MatRadioModule } from "@angular/material/radio";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     PaginationComponent,
     OrderSuccessComponent,
     GetbooksComponent,
+    SortBooksPipe,
     ForgetpasswordComponent,
     RestpasswordComponent,
   ],
@@ -66,6 +69,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
+    NgxPaginationModule,
+    NgxSpinnerModule,
     MatFormFieldModule,
     MatIconModule,
     MatCardModule,
@@ -83,7 +88,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatRadioModule,
-    NgxSpinnerModule
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

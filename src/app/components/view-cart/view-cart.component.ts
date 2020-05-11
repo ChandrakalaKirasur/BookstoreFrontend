@@ -29,12 +29,19 @@ export class ViewCartComponent implements OnInit {
   ngOnInit() {}
 
   open: boolean;
+  fields: boolean;
   onOpen() {
     this.open = true;
+    this.fields = true;
   }
 
   open2: boolean;
   onOpen2() {
     this.open2 = true;
+    this.fields = false;
+  }
+  onEdit() {
+    this.fields = true;
+    this.open2 = false;
   }
 }

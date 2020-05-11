@@ -36,7 +36,7 @@
           <mat-icon>add_circle_outline</mat-icon>
         </button>
       </div>
-      &nbsp; Remove
+      <div style="font: 18px/15px Lato;">&nbsp; Remove</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="end end">
       <button mat-raised-button class="button" (click)="onOpen()" *ngIf="!open">
@@ -60,16 +60,8 @@
     <div class="custom">
       Customer Details
     </div>
-    <button
-      (click)="personadd()"
-      style="
-        margin-left: 708px;
-        margin-top: -21px;
-        border: none;
-        outline: none;
-      "
-    >
-      <div class="custom2" fxLayout="row" fxLayoutAlign="end start">
+    <button *ngIf="!fields" class="editbutton" (click)="onEdit()">
+      <div fxLayout="row" fxLayoutAlign="end start">
         Edit
       </div>
     </button>
@@ -81,8 +73,9 @@
             type="text"
             matInput
             placeholder="Enter your Name"
+            [matAutocomplete]="isDisabled"
             required
-            autocomplete="off"
+            [disabled]="!fields"
           />
           <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
           <!-- <mat-hint>Enter Name</mat-hint> -->
@@ -96,6 +89,8 @@
               matInput
               placeholder="Enter your phoneNumber"
               required
+              [matAutocomplete]="false"
+              [disabled]="!fields"
               autocomplete="off"
             />
             <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
@@ -112,6 +107,8 @@
             matInput
             placeholder="Enter your pincode"
             required
+            [matAutocomplete]="false"
+            [disabled]="!fields"
             autocomplete="off"
           />
           <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
@@ -125,6 +122,8 @@
               matInput
               placeholder="Enter your Locality"
               required
+              [matAutocomplete]="false"
+              [disabled]="!fields"
               autocomplete="off"
             />
             <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
@@ -141,8 +140,10 @@
           matInput
           placeholder="Address"
           required
+          [matAutocomplete]="false"
+          [disabled]="!fields"
+          style="height: 51px;"
           autocomplete="off"
-          style="height: 80px;"
         />
         <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
         <!-- <mat-hint>Enter phoneNumber</mat-hint> -->
@@ -162,6 +163,8 @@
             matInput
             placeholder="Enter your city/town"
             required
+            [matAutocomplete]="false"
+            [disabled]="!fields"
             autocomplete="off"
           />
           <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
@@ -175,6 +178,8 @@
               matInput
               placeholder="Enter your landmark"
               required
+              [matAutocomplete]="false"
+              [disabled]="!fields"
               autocomplete="off"
             />
             <!-- <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error> -->
@@ -186,7 +191,11 @@
       <div fxLayout="row" fxLayoutAlign="start center">Type</div>
       <br />
       <div fxLayout="column" fxLayoutAlign="start start">
-        <mat-radio-group aria-label="Select an option" fxLayoutGap="110px">
+        <mat-radio-group
+          aria-label="Select an option"
+          fxLayoutGap="110px"
+          [disabled]="!fields"
+        >
           <mat-radio-button value="1">Home</mat-radio-button>
           <mat-radio-button value="2">Work</mat-radio-button>
           <mat-radio-button value="3">Other</mat-radio-button>
@@ -225,7 +234,7 @@
         </div>
         <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
         <div class="sub">by Steve Krug</div>
-        <div class="rupee">
+        <div style="font: Bold 18px/15px Lato;">
           Rs. 1500
         </div>
         <!-- </div> -->
