@@ -53,13 +53,14 @@ localStorage.setItem("name",this.user.name)
 localStorage.setItem("emailId",this.user.emailId)
 localStorage.setItem("password",this.user.password)
 localStorage.setItem("phoneNumber",this.user.phoneNumber)
-this.spinner.show();
+// this.spinner.show();
+
         this.snackBar.open(
           "Registered Successfully",
           "undo",
-          { duration: 50000 }
+          { duration: 5000 }
         )
-        this.spinner.hide()
+       
         this.router.navigate(['/login'])
       
 }

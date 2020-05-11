@@ -25,7 +25,7 @@
         <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
         <input type="password" matInput placeholder="Enter your password" [formControl]="password"
         [(ngModel)]="user.password" [type]="!hide ? 'password' : 'text'"  required>
-        <mat-icon matSuffix (click)="hide =! hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-icon class="grab" matSuffix (click)="hide =! hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-hint>Password</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline"  class="example-full-width">
@@ -40,16 +40,16 @@
       <div   fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="150px" >
         <button    mat-button color="primary" class="btn-block2" (click)="onSubmit()">Sign Up</button>
       <button   mat-button color="accent" class="btn-block1" routerLink="/login">Sign in
-        <ngx-spinner 
-        bdColor="rgba(51,51,51,0.8)"
-        size="medium"
-        color="#fff"
-        type="ball-scale-multiple">
-      
-        <p style="font-size: 20px; color: rgb(233, 221, 221)">Loading...</ngx-spinner></button>
+       </button>
       
     </div>
     </form>
-    
+    <ngx-spinner 
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple">
+  
+    <p style="font-size: 20px; color: rgb(233, 221, 221)">Loading...</ngx-spinner>
   </mat-card>
 </div>

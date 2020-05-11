@@ -156,7 +156,7 @@ html,body
 // }
 
 ::ng-deep {
-    $custom-main-color: red;
+    $custom-main-color: #A03037;
     $custom-label-color: rgba(0, 0, 0, .6);
  
     // mat-icon-stepper selected color change
@@ -166,7 +166,7 @@ html,body
  
     // input outline color
     .mat-form-field-appearance-outline .mat-form-field-outline {
-       color: green !important;
+       color: rgb(152, 156, 152) !important;
     }
  
     // mat-input focused color
@@ -192,7 +192,7 @@ html,body
  
     // mat-label normal state style
     .mat-form-field-label {
-       color: green !important;
+       color: rgb(175, 179, 175) !important;
     }
  
     // mat-label focused style
@@ -209,4 +209,4 @@ html,body
         margin-top: 40;
         
     }
- 
+    .grab {cursor: -webkit-grab; cursor: grab;}

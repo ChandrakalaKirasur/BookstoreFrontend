@@ -20,11 +20,11 @@ const routes: Routes = [
   }
  ,
  {
-  path: "forget",
+  path: "forgetpassword",
   component:  ForgetpasswordComponent,
  },
  {
- path: "reset",
+ path: "resetpassword",
   component:  RestpasswordComponent,
  },
   {

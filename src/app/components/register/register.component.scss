@@ -115,7 +115,7 @@ html,body
     min-height: 70vh;
   }
   ::ng-deep {
-    $custom-main-color: red;
+    $custom-main-color: #A03037;
     $custom-label-color: rgba(0, 0, 0, .6);
  
     // mat-icon-stepper selected color change
@@ -125,7 +125,7 @@ html,body
  
     // input outline color
     .mat-form-field-appearance-outline .mat-form-field-outline {
-       color: green !important;
+       color: rgb(115, 119, 115) !important;
     }
  
     // mat-input focused color
@@ -151,7 +151,7 @@ html,body
  
     // mat-label normal state style
     .mat-form-field-label {
-       color: green !important;
+       color: rgb(165, 167, 165) !important;
     }
  
     // mat-label focused style
@@ -164,3 +164,4 @@ html,body
        color: $custom-main-color !important;
     }
 }
+.grab {cursor: -webkit-grab; cursor: grab;}
