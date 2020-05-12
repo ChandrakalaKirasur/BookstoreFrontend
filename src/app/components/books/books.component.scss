@@ -13,7 +13,7 @@ mat-card-header {
   margin-left: -16px;
 }
 mat-card-actions {
-  padding-top: 9px;
+  padding-top: 6px;
 }
 mat-card-content {
   margin-right: -10px;
@@ -31,8 +31,8 @@ img {
 }
 .mat-title {
   padding-bottom: 2px;
-  line-height: 2.8;
-  color: #0a0102;
+  line-height: 1.8;
+  color: #9c7d81;
   padding-top: 7px;
   opacity: 1;
   font-size: 16px;
@@ -55,7 +55,15 @@ button {
   position: relative;
   margin: 0px;
   margin-left: 4px;
+  padding-top: 6px;
   font: Bold 12px/15px Lato;
+}
+.mat-subheading-2 {
+  position: relative;
+  margin: 0px;
+  margin-left: 4px;
+  padding-top: 6px;
+  font: 14px/15px Lato;
 }
 .box1 {
   font-size: 11px;

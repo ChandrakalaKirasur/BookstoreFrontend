@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { BookService } from "src/app/service/book.service";
+import { Book } from "src/app/models/book";
 
 @Component({
   selector: "app-getbooks",
@@ -7,52 +9,16 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
   styleUrls: ["./getbooks.component.scss"],
 })
 export class GetbooksComponent implements OnInit {
+  bookList: Book[];
   sort: any = "Sort by relevance";
   sortTech1: any = "Price : Low to High";
   sortTech2: any = "Price : High to Low";
   sortTech3: any = "Newest Arrivals";
-  images = [
-    [
-      {
-        colorCode: "rgba(198, 222, 255,1)",
-        name: "Blue",
-      },
-      {
-        colorCode: "rgba(229, 228, 226,1)",
-        name: "Gray",
-      },
-      {
-        colorCode: "rgba(230, 169, 236,1)",
-        name: "Pink",
-      },
-      {
-        colorCode: "rgba(230, 169, 236,1)",
-        name: "Pink",
-      },
-    ],
-    [
-      {
-        colorCode: "rgba(233, 171, 23,1)",
-        name: "Yellow",
-      },
-      {
-        colorCode: "rgba(249, 150, 107,1)",
-        name: "Orange",
-      },
-      {
-        colorCode: "rgba(255,255,255,1)",
-        name: "white",
-      },
-      {
-        colorCode: "rgba(230, 169, 236,1)",
-        name: "Pink",
-      },
-    ],
-  ];
-  constructor() {}
+  constructor(private bookService: BookService) {}
 
   ngOnInit() {
     this.sort;
+    this.getAvailableBooks();
   }
   doSorting(option: any) {
     this.sort = option;
@@ -76,5 +42,10 @@ export class GetbooksComponent implements OnInit {
       this.sortTech2 = "Price : High to Low";
       this.sortTech3 = "Sort by relevance";
     }
+  }
+  getAvailableBooks() {
+    this.bookService.getAvailableBooks().subscribe((response: any) => {
+      this.bookList = response["obj"];
+    });
   }
 }
