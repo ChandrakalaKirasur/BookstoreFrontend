@@ -67,7 +67,11 @@
       >
         WISHLIST
       </button>
-      <button class="box" *ngIf="isListed" (click)="removeFromWishlist()">
+      <button
+        class="box"
+        *ngIf="isListed && !isAdded"
+        (click)="removeFromWishlist()"
+      >
         IN WISHLIST
       </button>
       <button

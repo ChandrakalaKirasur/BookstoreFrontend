@@ -14,6 +14,7 @@ export class GetbooksComponent implements OnInit {
   sortTech1: any = "Price : Low to High";
   sortTech2: any = "Price : High to Low";
   sortTech3: any = "Newest Arrivals";
+  length: number ;
   constructor(private bookService: BookService) {}
 
   ngOnInit() {
@@ -46,6 +47,7 @@ export class GetbooksComponent implements OnInit {
   getAvailableBooks() {
     this.bookService.getAvailableBooks().subscribe((response: any) => {
       this.bookList = response["obj"];
+      this.length=this.bookList.length;
     });
   }
 }
