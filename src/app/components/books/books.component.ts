@@ -19,6 +19,9 @@ export class BooksComponent implements OnInit {
   addToCart() {
     this.isAdded = true;
     this.isOutOfStock = true;
+    localStorage.getItem("token");
+    this.bookService.addToCart().subscribe((response: any) => {
+    });
   }
   removeFromCart() {
     this.isAdded = false;
