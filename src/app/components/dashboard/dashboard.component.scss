@@ -7,6 +7,75 @@
   position: fixed;
   display: flex;
 }
+.bookicon {
+  background-color: #a03037;
+  border: none;
+  outline: none;
+  width: 31px;
+  height: 24px;
+}
+.bookimg {
+  width: 31px;
+  height: 24px;
+  margin-left: 50px;
+}
+.searche {
+  width: 30%;
+  height: 55%;
+  background: #fcfcfc 0% 0% no-repeat padding-box;
+  border-radius: 3px;
+  opacity: 1;
+  margin-left: 3%;
+}
+.searchinput {
+  width: 73%;
+  border: none;
+  outline: none;
+  margin-left: 1%;
+  height: 20px;
+  font-size: 17px;
+}
+.scicon {
+  width: 13px;
+  height: 13px;
+  margin-left: 2%;
+}
+.carttext {
+  color: #ffffff;
+  opacity: 1;
+  font-size: 13px;
+  padding-right: 0%;
+  margin-bottom: 3%;
+}
+.cartimg {
+  height: 39px;
+  opacity: 1;
+  background-color: #a03037;
+  border: none;
+  outline: none;
+  padding-left: 0px;
+  padding-right: 30px;
+}
+.image {
+  width: 20px;
+  height: 21px;
+}
+.profile {
+  height: 44px;
+  width: 44px;
+  border-radius: 34px;
+}
+.page {
+  padding: 5px;
+}
+// .toolbar{
+// position: relative;
+// flex-wrap: wrap;
+// padding: 10px;
+// display: block;
+// justify-content: center;
+// align-items: flex-start;
+// float: left;
 .mat-sidenav-container {
   display: flex;
   width: 100%;
@@ -20,123 +89,70 @@
   align-content: center;
   padding: 30px;
 }
-.bookimg {
-  width: 31px;
-  height: 24px;
-  background-color: #a03037;
-  border: none;
-  outline: blanchedalmond;
-  position: absolute;
-  margin-left: 187px;
-}
-.bookicon {
-  background-color: #a03037;
-  border: none;
-  outline: none;
-  width: 31px;
-  height: 24px;
-}
-.image {
-  width: 20px;
-  height: 21px;
-}
 .booktext {
   color: #ffffff;
   margin-top: -36px;
   margin-left: 85px;
   font-size: 18px;
 }
-.search_icon {
-  margin-left: 100%;
-  position: absolute;
-}
-.iconcam {
-  background-color: #ffffff;
-  height: 35px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  margin-left: -10%;
-}
-.searchInput {
-  border: none;
-  outline: none;
-  top: 14px;
-  left: 334px;
-  width: 490px;
-  height: 33px;
-  background: #fcfcfc 0% 0% no-repeat padding-box;
-  border-radius: 5px;
-  border-top-left-radius: 0%;
-  border-bottom-left-radius: 0%;
-  opacity: 1;
-  height: 33px;
-  margin-left: -2px;
-  padding-left: 13px;
-}
-.carttext {
-  color: #ffffff;
-  opacity: 1;
-  font-size: 15px;
-  padding-right: 5px;
-}
-.cartimg {
-  top: 19px;
-  left: 1166px;
-  width: 20px;
-  height: 39px;
-  opacity: 1;
-  background-color: #a03037;
-  border: none;
-  outline: none;
-}
-.search {
-  background-color: whitesmoke;
-  border-radius: 4px;
-  width: 40px;
-  height: 42px;
-}
 
-.mat-toolbar-row,
-.mat-toolbar-single-row {
-  display: flex;
-  box-sizing: border-box;
-  padding: 0 16px;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  white-space: nowrap;
-  background-color: #a03037;
-}
+// .searchInput {
+//   border: none;
+//   outline: none;
+//   top: 14px;
+//   left: 334px;
+//   width: 490px;
+//   height: 33px;
+//   background: #fcfcfc 0% 0% no-repeat padding-box;
+//   border-radius: 5px;
+//   border-top-left-radius: 0%;
+//   border-bottom-left-radius: 0%;
+//   opacity: 1;
+//   height: 33px;
+//   margin-left: -2px;
+//   padding-left: 13px;
+// }
 
-.mat-icon {
-  background-repeat: no-repeat;
-  display: inline-block;
-  fill: currentColor;
-  height: 24px;
-  width: 24px;
-}
+// .search {
+//   background-color: whitesmoke;
+//   border-radius: 4px;
+//   width: 40px;
+//   height: 42px;
+// }
 
-.profile {
-  height: 44px;
-  width: 44px;
-  border-radius: 34px;
-}
+// .searche2 {
+//   width: 30%;
+//   height: 55%;
+//   border-radius: 3px;
+//   opacity: 1;
+//   margin-left: 7%;
+// }
+// // .mat-toolbar-row,
+// // .mat-toolbar-single-row {
+// //   display: flex;
+// //   box-sizing: border-box;
+// //   padding: 0 16px;
+// //   width: 100%;
+// //   flex-direction: row;
+// //   align-items: center;
+// //   white-space: nowrap;
+// //   background-color: #a03037;
+// // }
 
-mat-card {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-}
-.footer {
-  text-align: center;
-  background-color: #333;
-  color: #fff;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  max-height: 100%;
-  margin-top: 20%;
-}
-.page {
-  padding: 5px;
-}
+// .mat-icon {
+//   background-repeat: no-repeat;
+//   display: inline-block;
+//   fill: currentColor;
+//   height: 24px;
+//   width: 24px;
+// }
+
+// mat-card {
+//   display: flex;
+//   flex-direction: column;
+//   flex-shrink: 0;
+// }
+
+// .page {
+//   padding: 5px;
+// }

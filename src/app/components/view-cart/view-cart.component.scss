@@ -35,16 +35,26 @@
   display: flex;
 }
 .quantity {
-  top: 284px;
-  left: 346px;
+  // top: 284px;
+  // left: 346px;
+  // width: 50px;
+  // height: 24px;
+  // background: #ffffff 0% 0% no-repeat padding-box;
+  // border: 1px solid #dbdbdb;
+  // border-radius: 1px;
+  // opacity: 1;
+  // text-align: center;
+  // padding-top: 8px;
+
   width: 50px;
-  height: 24px;
+  height: -12px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #dbdbdb;
   border-radius: 1px;
   opacity: 1;
   text-align: center;
-  padding-top: 8px;
+  height: 25px;
+  padding-top: 4px;
 }
 .color {
   background-color: #dbdbdb;
@@ -73,13 +83,19 @@
 .mat {
   display: flex;
   flex-direction: column;
-  width: 750px;
+  width: 774px;
+  border: 1px solid #707070;
+  border-radius: 1px;
+  opacity: 1.1;
 }
 .mat2 {
   display: flex;
   flex-direction: column;
-  width: 750px;
+  width: 774px;
   margin-bottom: 100px;
+  border: 1px solid #707070;
+  border-radius: 1px;
+  opacity: 1.1;
 }
 .ordersummery {
   top: 135px;
@@ -91,14 +107,30 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  width: 750px;
+  width: 774px;
+  border: 1px solid #707070;
+  border-radius: 1px;
+  opacity: 1.1;
 }
 .matcardincr {
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  width: 750px;
+  width: 774px;
   padding-bottom: 4.2%;
+  border: 1px solid #707070;
+  border-radius: 1px;
+  opacity: 1.1;
+}
+.matcard2 {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  display: flex;
+  flex-direction: column;
+  width: 774px;
+  margin-bottom: 50px;
+  border: 1px solid #707070;
+  border-radius: 1px;
+  opacity: 1.1;
 }
 .button {
   font-size: 17px;
@@ -124,13 +156,6 @@
   margin-top: 21px;
   margin-left: 36px;
 }
-.matcard2 {
-  background: #ffffff 0% 0% no-repeat padding-box;
-  display: flex;
-  flex-direction: column;
-  width: 750px;
-  margin-bottom: 50px;
-}
 
 .bookimg {
   top: 192px;
@@ -148,6 +173,9 @@
   margin-top: 21px;
   margin-left: 36px;
 }
+.footer {
+  width: 150%;
+}
 .editbutton {
   margin-left: 714px;
   margin-top: -21px;
@@ -155,9 +183,73 @@
   outline: none;
   background-color: #ffff;
 }
+
+// .login-wrapper .example-form {
+//   min-width: 100%;
+//   max-width: 300px;
+//   width: 100%;
+// }
+// .login-wrapper .example-full-width {
+//   width: 100%;
+// }
+// .login-wrapper .btn-block1 {
+//   font-size: 18px;
+//   text-align: center;
+//   color: white;
+//   background-color: #a03037;
+//   border-radius: 3px;
+//   border: none;
+//   opacity: 1;
+//   // background-image: url(/assets/images/bookstore.jpg);
+// }
+// .login-wrapper .btn-block2 {
+//   font-size: 18px;
+//   text-align: center;
+//   color: white;
+//   background-color: #a03037;
+//   border-radius: 3px;
+//   border: none;
+//   opacity: 1;
+// }
+// .login-wrapper .btn-block3 {
+//   margin-top: 10px;
+//   font-size: 18px;
+//   color: red;
+//   width: 50%;
+// }
+// .login-wrapper mat-card-header {
+//   text-align: center;
+//   width: 100%;
+//   display: block;
+//   font-weight: 700;
+// }
+// .login-wrapper mat-card-header mat-card-title {
+//   font-size: 30px;
+//   margin: 0;
+// }
+// .login-wrapper .mat-card {
+//   padding: 40px 70px 50px;
+// }
+// .login-wrapper .mat-stroked-button {
+//   border: 1px solid currentColor;
+//   line-height: 54px;
+//   background: #fff7fa;
+// }
+// .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
+//   padding: 0.8375em 0;
+// }
+// .login-wrapper {
+//   background-image: url(/assets/images/bookstore.jpg);
+//   background-repeat: no-repeat;
+//   background-size: 100%;
+//   background-position: center;
+// }
+// .login-wrapper .login {
+//   min-height: 70vh;
+// }
 // ::ng-deep {
-//   $custom-main-color: red;
-//   $custom-label-color: #a03037(0, 0, 0, 0.6);
+//   $custom-main-color: #a03037;
+//   $custom-label-color: rgba(0, 0, 0, 0.6);
 
 //   // mat-icon-stepper selected color change
 //   .mat-step-header .mat-step-icon-selected,
@@ -168,7 +260,7 @@
 
 //   // input outline color
 //   .mat-form-field-appearance-outline .mat-form-field-outline {
-//     color: #a03037 !important;
+//     color: rgb(115, 119, 115) !important;
 //   }
 
 //   // mat-input focused color
@@ -196,7 +288,7 @@
 
 //   // mat-label normal state style
 //   .mat-form-field-label {
-//     color: #a03037 !important;
+//     color: rgb(165, 167, 165) !important;
 //   }
 
 //   // mat-label focused style
@@ -208,4 +300,8 @@
 //   .mat-form-field.mat-form-field-invalid .mat-form-field-label {
 //     color: $custom-main-color !important;
 //   }
+// }
+// .grab {
+//   cursor: -webkit-grab;
+//   cursor: grab;
 // }

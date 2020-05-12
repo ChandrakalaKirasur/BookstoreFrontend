@@ -1,4 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
+import { NgxSpinnerService } from "ngx-spinner";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Login } from "src/app/models/login";
+import { Address } from "src/app/models/address";
 
 @Component({
   selector: "app-view-cart",
@@ -6,25 +11,78 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./view-cart.component.scss"],
 })
 export class ViewCartComponent implements OnInit {
-  images = [
-    [
-      {
-        // colorCode: "rgba(198, 222, 255,1)",
-        // name: "Blue",
-        img: "dontmake.png",
-      },
-      {
-        img: "dontmake.png",
-      },
-      {
-        img: "dontmake.png",
-      },
-      {
-        img: "dontmake.png",
-      },
-    ],
-  ];
-  constructor() {}
+  images = [{}, {}, {}, {}];
+  image: "assets/images/Image 11@2x.png";
+  addModel: Address = new Address();
+
+  name = new FormControl([
+    Validators.required,
+    Validators.minLength(4),
+    Validators.pattern("[a-zA-Z ]*"),
+  ]);
+  mobile = new FormControl([
+    Validators.required,
+    Validators.minLength(10),
+    Validators.maxLength(10),
+  ]);
+  pincode = new FormControl([
+    Validators.required,
+    Validators.minLength(5),
+    Validators.maxLength(6),
+  ]);
+
+  locality = new FormControl([
+    Validators.required,
+    Validators.minLength(10),
+    Validators.pattern("[a-zA-Z ]*"),
+  ]);
+  address = new FormControl([
+    Validators.required,
+    Validators.minLength(8),
+    Validators.pattern("[a-zA-Z ]*"),
+  ]);
+  city = new FormControl([
+    Validators.required,
+    Validators.minLength(10),
+    Validators.pattern("[a-zA-Z ]*"),
+  ]);
+  landmark = new FormControl([
+    Validators.required,
+    Validators.minLength(10),
+    Validators.pattern("[a-zA-Z ]*"),
+  ]);
+
+  nameValidation() {
+    return this.name.hasError("required") ? "" : "";
+  }
+  phoneNumber() {
+    return this.mobile.hasError("required") ? "" : "";
+  }
+  pincodeValidation() {
+    return this.name.hasError("required") ? "" : "";
+  }
+  localityValidation() {
+    return this.locality.hasError("required") ? "" : "";
+  }
+  addressValidation() {
+    return this.address.hasError("required") ? "" : "";
+  }
+  cityValidation() {
+    return this.city.hasError("required") ? "" : "";
+  }
+  landmarkValidation() {
+    return this.landmark.hasError("required") ? "" : "";
+  }
+
+  // password = new FormControl(this.login.password, [
+  //   Validators.required,
+  //   Validators.minLength(7)
+  // ]);
+  constructor(
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -35,13 +93,34 @@ export class ViewCartComponent implements OnInit {
     this.fields = true;
   }
 
+  showSpinner = false;
   open2: boolean;
+
   onOpen2() {
-    this.open2 = true;
+    this.spinner.show();
+    this.showSpinner = true;
+    setTimeout(() => {
+      this.spinner.hide();
+      this.open2 = true;
+    }, 2000);
     this.fields = false;
+    console.log(this.addModel.name + "***name");
+    console.log(this.addModel.address + "**address");
+    console.log(this.addModel.phoneNumber + "**phoneNumber");
+    console.log(this.addModel.pincode + "**pincode");
+    console.log(this.addModel.locality + "**locality");
+    console.log(this.addModel.city + "**city");
   }
   onEdit() {
     this.fields = true;
     this.open2 = false;
+  }
+  onCheckOut() {
+    this.spinner.show();
+    this.showSpinner = true;
+    setTimeout(() => {
+      this.spinner.hide();
+      this.router.navigate(["/ordersucess"]);
+    }, 2000);
   }
 }
