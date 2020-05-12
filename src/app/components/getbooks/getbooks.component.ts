@@ -34,7 +34,7 @@ export class GetbooksComponent implements OnInit {
       this.sortTech2 = "Sort by relevance";
       this.sortTech3 = "Newest Arrivals";
       this.bookService
-        .getBooksSortedByPriceHigh()
+        .getBooksSortedByPriceLow()
         .subscribe((response: any) => {
           this.bookList = response["obj"];
           this.length = this.bookList.length;
