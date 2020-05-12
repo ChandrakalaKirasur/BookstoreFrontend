@@ -1,0 +1,31 @@
+<!-- <p>whishlist works!</p> -->
+<div role="combobox" flex="column" style="margin-left: 16%;">
+  <mat-card class="matcard2">
+    <div class="mycart">
+      My cart&nbsp;(2)
+    </div>
+    <div *ngFor="let image of images">
+      <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
+        <img class="bookimg" src="assets/images/Image 11@2x.png" />
+        <div class="bookdetails">
+          <div class="booktitle">
+            Don't Make Me Think
+          </div>
+          <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
+          <div class="sub">by Steve Krug</div>
+          <div style="font: Bold 18px/15px Lato; margin-bottom: 30px;">
+            Rs. 1500
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </div>
+        <button mat-raised-button class="button" (click)="onCheckOut()">
+          Remove
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>
+<div class="footer">
+  <app-footer></app-footer>
+</div>

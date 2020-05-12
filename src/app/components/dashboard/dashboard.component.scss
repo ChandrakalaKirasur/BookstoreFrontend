@@ -9,15 +9,14 @@
 }
 .bookicon {
   background-color: #a03037;
-  border: none;
-  outline: none;
   width: 31px;
-  height: 24px;
+  height: 40px;
+  margin-left: -1%;
 }
 .bookimg {
   width: 31px;
   height: 24px;
-  margin-left: 50px;
+  margin-left: 37px;
 }
 .searche {
   width: 30%;
@@ -55,6 +54,7 @@
   outline: none;
   padding-left: 0px;
   padding-right: 30px;
+  //border-radius: 200px;
 }
 .image {
   width: 20px;
