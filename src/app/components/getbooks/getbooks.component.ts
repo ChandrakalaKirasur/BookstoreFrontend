@@ -14,7 +14,7 @@ export class GetbooksComponent implements OnInit {
   sortTech1: any = "Price : Low to High";
   sortTech2: any = "Price : High to Low";
   sortTech3: any = "Newest Arrivals";
-  length: number ;
+  length: number;
   constructor(private bookService: BookService) {}
 
   ngOnInit() {
@@ -27,27 +27,44 @@ export class GetbooksComponent implements OnInit {
       this.sortTech1 = "Price : Low to High";
       this.sortTech2 = "Price : High to Low";
       this.sortTech3 = "Newest Arrivals";
+      this.getAvailableBooks();
     }
     if (option == "Price : Low to High") {
       this.sortTech1 = "Price : High to Low";
       this.sortTech2 = "Sort by relevance";
       this.sortTech3 = "Newest Arrivals";
+      this.bookService
+        .getBooksSortedByPriceHigh()
+        .subscribe((response: any) => {
+          this.bookList = response["obj"];
+          this.length = this.bookList.length;
+        });
     }
     if (option == "Price : High to Low") {
       this.sortTech1 = "Price : Low to High";
       this.sortTech2 = "Sort by relevance";
       this.sortTech3 = "Newest Arrivals";
+      this.bookService
+        .getBooksSortedByPriceHigh()
+        .subscribe((response: any) => {
+          this.bookList = response["obj"];
+          this.length = this.bookList.length;
+        });
     }
     if (option == "Newest Arrivals") {
       this.sortTech1 = "Price : Low to High";
       this.sortTech2 = "Price : High to Low";
       this.sortTech3 = "Sort by relevance";
+      this.bookService.getBooksSortedByArrivals().subscribe((response: any) => {
+        this.bookList = response["obj"];
+        this.length = this.bookList.length;
+      });
     }
   }
   getAvailableBooks() {
     this.bookService.getAvailableBooks().subscribe((response: any) => {
       this.bookList = response["obj"];
-      this.length=this.bookList.length;
+      this.length = this.bookList.length;
     });
   }
 }

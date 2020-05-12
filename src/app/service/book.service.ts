@@ -104,4 +104,28 @@ export class BookService {
         })
       );
   }
+  getBooksSortedByPriceHigh() {
+    let params = new HttpParams();
+    params = params.append("pageNo", "1");
+    return this.http_service.getMethod(
+      environment.baseUrl + environment.SORT_BY_HIGH_TO_LOW,
+      { params: params }
+    );
+  }
+  getBooksSortedByPriceLow() {
+    let params = new HttpParams();
+    params = params.append("pageNo", "1");
+    return this.http_service.getMethod(
+      environment.baseUrl + environment.SORT_BY_LOW_TO_HIGH,
+      { params: params }
+    );
+  }
+  getBooksSortedByArrivals() {
+    let params = new HttpParams();
+    params = params.append("pageNo", "1");
+    return this.http_service.getMethod(
+      environment.baseUrl + environment.SORT_BY_NEW_ARRIVALS,
+      { params: params }
+    );
+  }
 }
