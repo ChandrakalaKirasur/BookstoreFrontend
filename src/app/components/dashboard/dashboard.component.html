@@ -1,0 +1,49 @@
+<div class="backcontainer" fxLayout="column" fxLayoutAlign="start none">
+  <mat-toolbar style="background-color: #a03037;">
+    <mat-toolbar-row>
+      <!--------------- bookimg and book --------------------------->
+      <div style="height: 68%; margin-left: 10%;">
+        <a mat-button (click)="onCart()" class="bookicon">
+          <img class="bookimg" src="assets/images/education@2x.png" />
+        </a>
+        <div class="booktext">BookStore</div>
+      </div>
+      <!-------------------- search ------------------->
+      <div class="searche">
+        <img class="scicon" src="assets/images/searchicon.png" />
+        <input type="text" class="searchinput" placeholder="search.." />
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 23%;">
+        <div class="carttext" (click)="onCart()">Cart</div>
+        <a mat-button (click)="onCart()" class="cartimg">
+          <mat-icon color="primary">
+            <img class="image" src="assets/images/supermarket@2x.png" />
+          </mat-icon>
+        </a>
+
+        <button
+          mat-icon-button
+          fxShow="true"
+          width="30"
+          style="margin-left: 20%;"
+          [matMenuTriggerFor]="beforeMenu"
+        >
+          <img class="profile" src="assets/images/Indian-Army-4.jpg" />
+        </button>
+
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="onCart()">MyOrders</button>
+          <button mat-menu-item (click)="onwhishlist()">MyWhishList</button>
+          <button mat-menu-item>LogIn</button>
+          <button mat-menu-item>LogOut</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
