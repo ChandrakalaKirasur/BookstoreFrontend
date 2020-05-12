@@ -30,7 +30,7 @@ const routes: Routes = [
   {
     path: "",
     component: DashboardComponent,
-    canActivateChild: [AuthGuardService],
+    // canActivateChild: [AuthGuardService],
     children: [
       { path: "", redirectTo: "/books", pathMatch: "full" },
       { path: "books", component: GetbooksComponent },

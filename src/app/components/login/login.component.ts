@@ -4,6 +4,7 @@ import { Login } from 'src/app/models/login';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import { HttpService } from 'src/app/service/http.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   login: Login = new Login("", "");
   loginForm: FormGroup;
   token: string;
-  email = new FormControl(this.login.email, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]);
+  email = new FormControl(this.login.mailOrMobile, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]);
   password = new FormControl(this.login.password, [Validators.required, Validators.minLength(8)])
   showSpinner = false;
   constructor(private snackBar:MatSnackBar,
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private spinner: NgxSpinnerService,
+    private httpservice:HttpService
     ) { }
 
   ngOnInit() {
@@ -46,22 +48,39 @@ export class LoginComponent implements OnInit {
     return this.password.hasError('required') ? 'You must enter a value' :
      this.password.hasError('password') ? 'Min 6 Elements' : '';
   }
-  logemail:String
-  logpass:String
-  onLogin(){
-    this.showSpinner = true;
-    console.log("Login:"+this.login.email);
-         this.logemail= localStorage.getItem("emailId");
-        this. logpass=localStorage.getItem("password");
-        this.spinner.show();
-        setTimeout(() => {
-          this.spinner.hide();
-     }, 2000);
-         localStorage.getItem("password");
-         
-        
-        
-       }
+  
+  onlogin(){
+    this.spinner.show();
+    console.log("Login:"+this.login.mailOrMobile);
+
+    this.httpservice.postRequest("Login",this.login).subscribe(
+
+     (response:any)=>{
+       if(response!=null)
+       {
+         this.spinner.hide();
+         console.log(response);
+         localStorage.setItem("token",response.token);
+         localStorage.setItem("email",response.mailOrMobile);
+         this.snackBar.open(
+           "Login Successfull","undo",
+           
+            { duration: 2500 }
+        );
+
+       }else {
+        this.spinner.hide();
+        console.log(response);
+        console.log("Login:"+this.login.mailOrMobile);
+        this.snackBar.open(
+          "Login Failed",
+          "undo",
+          { duration: 2500 }
+        )
+      }
      }
 
- 
+    )
+
+  }
+}
