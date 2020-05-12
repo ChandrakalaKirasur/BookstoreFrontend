@@ -3,11 +3,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { ViewCartComponent } from "./components/view-cart/view-cart.component";
 import { OrderSuccessComponent } from "./components/order-success/order-success.component";
-import { GetbooksComponent } from './components/getbooks/getbooks.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
-import { RestpasswordComponent } from './components/restpassword/restpassword.component';
+import { GetbooksComponent } from "./components/getbooks/getbooks.component";
+import { RegisterComponent } from "./components/register/register.component";
+import { LoginComponent } from "./components/login/login.component";
+import { ForgetpasswordComponent } from "./components/forgetpassword/forgetpassword.component";
+import { RestpasswordComponent } from "./components/restpassword/restpassword.component";
+import { AuthGuardService } from "./service/guards/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -15,22 +16,21 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-  path: "login",
-  component:  LoginComponent,
-  }
- ,
- {
-  path: "forget",
-  component:  ForgetpasswordComponent,
- },
- {
- path: "reset",
-  component:  RestpasswordComponent,
- },
+    path: "login",
+    component: LoginComponent,
+  },
   {
-    
+    path: "forgetpassword",
+    component: ForgetpasswordComponent,
+  },
+  {
+    path: "resetpassword",
+    component: RestpasswordComponent,
+  },
+  {
     path: "",
     component: DashboardComponent,
+    canActivateChild: [AuthGuardService],
     children: [
       { path: "", redirectTo: "/books", pathMatch: "full" },
       { path: "books", component: GetbooksComponent },
@@ -42,7 +42,6 @@ const routes: Routes = [
         path: "ordersucess",
         component: OrderSuccessComponent,
       },
-     
     ],
   },
 ];

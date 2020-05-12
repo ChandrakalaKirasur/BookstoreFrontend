@@ -1,57 +1,41 @@
 <div class="backcontainer" fxLayout="column" fxLayoutAlign="start none">
-  <mat-toolbar>
+  <mat-toolbar style="background-color: #a03037;">
     <mat-toolbar-row>
-      <div>
-        <mat-icon color="primary" class="bookicon">
+      <!--------------- bookimg and book --------------------------->
+      <div style="height: 40%; margin-left: 10%;">
+        <mat-icon class="bookicon">
           <img class="bookimg" src="assets/images/education@2x.png" />
         </mat-icon>
         <div class="booktext">BookStore</div>
       </div>
-      <div
-        style="position: relative;"
-        fxLayout="row"
-        fxLayoutAlign="center center"
-        style="margin-left: 123px;"
-      >
-        <div class="iconcam">
-          <mat-icon style="padding-top: 5px; padding-left: 8%;"
-            >searchIcon</mat-icon
-          >
-        </div>
-        <input
-          class="searchInput"
-          placeholder="Search..."
-          (click)="onsearch()"
-          autocomplete="off"
-        />
+      <!-------------------- search ------------------->
+      <div class="searche">
+        <img class="scicon" src="assets/images/searchicon.png" />
+        <input type="text" class="searchinput" placeholder="search.." />
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 19%;">
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 23%;">
         <div class="carttext" (click)="onCart()">Cart</div>
-        <button (click)="onCart()" class="cartimg">
+        <a mat-button (click)="onCart()" class="cartimg">
           <mat-icon color="primary">
             <img class="image" src="assets/images/supermarket@2x.png" />
           </mat-icon>
-        </button>
-        <!-- </div> -->
-        <!-- <div
-        fxLayout="row"
-        fxLayoutAlign="end center"
-        style="margin-left: 79px; position: inherit;"
-        > -->
+        </a>
+
         <button
           mat-icon-button
           fxShow="true"
           width="30"
-          style="margin-left: 37px;"
+          style="margin-left: 20%;"
           [matMenuTriggerFor]="beforeMenu"
         >
           <img class="profile" src="assets/images/Indian-Army-4.jpg" />
         </button>
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item>Item 1</button>
-          <button mat-menu-item>Item 2</button>
+          <button mat-menu-item>MyOrders</button>
+          <button mat-menu-item>LogIn</button>
+          <button mat-menu-item>LogOut</button>
         </mat-menu>
       </div>
     </mat-toolbar-row>

@@ -31,7 +31,6 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
 import { MatMenuModule } from "@angular/material/menu";
-
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
@@ -46,6 +45,7 @@ import { ForgetpasswordComponent } from "./components/forgetpassword/forgetpassw
 import { RestpasswordComponent } from "./components/restpassword/restpassword.component";
 
 import { MatRadioModule } from "@angular/material/radio";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
@@ -71,6 +71,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     FormsModule,
     FlexLayoutModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
     MatFormFieldModule,
     MatIconModule,
     MatCardModule,
@@ -88,8 +89,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatRadioModule,
-    NgxSpinnerModule,
     MatTooltipModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
