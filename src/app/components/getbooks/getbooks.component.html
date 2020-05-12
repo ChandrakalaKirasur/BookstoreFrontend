@@ -54,8 +54,10 @@
     </div>
   </div>
   <div fxLayout="column" fxLayoutAlign="center center">
-    <div *ngFor="let book of bookList" fxLayout="row" class="display-notes">
-      <app-books [book]="book"></app-books>
+    <div fxLayout="row" class="display-notes">
+      <div *ngFor="let book of bookList" class="book">
+        <app-books [book]="book"></app-books>
+      </div>
     </div>
     <div class="paginator" style="padding-bottom: 10px;">
       <app-pagination></app-pagination>
