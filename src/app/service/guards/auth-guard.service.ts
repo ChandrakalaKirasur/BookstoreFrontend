@@ -16,14 +16,14 @@ import { MatSnackBar } from "@angular/material";
 @Injectable({
   providedIn: "root",
 })
-export class AuthGuardService implements CanActivateChild {
+export class AuthGuardService implements CanActivate {
   constructor(
     private _authService: AuthService,
     private _router: Router,
     private snackBar: MatSnackBar
   ) {}
 
-  canActivateChild(
+  canActivate(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):

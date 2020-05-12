@@ -120,7 +120,7 @@ export class ViewCartComponent implements OnInit {
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
-      this.router.navigate(["/ordersucess"]);
+      this.router.navigate(["/books/ordersucess"]);
     }, 2000);
   }
 }
