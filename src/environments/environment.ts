@@ -8,6 +8,9 @@ export const environment = {
 
   BOOK_BASE_URL: "book/getBooks/",
   ADD_TO_CART: "cart/add_books_cart/",
+  REMOVE_FROM_CART: "cart/remove_books_cart/",
+  ADD_TO_WISHLIST: "/whishList/add_books_WhishList/",
+  REMOVE_FROM_WISHLIST: "/whishList/remove_books_WhishList/",
 };
 
 /*

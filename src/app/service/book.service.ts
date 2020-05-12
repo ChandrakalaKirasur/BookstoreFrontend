@@ -27,12 +27,75 @@ export class BookService {
   addToCart(bookId: number) {
     let params = new HttpParams();
     params = params.append("bookId", bookId + "");
+    let token =
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIn0.3UNt1XGVtK94jS7hAFXZKKi7m1iU7cK0deZFrsD5EtZpuCeYi-xua1UIfRrjCTfo5CXxjIfO6V51yzRIboDdig";
+    return this.http_service
+      .postMethod(
+        environment.baseUrl + environment.ADD_TO_CART + token + "/" + bookId,
+        {},
+        {}
+      )
+      .pipe(
+        tap(() => {
+          this.subject.next();
+        })
+      );
+  }
+  removeFromCart(bookId: number) {
+    let params = new HttpParams();
+    params = params.append("bookId", bookId + "");
+    let token =
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIn0.3UNt1XGVtK94jS7hAFXZKKi7m1iU7cK0deZFrsD5EtZpuCeYi-xua1UIfRrjCTfo5CXxjIfO6V51yzRIboDdig";
     return this.http_service
       .postMethod(
         environment.baseUrl +
-          environment.ADD_TO_CART +
-          this.http_service.httpOptions,
-        { params: params },
+          environment.REMOVE_FROM_CART +
+          token +
+          "/" +
+          bookId,
+        {},
+        {}
+      )
+      .pipe(
+        tap(() => {
+          this.subject.next();
+        })
+      );
+  }
+  addToWishList(bookId: number) {
+    let params = new HttpParams();
+    params = params.append("bookId", bookId + "");
+    let token =
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIn0.3UNt1XGVtK94jS7hAFXZKKi7m1iU7cK0deZFrsD5EtZpuCeYi-xua1UIfRrjCTfo5CXxjIfO6V51yzRIboDdig";
+    return this.http_service
+      .postMethod(
+        environment.baseUrl +
+          environment.ADD_TO_WISHLIST +
+          token +
+          "/" +
+          bookId,
+        {},
+        {}
+      )
+      .pipe(
+        tap(() => {
+          this.subject.next();
+        })
+      );
+  }
+  removeFromWishList(bookId: number) {
+    let params = new HttpParams();
+    params = params.append("bookId", bookId + "");
+    let token =
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIn0.3UNt1XGVtK94jS7hAFXZKKi7m1iU7cK0deZFrsD5EtZpuCeYi-xua1UIfRrjCTfo5CXxjIfO6V51yzRIboDdig";
+    return this.http_service
+      .postMethod(
+        environment.baseUrl +
+          environment.REMOVE_FROM_WISHLIST +
+          token +
+          "/" +
+          bookId,
+        {},
         {}
       )
       .pipe(
