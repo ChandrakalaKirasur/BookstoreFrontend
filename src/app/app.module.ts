@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatInputModule,
   MatSnackBarModule,
+  MatTooltipModule,
   MatNavList,
 } from "@angular/material";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -88,6 +89,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     MatProgressBarModule,
     MatRadioModule,
     NgxSpinnerModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
