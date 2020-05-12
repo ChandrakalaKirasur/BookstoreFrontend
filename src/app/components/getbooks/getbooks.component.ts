@@ -77,10 +77,4 @@ export class GetbooksComponent implements OnInit {
       this.sortTech3 = "Sort by relevance";
     }
   }
-  page: number = 1;
-  searchBookOnTitle: any;
-  sortBy: string = "none";
-  selectedOption: any;
-  length: number;
-  cartSize: number;
 }

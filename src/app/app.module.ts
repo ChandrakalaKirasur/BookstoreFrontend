@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatInputModule,
   MatSnackBarModule,
+  MatTooltipModule,
   MatNavList,
 } from "@angular/material";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -46,7 +47,9 @@ import { RestpasswordComponent } from "./components/restpassword/restpassword.co
 import { MatRadioModule } from "@angular/material/radio";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxSpinnerModule } from "ngx-spinner";
-import { WhishlistComponent } from './components/whishlist/whishlist.component';
+
+import { WhishlistComponent } from "./components/whishlist/whishlist.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +93,9 @@ import { WhishlistComponent } from './components/whishlist/whishlist.component';
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatRadioModule,
+    MatTooltipModule,
     MatAutocompleteModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
