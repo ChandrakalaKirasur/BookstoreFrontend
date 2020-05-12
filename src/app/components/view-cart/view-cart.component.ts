@@ -99,8 +99,10 @@ export class ViewCartComponent implements OnInit {
   arrCase: any;
   ln: [];
   res: [];
-  cmpbook: [];
-  booklist: Book[];
+  booknam: string;
+  booklist: [];
+
+  myDatas = new Array(Book);
   getbooks() {
     localStorage.setItem(
       "token",
@@ -109,28 +111,21 @@ export class ViewCartComponent implements OnInit {
     this.token = localStorage.getItem("token");
     this.cartService.getRequest("cart/get_cart/" + this.token).subscribe(
       (Response: any) => {
-        //console.log(Response.obj);
-        this.booklist = Response.obj;
-        console.log(this.books.length);
+        this.books = Response.obj;
+        console.log(this.books);
+        for (var len in Response.obj) {
+          console.log("index1111::" + len);
+          this.books = Response.obj[len];
+          let res = this.books["booksList"];
+          console.log(this.myDatas);
 
-        // for (var len in Response.obj) {
-        //   console.log("index1111::" + len);
-        //   this.books = Response.obj[len];
-        //   let res = this.books["booksList"];
-        //   //console.log(ress);
-        //   //this.ln = this.res;
-        //   // console.log(this.cmpbook);
-        //   for (var index in res) {
-        //     //console.log("index::" + index);
-        //     console.log(res[0].bookName);
-        //     this.booklist = res[0];
-        //   }
+          for (var index in res) {
+            console.log("index::" + res);
+            this.myDatas.push(res[0]);
+          }
+        }
 
-        //   //console.log(res);
-        //   // console.log(this.books);
-        // }
-
-        console.log(this.booklist);
+        console.log(this.myDatas);
       },
       (error: any) => {
         console.error(error);

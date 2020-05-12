@@ -1,44 +1,44 @@
 <div role="combobox" flex="column" style="margin-left: 16%;">
   <mat-card class="matcard1" [ngClass]="open == true ? 'matcardincr' : 'dummy'">
-    <div class="mycart">
-      My cart&nbsp;(2)
-    </div>
-    <div *ngFor="let book of booklist">
-      <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-        <!-- "assets/images/Image 11@2x.png" -->
-        <img class="bookimg" src="assets/images/Image 11@2x.png" />
-        <div class="bookdetails">
-          <div class="booktitle">
-            <!-- Don't Make Me Think -->
-            {{ book.bookName }}
+    <div class="mycart">My cart&nbsp;({{ bookincart }})</div>
+    <div *ngFor="let book of myDatas">
+      <div *ngIf="book.bookName != null">
+        <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
+          <!-- "assets/images/Image 11@2x.png" -->
+          <img class="bookimg" src="assets/images/Image 11@2x.png" />
+          <div class="bookdetails">
+            <div class="booktitle">
+              <!-- Don't Make Me Think -->
+              {{ book.bookName }}
+            </div>
+            <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
+            <div class="sub">{{ book.bookAuthor }}</div>
+            <div style="margin-bottom: 30px; font: Bold 18px/15px Lato;">
+              Rs. {{ book.bookPrice }}
+            </div>
           </div>
-          <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
-          <div class="sub">by Steve Krug</div>
-          <div style="margin-bottom: 30px; font: Bold 18px/15px Lato;">
-            Rs. 1500
-          </div>
-        </div>
-      </div>
-
-      <div
-        fxLayout="row"
-        fxLayoutAlign="center center"
-        fxLayOutGap="10px"
-        style="margin-right: 280px; margin-bottom: 20px;"
-      >
-        <div>
-          <button mat-icon-button (click)="onQuantity()">
-            <mat-icon>remove_circle_outline</mat-icon>
-          </button>
         </div>
 
-        <div class="quantity">{{ 1 }}</div>
-        <div>
-          <button mat-icon-button (click)="onQuantity()">
-            <mat-icon>add_circle_outline</mat-icon>
-          </button>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayOutGap="10px"
+          style="margin-right: 280px; margin-bottom: 20px;"
+        >
+          <div>
+            <button mat-icon-button (click)="onQuantity()">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </div>
+
+          <div class="quantity">{{ quantity }}</div>
+          <div>
+            <button mat-icon-button (click)="onQuantity()">
+              <mat-icon>add_circle_outline</mat-icon>
+            </button>
+          </div>
+          <div style="font: 18px/15px Lato;">&nbsp; Remove</div>
         </div>
-        <div style="font: 18px/15px Lato;">&nbsp; Remove</div>
       </div>
     </div>
     <div fxLayout="column" fxLayoutAlign="end end">
@@ -239,18 +239,21 @@
       My cart&nbsp;(2)
     </div>
 
-    <div *ngFor="let book of books">
-      <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-        <!-- <img class="bookimg" src="assets/images/Image 11@2x.png" /> -->
-        <img class="bookimg" src="{{ book.bookImage }}" />
-        <div class="bookdetails">
-          <div class="booktitle">
-            Don't Make Me Think
-          </div>
+    <div *ngFor="let book of myDatas">
+      <div *ngIf="book.bookName != null">
+        <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
+          <img class="bookimg" src="assets/images/Image 11@2x.png" />
+          <!-- <img class="bookimg" src="{{ book.bookImage }}" /> -->
+          <div class="bookdetails">
+            <div class="booktitle">
+              <!-- Don't Make Me Think -->
+              {{ book.bookName }}
+            </div>
 
-          <div class="sub">by Steve Krug</div>
-          <div style="font: Bold 18px/15px Lato; margin-bottom: 30px;">
-            Rs. 1500
+            <div class="sub">{{ book.bookAuthor }}</div>
+            <div style="font: Bold 18px/15px Lato; margin-bottom: 30px;">
+              Rs. {{ book.bookPrice }}
+            </div>
           </div>
         </div>
       </div>
