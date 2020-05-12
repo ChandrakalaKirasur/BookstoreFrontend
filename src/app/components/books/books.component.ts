@@ -14,14 +14,16 @@ export class BooksComponent implements OnInit {
   @Input() book: Book;
   isAdded: boolean = false;
   isOutOfStock: boolean = false;
-  noOfBooks: number = this.book.noOfBooks;
+  noOfBooks: number;
   isListed: boolean = false;
   constructor(
     private _matSnackBar: MatSnackBar,
     private router: Router,
     private bookService: BookService
   ) {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.noOfBooks = this.book.noOfBooks;
+  }
   addToCart() {
     let token = localStorage.getItem("token");
     if (!(token == "")) {

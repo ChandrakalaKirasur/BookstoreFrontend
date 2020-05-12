@@ -11,6 +11,9 @@ export const environment = {
   REMOVE_FROM_CART: "cart/remove_books_cart/",
   ADD_TO_WISHLIST: "/whishList/add_books_WhishList/",
   REMOVE_FROM_WISHLIST: "/whishList/remove_books_WhishList/",
+  SORT_BY_LOW_TO_HIGH: "book/getBooksSortedByPriceLow/",
+  SORT_BY_HIGH_TO_LOW: "book/getBooksSortedByPriceHigh/",
+  SORT_BY_NEW_ARRIVALS: "book/getBooksSortedByArrival/",
 };
 
 /*
