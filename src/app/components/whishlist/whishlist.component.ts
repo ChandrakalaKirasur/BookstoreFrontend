@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-whishlist',
-  templateUrl: './whishlist.component.html',
-  styleUrls: ['./whishlist.component.scss']
+  selector: "app-whishlist",
+  templateUrl: "./whishlist.component.html",
+  styleUrls: ["./whishlist.component.scss"],
 })
 export class WhishlistComponent implements OnInit {
+  images = [{}, {}, {}, {}];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

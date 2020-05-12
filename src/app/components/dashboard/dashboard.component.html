@@ -33,7 +33,8 @@
         </button>
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item>MyOrders</button>
+          <button mat-menu-item (click)="onCart()">MyOrders</button>
+          <button mat-menu-item (click)="onwhishlist()">MyWhishList</button>
           <button mat-menu-item>LogIn</button>
           <button mat-menu-item>LogOut</button>
         </mat-menu>

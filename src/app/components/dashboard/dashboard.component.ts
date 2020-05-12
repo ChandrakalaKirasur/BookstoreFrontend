@@ -14,4 +14,7 @@ export class DashboardComponent implements OnInit {
   onCart() {
     this.router.navigate(["/viewcart"]);
   }
+  onwhishlist() {
+    this.router.navigate(["/whishlist"]);
+  }
 }

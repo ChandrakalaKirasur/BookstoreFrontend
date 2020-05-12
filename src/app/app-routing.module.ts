@@ -9,6 +9,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { ForgetpasswordComponent } from "./components/forgetpassword/forgetpassword.component";
 import { RestpasswordComponent } from "./components/restpassword/restpassword.component";
 import { AuthGuardService } from "./service/guards/auth-guard.service";
+import { WhishlistComponent } from "./components/whishlist/whishlist.component";
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: "ordersucess",
         component: OrderSuccessComponent,
+      },
+      {
+        path: "whishlist",
+        component: WhishlistComponent,
       },
     ],
   },
