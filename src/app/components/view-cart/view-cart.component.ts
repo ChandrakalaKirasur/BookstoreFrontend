@@ -4,6 +4,9 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Login } from "src/app/models/login";
 import { Address } from "src/app/models/address";
+import { MatSnackBar } from "@angular/material";
+import { ViewcartService } from "src/app/service/viewcart.service";
+import { Book } from "src/app/models/book";
 
 @Component({
   selector: "app-view-cart",
@@ -81,10 +84,61 @@ export class ViewCartComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackbar: MatSnackBar,
+    private cartService: ViewcartService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getbooks();
+  }
+
+  //book: Book = new Book();
+  books: [];
+  token: string;
+  arrCase: any;
+  ln: [];
+  res: [];
+  cmpbook: [];
+  booklist: Book[];
+  getbooks() {
+    localStorage.setItem(
+      "token",
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIn0.rLyBMZZNdtyq6PbjZo42iT0KzS9bUF-FIVeWiT3sn_-XmCUfdYzmGUS3jfC3zv34YDRkHggWnRVOpSq9K1zcKA"
+    );
+    this.token = localStorage.getItem("token");
+    this.cartService.getRequest("cart/get_cart/" + this.token).subscribe(
+      (Response: any) => {
+        //console.log(Response.obj);
+        this.booklist = Response.obj;
+        console.log(this.books.length);
+
+        // for (var len in Response.obj) {
+        //   console.log("index1111::" + len);
+        //   this.books = Response.obj[len];
+        //   let res = this.books["booksList"];
+        //   //console.log(ress);
+        //   //this.ln = this.res;
+        //   // console.log(this.cmpbook);
+        //   for (var index in res) {
+        //     //console.log("index::" + index);
+        //     console.log(res[0].bookName);
+        //     this.booklist = res[0];
+        //   }
+
+        //   //console.log(res);
+        //   // console.log(this.books);
+        // }
+
+        console.log(this.booklist);
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
+  }
 
   open: boolean;
   fields: boolean;

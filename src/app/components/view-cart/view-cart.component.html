@@ -3,8 +3,9 @@
     <div class="mycart">
       My cart&nbsp;(2)
     </div>
-    <div *ngFor="let image of images">
+    <div *ngFor="let book of booklist">
       <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
+        <!-- "assets/images/Image 11@2x.png" -->
         <img class="bookimg" src="assets/images/Image 11@2x.png" />
         <div class="bookdetails">
           <div class="booktitle">
@@ -236,9 +237,11 @@
     <div class="mycart">
       My cart&nbsp;(2)
     </div>
-    <div *ngFor="let image of images">
+
+    <div *ngFor="let book of books">
       <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-        <img class="bookimg" src="assets/images/Image 11@2x.png" />
+        <!-- <img class="bookimg" src="assets/images/Image 11@2x.png" /> -->
+        <img class="bookimg" src="{{ book.bookImage }}" />
         <div class="bookdetails">
           <div class="booktitle">
             Don't Make Me Think
@@ -259,6 +262,6 @@
   </mat-card>
   <br /><br />
 </div>
-<div class="footer">
+<div>
   <app-footer></app-footer>
 </div>
