@@ -34,17 +34,17 @@ const routes: Routes = [
     // canActivateChild: [AuthGuardService],
     children: [
       { path: "", redirectTo: "/books", pathMatch: "full" },
-      { path: "books", component: GetbooksComponent },
+      { path: "books", component: GetbooksComponent},
       {
-        path: "viewcart",
+        path: "books/viewcart",
         component: ViewCartComponent,
       },
       {
-        path: "ordersucess",
+        path: "books/ordersucess",
         component: OrderSuccessComponent,
       },
       {
-        path: "whishlist",
+        path: "books/whishlist",
         component: WhishlistComponent,
       },
     ],

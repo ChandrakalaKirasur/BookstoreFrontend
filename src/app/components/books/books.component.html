@@ -2,7 +2,7 @@
   autocomplete="off"
   role="combobox"
   flex="column"
-  matTooltip="hello"
+  matTooltip="{{ book.bookName }}{{ book.bookDescription }}"
   matTooltipPosition="right"
   matTooltipClass="custom-tooltip"
 >
@@ -24,18 +24,21 @@
   <div class="content">
     <mat-card-content>
       <div class="mat-title">
-        Don't Make Me Think
+        {{ book.bookName }}
       </div>
-      <mat-card-subtitle style="color: #9d9d9d; margin-top: -24px;"
-        >by Steve Krug</mat-card-subtitle
+      <mat-card-subtitle style="color: #9d9d9d; margin-top: -20px;"
+        >by {{ book.bookAuthor }}</mat-card-subtitle
       >
-      <div class="mat-subheading-1">Rs. 1500</div>
+      <div class="mat-subheading-1">Rs. {{ book.bookPrice }}</div>
+      <div *ngIf="{{book.noOfBooks}} < 6 && {{book.noOfBooks > 0}}; else " class="mat-subheading-2">
+        Only {{ book.noOfBooks }} books are left
+      </div>
     </mat-card-content>
     <mat-card-actions fxLayout="row" fxLayoutGap="7%">
       <button
         class="box1"
         *ngIf="!isAdded && !isOutOfStock; else removeFromBag"
-        (click)="addToCart()"
+        (click)="addToCart(b)"
       >
         ADD TO BAG
       </button>
