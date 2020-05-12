@@ -1,7 +1,10 @@
 export class Book {
-  public title: string;
-  public author: string;
-  public price: number;
-  public availableQuantity: number;
-  public imageUrl: any;
+  public bookId: number;
+  public bookName: string;
+  public bookAuthor: string;
+  public bookPrice: number;
+  public noOfBooks: number;
+  public bookImage: any;
+  public bookDescription: string;
+  public reviewRating: Array<any>;
 }

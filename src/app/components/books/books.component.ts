@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 
 import { MatSnackBar } from "@angular/material";
+import { Book } from "src/app/models/book";
 
 @Component({
   selector: "app-books",
@@ -8,14 +9,16 @@ import { MatSnackBar } from "@angular/material";
   styleUrls: ["./books.component.scss"],
 })
 export class BooksComponent implements OnInit {
-  @Input() image: String;
+  @Input() book: Book;
   isAdded: boolean = false;
   isOutOfStock: boolean = false;
+  isLessThanFive: boolean = false;
   constructor(private _matSnackBar: MatSnackBar) {}
 
   ngOnInit() {}
   addToCart() {
     this.isAdded = true;
+    this.isOutOfStock = true;
   }
   removeFromCart() {
     this.isAdded = false;
