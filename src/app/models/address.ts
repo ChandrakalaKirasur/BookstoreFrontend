@@ -6,5 +6,5 @@ export class Address {
   public locality: String;
   public city: String;
   public landmark: String;
-  public typr: String;
+  public type: String;
 }

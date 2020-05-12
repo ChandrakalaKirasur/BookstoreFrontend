@@ -4,24 +4,26 @@
     <div class="mycart">
       My cart&nbsp;(2)
     </div>
-    <div *ngFor="let image of images">
-      <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-        <img class="bookimg" src="assets/images/Image 11@2x.png" />
-        <div class="bookdetails">
-          <div class="booktitle">
-            Don't Make Me Think
+    <div *ngFor="let book of books">
+      <div *ngIf="book.bookId != null">
+        <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
+          <img class="bookimg" src="assets/images/Image 11@2x.png" />
+          <div class="bookdetails">
+            <div class="booktitle">
+              Don't Make Me Think
+            </div>
+            <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
+            <div class="sub">by Steve Krug</div>
+            <div style="font: Bold 18px/15px Lato; margin-bottom: 30px;">
+              Rs. 1500
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
           </div>
-          <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
-          <div class="sub">by Steve Krug</div>
-          <div style="font: Bold 18px/15px Lato; margin-bottom: 30px;">
-            Rs. 1500
-          </div>
-          <!-- </div> -->
-          <!-- </div> -->
+          <button mat-raised-button class="button" (click)="onRemove(book)">
+            Remove
+          </button>
         </div>
-        <button mat-raised-button class="button" (click)="onCheckOut()">
-          Remove
-        </button>
       </div>
     </div>
   </mat-card>
