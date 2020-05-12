@@ -35,16 +35,26 @@
   display: flex;
 }
 .quantity {
-  top: 284px;
-  left: 346px;
+  // top: 284px;
+  // left: 346px;
+  // width: 50px;
+  // height: 24px;
+  // background: #ffffff 0% 0% no-repeat padding-box;
+  // border: 1px solid #dbdbdb;
+  // border-radius: 1px;
+  // opacity: 1;
+  // text-align: center;
+  // padding-top: 8px;
+
   width: 50px;
-  height: 24px;
+  height: -12px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #dbdbdb;
   border-radius: 1px;
   opacity: 1;
   text-align: center;
-  padding-top: 8px;
+  height: 25px;
+  padding-top: 4px;
 }
 .color {
   background-color: #dbdbdb;

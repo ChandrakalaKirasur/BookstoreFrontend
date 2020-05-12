@@ -17,12 +17,7 @@
 .bookimg {
   width: 31px;
   height: 24px;
-  background-color: #a03037;
-  border: none;
-  outline: blanchedalmond;
-  position: absolute;
   margin-left: 50px;
-  height: 24px;
 }
 .searche {
   width: 30%;
@@ -58,6 +53,8 @@
   background-color: #a03037;
   border: none;
   outline: none;
+  padding-left: 0px;
+  padding-right: 30px;
 }
 .image {
   width: 20px;

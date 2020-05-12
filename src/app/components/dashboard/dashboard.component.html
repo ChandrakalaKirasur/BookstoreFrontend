@@ -16,11 +16,11 @@
 
       <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 23%;">
         <div class="carttext" (click)="onCart()">Cart</div>
-        <button (click)="onCart()" class="cartimg">
+        <a mat-button (click)="onCart()" class="cartimg">
           <mat-icon color="primary">
             <img class="image" src="assets/images/supermarket@2x.png" />
           </mat-icon>
-        </button>
+        </a>
 
         <button
           mat-icon-button
@@ -33,8 +33,9 @@
         </button>
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item>Item 1</button>
-          <button mat-menu-item>Item 2</button>
+          <button mat-menu-item>MyOrders</button>
+          <button mat-menu-item>LogIn</button>
+          <button mat-menu-item>LogOut</button>
         </mat-menu>
       </div>
     </mat-toolbar-row>

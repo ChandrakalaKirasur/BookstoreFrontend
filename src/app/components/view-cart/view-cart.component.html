@@ -23,7 +23,7 @@
       fxLayout="row"
       fxLayoutAlign="center center"
       fxLayOutGap="10px"
-      style="margin-right: 268px; margin-bottom: 20px;"
+      style="margin-right: 280px; margin-bottom: 20px;"
     >
       <div>
         <button mat-icon-button (click)="personadd()">
@@ -79,7 +79,7 @@
             matInput
             placeholder="Enter your Name"
             required
-            [(ngModel)]="login.email"
+            [(ngModel)]="addModel.name"
             [disabled]="!fields"
           />
         </mat-form-field>
@@ -94,7 +94,7 @@
               matInput
               placeholder="Enter your phoneNumber"
               required
-              [matAutocomplete]="false"
+              [(ngModel)]="addModel.phoneNumber"
               [disabled]="!fields"
               autocomplete="off"
             />
@@ -114,7 +114,7 @@
             matInput
             placeholder="Enter your pincode"
             required
-            [matAutocomplete]="false"
+            [(ngModel)]="addModel.pincode"
             [disabled]="!fields"
             autocomplete="off"
           />
@@ -131,7 +131,7 @@
               matInput
               placeholder="Enter your Locality"
               required
-              [matAutocomplete]="false"
+              [(ngModel)]="addModel.locality"
               [disabled]="!fields"
               autocomplete="off"
             />
@@ -151,7 +151,7 @@
           matInput
           placeholder="Address"
           required
-          [matAutocomplete]="false"
+          [(ngModel)]="addModel.address"
           [disabled]="!fields"
           style="height: 51px;"
           autocomplete="off"
@@ -175,7 +175,7 @@
             matInput
             placeholder="Enter your city/town"
             required
-            [matAutocomplete]="false"
+            [(ngModel)]="addModel.city"
             [disabled]="!fields"
             autocomplete="off"
           />
@@ -192,7 +192,7 @@
               matInput
               placeholder="Enter your landmark"
               required
-              [matAutocomplete]="false"
+              [(ngModel)]="addModel.landmark"
               [disabled]="!fields"
               autocomplete="off"
             />

@@ -3,6 +3,7 @@ import { FormControl, Validators } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Login } from "src/app/models/login";
+import { Address } from "src/app/models/address";
 
 @Component({
   selector: "app-view-cart",
@@ -12,7 +13,7 @@ import { Login } from "src/app/models/login";
 export class ViewCartComponent implements OnInit {
   images = [{}, {}, {}, {}];
   image: "assets/images/Image 11@2x.png";
-  login: Login = new Login("", "");
+  addModel: Address = new Address();
 
   name = new FormControl([
     Validators.required,
@@ -103,7 +104,12 @@ export class ViewCartComponent implements OnInit {
       this.open2 = true;
     }, 2000);
     this.fields = false;
-    console.log(this.login.email + "*****************");
+    console.log(this.addModel.name + "***name");
+    console.log(this.addModel.address + "**address");
+    console.log(this.addModel.phoneNumber + "**phoneNumber");
+    console.log(this.addModel.pincode + "**pincode");
+    console.log(this.addModel.locality + "**locality");
+    console.log(this.addModel.city + "**city");
   }
   onEdit() {
     this.fields = true;
