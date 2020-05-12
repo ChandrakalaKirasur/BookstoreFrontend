@@ -14,33 +14,88 @@ export class BooksComponent implements OnInit {
   @Input() book: Book;
   isAdded: boolean = false;
   isOutOfStock: boolean = false;
-  isLessThanFive: boolean = false;
+  noOfBooks: number = this.book.noOfBooks;
+  isListed: boolean = false;
   constructor(
     private _matSnackBar: MatSnackBar,
     private router: Router,
     private bookService: BookService
   ) {}
-
   ngOnInit() {}
   addToCart() {
-    this.isOutOfStock = true;
     let token = localStorage.getItem("token");
     if (!(token == "")) {
       this.isAdded = true;
-      console.log("token:",token);
       this.bookService
         .addToCart(this.book.bookId)
         .subscribe((response: any) => {
           console.log(response["obj"]);
+          this._matSnackBar.open("Book added to cart", "ok", {
+            duration: 1000,
+          });
         });
     } else {
       this._matSnackBar.open("please login", "ok", {
-        duration: 5000,
+        duration: 2000,
       });
       this.router.navigateByUrl("/login");
     }
   }
   removeFromCart() {
     this.isAdded = false;
+    let token = localStorage.getItem("token");
+    if (!(token == "")) {
+      this.bookService
+        .removeFromCart(this.book.bookId)
+        .subscribe((response: any) => {
+          console.log(response["obj"]);
+          this._matSnackBar.open("Book removed from cart", "ok", {
+            duration: 1000,
+          });
+        });
+    } else {
+      this._matSnackBar.open("please login", "ok", {
+        duration: 2000,
+      });
+      this.router.navigateByUrl("/login");
+    }
+  }
+  addToWishlist() {
+    let token = localStorage.getItem("token");
+    if (!(token == "")) {
+      this.isListed = true;
+      this.bookService
+        .addToWishList(this.book.bookId)
+        .subscribe((response: any) => {
+          console.log(response["obj"]);
+          this._matSnackBar.open("Book added to wishlist", "ok", {
+            duration: 1000,
+          });
+        });
+    } else {
+      this._matSnackBar.open("please login", "ok", {
+        duration: 2000,
+      });
+      this.router.navigateByUrl("/login");
+    }
+  }
+  removeFromWishlist() {
+    this.isListed = false;
+    let token = localStorage.getItem("token");
+    if (!(token == "")) {
+      this.bookService
+        .removeFromWishList(this.book.bookId)
+        .subscribe((response: any) => {
+          console.log(response["obj"]);
+          this._matSnackBar.open("Book removed from wishlist", "ok", {
+            duration: 1000,
+          });
+        });
+    } else {
+      this._matSnackBar.open("please login", "ok", {
+        duration: 2000,
+      });
+      this.router.navigateByUrl("/login");
+    }
   }
 }
