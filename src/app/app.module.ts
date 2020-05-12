@@ -46,6 +46,7 @@ import { RestpasswordComponent } from "./components/restpassword/restpassword.co
 import { MatRadioModule } from "@angular/material/radio";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { WhishlistComponent } from './components/whishlist/whishlist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +62,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     SortBooksPipe,
     ForgetpasswordComponent,
     RestpasswordComponent,
+    WhishlistComponent,
   ],
   imports: [
     BrowserModule,
