@@ -11,9 +11,9 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   public postRequest(url :any, data: any ):any{
-    return this.http.post("http://localhost:8080/seller/" + url,data);
+    return this.http.post("http://localhost:8080/" + url,data);
   }
   public putRequestForget(url,data){
-    return this.http.post("http://localhost:8080/seller/"+ url,data,);
+    return this.http.post("http://localhost:8080/"+ url,data,);
   }
 }
