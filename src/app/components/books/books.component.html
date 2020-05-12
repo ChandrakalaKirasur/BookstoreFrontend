@@ -2,7 +2,9 @@
   autocomplete="off"
   role="combobox"
   flex="column"
-  matTooltip="{{ book.bookName }}{{ book.bookDescription }}"
+  matTooltip="Book Title : {{ book.bookName }}, Book Author : {{
+    book.bookAuthor
+  }} ,{{ book.bookDescription }} "
   matTooltipPosition="right"
   matTooltipClass="custom-tooltip"
 >
@@ -30,7 +32,7 @@
         >by {{ book.bookAuthor }}</mat-card-subtitle
       >
       <div class="mat-subheading-1">Rs. {{ book.bookPrice }}</div>
-      <div *ngIf="{{book.noOfBooks}} < 6 && {{book.noOfBooks > 0}}; else " class="mat-subheading-2">
+      <div class="mat-subheading-2">
         Only {{ book.noOfBooks }} books are left
       </div>
     </mat-card-content>

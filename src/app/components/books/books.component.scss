@@ -32,7 +32,7 @@ img {
 .mat-title {
   padding-bottom: 2px;
   line-height: 1.8;
-  color: #9c7d81;
+  color: #0a0102;
   padding-top: 7px;
   opacity: 1;
   font-size: 16px;
@@ -55,7 +55,7 @@ button {
   position: relative;
   margin: 0px;
   margin-left: 4px;
-  padding-top: 6px;
+  padding-top: -8px;
   font: Bold 12px/15px Lato;
 }
 .mat-subheading-2 {
@@ -159,13 +159,13 @@ button {
 }
 ::ng-deep .custom-tooltip {
   width: 456px;
-  height: 318px;
+  height: 208px;
   text-align: left;
   font: Regular 11px/13px Lato !important;
   letter-spacing: 0px;
-  font-size: 20px;
-  border: #9d9d9d;
+  font-size: 12px;
+  border: #5e3e3e !important;
   border-radius: 2px;
   background-color: white;
-  color: black !important;
+  color:#0a0102 !important;
 }
