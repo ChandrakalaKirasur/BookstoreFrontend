@@ -8,7 +8,7 @@
       <button
         class="sort"
         fxLayout="row"
-        fxLayoutAlign="space-between end"
+        fxLayoutAlign="space-between center"
         [matMenuTriggerFor]="menu"
       >
         <div
@@ -61,7 +61,40 @@
       </div>
     </div>
     <div class="paginator" style="padding-bottom: 10px;">
-      <app-pagination></app-pagination>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div>
+          <button
+            mat-mini-fab
+            (click)="getAvailableBooksOfPage()"
+            style="
+              border: #e2e2e2;
+              background: #ffffff 0% 0% no-repeat padding-box;
+              color: #0a0102;
+            "
+          >
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+        </div>
+        <div class="pagenumber" fxLayout="row">
+          <div *ngFor="let page of pages">
+            <button mat-icon-button (click)="getAvailableBooksOfPage(page)">
+              {{ page }}
+            </button>
+          </div>
+        </div>
+        <div>
+          <button
+            mat-mini-fab
+            style="
+              border: #e2e2e2;
+              background: #ffffff 0% 0% no-repeat padding-box;
+              color: #0a0102;
+            "
+          >
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="footer">

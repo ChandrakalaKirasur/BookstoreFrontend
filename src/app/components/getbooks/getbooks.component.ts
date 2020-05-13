@@ -15,6 +15,8 @@ export class GetbooksComponent implements OnInit {
   sortTech2: any = "Price : High to Low";
   sortTech3: any = "Newest Arrivals";
   length: number;
+  page: number;
+  pages: Array<Number> = [];
   constructor(private bookService: BookService) {}
 
   ngOnInit() {
@@ -33,12 +35,10 @@ export class GetbooksComponent implements OnInit {
       this.sortTech1 = "Price : High to Low";
       this.sortTech2 = "Sort by relevance";
       this.sortTech3 = "Newest Arrivals";
-      this.bookService
-        .getBooksSortedByPriceLow()
-        .subscribe((response: any) => {
-          this.bookList = response["obj"];
-          this.length = this.bookList.length;
-        });
+      this.bookService.getBooksSortedByPriceLow().subscribe((response: any) => {
+        this.bookList = response["obj"];
+        this.length = this.bookList.length;
+      });
     }
     if (option == "Price : High to Low") {
       this.sortTech1 = "Price : Low to High";
@@ -63,6 +63,20 @@ export class GetbooksComponent implements OnInit {
   }
   getAvailableBooks() {
     this.bookService.getAvailableBooks().subscribe((response: any) => {
+      this.bookList = response["obj"];
+      this.length = this.bookList.length;
+      if (this.length > 9) {
+        for (var i = 1; i < this.length-7; i++) {
+          this.pages[i] = i;
+          console.log("number is: ", this.pages[i]);
+        }
+      } else {
+        this.pages[1] = 1;
+      }
+    });
+  }
+  getAvailableBooksOfPage(pageNo:number) {
+    this.bookService.getAvailableBooksOfPage(pageNo).subscribe((response: any) => {
       this.bookList = response["obj"];
       this.length = this.bookList.length;
     });

@@ -24,6 +24,14 @@ export class BookService {
       { params: params }
     );
   }
+  getAvailableBooksOfPage(pageNo:any) {
+    let params = new HttpParams();
+    params = params.append("pageNo", pageNo);
+    return this.http_service.getMethod(
+      environment.baseUrl + environment.BOOK_BASE_URL,
+      { params: params }
+    );
+  }
   addToCart(bookId: number) {
     let params = new HttpParams();
     params = params.append("bookId", bookId + "");
