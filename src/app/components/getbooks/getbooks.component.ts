@@ -66,7 +66,7 @@ export class GetbooksComponent implements OnInit {
       this.bookList = response["obj"];
       this.length = this.bookList.length;
       if (this.length > 9) {
-        for (var i = 1; i < this.length-7; i++) {
+        for (var i = 1; i < this.length - 7; i++) {
           this.pages[i] = i;
           console.log("number is: ", this.pages[i]);
         }
@@ -75,10 +75,12 @@ export class GetbooksComponent implements OnInit {
       }
     });
   }
-  getAvailableBooksOfPage(pageNo:number) {
-    this.bookService.getAvailableBooksOfPage(pageNo).subscribe((response: any) => {
-      this.bookList = response["obj"];
-      this.length = this.bookList.length;
-    });
+  getAvailableBooksOfPage(pageNo: number) {
+    this.bookService
+      .getAvailableBooksOfPage(pageNo)
+      .subscribe((response: any) => {
+        this.bookList = response["obj"];
+        this.length = this.bookList.length;
+      });
   }
 }
