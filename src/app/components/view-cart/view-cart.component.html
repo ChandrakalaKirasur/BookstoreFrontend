@@ -31,8 +31,9 @@
               <mat-icon>remove_circle_outline</mat-icon>
             </button>
           </div>
-
-          <div class="quantity">{{ cart.QuantityOfBooks }}</div>
+          <div *ngFor="let quaty of book.quantitybto">
+            <div class="quantity">{{ quaty.quantityOfBook }}</div>
+          </div>
           <div>
             <button mat-icon-button (click)="onQuantity(book)">
               <mat-icon>add_circle_outline</mat-icon>

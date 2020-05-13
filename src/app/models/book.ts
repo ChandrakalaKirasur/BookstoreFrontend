@@ -7,4 +7,5 @@ export class Book {
   public bookImage: any;
   public bookDescription: string;
   public reviewRating: Array<any>;
+  public quantitybto: any;
 }

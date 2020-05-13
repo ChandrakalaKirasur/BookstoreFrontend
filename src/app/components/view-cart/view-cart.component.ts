@@ -96,19 +96,17 @@ export class ViewCartComponent implements OnInit {
     this.getbooks();
   }
 
-  //book: Book = new Book();
-  cart: Cartdetails = new Cartdetails();
+  book: Book = new Book();
+  //cart: Cartdetails = new Cartdetails();
   books: [];
   token: string;
   arrCase: any;
-  ln: [];
-  res: [];
-  booknam: string;
+
   booklist: [];
   quantity: any;
   bookincart: number;
-  myDatas = new Array(this.cart);
-  quanity = new Array();
+  myDatas = new Array();
+
   getbooks() {
     // localStorage.setItem(
     //   "token",
@@ -134,6 +132,7 @@ export class ViewCartComponent implements OnInit {
 
           this.books = Response.obj[len];
           let res = this.books["booksList"];
+          let qt = this.books["quantityOfBooks"];
           console.log(this.myDatas);
 
           /**
@@ -142,11 +141,18 @@ export class ViewCartComponent implements OnInit {
           for (var index in res) {
             // console.log(this.books["cartId"]);
             // this.myDatas.push(res[0]["bookId"]);
-            this.myDatas.push(res[0]);
+            this.book = res[0];
+            this.book.quantitybto = this.books["quantityOfBooks"];
+            this.myDatas.push(this.book);
+
             // this.myDatas.push(this.books["cartId"]);
-            // this.myDatas.push(this.books["quantityOfBooks"]);
+            //this.myDatas.push(this.books["quantityOfBooks"]);
             //this.myDatas.push(this.quanity);
           }
+          // for (var index in qt) {
+          //   console.log(qt[0]);
+          //   this.myDatas.push(qt[0]);
+          // }
         }
 
         console.log(this.myDatas);
