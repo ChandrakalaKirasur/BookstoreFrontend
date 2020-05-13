@@ -9,6 +9,7 @@ import { ViewcartService } from "src/app/service/viewcart.service";
 import { Book } from "src/app/models/book";
 import { AddressService } from "src/app/service/address.service";
 import { Cartdetails } from "src/app/models/cartdetails";
+import { DataService } from "src/app/service/data.service";
 
 @Component({
   selector: "app-view-cart",
@@ -16,7 +17,7 @@ import { Cartdetails } from "src/app/models/cartdetails";
   styleUrls: ["./view-cart.component.scss"],
 })
 export class ViewCartComponent implements OnInit {
-  images = [{}, {}, {}, {}];
+  // images = [{}, {}, {}, {}];
   image: "assets/images/Image 11@2x.png";
   addModel: Address = new Address();
 
@@ -89,6 +90,7 @@ export class ViewCartComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private cartService: ViewcartService,
+    private data: DataService,
     private addressService: AddressService
   ) {}
 
@@ -106,7 +108,7 @@ export class ViewCartComponent implements OnInit {
   token: string;
   arrCase: any;
 
-  booklist: [];
+  quantitylist: [];
   quantity: any;
   bookincart: number;
   myDatas = new Array();
@@ -123,12 +125,14 @@ export class ViewCartComponent implements OnInit {
           this.books = Response.obj[len];
           let res = this.books["booksList"];
           let qt = this.books["quantityOfBooks"];
+          console.log(this.books["cartId"]);
           console.log(this.myDatas);
           /**
            * bookdetails
            */
           for (var index in res) {
-            this.book = res[0];
+            this.book = res[0]; //book details
+            this.quantitylist = this.books["quantityOfBooks"];
             this.book.quantitybto = this.books["quantityOfBooks"];
             this.myDatas.push(this.book);
           }
@@ -143,6 +147,24 @@ export class ViewCartComponent implements OnInit {
     );
   }
 
+  onQuantity(book: any) {
+    console.log(book);
+    for (var index in book.quantitybto) {
+      // console.log(book.quantitybto[index]);
+      this.addressService
+        .postRequest(
+          "cart/add_booksquantity_cart/" +
+            this.token +
+            "?bookId=" +
+            book.bookId,
+          book.quantitybto[index]
+        )
+        .subscribe((Response: any) => {
+          this.data.changeMessage("bookquantity");
+          this.snackbar.open("updated...", "undo", { duration: 2500 });
+        });
+    }
+  }
   open: boolean;
   fields: boolean;
 
@@ -189,21 +211,4 @@ export class ViewCartComponent implements OnInit {
   }
 
   cart: Cartdetails = new Cartdetails();
-
-  onQuantity(book: any) {
-    for (var index in book.quantitybto) {
-      // console.log(book.quantitybto[index]);
-      this.addressService
-        .postRequest(
-          "cart/add_booksquantity_cart/" +
-            this.token +
-            "?bookId=" +
-            book.bookId,
-          book.quantitybto[index]
-        )
-        .subscribe((Response: any) => {
-          this.snackbar.open("updated...", "undo", { duration: 2500 });
-        });
-    }
-  }
 }
