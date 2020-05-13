@@ -22,6 +22,7 @@ export class GetbooksComponent implements OnInit {
   ngOnInit() {
     this.sort;
     this.getAvailableBooks();
+    this.getBooksCount();
   }
   doSorting(option: any) {
     this.sort = option;
@@ -105,5 +106,11 @@ export class GetbooksComponent implements OnInit {
         this.length = this.bookList.length;
         this.page = this.page - 1;
       });
+  }
+  getBooksCount() {
+    this.bookService.getBooksCount().subscribe((response: any) => {
+      this.length = response["obj"];
+      console.log(" number of pages: ", this.length);
+    });
   }
 }

@@ -15,6 +15,7 @@ export const environment = {
   SORT_BY_LOW_TO_HIGH: "book/getBooksSortedByPriceLow/",
   SORT_BY_HIGH_TO_LOW: "book/getBooksSortedByPriceHigh/",
   SORT_BY_NEW_ARRIVALS: "book/getBooksSortedByArrival/",
+  GET_BOOKS_COUNT: "book/getBooksCount",
 };
 
 /*
