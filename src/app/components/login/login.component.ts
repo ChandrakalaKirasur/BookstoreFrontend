@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Login } from 'src/app/models/login';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatRadioChange } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { HttpService } from 'src/app/service/http.service';
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   email = new FormControl(this.login.mailOrMobile, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]);
   password = new FormControl(this.login.password, [Validators.required, Validators.minLength(8)])
   showSpinner = false;
+  person=String;
   constructor(private snackBar:MatSnackBar,
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -48,12 +49,16 @@ export class LoginComponent implements OnInit {
     return this.password.hasError('required') ? 'You must enter a value' :
      this.password.hasError('password') ? 'Min 6 Elements' : '';
   }
-  
+  onChange(mrChange: MatRadioChange) {
+    console.log(mrChange.value);
+   this.person=mrChange.value
+  }
   onlogin(){
+    console.log("name------------------>"+name);
     this.spinner.show();
-    console.log("Login:"+this.login.mailOrMobile);
+    console.log(this.person+"/login:"+this.login.mailOrMobile);
 
-    this.httpservice.postRequest("Login",this.login).subscribe(
+    this.httpservice.postRequest(this.person+"/login",this.login).subscribe(
 
      (response:any)=>{
        if(response!=null)

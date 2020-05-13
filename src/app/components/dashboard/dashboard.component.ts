@@ -12,9 +12,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {}
 
   onCart() {
-    this.router.navigate(["/viewcart"]);
+    this.router.navigate(["books/viewcart"]);
   }
   onwhishlist() {
-    this.router.navigate(["/whishlist"]);
+    this.router.navigate(["books/whishlist"]);
   }
 }

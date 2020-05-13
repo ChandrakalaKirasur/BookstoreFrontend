@@ -1,4 +1,4 @@
-.container {
+container {
   display: flex;
   position: relative;
   top: 112px;
@@ -35,17 +35,6 @@
   display: flex;
 }
 .quantity {
-  // top: 284px;
-  // left: 346px;
-  // width: 50px;
-  // height: 24px;
-  // background: #ffffff 0% 0% no-repeat padding-box;
-  // border: 1px solid #dbdbdb;
-  // border-radius: 1px;
-  // opacity: 1;
-  // text-align: center;
-  // padding-top: 8px;
-
   width: 50px;
   height: -12px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -173,9 +162,9 @@
   margin-top: 21px;
   margin-left: 36px;
 }
-.footer {
-  width: 150%;
-}
+// .footer {
+//   width: 150%;
+// }
 .editbutton {
   margin-left: 714px;
   margin-top: -21px;

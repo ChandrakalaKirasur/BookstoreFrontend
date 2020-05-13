@@ -212,4 +212,7 @@ html,body
         margin-top: 40;
         
     }
-    .grab {cursor: -webkit-grab; cursor: grab;}
+    .grab {
+        cursor:-webkit-grab;
+        cursor:grab;
+    }

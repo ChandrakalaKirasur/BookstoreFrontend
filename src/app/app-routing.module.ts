@@ -10,6 +10,7 @@ import { ForgetpasswordComponent } from "./components/forgetpassword/forgetpassw
 import { RestpasswordComponent } from "./components/restpassword/restpassword.component";
 import { AuthGuardService } from "./service/guards/auth-guard.service";
 import { WhishlistComponent } from "./components/whishlist/whishlist.component";
+import { BooksComponent } from "./components/books/books.component";
 
 const routes: Routes = [
   {
@@ -25,22 +26,24 @@ const routes: Routes = [
     component: ForgetpasswordComponent,
   },
   {
-    path: "resetpassword",
+    path: "resetpassword/:role/:token",
     component: RestpasswordComponent,
   },
   {
     path: "",
     component: DashboardComponent,
-    // canActivateChild: [AuthGuardService],
+    //canActivateChild: [AuthGuardService],
     children: [
       { path: "", redirectTo: "/books", pathMatch: "full" },
-      { path: "books", component: GetbooksComponent},
+      { path: "books", component: GetbooksComponent },
       {
         path: "books/viewcart",
+        canActivate: [AuthGuardService],
         component: ViewCartComponent,
       },
       {
         path: "books/ordersucess",
+        canActivate: [AuthGuardService],
         component: OrderSuccessComponent,
       },
       {
@@ -50,7 +53,6 @@ const routes: Routes = [
     ],
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
