@@ -16,6 +16,7 @@ export class GetbooksComponent implements OnInit {
   sortTech3: any = "Newest Arrivals";
   length: number;
   page: number = 1;
+  endPage: number;
   pages: Array<Number> = [];
   constructor(private bookService: BookService) {}
 
@@ -69,15 +70,6 @@ export class GetbooksComponent implements OnInit {
   getAvailableBooks() {
     this.bookService.getAvailableBooks().subscribe((response: any) => {
       this.bookList = response["obj"];
-      this.length = this.bookList.length;
-      if (this.length > 9) {
-        for (var i = 1; i < this.length - 7; i++) {
-          this.pages[i] = i;
-          console.log("number is: ", this.pages[i]);
-        }
-      } else {
-        this.pages[1] = 1;
-      }
     });
   }
   getAvailableBooksOfPage(pageNo: number) {
@@ -90,27 +82,25 @@ export class GetbooksComponent implements OnInit {
       });
   }
   nextPage() {
-    this.bookService
-      .getAvailableBooksOfPage(this.page + 1)
-      .subscribe((response: any) => {
-        this.bookList = response["obj"];
-        this.length = this.bookList.length;
-        this.page = this.page + 1;
-      });
+    this.page = this.page + 1;
+    this.doSorting(this.sort);
   }
   previousPage() {
-    this.bookService
-      .getAvailableBooksOfPage(this.page - 1)
-      .subscribe((response: any) => {
-        this.bookList = response["obj"];
-        this.length = this.bookList.length;
-        this.page = this.page - 1;
-      });
+    this.page = this.page - 1;
+    this.doSorting(this.sort);
   }
   getBooksCount() {
     this.bookService.getBooksCount().subscribe((response: any) => {
       this.length = response["obj"];
-      console.log(" number of pages: ", this.length);
+      if(this.length > 10){
+      for (var i = 1; i <= this.length / 10 + 1; i++) {
+        this.pages[i] = i;
+      }
+      this.endPage = this.pages.length - 2;
+    }
+    else{
+      this.page = 1;
+    }
     });
   }
 }
