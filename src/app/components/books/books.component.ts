@@ -27,11 +27,11 @@ export class BooksComponent implements OnInit {
   addToCart() {
     let token = localStorage.getItem("token");
     if (!(token == "")) {
-      this.isAdded = true;
       this.bookService
         .addToCart(this.book.bookId)
         .subscribe((response: any) => {
           console.log(response["obj"]);
+          this.isAdded = true;
           this._matSnackBar.open("Book added to cart", "ok", {
             duration: 1000,
           });
