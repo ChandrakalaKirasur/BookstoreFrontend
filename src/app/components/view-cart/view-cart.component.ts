@@ -104,7 +104,8 @@ export class ViewCartComponent implements OnInit {
     this.getcountofbooks();
     this.getbooks();
   }
-  private subject = new Subject<any>();
+
+  // private subject = new Subject<any>();
   book: Book = new Book();
   //
   books: [];
@@ -166,9 +167,9 @@ export class ViewCartComponent implements OnInit {
     );
   }
 
-  public get autoRefresh() {
-    return this.subject;
-  }
+  // public get autoRefresh() {
+  //   return this.subject;
+  // }
 
   onQuantity(book: any) {
     console.log(book);
@@ -188,10 +189,17 @@ export class ViewCartComponent implements OnInit {
         //     this.snackbar.open("updated...", "undo", { duration: 2500 });
         //   })
         // );
-        .subscribe((Response: any) => {
-          this.data.changeMessage("bookquantity");
-          this.snackbar.open("updated...", "undo", { duration: 2500 });
-        });
+        .subscribe(
+          (Response: any) => {
+            this.data.changeMessage("bookquantity");
+            this.snackbar.open("updated...", "undo", { duration: 2500 });
+          },
+          (error: any) => {
+            console.error(error);
+            console.log(error.error.message);
+            this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+          }
+        );
     }
   }
 
@@ -206,10 +214,17 @@ export class ViewCartComponent implements OnInit {
             book.bookId,
           book.quantitybto[index]
         )
-        .subscribe((Response: any) => {
-          this.data.changeMessage("bookquantity");
-          this.snackbar.open("updated...", "undo", { duration: 2500 });
-        });
+        .subscribe(
+          (Response: any) => {
+            this.data.changeMessage("bookquantity");
+            this.snackbar.open("updated...", "undo", { duration: 2500 });
+          },
+          (error: any) => {
+            console.error(error);
+            console.log(error.error.message);
+            this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+          }
+        );
     }
   }
 
@@ -221,10 +236,17 @@ export class ViewCartComponent implements OnInit {
         "cart/remove_books_cart/" + this.token + "/" + book.bookId,
         ""
       )
-      .subscribe((Response: any) => {
-        this.data.changeMessage("bookquantity");
-        this.snackbar.open("updated...", "undo", { duration: 2500 });
-      });
+      .subscribe(
+        (Response: any) => {
+          this.data.changeMessage("bookquantity");
+          this.snackbar.open("updated...", "undo", { duration: 2500 });
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        }
+      );
     //}
   }
 
@@ -260,10 +282,12 @@ export class ViewCartComponent implements OnInit {
     console.log(this.addModel.city + "**city");
     console.log(this.addModel);
   }
+
   onEdit() {
     this.fields = true;
     this.open2 = false;
   }
+
   onCheckOut() {
     this.spinner.show();
     this.showSpinner = true;

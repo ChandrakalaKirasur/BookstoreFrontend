@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { MatSnackBar } from "@angular/material";
 import { AddressService } from "src/app/service/address.service";
+import { Book } from "src/app/models/book";
 
 @Component({
   selector: "app-whishlist",
@@ -31,12 +32,23 @@ export class WhishlistComponent implements OnInit {
   // }
   token: String;
   books: [];
+  book: Book = new Book();
+  //
+  // books: [];
+  // token: string;
+
+  quantitylist: [];
+
+  bookincart: number;
+  myDatas = new Array();
   onwhishlist() {
     this.token = localStorage.getItem("token");
     this.addressService
       .getRequest("whishList/books_cart/" + this.token)
       .subscribe(
         (Response: any) => {
+          console.log(Response);
+          this.books = Response.obj;
           if (Response.statusCode === 200) {
             // this.addressService.changeMessage('trash')
             this.books = Response.obj;

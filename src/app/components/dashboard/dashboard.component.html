@@ -31,12 +31,68 @@
         >
           <img class="profile" src="assets/images/Indian-Army-4.jpg" />
         </button>
+        <!-- <mat-menu #beforeMenu="matMenu">
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            style="width: 278px; height: 272px;"
+          >
+            <br />
+            <img class="image3" src="{{ image }}" (click)="images()" /> <br />
+            <mat-icon class="iconcam">add_a_photo</mat-icon>
+          </div>
+          <div style="margin-top: 10px;">
+            MorramShetty SaiKiran
+            <br />
+            <input
+              type="text"
+              placeholder="msaikiran201@gmail.com"
+              style="border: none;"
+            />
+          </div>
+          <br />
+          <button
+            mat-menu-item
+            (click)="account()"
+            style="text-align: center; margin-bottom: -35px;"
+          >
+            LogOut
+          </button>
+        </mat-menu> -->
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item (click)="onCart()">MyOrders</button>
-          <button mat-menu-item (click)="onwhishlist()">MyWhishList</button>
-          <button mat-menu-item>LogIn</button>
-          <button mat-menu-item>LogOut</button>
+          <div style="width: 200px; height: 200px;">
+            <button
+              mat-menu-item
+              [disabled]="!visible"
+              style="text-align: center;"
+              (click)="onOrderDetails()"
+            >
+              MyOrders
+            </button>
+            <button
+              mat-menu-item
+              [disabled]="!visible"
+              style="text-align: center;"
+              (click)="onwhishlist()"
+            >
+              MyWhishList
+            </button>
+            <button
+              mat-menu-item
+              style="text-align: center;"
+              (click)="onLogin()"
+            >
+              LogIn
+            </button>
+            <button
+              mat-menu-item
+              style="text-align: center;"
+              (click)="onLogout()"
+            >
+              LogOut
+            </button>
+          </div>
         </mat-menu>
       </div>
     </mat-toolbar-row>
