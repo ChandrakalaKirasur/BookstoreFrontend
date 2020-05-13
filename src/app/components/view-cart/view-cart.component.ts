@@ -9,6 +9,9 @@ import { ViewcartService } from "src/app/service/viewcart.service";
 import { Book } from "src/app/models/book";
 import { AddressService } from "src/app/service/address.service";
 import { Cartdetails } from "src/app/models/cartdetails";
+import { DataService } from "src/app/service/data.service";
+import { Subject, BehaviorSubject } from "rxjs";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-view-cart",
@@ -16,9 +19,8 @@ import { Cartdetails } from "src/app/models/cartdetails";
   styleUrls: ["./view-cart.component.scss"],
 })
 export class ViewCartComponent implements OnInit {
-  images = [{}, {}, {}, {}];
+  // images = [{}, {}, {}, {}];
   image: "assets/images/Image 11@2x.png";
-  addModel: Address = new Address();
 
   name = new FormControl([
     Validators.required,
@@ -86,70 +88,39 @@ export class ViewCartComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
+
     private router: Router,
     private snackbar: MatSnackBar,
     private cartService: ViewcartService,
+    private data: DataService,
     private addressService: AddressService
   ) {}
 
   ngOnInit() {
+    localStorage.setItem(
+      "token",
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIn0.aG9tbKceX39kDuT9h9PWP9FTqOqGU6C3PYRi_dW_gH8Al9cGEX8EzAQ3h8KLxa7boufpdfZ23XUuAKc-zovsQg"
+    );
+    this.getcountofbooks();
     this.getbooks();
   }
-
-  //book: Book = new Book();
-  cart: Cartdetails = new Cartdetails();
+  private subject = new Subject<any>();
+  book: Book = new Book();
+  //
   books: [];
   token: string;
-  arrCase: any;
-  ln: [];
-  res: [];
-  booknam: string;
-  booklist: [];
-  quantity: any;
+
+  quantitylist: [];
+
   bookincart: number;
-  myDatas = new Array(this.cart);
-  quanity = new Array();
-  getbooks() {
-    // localStorage.setItem(
-    //   "token",
-    //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIn0.rLyBMZZNdtyq6PbjZo42iT0KzS9bUF-FIVeWiT3sn_-XmCUfdYzmGUS3jfC3zv34YDRkHggWnRVOpSq9K1zcKA"
-    // );
+  myDatas = new Array();
+
+  getcountofbooks() {
     this.token = localStorage.getItem("token");
-    this.cartService.getRequest("cart/get_cart/" + this.token).subscribe(
+    this.cartService.getRequest("cart/bookCount/" + this.token).subscribe(
       (Response: any) => {
-        this.books = Response.obj;
-
-        this.bookincart = Response.obj.length;
-        console.log(this.books);
-        for (var len in Response.obj) {
-          console.log(this.books["quantityOfBooks"]);
-          console.log(this.books["cartId"]);
-          console.log(len[0]);
-          //this.quantity.push(this.books["quantityOfBooks"]);
-          // this.cart.quantity = this.books["quantityOfBooks"];
-          // this.cart.cartId = this.books["cartId"];
-
-          //this.quanity.push(this.cart);
-          console.log("index1111::" + len);
-
-          this.books = Response.obj[len];
-          let res = this.books["booksList"];
-          console.log(this.myDatas);
-
-          /**
-           * bookdetails
-           */
-          for (var index in res) {
-            // console.log(this.books["cartId"]);
-            // this.myDatas.push(res[0]["bookId"]);
-            this.myDatas.push(res[0]);
-            // this.myDatas.push(this.books["cartId"]);
-            // this.myDatas.push(this.books["quantityOfBooks"]);
-            //this.myDatas.push(this.quanity);
-          }
-        }
-
-        console.log(this.myDatas);
+        console.log(Response);
+        this.bookincart = Response.obj;
       },
       (error: any) => {
         console.error(error);
@@ -159,8 +130,107 @@ export class ViewCartComponent implements OnInit {
     );
   }
 
+  getbooks() {
+    this.token = localStorage.getItem("token");
+    this.cartService.getRequest("cart/get_cart/" + this.token).subscribe(
+      (Response: any) => {
+        console.log(Response);
+        this.books = Response.obj;
+
+        //this.bookincart = Response.obj.length;
+        console.log(this.books);
+        for (var len in Response.obj) {
+          this.books = Response.obj[len];
+          let res = this.books["booksList"];
+          let qt = this.books["quantityOfBooks"];
+          console.log(this.books["cartId"]);
+          console.log(this.myDatas);
+          /**
+           * bookdetails
+           */
+          for (var index in res) {
+            this.book = res[0]; //book details
+            this.quantitylist = this.books["quantityOfBooks"];
+            this.book.quantitybto = this.books["quantityOfBooks"];
+            this.myDatas.push(this.book);
+          }
+        }
+        console.log(this.myDatas);
+        this.snackbar.open(Response.message, "undo", { duration: 2500 });
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
+  }
+
+  public get autoRefresh() {
+    return this.subject;
+  }
+
+  onQuantity(book: any) {
+    console.log(book);
+    for (var index in book.quantitybto) {
+      // console.log(book.quantitybto[index]);
+      this.cartService
+        .putRequest(
+          "cart/add_booksquantity_cart/" +
+            this.token +
+            "?bookId=" +
+            book.bookId,
+          book.quantitybto[index]
+        )
+        // .pipe(
+        //   tap(() => {
+        //     this.subject.next();
+        //     this.snackbar.open("updated...", "undo", { duration: 2500 });
+        //   })
+        // );
+        .subscribe((Response: any) => {
+          this.data.changeMessage("bookquantity");
+          this.snackbar.open("updated...", "undo", { duration: 2500 });
+        });
+    }
+  }
+
+  ondescQuantity(book: any) {
+    console.log(book);
+    for (var index in book.quantitybto) {
+      this.cartService
+        .putRequest(
+          "cart/desc_booksquantity_cart/" +
+            this.token +
+            "?bookId=" +
+            book.bookId,
+          book.quantitybto[index]
+        )
+        .subscribe((Response: any) => {
+          this.data.changeMessage("bookquantity");
+          this.snackbar.open("updated...", "undo", { duration: 2500 });
+        });
+    }
+  }
+
+  onRemove(book: any) {
+    console.log(book);
+    //for (var index in book.quantitybto) {
+    this.cartService
+      .deleteRequest(
+        "cart/remove_books_cart/" + this.token + "/" + book.bookId,
+        ""
+      )
+      .subscribe((Response: any) => {
+        this.data.changeMessage("bookquantity");
+        this.snackbar.open("updated...", "undo", { duration: 2500 });
+      });
+    //}
+  }
+
   open: boolean;
   fields: boolean;
+
   onOpen() {
     this.open = true;
     this.fields = true;
@@ -168,7 +238,7 @@ export class ViewCartComponent implements OnInit {
 
   showSpinner = false;
   open2: boolean;
-
+  addModel: Address = new Address();
   onOpen2() {
     this.spinner.show();
     this.showSpinner = true;
@@ -188,6 +258,7 @@ export class ViewCartComponent implements OnInit {
     console.log(this.addModel.pincode + "**pincode");
     console.log(this.addModel.locality + "**locality");
     console.log(this.addModel.city + "**city");
+    console.log(this.addModel);
   }
   onEdit() {
     this.fields = true;
@@ -200,9 +271,5 @@ export class ViewCartComponent implements OnInit {
       this.spinner.hide();
       this.router.navigate(["/books/ordersucess"]);
     }, 2000);
-  }
-
-  onQuantity(book: any) {
-    console.log(book);
   }
 }

@@ -27,18 +27,24 @@
           style="margin-right: 280px; margin-bottom: 20px;"
         >
           <div>
-            <button mat-icon-button (click)="onQuantity(book)">
+            <button mat-icon-button (click)="ondescQuantity(book)">
               <mat-icon>remove_circle_outline</mat-icon>
             </button>
           </div>
-
-          <div class="quantity">{{ cart.QuantityOfBooks }}</div>
+          <div *ngFor="let quaty of book.quantitybto">
+            <div class="quantity">{{ quaty.quantityOfBook }}</div>
+          </div>
           <div>
             <button mat-icon-button (click)="onQuantity(book)">
               <mat-icon>add_circle_outline</mat-icon>
             </button>
           </div>
-          <div style="font: 18px/15px Lato;">&nbsp; Remove</div>
+          <button
+            (click)="onRemove(book)"
+            style="background-color: white; border: none; outline: none;"
+          >
+            <div style="font: 18px/15px Lato;">&nbsp; Remove</div>
+          </button>
         </div>
       </div>
     </div>
