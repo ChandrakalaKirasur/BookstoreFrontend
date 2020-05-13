@@ -28,12 +28,10 @@ export class HttpService {
   };
   baseurl = environment.baseUrl;
 
-
-  public postRequest(url :any, data: any ):any{
-    return this.http.post("http://localhost:8080/" + url,data);
+  public postRequest(url: any, data: any): any {
+    return this.http.post("http://localhost:8080/" + url, data);
   }
-  public putRequestForget(url,data){
-    return this.http.post("http://localhost:8080/"+ url,data,);
+  public putRequestForget(url, data) {
+    return this.http.post("http://localhost:8080/" + url, data);
   }
-  
 }
