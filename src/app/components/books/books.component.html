@@ -2,7 +2,9 @@
   autocomplete="off"
   role="combobox"
   flex="column"
-  matTooltip="hello"
+  matTooltip="Book Title : {{ book.bookName }}, Book Author : {{
+    book.bookAuthor
+  }} ,{{ book.bookDescription }} "
   matTooltipPosition="right"
   matTooltipClass="custom-tooltip"
 >
@@ -24,18 +26,27 @@
   <div class="content">
     <mat-card-content>
       <div class="mat-title">
-        Don't Make Me Think
+        {{ book.bookName }}
       </div>
-      <mat-card-subtitle style="color: #9d9d9d; margin-top: -24px;"
-        >by Steve Krug</mat-card-subtitle
+      <mat-card-subtitle style="color: #9d9d9d; margin-top: -20px;"
+        >by {{ book.bookAuthor }}</mat-card-subtitle
       >
-      <div class="mat-subheading-1">Rs. 1500</div>
+      <div class="mat-subheading-1">Rs. {{ book.bookPrice }}</div>
+      <div
+        class="mat-subheading-2"
+        *ngIf="noOfBooks < 6 && noOfBooks > 0; else available"
+      >
+        Only {{ book.noOfBooks }} books are left
+      </div>
+      <ng-template #available>
+        <div class="mat-subheading-2">Available</div>
+      </ng-template>
     </mat-card-content>
     <mat-card-actions fxLayout="row" fxLayoutGap="7%">
       <button
         class="box1"
         *ngIf="!isAdded && !isOutOfStock; else removeFromBag"
-        (click)="addToCart()"
+        (click)="addToCart(b)"
       >
         ADD TO BAG
       </button>
@@ -49,14 +60,25 @@
           ADDED TO BAG
         </button>
       </ng-template>
-      <button class="box" *ngIf="!isAdded && !isOutOfStock">
+      <button
+        class="box"
+        *ngIf="!isAdded && !isOutOfStock && !isListed"
+        (click)="addToWishlist()"
+      >
         WISHLIST
+      </button>
+      <button
+        class="box"
+        *ngIf="isListed && !isAdded"
+        (click)="removeFromWishlist()"
+      >
+        IN WISHLIST
       </button>
       <button
         *ngIf="isOutOfStock"
         class="boxOutOfStockWishList"
         id="add-to-wishlist"
-        (click)="addToWishList()"
+        (click)="addToWishlist()"
       >
         WISHLIST
       </button>

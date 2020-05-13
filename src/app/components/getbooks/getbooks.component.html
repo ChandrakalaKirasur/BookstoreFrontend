@@ -1,7 +1,8 @@
 <mat-card-content>
   <div fxLayout="row" fxLayoutAlign="space-between end" class="bookheader">
     <div style="font-size: 25px;" class="books">
-      Books <small style="font-size: 12px;">(128 itmes)</small>
+      Books
+      <small style="font-size: 12px;">( {{ length }} itmes)</small>
     </div>
     <div>
       <button
@@ -9,7 +10,6 @@
         fxLayout="row"
         fxLayoutAlign="space-between end"
         [matMenuTriggerFor]="menu"
-        
       >
         <div
           style="font-size: 12px; padding-bottom: 5%;"
@@ -55,16 +55,16 @@
     </div>
   </div>
   <div fxLayout="column" fxLayoutAlign="center center">
-    <div *ngFor="let colors of images" fxLayout="row" class="display-notes">
-      <div *ngFor="let image of colors" class="colorsList" class="book">
-        <app-books [image]="image"></app-books>
+    <div fxLayout="row" class="display-notes">
+      <div *ngFor="let book of bookList" class="book">
+        <app-books [book]="book"></app-books>
       </div>
     </div>
     <div class="paginator" style="padding-bottom: 10px;">
       <app-pagination></app-pagination>
     </div>
   </div>
-  <div class="footer"> 
+  <div class="footer">
     <app-footer></app-footer>
   </div>
 </mat-card-content>

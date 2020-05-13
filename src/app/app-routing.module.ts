@@ -43,6 +43,7 @@ const routes: Routes = [
       },
       {
         path: "books/ordersucess",
+        canActivate: [AuthGuardService],
         component: OrderSuccessComponent,
       },
       {
