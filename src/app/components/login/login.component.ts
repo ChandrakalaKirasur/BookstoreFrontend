@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
    this.person=mrChange.value
   }
   onlogin(){
-    console.log("name------------------>"+name);
     this.spinner.show();
     console.log(this.person+"/login:"+this.login.mailOrMobile);
 
@@ -64,8 +63,11 @@ export class LoginComponent implements OnInit {
        if(response!=null)
        {
          this.spinner.hide();
-         console.log(response);
-         localStorage.setItem("token",response.token);
+         console.log(response)
+         console.log(response.obj);
+         localStorage.setItem("token",response.obj);
+        this.token=localStorage.getItem("token");
+        console.log(this.token)
          localStorage.setItem("email",response.mailOrMobile);
          this.snackBar.open(
            "Login Successfull","undo",
