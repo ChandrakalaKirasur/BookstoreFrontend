@@ -15,7 +15,7 @@ export class GetbooksComponent implements OnInit {
   sortTech2: any = "Price : High to Low";
   sortTech3: any = "Newest Arrivals";
   length: number;
-  page: number;
+  page: number = 1;
   pages: Array<Number> = [];
   constructor(private bookService: BookService) {}
 
@@ -29,23 +29,25 @@ export class GetbooksComponent implements OnInit {
       this.sortTech1 = "Price : Low to High";
       this.sortTech2 = "Price : High to Low";
       this.sortTech3 = "Newest Arrivals";
-      this.getAvailableBooks();
+      this.getAvailableBooksOfPage(this.page);
     }
     if (option == "Price : Low to High") {
       this.sortTech1 = "Price : High to Low";
       this.sortTech2 = "Sort by relevance";
       this.sortTech3 = "Newest Arrivals";
-      this.bookService.getBooksSortedByPriceLow().subscribe((response: any) => {
-        this.bookList = response["obj"];
-        this.length = this.bookList.length;
-      });
+      this.bookService
+        .getBooksSortedByPriceLow(this.page)
+        .subscribe((response: any) => {
+          this.bookList = response["obj"];
+          this.length = this.bookList.length;
+        });
     }
     if (option == "Price : High to Low") {
       this.sortTech1 = "Price : Low to High";
       this.sortTech2 = "Sort by relevance";
       this.sortTech3 = "Newest Arrivals";
       this.bookService
-        .getBooksSortedByPriceHigh()
+        .getBooksSortedByPriceHigh(this.page)
         .subscribe((response: any) => {
           this.bookList = response["obj"];
           this.length = this.bookList.length;
@@ -55,10 +57,12 @@ export class GetbooksComponent implements OnInit {
       this.sortTech1 = "Price : Low to High";
       this.sortTech2 = "Price : High to Low";
       this.sortTech3 = "Sort by relevance";
-      this.bookService.getBooksSortedByArrivals().subscribe((response: any) => {
-        this.bookList = response["obj"];
-        this.length = this.bookList.length;
-      });
+      this.bookService
+        .getBooksSortedByArrivals(this.page)
+        .subscribe((response: any) => {
+          this.bookList = response["obj"];
+          this.length = this.bookList.length;
+        });
     }
   }
   getAvailableBooks() {
@@ -81,6 +85,25 @@ export class GetbooksComponent implements OnInit {
       .subscribe((response: any) => {
         this.bookList = response["obj"];
         this.length = this.bookList.length;
+        this.page = pageNo;
+      });
+  }
+  nextPage() {
+    this.bookService
+      .getAvailableBooksOfPage(this.page + 1)
+      .subscribe((response: any) => {
+        this.bookList = response["obj"];
+        this.length = this.bookList.length;
+        this.page = this.page + 1;
+      });
+  }
+  previousPage() {
+    this.bookService
+      .getAvailableBooksOfPage(this.page - 1)
+      .subscribe((response: any) => {
+        this.bookList = response["obj"];
+        this.length = this.bookList.length;
+        this.page = this.page - 1;
       });
   }
 }

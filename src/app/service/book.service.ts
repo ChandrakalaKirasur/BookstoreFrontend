@@ -108,25 +108,25 @@ export class BookService {
         })
       );
   }
-  getBooksSortedByPriceHigh() {
+  getBooksSortedByPriceHigh(page: any) {
     let params = new HttpParams();
-    params = params.append("pageNo", "1");
+    params = params.append("pageNo", page);
     return this.http_service.getMethod(
       environment.baseUrl + environment.SORT_BY_HIGH_TO_LOW,
       { params: params }
     );
   }
-  getBooksSortedByPriceLow() {
+  getBooksSortedByPriceLow(page: any) {
     let params = new HttpParams();
-    params = params.append("pageNo", "1");
+    params = params.append("pageNo", page);
     return this.http_service.getMethod(
       environment.baseUrl + environment.SORT_BY_LOW_TO_HIGH,
       { params: params }
     );
   }
-  getBooksSortedByArrivals() {
+  getBooksSortedByArrivals(page: any) {
     let params = new HttpParams();
-    params = params.append("pageNo", "1");
+    params = params.append("pageNo", page);
     return this.http_service.getMethod(
       environment.baseUrl + environment.SORT_BY_NEW_ARRIVALS,
       { params: params }
