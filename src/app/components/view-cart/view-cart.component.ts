@@ -21,7 +21,6 @@ import { tap } from "rxjs/operators";
 export class ViewCartComponent implements OnInit {
   // images = [{}, {}, {}, {}];
   image: "assets/images/Image 11@2x.png";
-  addModel: Address = new Address();
 
   name = new FormControl([
     Validators.required,
@@ -175,7 +174,7 @@ export class ViewCartComponent implements OnInit {
     console.log(book);
     for (var index in book.quantitybto) {
       // console.log(book.quantitybto[index]);
-      this.addressService
+      this.cartService
         .putRequest(
           "cart/add_booksquantity_cart/" +
             this.token +
@@ -199,7 +198,7 @@ export class ViewCartComponent implements OnInit {
   ondescQuantity(book: any) {
     console.log(book);
     for (var index in book.quantitybto) {
-      this.addressService
+      this.cartService
         .putRequest(
           "cart/desc_booksquantity_cart/" +
             this.token +
@@ -213,6 +212,22 @@ export class ViewCartComponent implements OnInit {
         });
     }
   }
+
+  onRemove(book: any) {
+    console.log(book);
+    //for (var index in book.quantitybto) {
+    this.cartService
+      .deleteRequest(
+        "cart/remove_books_cart/" + this.token + "/" + book.bookId,
+        ""
+      )
+      .subscribe((Response: any) => {
+        this.data.changeMessage("bookquantity");
+        this.snackbar.open("updated...", "undo", { duration: 2500 });
+      });
+    //}
+  }
+
   open: boolean;
   fields: boolean;
 
@@ -223,7 +238,7 @@ export class ViewCartComponent implements OnInit {
 
   showSpinner = false;
   open2: boolean;
-
+  addModel: Address = new Address();
   onOpen2() {
     this.spinner.show();
     this.showSpinner = true;
@@ -257,6 +272,4 @@ export class ViewCartComponent implements OnInit {
       this.router.navigate(["/books/ordersucess"]);
     }, 2000);
   }
-
-  cart: Cartdetails = new Cartdetails();
 }

@@ -39,7 +39,12 @@
               <mat-icon>add_circle_outline</mat-icon>
             </button>
           </div>
-          <div style="font: 18px/15px Lato;">&nbsp; Remove</div>
+          <button
+            (click)="onRemove(book)"
+            style="background-color: white; border: none; outline: none;"
+          >
+            <div style="font: 18px/15px Lato;">&nbsp; Remove</div>
+          </button>
         </div>
       </div>
     </div>
