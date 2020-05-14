@@ -43,4 +43,14 @@ export class HttpService {
     console.log(this.token)
     return this.http.post("http://localhost:8080/"+ url,data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
+ 
+  public  getSearchRequest(url){
+   
+    return this.http.post("http://localhost:8080/"+ url,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+  }
+  public  putRequestverify(url){
+   
+    return this.http.post("http://localhost:8080/"+ url,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+  }
+  
 }

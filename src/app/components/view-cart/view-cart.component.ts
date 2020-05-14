@@ -4,7 +4,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Login } from "src/app/models/login";
 import { Address } from "src/app/models/address";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatRadioChange } from "@angular/material";
 import { ViewcartService } from "src/app/service/viewcart.service";
 import { Book } from "src/app/models/book";
 import { AddressService } from "src/app/service/address.service";
@@ -93,6 +93,7 @@ export class ViewCartComponent implements OnInit {
     private snackbar: MatSnackBar,
     private cartService: ViewcartService,
     private data: DataService,
+    private snackBar: MatSnackBar,
     private addressService: AddressService
   ) {}
 
@@ -252,7 +253,11 @@ export class ViewCartComponent implements OnInit {
 
   open: boolean;
   fields: boolean;
-
+  person:String;
+  onChange(mrChange: MatRadioChange) {
+    console.log(mrChange.value);
+   this.person=mrChange.value
+  }
   onOpen() {
     this.open = true;
     this.fields = true;
@@ -269,18 +274,15 @@ export class ViewCartComponent implements OnInit {
       this.open2 = true;
     }, 2000);
     this.fields = false;
-
+    this.addModel.type=this.person;
     this.addressService
-      .postRequest("address/add/" + this.token, this.address)
+      .postRequest("address/add/" + this.token, this.addModel)
       .subscribe((Response: any) => {});
-
-    console.log(this.addModel.name + "***name");
-    console.log(this.addModel.address + "**address");
-    console.log(this.addModel.phoneNumber + "**phoneNumber");
-    console.log(this.addModel.pincode + "**pincode");
-    console.log(this.addModel.locality + "**locality");
-    console.log(this.addModel.city + "**city");
-    console.log(this.addModel);
+      this.snackBar.open(
+        "adress added Successfully",
+        "undo",
+        { duration: 3000 }
+      )
   }
 
   onEdit() {
