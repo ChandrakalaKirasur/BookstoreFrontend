@@ -215,11 +215,11 @@
         <mat-radio-group
           aria-label="Select an option"
           fxLayoutGap="110px"
-          [disabled]="!fields"
+          [disabled]="!fields" (change)="onChange($event)"
         >
-          <mat-radio-button value="1">Home</mat-radio-button>
-          <mat-radio-button value="2">Work</mat-radio-button>
-          <mat-radio-button value="3">Other</mat-radio-button>
+          <mat-radio-button value="Home">Home</mat-radio-button>
+          <mat-radio-button value="Work">Work</mat-radio-button>
+          <mat-radio-button value="Other">Other</mat-radio-button>
         </mat-radio-group>
       </div>
 
