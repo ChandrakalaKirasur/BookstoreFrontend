@@ -9,7 +9,7 @@ import { Book } from "src/app/models/book";
   styleUrls: ["./getbooks.component.scss"],
 })
 export class GetbooksComponent implements OnInit {
-  bookList: Book[];
+  bookList: Array<Book> = [];
   sort: any = "Sort by relevance";
   sortTech1: any = "Price : Low to High";
   sortTech2: any = "Price : High to Low";
