@@ -48,9 +48,9 @@ export class HttpService {
    
     return this.http.post("http://localhost:8080/"+ url,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
-  public  putRequestverify(url){
+  public  putRequestverify(role:any,token:any){
    
-    return this.http.post("http://localhost:8080/"+ url,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+    return this.http.get(environment.baseUrl+ role+environment.VERIFY_URL+token);
   }
   
 }
