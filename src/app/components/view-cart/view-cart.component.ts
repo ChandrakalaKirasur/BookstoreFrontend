@@ -100,10 +100,6 @@ export class ViewCartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // localStorage.setItem(
-    //   "token",
-    //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIn0.aG9tbKceX39kDuT9h9PWP9FTqOqGU6C3PYRi_dW_gH8Al9cGEX8EzAQ3h8KLxa7boufpdfZ23XUuAKc-zovsQg"
-    // );
     this.getcountofbooks();
     this.getbooks();
   }

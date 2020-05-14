@@ -39,7 +39,7 @@ const routes: Routes = [
       { path: "books", component: GetbooksComponent },
       {
         path: "books/viewcart",
-        //canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         component: ViewCartComponent,
       },
       {

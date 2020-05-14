@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(["login"]);
   }
   onLogout() {
-    this.router.navigate(["books/orderdetails"]);
+    localStorage.clear();
+    this.router.navigate(["books"]);
   }
 }
