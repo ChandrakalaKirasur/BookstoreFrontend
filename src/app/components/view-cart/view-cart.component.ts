@@ -132,7 +132,7 @@ export class ViewCartComponent implements OnInit {
       );
   }
 
-  totalPrice;
+  //totalPrice;
   getbooks() {
     this.token = localStorage.getItem("token");
     this.cartService
@@ -160,10 +160,6 @@ export class ViewCartComponent implements OnInit {
               this.quantitylist = this.books["quantityOfBooks"];
               //console.log(this.quantitylist[0]);
               this.book.quantitybto = this.books["quantityOfBooks"];
-              console.log(
-                this.book.quantitybto[0]["quantityOfBook"] *
-                  this.book["noOfBooks"]
-              );
               this.book.totalPrice =
                 this.book.quantitybto[0]["quantityOfBook"] *
                 this.book["noOfBooks"];
@@ -266,7 +262,7 @@ export class ViewCartComponent implements OnInit {
       .subscribe(
         (Response: any) => {
           this.data.changeMessage("bookquantity");
-          this.snackbar.open("updated...", "undo", { duration: 2500 });
+          this.snackbar.open(Response.message, "undo", { duration: 2500 });
         },
         (error: any) => {
           console.error(error);
@@ -319,5 +315,17 @@ export class ViewCartComponent implements OnInit {
       this.spinner.hide();
       this.router.navigate(["/books/ordersucess"]);
     }, 2000);
+    this.cartService
+      .postRequest(environment.orderlist_books_confrim + this.token, "")
+      .subscribe(
+        (Response: any) => {
+          this.snackbar.open(Response.message, "undo", { duration: 2500 });
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        }
+      );
   }
 }
