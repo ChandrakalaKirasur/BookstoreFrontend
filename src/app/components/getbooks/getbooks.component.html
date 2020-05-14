@@ -78,7 +78,7 @@
         </div>
         <div class="pagenumber" fxLayout="row">
           <div *ngFor="let page of pages">
-            <button mat-icon-button (click)="getAvailableBooksOfPage(page)">
+            <button mat-icon-button (click)="changePage(page)">
               {{ page }}
             </button>
           </div>

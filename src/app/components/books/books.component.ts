@@ -21,6 +21,7 @@ export class BooksComponent implements OnInit {
   ngOnInit() {
     this.noOfBooks = this.book.noOfBooks;
     this.isAddedToCart();
+    this.isAddedToWishList();
   }
   addToCart() {
     let token = localStorage.getItem("token");

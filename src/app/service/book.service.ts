@@ -138,7 +138,7 @@ export class BookService {
   isAddedToWishList(bookId: number) {
     return this.http_service.getMethod(
       environment.baseUrl +
-        environment.cart_verify_book +
+        environment.VERIFY_WHISHLIST_BOOK +
         localStorage.getItem("token") +
         "/" +
         "?bookId=" +
