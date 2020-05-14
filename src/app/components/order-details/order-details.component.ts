@@ -26,7 +26,7 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   token: String;
-  books: [];
+  books: Array<Book> = [];
   book: Book = new Book();
   //
   // books: [];
