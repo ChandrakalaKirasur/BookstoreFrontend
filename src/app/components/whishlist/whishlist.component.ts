@@ -31,7 +31,7 @@ export class WhishlistComponent implements OnInit {
   //     .subscribe((Response: any) => { });
   // }
   token: String;
-  books: [];
+  books: Array<Book> = [];
   book: Book = new Book();
   //
   // books: [];

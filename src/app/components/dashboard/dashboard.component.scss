@@ -11,7 +11,7 @@
   background-color: #a03037;
   width: 31px;
   height: 40px;
-  margin-left: -1%;
+  margin-left: 7%;
 }
 .bookimg {
   width: 31px;
@@ -43,11 +43,11 @@
   color: #ffffff;
   opacity: 1;
   font-size: 13px;
-  padding-right: 0%;
+  padding-right: 7%;
   margin-bottom: 3%;
 }
 .cartimg {
-  height: 39px;
+  height: 32px;
   opacity: 1;
   background-color: #a03037;
   border: none;
@@ -60,16 +60,17 @@
   width: 20px;
   height: 21px;
 }
-.image3 {
-  height: 100px;
-  width: 100px;
-  //margin-top: -58px;
-  border-radius: 40px;
-}
-.iconcam {
-  margin-top: -49px;
-  margin-left: 82px;
-}
+
+// .image3 {
+//   height: 100px;
+//   width: 100px;
+//   //margin-top: -58px;
+//   border-radius: 40px;
+// }
+// .iconcam {
+//   margin-top: -49px;
+//   margin-left: 82px;
+// }
 .profile {
   height: 44px;
   width: 44px;
@@ -104,6 +105,11 @@
   margin-top: -36px;
   margin-left: 85px;
   font-size: 18px;
+}
+
+.grab {
+  cursor: -webkit-grab;
+  cursor: grab;
 }
 
 // .searchInput {

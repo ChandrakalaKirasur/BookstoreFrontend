@@ -22,6 +22,10 @@ export class DashboardComponent implements OnInit {
   myInput = new FormControl();
   private obtainNotes = new BehaviorSubject([]);
  
+
+  onBook() {
+    this.router.navigate(["books"]);
+  }
   onCart() {
     this.router.navigate(["books/viewcart"]);
   }
