@@ -19,8 +19,13 @@ export const environment = {
   book_count_cart: "cart/bookCount/",
   cart_inc_bookquantity: "cart/incr_booksquantity/",
   cart_desc_bookquantity: "cart/desc_booksquantity/",
-  cart_verify_book: "cart/verify_book",
   GET_BOOKS_COUNT: "book/bookscount",
+  cart_verify_book: "cart/verify_book/",
+  whishlist_books: "whishList/book/",
+  whishList_book_count: "whishList/book_count/",
+  orderlist_books_confrim: "orders/confrim/",
+  orderlist_books: "orders/books/",
+  orderlist_books_Count: "orders/books_count/",
 };
 
 /*
