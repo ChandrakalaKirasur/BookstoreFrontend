@@ -11,6 +11,7 @@ import { RestpasswordComponent } from "./components/restpassword/restpassword.co
 import { AuthGuardService } from "./service/guards/auth-guard.service";
 import { WhishlistComponent } from "./components/whishlist/whishlist.component";
 import { BooksComponent } from "./components/books/books.component";
+import { OrderDetailsComponent } from "./components/order-details/order-details.component";
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
     component: ForgetpasswordComponent,
   },
   {
-    path: ":role/resetpassword/:token",
+    path: "resetpassword/:role/:token",
     component: RestpasswordComponent,
   },
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
       {
         path: "books/whishlist",
         component: WhishlistComponent,
+      },
+      {
+        path: "books/orderdetails",
+        component: OrderDetailsComponent,
       },
     ],
   },

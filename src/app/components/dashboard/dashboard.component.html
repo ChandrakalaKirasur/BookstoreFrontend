@@ -33,10 +33,38 @@
         </button>
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item (click)="onCart()">MyOrders</button>
-          <button mat-menu-item (click)="onwhishlist()">MyWhishList</button>
-          <button mat-menu-item>LogIn</button>
-          <button mat-menu-item>LogOut</button>
+          <div style="width: 200px; height: 200px;">
+            <button
+              mat-menu-item
+              [disabled]="!visible"
+              style="text-align: center;"
+              (click)="onOrderDetails()"
+            >
+              MyOrders
+            </button>
+            <button
+              mat-menu-item
+              [disabled]="!visible"
+              style="text-align: center;"
+              (click)="onwhishlist()"
+            >
+              MyWhishList
+            </button>
+            <button
+              mat-menu-item
+              style="text-align: center;"
+              (click)="onLogin()"
+            >
+              LogIn
+            </button>
+            <button
+              mat-menu-item
+              style="text-align: center;"
+              (click)="onLogout()"
+            >
+              LogOut
+            </button>
+          </div>
         </mat-menu>
       </div>
     </mat-toolbar-row>
