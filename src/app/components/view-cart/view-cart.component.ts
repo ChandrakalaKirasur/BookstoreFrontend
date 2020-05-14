@@ -21,7 +21,6 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./view-cart.component.scss"],
 })
 export class ViewCartComponent implements OnInit {
-  // images = [{}, {}, {}, {}];
   image: "assets/images/Image 11@2x.png";
 
   name = new FormControl([
@@ -269,10 +268,10 @@ export class ViewCartComponent implements OnInit {
 
   open: boolean;
   fields: boolean;
-  person:String;
+  person: String;
   onChange(mrChange: MatRadioChange) {
     console.log(mrChange.value);
-   this.person=mrChange.value
+    this.person = mrChange.value;
   }
   onOpen() {
     this.open = true;
@@ -290,15 +289,11 @@ export class ViewCartComponent implements OnInit {
       this.open2 = true;
     }, 2000);
     this.fields = false;
-    this.addModel.type=this.person;
+    this.addModel.type = this.person;
     this.addressService
       .postRequest("address/add/" + this.token, this.addModel)
       .subscribe((Response: any) => {});
-      this.snackBar.open(
-        "adress added Successfully",
-        "undo",
-        { duration: 3000 }
-      )
+    this.snackBar.open("adress added Successfully", "undo", { duration: 3000 });
   }
 
   onEdit() {
