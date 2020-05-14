@@ -17,7 +17,7 @@
           src="assets/images/dontmake.png"
           alt="Snow"
         />
-        <button *ngIf="book.noOfBooks == 0;" class="btn">
+        <button *ngIf="book.noOfBooks == 0" class="btn">
           OUT OF STOCK
         </button>
       </div>
@@ -45,14 +45,14 @@
     <mat-card-actions fxLayout="row" fxLayoutGap="7%">
       <button
         class="box1"
-        *ngIf="!book.isAdded && ! book.noOfBooks == 0; else removeFromBag"
+        *ngIf="!book.isAdded && !book.noOfBooks == 0; else removeFromBag"
         (click)="addToCart(b)"
       >
         ADD TO BAG
       </button>
       <ng-template #removeFromBag>
         <button
-          *ngIf="! book.noOfBooks == 0 "
+          *ngIf="!book.noOfBooks == 0"
           class="added"
           id="remove-from-bag"
           (click)="removeFromCart()"
@@ -62,14 +62,14 @@
       </ng-template>
       <button
         class="box"
-        *ngIf="!isAdded && !book.noOfBooks == 0 && !isListed"
+        *ngIf="!book.isAdded && !book.noOfBooks == 0 && !book.isListed"
         (click)="addToWishlist()"
       >
         WISHLIST
       </button>
       <button
         class="box"
-        *ngIf="isListed && !isAdded"
+        *ngIf="book.isListed && !book.isAdded"
         (click)="removeFromWishlist()"
       >
         IN WISHLIST
