@@ -22,6 +22,8 @@ export const environment = {
   cart_verify_book: "cart/verify_book/",
   GET_BOOKS_COUNT: "book/getBooksCount/",
   whishlist_books: "whishList/book/",
+  orderlist_books_confrim: "orders/confrim/",
+  orderlist_boooks: "orders/books/",
 };
 
 /*
