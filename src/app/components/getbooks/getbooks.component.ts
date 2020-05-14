@@ -28,6 +28,7 @@ export class GetbooksComponent implements OnInit {
     this.sort;
     this.getAvailableBooks();
     this.getBooksCount();
+    localStorage.clean();
   }
   nextPage() {
     this.page = this.page + 1;

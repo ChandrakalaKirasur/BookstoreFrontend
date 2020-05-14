@@ -145,4 +145,14 @@ export class BookService {
       ""
     );
   }
+  isAddedTocart(bookId: any) {
+    let params = new HttpParams();
+    params = params.append("bookId", bookId);
+    return this.http_service.getMethod(
+      environment.baseUrl +
+        environment.cart_verify_book +
+        localStorage.getItem("token"),
+      { params: params }
+    );
+  }
 }

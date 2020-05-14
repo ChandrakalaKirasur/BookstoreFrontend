@@ -23,6 +23,7 @@ export class BooksComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.noOfBooks = this.book.noOfBooks;
+    this.isAddedToCart();
   }
   addToCart() {
     let token = localStorage.getItem("token");
@@ -99,5 +100,13 @@ export class BooksComponent implements OnInit {
       });
       this.router.navigateByUrl("/login");
     }
+  }
+  isAddedToCart() {
+    this.bookService
+      .isAddedTocart(this.book.bookId)
+      .subscribe((response: any) => {
+        this.book.isAdded = response["obj"];
+        console.log("dfd", response["obj"]);
+      });
   }
 }
