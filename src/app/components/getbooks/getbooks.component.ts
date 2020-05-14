@@ -26,8 +26,8 @@ export class GetbooksComponent implements OnInit {
 
   ngOnInit() {
     this.sort;
-    this.getAvailableBooks();
     this.getBooksCount();
+    this.getAvailableBooks();
   }
   nextPage() {
     this.page = this.page + 1;
@@ -36,6 +36,27 @@ export class GetbooksComponent implements OnInit {
   previousPage() {
     this.page = this.page - 1;
     this.doSorting(this.sort);
+  }
+  changePage(pageNo:number){
+    this.page=pageNo;
+    this.doSorting(this.sort);
+  }
+  getBooksCount() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
+    this.bookService.getBooksCount().subscribe((response: any) => {
+      this.length = response["obj"];
+      if (this.length > 10) {
+        for (var i = 1; i <= this.length / 10 + 1; i++) {
+          this.pages[i] = i;
+        }
+        this.endPage = this.pages.length - 2;
+      } else {
+        this.page = 1;
+      }
+    });
   }
   doSorting(option: any) {
     this.sort = option;
@@ -88,22 +109,5 @@ export class GetbooksComponent implements OnInit {
         this.bookList = response["obj"];
         this.page = pageNo;
       });
-  }
-  getBooksCount() {
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 2000);
-    this.bookService.getBooksCount().subscribe((response: any) => {
-      this.length = response["obj"];
-      if (this.length > 10) {
-        for (var i = 1; i <= this.length / 10 + 1; i++) {
-          this.pages[i] = i;
-        }
-        this.endPage = this.pages.length - 2;
-      } else {
-        this.page = 1;
-      }
-    });
   }
 }
