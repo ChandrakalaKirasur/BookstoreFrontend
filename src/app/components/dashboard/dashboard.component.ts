@@ -16,6 +16,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  onBook() {
+    this.router.navigate(["books"]);
+  }
   onCart() {
     this.router.navigate(["books/viewcart"]);
   }
