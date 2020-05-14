@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   baseUrl: "http://localhost:8080/",
 
+  RESET_URL: "resetPassword/",
   BOOK_BASE_URL: "book/getBooks/",
   ADD_TO_CART: "cart/add_books_cart/",
   REMOVE_FROM_CART: "cart/remove_books_cart/",
