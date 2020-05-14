@@ -85,7 +85,7 @@
         </div>
         <div>
           <button
-            [disabled]="page > 1"
+            [disabled]="page > endPage"
             (click)="nextPage()"
             mat-mini-fab
             style="

@@ -49,6 +49,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import { WhishlistComponent } from "./components/whishlist/whishlist.component";
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { WhishlistComponent } from "./components/whishlist/whishlist.component";
     ForgetpasswordComponent,
     RestpasswordComponent,
     WhishlistComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,
