@@ -121,24 +121,25 @@ export class ViewCartComponent implements OnInit {
       .getRequest(environment.book_count_cart + this.token)
       .subscribe(
         (Response: any) => {
-          console.log(Response);
+          // console.log(Response);
           this.bookincart = Response.obj;
         },
         (error: any) => {
-          console.error(error);
+          //console.error(error);
           console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
       );
   }
 
+  //totalPrice;
   getbooks() {
     this.token = localStorage.getItem("token");
     this.cartService
       .getRequest(environment.Get_book_Cart + this.token)
       .subscribe(
         (Response: any) => {
-          console.log(Response);
+          // console.log(Response);
           this.books = Response.obj;
 
           //this.bookincart = Response.obj.length;
@@ -147,15 +148,21 @@ export class ViewCartComponent implements OnInit {
             this.books = Response.obj[len];
             let res = this.books["booksList"];
             let qt = this.books["quantityOfBooks"];
-            console.log(this.books["cartId"]);
-            console.log(this.myDatas);
+            // console.log(this.books["cartId"]);
+            // console.log(this.myDatas);
             /**
              * bookdetails
              */
             for (var index in res) {
               this.book = res[0]; //book details
+              this.book["noOfBooks"];
+
               this.quantitylist = this.books["quantityOfBooks"];
+              //console.log(this.quantitylist[0]);
               this.book.quantitybto = this.books["quantityOfBooks"];
+              this.book.totalPrice =
+                this.book.quantitybto[0]["quantityOfBook"] *
+                this.book["noOfBooks"];
               this.myDatas.push(this.book);
             }
           }
@@ -255,7 +262,7 @@ export class ViewCartComponent implements OnInit {
       .subscribe(
         (Response: any) => {
           this.data.changeMessage("bookquantity");
-          this.snackbar.open("updated...", "undo", { duration: 2500 });
+          this.snackbar.open(Response.message, "undo", { duration: 2500 });
         },
         (error: any) => {
           console.error(error);
@@ -308,5 +315,17 @@ export class ViewCartComponent implements OnInit {
       this.spinner.hide();
       this.router.navigate(["/books/ordersucess"]);
     }, 2000);
+    this.cartService
+      .postRequest(environment.orderlist_books_confrim + this.token, "")
+      .subscribe(
+        (Response: any) => {
+          this.snackbar.open(Response.message, "undo", { duration: 2500 });
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        }
+      );
   }
 }

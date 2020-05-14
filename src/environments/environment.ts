@@ -7,6 +7,7 @@ export const environment = {
   baseUrl: "http://localhost:8080/",
 
   RESET_URL: "resetPassword/",
+  VERIFY_URL:"/registration/verify/",
   BOOK_BASE_URL: "book/bookdetails/",
   ADD_TO_CART: "cart/bookdetails/",
   REMOVE_FROM_CART: "cart/book/",

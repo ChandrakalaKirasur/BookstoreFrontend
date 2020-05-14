@@ -11,4 +11,5 @@ export class Book {
   public orderId: any;
   public isAdded: boolean;
   public isListed: boolean;
+  public totalPrice: any;
 }
