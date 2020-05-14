@@ -30,11 +30,11 @@
     </div>
   </mat-card>
 </div>
-<div class="footer" *ngIf="books.length > 3; else foot">
+<div class="footer" *ngIf="books.length > 2; else foot">
   <app-footer></app-footer>
 </div>
 <ng-template #foot>
-  <div class="foot" style="top: 720px; margin-top: 32%;">
+  <div class="foot" style="top: 720px; margin-top: 35%;">
     <app-footer></app-footer>
   </div>
 </ng-template>

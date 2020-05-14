@@ -11,7 +11,7 @@ export const environment = {
   BOOK_BASE_URL: "book/bookdetails/",
   ADD_TO_CART: "cart/bookdetails/",
   REMOVE_FROM_CART: "cart/book/",
-  ADD_TO_WISHLIST: "/whishList/add_books_WhishList/",
+  ADD_TO_WISHLIST: "whishList/book/",
   REMOVE_FROM_WISHLIST: "/whishList/remove_books_WhishList/",
   SORT_BY_LOW_TO_HIGH: "book/sortbylowprice/",
   SORT_BY_HIGH_TO_LOW: "book/sortbyhighprice/",
