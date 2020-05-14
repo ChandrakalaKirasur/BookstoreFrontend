@@ -8,4 +8,6 @@ export class Book {
   public bookDescription: string;
   public reviewRating: Array<any>;
   public quantitybto: any;
+  public orderId: any;
+  public totalPrice: any;
 }
