@@ -90,7 +90,6 @@ export class ViewCartComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
-
     private router: Router,
     private snackbar: MatSnackBar,
     private cartService: ViewcartService,
@@ -112,16 +111,16 @@ export class ViewCartComponent implements OnInit {
   token: string;
   myDatas: Array<Book> = [];
   quantitylist: [];
-  bookincart: number;
+  bookcount: number;
 
   placeOrder: boolean = true;
   getcountofbooks() {
     this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.book_count_cart).subscribe(
       (Response: any) => {
-        // console.log(Response);
-        this.bookincart = Response.obj;
-        if (this.bookincart == 0) {
+        console.log("countttttttttttttttttttttttttttttt");
+        this.bookcount = Response.obj;
+        if (this.book.bookincart == 0) {
           this.placeOrder = false;
         }
       },
@@ -231,10 +230,13 @@ export class ViewCartComponent implements OnInit {
         ""
       )
       .subscribe((Response: any) => {
+        // this.myDatas = Response.obj;
         if (Response.obj) {
           for (var index in this.myDatas) {
             if (this.myDatas[index] == book) {
               this.myDatas[index] = null;
+              // this.getcountofbooks();
+              // this.bookcount = this.bookcount - 1;
               //console.log(this.bookincart - 1);
             }
           }
