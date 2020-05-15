@@ -12,7 +12,7 @@ import { AuthGuardService } from "./service/guards/auth-guard.service";
 import { WhishlistComponent } from "./components/whishlist/whishlist.component";
 import { BooksComponent } from "./components/books/books.component";
 import { OrderDetailsComponent } from "./components/order-details/order-details.component";
-import { VerifyComponent } from './components/verify/verify.component';
+import { VerifyComponent } from "./components/verify/verify.component";
 
 const routes: Routes = [
   {
@@ -68,3 +68,6 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+function newFunction(): string {
+  return "setPassword";
+}

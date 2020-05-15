@@ -7,7 +7,7 @@ export const environment = {
   baseUrl: "http://localhost:8080/",
 
   RESET_URL: "resetPassword/",
-  VERIFY_URL:"/registration/verify/",
+  VERIFY_URL: "/registration/verify/",
   BOOK_BASE_URL: "book/bookdetails/",
   ADD_TO_CART: "cart/bookdetails/",
   REMOVE_FROM_CART: "cart/book/",
@@ -16,7 +16,7 @@ export const environment = {
   SORT_BY_LOW_TO_HIGH: "book/sortbylowprice/",
   SORT_BY_HIGH_TO_LOW: "book/sortbyhighprice/",
   SORT_BY_NEW_ARRIVALS: "book/sortbyarrival/",
-  Get_book_Cart: "cart/cartdetials/",
+  Get_book_Cart: "cart/cartdetials",
   book_count_cart: "cart/bookCount/",
   cart_inc_bookquantity: "cart/incr_booksquantity/",
   cart_desc_bookquantity: "cart/desc_booksquantity/",

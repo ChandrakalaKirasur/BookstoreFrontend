@@ -49,8 +49,9 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import { WhishlistComponent } from "./components/whishlist/whishlist.component";
-import { OrderDetailsComponent } from './components/order-details/order-details.component';
-import { VerifyComponent } from './components/verify/verify.component';
+import { OrderDetailsComponent } from "./components/order-details/order-details.component";
+import { VerifyComponent } from "./components/verify/verify.component";
+import { MatBadgeModule } from "@angular/material/badge";
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { VerifyComponent } from './components/verify/verify.component';
     MatRadioModule,
     MatTooltipModule,
     MatAutocompleteModule,
+    MatBadgeModule,
     HttpClientModule,
   ],
   providers: [],
