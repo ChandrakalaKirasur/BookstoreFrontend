@@ -6,7 +6,7 @@
       <div *ngIf="book.bookName != null">
         <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
           <!-- "assets/images/Image 11@2x.png" -->
-          <img class="bookimg" src="assets/images/Image 11@2x.png" />
+          <img class="bookimg" src="{{ book.bookImage }}" />
           <div class="bookdetails">
             <div class="booktitle">
               <!-- Don't Make Me Think -->

@@ -30,22 +30,18 @@ export class WhishlistComponent implements OnInit {
 
   bookcount: number;
   BookCount() {
-    this.userService
-      .getRequest(
-        environment.whishList_book_count + localStorage.getItem("token")
-      )
-      .subscribe(
-        (Response: any) => {
-          console.log(Response);
-          this.bookcount = Response.obj;
-          this.snackbar.open(Response.message, "undo", { duration: 2500 });
-        },
-        (error: any) => {
-          console.error(error);
-          console.log(error.error.message);
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-        }
-      );
+    this.userService.getRequest(environment.whishList_book_count).subscribe(
+      (Response: any) => {
+        console.log(Response);
+        this.bookcount = Response.obj;
+        this.snackbar.open(Response.message, "undo", { duration: 2500 });
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
   }
 
   token: String;
@@ -57,21 +53,19 @@ export class WhishlistComponent implements OnInit {
   myDatas = new Array();
   onwhishlist() {
     this.token = localStorage.getItem("token");
-    this.userService
-      .getRequest(environment.whishlist_books + this.token)
-      .subscribe(
-        (Response: any) => {
-          console.log(Response);
-          this.books = Response.obj;
-          console.log(this.books);
-          this.snackbar.open(Response.message, "undo", { duration: 2500 });
-        },
-        (error: any) => {
-          console.error(error);
-          console.log(error.error.message);
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-        }
-      );
+    this.userService.getRequest(environment.whishlist_books).subscribe(
+      (Response: any) => {
+        console.log(Response);
+        this.books = Response.obj;
+        console.log(this.books);
+        this.snackbar.open(Response.message, "undo", { duration: 2500 });
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
   }
 
   onRemove(book: any) {
