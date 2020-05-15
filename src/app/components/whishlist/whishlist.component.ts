@@ -52,7 +52,6 @@ export class WhishlistComponent implements OnInit {
   bookincart: number;
   myDatas = new Array();
   onwhishlist() {
-    this.token = localStorage.getItem("token");
     this.userService.getRequest(environment.whishlist_books).subscribe(
       (Response: any) => {
         console.log(Response);
@@ -78,6 +77,7 @@ export class WhishlistComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
+          console.log(Response);
           this.books = Response.obj;
           console.log(this.books);
           this.snackbar.open("WhishList", "undo", { duration: 2500 });

@@ -60,6 +60,8 @@ export class OrderDetailsComponent implements OnInit {
 
   onOrderlist() {
     this.token = localStorage.getItem("token");
+    console.log("*********");
+    console.log(this.token);
     this.userService
       .getRequest(environment.orderlist_books + this.token)
       .subscribe(

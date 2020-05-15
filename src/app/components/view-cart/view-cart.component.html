@@ -40,6 +40,7 @@
             </button>
           </div>
           <button
+            mat-icon-button
             (click)="onRemove(book)"
             style="background-color: white; border: none; outline: none;"
           >
@@ -50,7 +51,7 @@
     </div>
     <!-- </div> -->
     <!----- end of for ----------->
-    <div fxLayout="column" fxLayoutAlign="end end">
+    <div fxLayout="column" fxLayoutAlign="end end" *ngIf="placeOrder">
       <button mat-raised-button class="button" (click)="onOpen()" *ngIf="!open">
         Place order
       </button>
