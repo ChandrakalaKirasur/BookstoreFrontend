@@ -73,7 +73,7 @@ export class WhishlistComponent implements OnInit {
     this.token = localStorage.getItem("token");
     this.userService
       .deleteRequest(
-        environment.whishlist_books + this.token + "/" + book.bookId,
+        environment.whishlist_books_remove + this.token + "/" + book.bookId,
         ""
       )
       .subscribe(
