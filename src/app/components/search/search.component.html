@@ -1,1 +1,7 @@
-<p>search works!</p>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div fxLayout="row" class="display-notes">
+      <div *ngFor="let book of searchedBook" class="book">
+        <app-books [book]="book"></app-books>
+      </div>
+    </div>
+</div>

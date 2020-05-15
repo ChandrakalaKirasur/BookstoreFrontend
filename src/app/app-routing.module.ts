@@ -12,6 +12,7 @@ import { AuthGuardService } from "./service/guards/auth-guard.service";
 import { WhishlistComponent } from "./components/whishlist/whishlist.component";
 import { BooksComponent } from "./components/books/books.component";
 import { OrderDetailsComponent } from "./components/order-details/order-details.component";
+import { SearchComponent } from './components/search/search.component';
 import { VerifyComponent } from "./components/verify/verify.component";
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "/books", pathMatch: "full" },
       { path: "books", component: GetbooksComponent },
+      { path: "books/search", component: SearchComponent },
       {
         path: "books/viewcart",
         canActivate: [AuthGuardService],

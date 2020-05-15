@@ -24,8 +24,7 @@ export class DashboardComponent implements OnInit {
       this.visible = true;
     }
   }
-  myInput = new FormControl();
-  private obtainNotes = new BehaviorSubject([]);
+ 
 
   onBook() {
     this.router.navigate(["books"]);
@@ -62,16 +61,10 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["books"]);
     }, 1000);
   }
+  myInput = new FormControl();
   searching() {
+    console.log("books are ")
     console.log(this.myInput.value);
-    this.httpservice
-      .getSearchRequest(
-        "book/getBookByNameAndAuthor?title=" + this.myInput.value
-      )
-      .subscribe((response: any) => {
-        this.obtainNotes.next(response);
-        console.log(response);
-        this.router.navigate(["login"]);
-      });
+    this.router.navigate(['/books/search'],{queryParams:{searchText:this.myInput.value}});
   }
 }
