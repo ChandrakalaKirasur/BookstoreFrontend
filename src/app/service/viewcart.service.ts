@@ -24,12 +24,12 @@ export class ViewcartService {
   }
   public getRequest(url: any): any {
     this.token = localStorage.getItem("token");
-    console.log(this.token);
     return this.http.get(this.baseurl + url, {
       headers: new HttpHeaders().set("token", localStorage.getItem("token")),
     });
   }
   public putRequest(url: any, data: any): any {
+    this.token = localStorage.getItem("token");
     return this.http.put(this.baseurl + url, data, {
       headers: new HttpHeaders().set("token", localStorage.getItem("token")),
     });

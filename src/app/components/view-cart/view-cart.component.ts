@@ -145,19 +145,17 @@ export class ViewCartComponent implements OnInit {
 
   getcountofbooks() {
     this.token = localStorage.getItem("token");
-    this.cartService
-      .getRequest(environment.book_count_cart + this.token)
-      .subscribe(
-        (Response: any) => {
-          // console.log(Response);
-          this.bookincart = Response.obj;
-        },
-        (error: any) => {
-          //console.error(error);
-          console.log(error.error.message);
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-        }
-      );
+    this.cartService.getRequest(environment.book_count_cart).subscribe(
+      (Response: any) => {
+        // console.log(Response);
+        this.bookincart = Response.obj;
+      },
+      (error: any) => {
+        //console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
   }
 
   //totalPrice;
@@ -213,10 +211,7 @@ export class ViewCartComponent implements OnInit {
       // console.log(book.quantitybto[index]);
       this.cartService
         .putRequest(
-          environment.cart_inc_bookquantity +
-            this.token +
-            "?bookId=" +
-            book.bookId,
+          environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
           book.quantitybto[index]
         )
         .subscribe(
@@ -257,10 +252,7 @@ export class ViewCartComponent implements OnInit {
     for (var index in book.quantitybto) {
       this.cartService
         .putRequest(
-          environment.cart_desc_bookquantity +
-            this.token +
-            "?bookId=" +
-            book.bookId,
+          environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
           book.quantitybto[index]
         )
         .subscribe(
@@ -342,7 +334,7 @@ export class ViewCartComponent implements OnInit {
       this.router.navigate(["/books/ordersucess"]);
     }, 2000);
     this.cartService
-      .postRequest(environment.orderlist_books_confrim + this.token, "")
+      .postRequest(environment.orderlist_books_confrim, "")
       .subscribe(
         (Response: any) => {
           this.snackbar.open(Response.message, "undo", { duration: 2500 });
