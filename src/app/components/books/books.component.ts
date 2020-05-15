@@ -13,6 +13,7 @@ import { BookService } from "src/app/service/book.service";
 export class BooksComponent implements OnInit {
   @Input() book: Book;
   noOfBooks: number;
+  visible: boolean;
   constructor(
     private _matSnackBar: MatSnackBar,
     private router: Router,
@@ -24,8 +25,7 @@ export class BooksComponent implements OnInit {
     this.isAddedToWishList();
   }
   addToCart() {
-    let token = localStorage.getItem("token");
-    if (!(token == "")) {
+    if (this.visible) {
       this.bookService
         .addToCart(this.book.bookId)
         .subscribe((response: any) => {
@@ -44,8 +44,7 @@ export class BooksComponent implements OnInit {
   }
   //adding book to wish list if user login
   addToWishlist() {
-    let token = localStorage.getItem("token");
-    if (!(token == "")) {
+    if (localStorage.getItem("token") != null) {
       this.bookService
         .addToWishList(this.book.bookId)
         .subscribe((response: any) => {
