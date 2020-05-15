@@ -35,7 +35,6 @@ import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { ViewCartComponent } from "./components/view-cart/view-cart.component";
-import { PaginationComponent } from "./components/pagination/pagination.component";
 import { OrderSuccessComponent } from "./components/order-success/order-success.component";
 import { GetbooksComponent } from "./components/getbooks/getbooks.component";
 import { SortBooksPipe } from "./pipes/sort-books.pipe";
@@ -52,6 +51,7 @@ import { WhishlistComponent } from "./components/whishlist/whishlist.component";
 import { OrderDetailsComponent } from "./components/order-details/order-details.component";
 import { VerifyComponent } from "./components/verify/verify.component";
 import { MatBadgeModule } from "@angular/material/badge";
+import { SearchComponent } from "./components/search/search.component";
 
 @NgModule({
   declarations: [
@@ -62,7 +62,6 @@ import { MatBadgeModule } from "@angular/material/badge";
     ViewCartComponent,
     FooterComponent,
     BooksComponent,
-    PaginationComponent,
     OrderSuccessComponent,
     GetbooksComponent,
     SortBooksPipe,
@@ -71,6 +70,7 @@ import { MatBadgeModule } from "@angular/material/badge";
     WhishlistComponent,
     OrderDetailsComponent,
     VerifyComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
