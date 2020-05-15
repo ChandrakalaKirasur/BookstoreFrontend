@@ -23,6 +23,9 @@ export class BooksComponent implements OnInit {
     this.noOfBooks = this.book.noOfBooks;
     this.isAddedToCart();
     this.isAddedToWishList();
+    if (localStorage.getItem("token") != null) {
+      this.visible = true;
+    }
   }
   addToCart() {
     if (this.visible) {
@@ -44,7 +47,7 @@ export class BooksComponent implements OnInit {
   }
   //adding book to wish list if user login
   addToWishlist() {
-    if (localStorage.getItem("token") != null) {
+    if (this.visible) {
       this.bookService
         .addToWishList(this.book.bookId)
         .subscribe((response: any) => {
