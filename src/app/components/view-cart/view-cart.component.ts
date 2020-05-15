@@ -95,7 +95,6 @@ export class ViewCartComponent implements OnInit {
     private cartService: ViewcartService,
     private http_service: HttpService,
     private data: DataService,
-    private snackBar: MatSnackBar,
     public location: Location,
     private addressService: AddressService
   ) {}
@@ -109,7 +108,7 @@ export class ViewCartComponent implements OnInit {
   book: Book = new Book();
   books: [];
   token: string;
-  myDatas: Array<Book> = [];
+  bookNquantityData: Array<Book> = [];
   quantitylist: [];
   bookcount: number;
 
@@ -118,9 +117,9 @@ export class ViewCartComponent implements OnInit {
     this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.book_count_cart).subscribe(
       (Response: any) => {
-        console.log("countttttttttttttttttttttttttttttt");
         this.bookcount = Response.obj;
-        if (this.book.bookincart == 0) {
+        //this.book.bookcountincart = Response.obj;
+        if (this.bookcount == 0) {
           this.placeOrder = false;
         }
       },
@@ -139,30 +138,31 @@ export class ViewCartComponent implements OnInit {
       (Response: any) => {
         //console.log(Response);
         this.books = Response.obj;
-
-        //this.bookincart = Response.obj.length;
+        /**
+         * cart Details
+         */
         console.log(this.books);
         for (var len in Response.obj) {
           this.books = Response.obj[len];
-          let res = this.books["booksList"];
+          console.log("****************************");
+          console.log(this.books["cartId"]);
+          let bookDetails = this.books["booksList"];
           let qt = this.books["quantityOfBooks"];
-
           /**
            * bookdetails
            */
-          for (var index in res) {
-            this.book = res[0]; //book details
-            this.book["noOfBooks"];
-
+          for (var index in bookDetails) {
+            this.book = bookDetails[0]; //adding book details to bookmodel
+            //this.book["noOfBooks"];
             this.quantitylist = this.books["quantityOfBooks"];
             this.book.quantitybto = this.books["quantityOfBooks"];
             this.book.totalPrice =
               this.book.quantitybto[0]["quantityOfBook"] *
               this.book["bookPrice"];
-            this.myDatas.push(this.book);
+            this.bookNquantityData.push(this.book);
           }
         }
-        console.log(this.myDatas);
+        console.log(this.bookNquantityData);
         this.snackbar.open(Response.message, "undo", { duration: 2500 });
       },
       (error: any) => {
@@ -176,7 +176,6 @@ export class ViewCartComponent implements OnInit {
   onQuantity(book: any) {
     console.log(book);
 
-    // console.log(book.quantitybto[index]);
     this.cartService
       .putRequest(
         environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
@@ -184,10 +183,10 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
-          console.log(book.quantitybto);
-          console.log(Response.obj["quantityOfBooks"]);
+          // console.log(book.quantitybto);
+          //console.log(Response.obj["quantityOfBooks"]);
           book.quantitybto = Response.obj["quantityOfBooks"];
-          console.log(this.book);
+          //console.log(this.book);
         },
         (error: any) => {
           console.log(error.error.message);
@@ -208,10 +207,10 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
-          console.log(book.quantitybto);
-          console.log(Response.obj["quantityOfBooks"]);
+          // console.log(book.quantitybto);
+          //console.log(Response.obj["quantityOfBooks"]);
           book.quantitybto = Response.obj["quantityOfBooks"];
-          console.log(this.book);
+          //console.log(this.book);
         },
         (error: any) => {
           console.log(error.error.message);
@@ -229,26 +228,25 @@ export class ViewCartComponent implements OnInit {
         environment.REMOVE_FROM_CART + this.token + "/" + book.bookId,
         ""
       )
-      .subscribe((Response: any) => {
-        // this.myDatas = Response.obj;
-        if (Response.obj) {
-          for (var index in this.myDatas) {
-            if (this.myDatas[index] == book) {
-              this.myDatas[index] = null;
-              // this.getcountofbooks();
-              // this.bookcount = this.bookcount - 1;
-              //console.log(this.bookincart - 1);
+      .subscribe(
+        (Response: any) => {
+          // this.myDatas = Response.obj;
+          if (Response.obj) {
+            for (var index in this.bookNquantityData) {
+              if (this.bookNquantityData[index] == book) {
+                this.bookNquantityData[index] = null;
+                // this.getcountofbooks();
+                // this.bookcount = this.bookcount - 1;
+                //console.log(this.bookincart - 1);
+              }
             }
           }
+        },
+        (error: any) => {
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
-      });
-
-    //   ,
-    //   (error: any) => {
-    //     console.log(error.error.message);
-    //     this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-    //   }
-    // );
+      );
   }
 
   open: boolean;
@@ -258,29 +256,42 @@ export class ViewCartComponent implements OnInit {
     console.log(mrChange.value);
     this.person = mrChange.value;
   }
-  onOpen() {
+
+  onplaceOrder() {
     this.open = true;
     this.fields = true;
+    this.getaddress();
   }
 
   showSpinner = false;
   open2: boolean;
   addModel: Address = new Address();
-  onOpen2() {
+  onContinue() {
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
-      this.open2 = true;
-    }, 2000);
 
-    this.addModel.type = this.person;
-    this.addressService
-      .postRequest("address/add/" + this.token, this.addModel)
-      .subscribe((Response: any) => {
-        this.fields = false;
-      });
-    this.snackBar.open("adress added Successfully", "undo", { duration: 3000 });
+      this.addModel.type = this.person;
+      this.addressService
+        .postRequest("address/add/" + this.token, this.addModel)
+        .subscribe(
+          (Response: any) => {
+            if (Response.status == 200) {
+              this.fields = false;
+              this.open2 = true;
+              this.snackbar.open("adress added Successfully", "undo", {
+                duration: 3000,
+              });
+            }
+          },
+          (error: any) => {
+            console.error(error);
+            console.log(error.error.message);
+            this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+          }
+        );
+    }, 2000); //spinner
   }
 
   onEdit() {
@@ -313,32 +324,28 @@ export class ViewCartComponent implements OnInit {
   }
 
   getaddress() {
-    this.addModel.name = "saikiran";
-    this.addModel.type = "Home";
+    this.addressService.getRequest("address/getAddresstype/home").subscribe(
+      (Response: any) => {
+        console.log(Response.obj);
+        if (Response.status) {
+          //this.open = true;
+          console.log("***********************************");
+          this.addModel.name = Response.obj["name"];
+          this.addModel.address = Response.obj["address"];
+          this.addModel.phoneNumber = Response.obj["phoneNumber"];
+          this.addModel.pincode = Response.obj["pincode"];
+          this.addModel.locality = Response.obj["locality"];
+          this.addModel.city = Response.obj["city"];
+          this.addModel.type = Response.obj["type"];
+          // console.log(Response);
+          //this.bookincart = Response.obj;
+        }
+      },
+      (error: any) => {
+        //console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
   }
-  // getaddress() {
-  //   this.cartService
-  //     .getRequest(
-  //       "address/getAddress/" + localStorage.getItem("token") + "/" + "home"
-  //     )
-  //     .subscribe(
-  //       (Response: any) => {
-  //         console.log(Response);
-
-  //         console.log(this.addModel.name + "***name");
-  //         console.log(this.addModel.address + "**address");
-  //         console.log(this.addModel.phoneNumber + "**phoneNumber");
-  //         console.log(this.addModel.pincode + "**pincode");
-  //         console.log(this.addModel.locality + "**locality");
-  //         console.log(this.addModel.city + "**city");
-  //         // console.log(Response);
-  //         //this.bookincart = Response.obj;
-  //       },
-  //       (error: any) => {
-  //         //console.error(error);
-  //         console.log(error.error.message);
-  //         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-  //       }
-  //     );
-  // }
 }
