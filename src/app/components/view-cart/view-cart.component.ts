@@ -104,34 +104,9 @@ export class ViewCartComponent implements OnInit {
   ngOnInit() {
     this.getcountofbooks();
     this.getbooks();
-    this.getaddress();
+    //this.getaddress();
   }
 
-  getaddress() {
-    this.cartService
-      .getRequest(
-        "address/getAddress/" + localStorage.getItem("token") + "/" + "home"
-      )
-      .subscribe(
-        (Response: any) => {
-          console.log(Response);
-
-          console.log(this.addModel.name + "***name");
-          console.log(this.addModel.address + "**address");
-          console.log(this.addModel.phoneNumber + "**phoneNumber");
-          console.log(this.addModel.pincode + "**pincode");
-          console.log(this.addModel.locality + "**locality");
-          console.log(this.addModel.city + "**city");
-          // console.log(Response);
-          //this.bookincart = Response.obj;
-        },
-        (error: any) => {
-          //console.error(error);
-          console.log(error.error.message);
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-        }
-      );
-  }
   // private subject = new Subject<any>();
   book: Book = new Book();
   //
@@ -216,7 +191,16 @@ export class ViewCartComponent implements OnInit {
         )
         .subscribe(
           (Response: any) => {
-            this.snackbar.open("updated...", "undo", { duration: 2500 });
+            console.log(this.myDatas[0]["quantitybto"].splice());
+            console.log(Response.obj[0]["quantityOfBooks"]);
+
+            for (var index in Response.obj) {
+              // console.log(Response.obj);
+              // console.log(this.myDatas[0]["quantitybto"]);
+              this.myDatas[0]["quantitybto"].splice();
+              this.myDatas.push(Response.obj[0]["quantityOfBooks"]);
+              this.snackbar.open("updated...", "undo", { duration: 2500 });
+            }
           },
           (error: any) => {
             console.error(error);
@@ -346,4 +330,30 @@ export class ViewCartComponent implements OnInit {
         }
       );
   }
+
+  // getaddress() {
+  //   this.cartService
+  //     .getRequest(
+  //       "address/getAddress/" + localStorage.getItem("token") + "/" + "home"
+  //     )
+  //     .subscribe(
+  //       (Response: any) => {
+  //         console.log(Response);
+
+  //         console.log(this.addModel.name + "***name");
+  //         console.log(this.addModel.address + "**address");
+  //         console.log(this.addModel.phoneNumber + "**phoneNumber");
+  //         console.log(this.addModel.pincode + "**pincode");
+  //         console.log(this.addModel.locality + "**locality");
+  //         console.log(this.addModel.city + "**city");
+  //         // console.log(Response);
+  //         //this.bookincart = Response.obj;
+  //       },
+  //       (error: any) => {
+  //         //console.error(error);
+  //         console.log(error.error.message);
+  //         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+  //       }
+  //     );
+  // }
 }
