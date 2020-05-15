@@ -37,10 +37,6 @@ export class GetbooksComponent implements OnInit {
     this.page = this.page - 1;
     this.doSorting(this.sort);
   }
-  changePage(pageNo:number){
-    this.page=pageNo;
-    this.doSorting(this.sort);
-  }
   getBooksCount() {
     this.spinner.show();
     setTimeout(() => {
