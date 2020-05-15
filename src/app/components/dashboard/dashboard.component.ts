@@ -24,7 +24,6 @@ export class DashboardComponent implements OnInit {
       this.visible = true;
     }
   }
- 
 
   onBook() {
     this.router.navigate(["books"]);
@@ -39,7 +38,12 @@ export class DashboardComponent implements OnInit {
     }, 1000);
   }
   onwhishlist() {
-    this.router.navigate(["books/whishlist"]);
+    this.spinner.show();
+    this.showSpinner = true;
+    setTimeout(() => {
+      this.spinner.hide();
+      this.router.navigate(["books/whishlist"]);
+    }, 1000);
   }
   onOrderDetails() {
     this.spinner.show();
@@ -63,8 +67,10 @@ export class DashboardComponent implements OnInit {
   }
   myInput = new FormControl();
   searching() {
-    console.log("books are ")
+    console.log("books are ");
     console.log(this.myInput.value);
-    this.router.navigate(['/books/search'],{queryParams:{searchText:this.myInput.value}});
+    this.router.navigate(["/books/search"], {
+      queryParams: { searchText: this.myInput.value },
+    });
   }
 }
