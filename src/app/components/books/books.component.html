@@ -34,19 +34,21 @@
       <div class="mat-subheading-1">Rs. {{ book.bookPrice }}</div>
       <div
         class="mat-subheading-2"
-        *ngIf="noOfBooks < 6 && noOfBooks > 0; else available"
+        *ngIf="noOfBooks < 6 && noOfBooks != 0; else available"
       >
         Only {{ book.noOfBooks }} books are left
       </div>
       <ng-template #available>
-        <div class="mat-subheading-2">Available</div>
+        <div class="mat-subheading-2" *ngIf="noOfBooks > 5">
+          Available({{ book.noOfBooks }})
+        </div>
       </ng-template>
     </mat-card-content>
     <mat-card-actions fxLayout="row" fxLayoutGap="7%">
       <button
         class="box1"
         *ngIf="!book.isAdded && !book.noOfBooks == 0; else removeFromBag"
-        (click)="addToCart(b)"
+        (click)="addToCart()"
       >
         ADD TO BAG
       </button>
