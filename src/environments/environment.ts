@@ -30,6 +30,7 @@ export const environment = {
   orderlist_books_confrim: "orders/confrim/",
   orderlist_books: "orders/books/",
   orderlist_books_Count: "orders/books_count/",
+  user_profile: "user/profileUrl",
 };
 
 /*

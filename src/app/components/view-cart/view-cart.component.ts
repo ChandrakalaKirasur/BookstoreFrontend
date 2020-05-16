@@ -307,7 +307,8 @@ export class ViewCartComponent implements OnInit {
     this.open2 = false;
   }
 
-  onCheckOut() {
+  onCheckOut(book: any) {
+    console.log(book);
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
@@ -338,6 +339,60 @@ export class ViewCartComponent implements OnInit {
         if (Response.status) {
           //this.open = true;
           console.log("***********************************");
+          console.log(Response.obj["type"]);
+          this.addModel.address = Response.obj["address"];
+          this.addModel.city = Response.obj["city"];
+          this.addModel.landmark = Response.obj["landmark"];
+          this.addModel.locality = Response.obj["locality"];
+          this.addModel.name = Response.obj["name"];
+          this.addModel.phoneNumber = Response.obj["phoneNumber"];
+          this.addModel.pincode = Response.obj["pincode"];
+          this.addModel.type = Response.obj["type"];
+          // console.log(Response);
+          //this.bookincart = Response.obj;
+        }
+      },
+      (error: any) => {
+        //console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
+  }
+
+  onwork() {
+    this.addressService.getRequest("address/getAddresstype/work").subscribe(
+      (Response: any) => {
+        console.log(Response);
+        if (Response.status) {
+          //this.open = true;
+          console.log("***********************************");
+          console.log(Response.obj["type"]);
+          this.addModel.address = Response.obj["address"];
+          this.addModel.city = Response.obj["city"];
+          this.addModel.landmark = Response.obj["landmark"];
+          this.addModel.locality = Response.obj["locality"];
+          this.addModel.name = Response.obj["name"];
+          this.addModel.phoneNumber = Response.obj["phoneNumber"];
+          this.addModel.pincode = Response.obj["pincode"];
+          this.addModel.type = Response.obj["type"];
+          // console.log(Response);
+          //this.bookincart = Response.obj;
+        }
+      },
+      (error: any) => {
+        //console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
+  }
+
+  onOther() {
+    this.addressService.getRequest("address/getAddresstype/other").subscribe(
+      (Response: any) => {
+        console.log(Response);
+        if (Response.status) {
           console.log(Response.obj["type"]);
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];

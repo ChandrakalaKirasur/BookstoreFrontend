@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
       this.visible = true;
     }
     this.getcountofbooks();
+    this.getprofileLink();
   }
 
   onBook() {
@@ -108,7 +109,20 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  profile: String;
   getprofileLink() {
-    //this.userService.getRequest()
+    this.userService.getRequest(environment.user_profile).subscribe(
+      (Response: any) => {
+        this.profile = Response.obj;
+        // if (this.bookcount == 0) {
+        //   this.placeOrder = false;
+        // }
+      },
+      (error: any) => {
+        //console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+      }
+    );
   }
 }

@@ -76,13 +76,12 @@ export class OrderDetailsComponent implements OnInit {
             /**
              * bookdetails
              */
-            for (var index in res) {
-              this.book = res[0]; //book details
-              this.book.orderId = this.books["orderId"];
-              //this.quantitylist = this.books["quantityOfBooks"];
-              // this.book.quantitybto = this.books["quantityOfBooks"];
-              this.myDatas.push(this.book);
-            }
+
+            this.book = res[0]; //book details
+            this.book.orderId = this.books["orderId"];
+            //this.quantitylist = this.books["quantityOfBooks"];
+            // this.book.quantitybto = this.books["quantityOfBooks"];
+            this.myDatas.push(this.book);
           }
           console.log(this.myDatas);
           this.snackbar.open(Response.message, "undo", { duration: 2500 });

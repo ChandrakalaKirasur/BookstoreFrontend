@@ -224,11 +224,15 @@
           [disabled]="!fields"
           (change)="onChange($event)"
         >
-          <mat-radio-button [checked]="true" value="Home"
+          <mat-radio-button [checked]="true" (click)="getaddress()" value="Home"
             >Home</mat-radio-button
           >
-          <mat-radio-button value="Work">Work</mat-radio-button>
-          <mat-radio-button value="Other">Other</mat-radio-button>
+          <mat-radio-button (click)="onwork()" value="Work"
+            >Work</mat-radio-button
+          >
+          <mat-radio-button (click)="onOther()" value="Other"
+            >Other</mat-radio-button
+          >
         </mat-radio-group>
       </div>
 
@@ -275,7 +279,7 @@
       </div>
     </div>
     <div fxLayout="column" fxLayoutAlign="end end">
-      <button mat-raised-button class="button" (click)="onCheckOut()">
+      <button mat-raised-button class="button" (click)="onCheckOut(book)">
         Checkout
       </button>
     </div>
