@@ -8,6 +8,7 @@ import { environment } from "src/environments/environment";
 import { ViewcartService } from "src/app/service/viewcart.service";
 import { MatSnackBar } from "@angular/material";
 import { DataService } from "src/app/service/data.service";
+import { UserService } from "src/app/service/user.service";
 
 @Component({
   selector: "app-dashboard",
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
     private httpservice: HttpService,
     private spinner: NgxSpinnerService,
     private cartService: ViewcartService,
+    private userService: UserService,
     private data: DataService,
     private snackbar: MatSnackBar,
     private router: Router
@@ -42,6 +44,7 @@ export class DashboardComponent implements OnInit {
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
+      this.getcountofbooks();
       this.router.navigate(["books/viewcart"]);
     }, 1000);
   }
@@ -87,6 +90,7 @@ export class DashboardComponent implements OnInit {
   token: string;
   // placeOrder: boolean = true;
   getcountofbooks() {
+    console.log("cart.......");
     this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.book_count_cart).subscribe(
       (Response: any) => {
@@ -101,5 +105,9 @@ export class DashboardComponent implements OnInit {
         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
     );
+  }
+
+  getprofileLink() {
+    //this.userService.getRequest()
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -15,6 +15,7 @@ import { tap } from "rxjs/operators";
 import { HttpService } from "src/app/service/http.service";
 import { environment } from "src/environments/environment";
 import { Location } from "@angular/common";
+import { EventEmitter } from "events";
 
 @Component({
   selector: "app-view-cart",
@@ -102,7 +103,7 @@ export class ViewCartComponent implements OnInit {
   ngOnInit() {
     this.getcountofbooks();
     this.getbooks();
-    this.getaddress();
+    //this.getaddress();
   }
 
   book: Book = new Book();
@@ -221,6 +222,7 @@ export class ViewCartComponent implements OnInit {
 
   onRemove(book: any) {
     console.log(book);
+    //this.getcountofbooks();
     //for (var index in book.quantitybto) {
     this.token = localStorage.getItem("token");
     this.cartService
@@ -247,6 +249,8 @@ export class ViewCartComponent implements OnInit {
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
       );
+    this.getcountofbooks();
+    this.data.changeMessage("refresh");
   }
 
   open: boolean;
@@ -273,17 +277,21 @@ export class ViewCartComponent implements OnInit {
       this.spinner.hide();
 
       this.addModel.type = this.person;
+      console.log(this.addModel.type);
+      console.log(this.addModel.address);
+      console.log(this.addModel.city);
+      console.log(this.addModel.landmark);
       this.addressService
         .postRequest("address/add/" + this.token, this.addModel)
         .subscribe(
           (Response: any) => {
-            if (Response.status == 200) {
-              this.fields = false;
-              this.open2 = true;
-              this.snackbar.open("adress added Successfully", "undo", {
-                duration: 3000,
-              });
-            }
+            // if (Response.status == 200) {
+            this.fields = false;
+            this.open2 = true;
+            this.snackbar.open("adress added Successfully", "undo", {
+              duration: 3000,
+            });
+            //}
           },
           (error: any) => {
             console.error(error);
@@ -326,16 +334,18 @@ export class ViewCartComponent implements OnInit {
   getaddress() {
     this.addressService.getRequest("address/getAddresstype/home").subscribe(
       (Response: any) => {
-        console.log(Response.obj);
+        console.log(Response);
         if (Response.status) {
           //this.open = true;
           console.log("***********************************");
-          this.addModel.name = Response.obj["name"];
+          console.log(Response.obj["type"]);
           this.addModel.address = Response.obj["address"];
+          this.addModel.city = Response.obj["city"];
+          this.addModel.landmark = Response.obj["landmark"];
+          this.addModel.locality = Response.obj["locality"];
+          this.addModel.name = Response.obj["name"];
           this.addModel.phoneNumber = Response.obj["phoneNumber"];
           this.addModel.pincode = Response.obj["pincode"];
-          this.addModel.locality = Response.obj["locality"];
-          this.addModel.city = Response.obj["city"];
           this.addModel.type = Response.obj["type"];
           // console.log(Response);
           //this.bookincart = Response.obj;
