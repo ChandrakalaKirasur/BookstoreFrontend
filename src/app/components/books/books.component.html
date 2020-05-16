@@ -39,7 +39,7 @@
         Only {{ book.noOfBooks }} books are left
       </div>
       <ng-template #available>
-        <div class="mat-subheading-2">Available</div>
+        <div class="mat-subheading-2" *ngIf="noOfBooks > 5">Available</div>
       </ng-template>
     </mat-card-content>
     <mat-card-actions fxLayout="row" fxLayoutGap="7%">
