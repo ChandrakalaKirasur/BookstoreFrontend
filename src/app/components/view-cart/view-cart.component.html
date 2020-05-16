@@ -224,7 +224,9 @@
           [disabled]="!fields"
           (change)="onChange($event)"
         >
-          <mat-radio-button value="Home">Home</mat-radio-button>
+          <mat-radio-button [checked]="true" value="Home"
+            >Home</mat-radio-button
+          >
           <mat-radio-button value="Work">Work</mat-radio-button>
           <mat-radio-button value="Other">Other</mat-radio-button>
         </mat-radio-group>

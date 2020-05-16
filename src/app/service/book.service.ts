@@ -58,8 +58,8 @@ export class BookService {
     return this.http_service
       .postMethod(
         environment.baseUrl + environment.ADD_TO_WISHLIST + bookId,
-        this.http_service.httpOptions,
-        {}
+        {},
+        this.http_service.httpOptions
       )
       .pipe(
         tap(() => {

@@ -220,10 +220,11 @@ export class ViewCartComponent implements OnInit {
       );
   }
 
+  private obtainNotes = new BehaviorSubject([]);
+  currentMessage = this.obtainNotes.asObservable();
+
   onRemove(book: any) {
     console.log(book);
-    //this.getcountofbooks();
-    //for (var index in book.quantitybto) {
     this.token = localStorage.getItem("token");
     this.cartService
       .deleteRequest(
@@ -243,6 +244,7 @@ export class ViewCartComponent implements OnInit {
               }
             }
           }
+          this.obtainNotes.next(Response);
         },
         (error: any) => {
           console.log(error.error.message);
@@ -285,13 +287,11 @@ export class ViewCartComponent implements OnInit {
         .postRequest("address/add/" + this.token, this.addModel)
         .subscribe(
           (Response: any) => {
-            // if (Response.status == 200) {
             this.fields = false;
             this.open2 = true;
             this.snackbar.open("adress added Successfully", "undo", {
               duration: 3000,
             });
-            //}
           },
           (error: any) => {
             console.error(error);

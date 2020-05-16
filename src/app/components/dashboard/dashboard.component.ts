@@ -16,6 +16,7 @@ import { UserService } from "src/app/service/user.service";
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
+  searchText: any;
   constructor(
     private route: ActivatedRoute,
     private httpservice: HttpService,
@@ -37,6 +38,7 @@ export class DashboardComponent implements OnInit {
 
   onBook() {
     this.router.navigate(["books"]);
+    this.getcountofbooks();
   }
   showSpinner = false;
   onCart() {
@@ -70,6 +72,7 @@ export class DashboardComponent implements OnInit {
   onLogout() {
     localStorage.clear();
     this.visible = false;
+    this.getcountofbooks();
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
@@ -77,12 +80,10 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["books"]);
     }, 1000);
   }
-  myInput = new FormControl();
-  searching() {
-    console.log("books are ");
-    console.log(this.myInput.value);
+
+  searching(searchText: any) {
     this.router.navigate(["/books/search"], {
-      queryParams: { searchText: this.myInput.value },
+      queryParams: { searchText: searchText },
     });
   }
 
