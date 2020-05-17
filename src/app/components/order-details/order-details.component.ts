@@ -68,7 +68,6 @@ export class OrderDetailsComponent implements OnInit {
           console.log(Response);
           for (var len in Response.obj) {
             this.books = Response.obj[len];
-            console.log(Response.obj[0]["orderId"]);
             this.orderId.push(Response.obj[0]["orderId"]);
             let res = this.books["booksList"];
             console.log(this.books["booksList"]);
