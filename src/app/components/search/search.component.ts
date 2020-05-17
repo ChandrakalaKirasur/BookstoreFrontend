@@ -13,9 +13,9 @@ import { BookService } from "src/app/service/book.service";
   styleUrls: ["./search.component.scss"],
 })
 export class SearchComponent implements OnInit {
-  searchText: any = "";
+  searchText: any;
   searchedBook: Book[];
-  private obtainNotes = new BehaviorSubject([]);
+  bookList: Array<Book> = [];
   constructor(
     private httpservice: HttpService,
     private spinner: NgxSpinnerService,
@@ -29,17 +29,24 @@ export class SearchComponent implements OnInit {
     });
     this.bookservice.autoRefresh.subscribe(() => {
       this.searching();
+      // this.getAvailableBooks();
     });
     this.searching();
+    // this.getAvailableBooks();
   }
   searching() {
-    this.httpservice
-      .getMethod(
-        environment.baseUrl + "book/bookorauthorname?text=" + this.searchText,
-        this.httpservice.httpOptions
-      )
-      .subscribe((response: any) => {
-        this.searchedBook = response.obj;
-      });
+  this.httpservice
+  .getMethod(
+  environment.baseUrl + "book/bookorauthorname?text=" + this.searchText,
+  this.httpservice.httpOptions
+  )
+  .subscribe((response: any) => {
+  this.searchedBook = response.obj;
+  });
   }
+  // getAvailableBooks() {
+    // this.bookservice.getAvailableBooks().subscribe((response: any) => {
+      // this.bookList = response["obj"];
+    // });
+  // }
 }
