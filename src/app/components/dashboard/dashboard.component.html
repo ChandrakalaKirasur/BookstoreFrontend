@@ -44,8 +44,8 @@
           style="margin-left: 20%; background-color: whitesmoke;"
           [matMenuTriggerFor]="beforeMenu"
         >
-          <!-- <img class="profile" src="{{ profile }}" /> -->
-          <img class="profile" src="assets/images/Indian-Army-4.jpg" />
+          <img class="profile" src="{{ profile }}" />
+          <!-- <img class="profile" src="assets/images/Indian-Army-4.jpg" /> -->
         </button>
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
@@ -81,6 +81,21 @@
             >
               LogOut
             </button>
+            <!-- <button -->
+            <!-- mat-menu-item -->
+            <!-- [disabled]="!visible" -->
+            <!-- style="text-align: center;" -->
+            <!-- (click)="uploadProfile()" -->
+            <!-- > -->
+            <!-- Upload profile -->
+            <!-- </button> -->
+            <label class="btn-upload">
+              <input
+                type="file"
+                name="fileupload"
+                (change)="fileChange($event)"
+              />
+            </label>
           </div>
         </mat-menu>
       </div>

@@ -125,4 +125,26 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+  file: File;
+  fileChange(event: any) {
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      this.file = event.target.files[0];
+      let body = new FormData();
+      body.append("file", this.file);
+      this.httpservice
+        .postMethod(
+          `${environment.baseUrl + environment.PROFILE_CHANGE_OR_UPLOAD}` +
+            "/" +
+            localStorage.getItem("token"),
+          body,
+          {}
+        )
+        .subscribe((response: any) => {
+          localStorage.setItem("userprofile", response["msg"]);
+          this.profile = response["msg"];
+          console.log("upload", response);
+        });
+    }
+  }
 }
