@@ -23,8 +23,6 @@ import { EventEmitter } from "events";
   styleUrls: ["./view-cart.component.scss"],
 })
 export class ViewCartComponent implements OnInit {
-  image: "assets/images/Image 11@2x.png";
-
   name = new FormControl([
     Validators.required,
     Validators.minLength(4),
@@ -145,8 +143,7 @@ export class ViewCartComponent implements OnInit {
         console.log(this.books);
         for (var len in Response.obj) {
           this.books = Response.obj[len];
-          console.log("****************************");
-          console.log(this.books["cartId"]);
+
           let bookDetails = this.books["booksList"];
           let qt = this.books["quantityOfBooks"];
           /**
@@ -154,12 +151,13 @@ export class ViewCartComponent implements OnInit {
            */
           for (var index in bookDetails) {
             this.book = bookDetails[0]; //adding book details to bookmodel
-            //this.book["noOfBooks"];
+
             this.quantitylist = this.books["quantityOfBooks"];
             this.book.quantitybto = this.books["quantityOfBooks"];
             this.book.totalPrice =
               this.book.quantitybto[0]["quantityOfBook"] *
               this.book["bookPrice"];
+
             this.bookNquantityData.push(this.book);
           }
         }
@@ -174,6 +172,7 @@ export class ViewCartComponent implements OnInit {
     );
   }
 
+  quantitydetails: Cartdetails = new Cartdetails();
   onQuantity(book: any) {
     console.log(book);
 
@@ -184,23 +183,20 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
-          // console.log(book.quantitybto);
-          //console.log(Response.obj["quantityOfBooks"]);
           book.quantitybto = Response.obj["quantityOfBooks"];
-          //console.log(this.book);
+          this.book.totalPrice =
+            this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
         },
         (error: any) => {
           console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
       );
-
-    //this.data.changeMessage("bookquantity");
   }
 
   ondescQuantity(book: any) {
     console.log(book);
-    // for (var index in book.quantitybto) {
+
     this.cartService
       .putRequest(
         environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
@@ -208,10 +204,9 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
-          // console.log(book.quantitybto);
-          //console.log(Response.obj["quantityOfBooks"]);
           book.quantitybto = Response.obj["quantityOfBooks"];
-          //console.log(this.book);
+          this.book.totalPrice =
+            this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
         },
         (error: any) => {
           console.log(error.error.message);
@@ -219,9 +214,6 @@ export class ViewCartComponent implements OnInit {
         }
       );
   }
-
-  private obtainNotes = new BehaviorSubject([]);
-  currentMessage = this.obtainNotes.asObservable();
 
   onRemove(book: any) {
     console.log(book);
@@ -233,32 +225,27 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
-          // this.myDatas = Response.obj;
           if (Response.obj) {
             for (var index in this.bookNquantityData) {
               if (this.bookNquantityData[index] == book) {
                 this.bookNquantityData[index] = null;
-                // this.getcountofbooks();
-                // this.bookcount = this.bookcount - 1;
-                //console.log(this.bookincart - 1);
               }
             }
           }
-          this.obtainNotes.next(Response);
         },
         (error: any) => {
           console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
       );
-    this.getcountofbooks();
-    this.data.changeMessage("refresh");
   }
 
   open: boolean;
   fields: boolean;
   person: String;
+
   onChange(mrChange: MatRadioChange) {
+    this.open2 = false;
     console.log(mrChange.value);
     this.person = mrChange.value;
   }
@@ -279,17 +266,14 @@ export class ViewCartComponent implements OnInit {
       this.spinner.hide();
 
       this.addModel.type = this.person;
-      console.log(this.addModel.type);
-      console.log(this.addModel.address);
-      console.log(this.addModel.city);
-      console.log(this.addModel.landmark);
+
       this.addressService
         .postRequest("address/add/" + this.token, this.addModel)
         .subscribe(
           (Response: any) => {
             this.fields = false;
             this.open2 = true;
-            this.snackbar.open("adress added Successfully", "undo", {
+            this.snackbar.open(Response.message, "undo", {
               duration: 3000,
             });
           },
@@ -311,10 +295,7 @@ export class ViewCartComponent implements OnInit {
     console.log(book);
     this.spinner.show();
     this.showSpinner = true;
-    setTimeout(() => {
-      this.spinner.hide();
-      this.router.navigate(["/books/ordersucess"]);
-    }, 2000);
+
     this.cartService
       .postRequest(
         environment.orderlist_books_confrim + localStorage.getItem("token"),
@@ -322,7 +303,11 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
-          this.snackbar.open(Response.message, "undo", { duration: 2500 });
+          setTimeout(() => {
+            this.spinner.hide();
+            this.router.navigate(["/books/ordersucess"]);
+            this.snackbar.open(Response.message, "undo", { duration: 2500 });
+          }, 2000);
         },
         (error: any) => {
           console.error(error);
@@ -337,9 +322,6 @@ export class ViewCartComponent implements OnInit {
       (Response: any) => {
         console.log(Response);
         if (Response.status) {
-          //this.open = true;
-          console.log("***********************************");
-          console.log(Response.obj["type"]);
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
           this.addModel.landmark = Response.obj["landmark"];
@@ -348,12 +330,9 @@ export class ViewCartComponent implements OnInit {
           this.addModel.phoneNumber = Response.obj["phoneNumber"];
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
-          // console.log(Response);
-          //this.bookincart = Response.obj;
         }
       },
       (error: any) => {
-        //console.error(error);
         console.log(error.error.message);
         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
@@ -365,9 +344,6 @@ export class ViewCartComponent implements OnInit {
       (Response: any) => {
         console.log(Response);
         if (Response.status) {
-          //this.open = true;
-          console.log("***********************************");
-          console.log(Response.obj["type"]);
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
           this.addModel.landmark = Response.obj["landmark"];
@@ -376,12 +352,9 @@ export class ViewCartComponent implements OnInit {
           this.addModel.phoneNumber = Response.obj["phoneNumber"];
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
-          // console.log(Response);
-          //this.bookincart = Response.obj;
         }
       },
       (error: any) => {
-        //console.error(error);
         console.log(error.error.message);
         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
@@ -402,12 +375,9 @@ export class ViewCartComponent implements OnInit {
           this.addModel.phoneNumber = Response.obj["phoneNumber"];
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
-          // console.log(Response);
-          //this.bookincart = Response.obj;
         }
       },
       (error: any) => {
-        //console.error(error);
         console.log(error.error.message);
         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
