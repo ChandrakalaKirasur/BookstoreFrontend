@@ -5,3 +5,11 @@
     </div>
   </div>
 </div>
+<div class="footer" *ngIf="searchedBook.length > 2; else foot">
+  <app-footer></app-footer>
+</div>
+<ng-template #foot>
+  <div class="foot" style="top: 720px; margin-top: 54%;">
+    <app-footer></app-footer>
+  </div>
+</ng-template>
