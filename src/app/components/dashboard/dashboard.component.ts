@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
     }
     this.getcountofbooks();
     this.getprofileLink();
+    this.profile = localStorage.getItem('userimage');
   }
 
   onBook() {
