@@ -23,7 +23,6 @@ export class OrderDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.BookCount();
     this.onOrderlist();
   }
 

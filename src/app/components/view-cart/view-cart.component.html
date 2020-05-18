@@ -1,7 +1,7 @@
 <div role="combobox" flex="column" style="margin-left: 16%;">
   <mat-card class="matcard1" [ngClass]="open == true ? 'matcardincr' : 'dummy'">
-    <div class="mycart">My cart&nbsp;({{ bookcount }})</div>
-    <!-- <div *ngFor="let cart of books"> -->
+    <div *ngIf="count" class="mycart">My cart&nbsp;({{ bookcount }})</div>
+    <div *ngIf="!count" class="mycart">My cart&nbsp;({{ bookcount }})</div>
     <div *ngFor="let book of bookNquantityData">
       <div *ngIf="book.bookName != null">
         <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">

@@ -101,7 +101,6 @@ export class ViewCartComponent implements OnInit {
   ngOnInit() {
     this.getcountofbooks();
     this.getbooks();
-    //this.getaddress();
   }
 
   book: Book = new Book();
@@ -123,14 +122,11 @@ export class ViewCartComponent implements OnInit {
         }
       },
       (error: any) => {
-        //console.error(error);
-        console.log(error.error.message);
         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
     );
   }
 
-  //totalPrice;
   getbooks() {
     this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.Get_book_Cart).subscribe(
@@ -165,8 +161,6 @@ export class ViewCartComponent implements OnInit {
         this.snackbar.open(Response.message, "undo", { duration: 2500 });
       },
       (error: any) => {
-        console.error(error);
-        console.log(error.error.message);
         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
     );
@@ -183,12 +177,14 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
+          if (Response.obj == null) {
+            this.snackbar.open("bookcount is more", "undo", { duration: 2500 });
+          }
           book.quantitybto = Response.obj["quantityOfBooks"];
           this.book.totalPrice =
             this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
         },
         (error: any) => {
-          console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
       );
@@ -204,17 +200,20 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
+          if (Response.obj == null) {
+            this.snackbar.open("Atleast Book one", "undo", { duration: 2500 });
+          }
           book.quantitybto = Response.obj["quantityOfBooks"];
           this.book.totalPrice =
             this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
         },
         (error: any) => {
-          console.log(error.error.message);
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+          this.snackbar.open("cannot descrease", "undo", { duration: 2500 });
         }
       );
   }
 
+  count: boolean = true;
   onRemove(book: any) {
     console.log(book);
     this.token = localStorage.getItem("token");
@@ -231,10 +230,14 @@ export class ViewCartComponent implements OnInit {
                 this.bookNquantityData[index] = null;
               }
             }
+            this.bookcount -= 1;
+            this.count = false;
+            if (this.bookcount == 0) {
+              this.placeOrder = false;
+            }
           }
         },
         (error: any) => {
-          console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
       );
