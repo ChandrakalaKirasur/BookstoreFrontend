@@ -113,10 +113,12 @@ export class DashboardComponent implements OnInit {
   }
 
   profile: String;
+  profilepic: boolean;
   getprofileLink() {
     this.userService.getRequest(environment.user_profile).subscribe(
       (Response: any) => {
         this.profile = Response.obj;
+        this.profilepic = true;
         // if (this.bookcount == 0) {
         //   this.placeOrder = false;
         // }
