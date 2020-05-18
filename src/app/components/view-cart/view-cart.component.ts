@@ -82,10 +82,6 @@ export class ViewCartComponent implements OnInit {
     return this.landmark.hasError("required") ? "" : "";
   }
 
-  // password = new FormControl(this.login.password, [
-  //   Validators.required,
-  //   Validators.minLength(7)
-  // ]);
   constructor(
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
@@ -116,7 +112,7 @@ export class ViewCartComponent implements OnInit {
     this.cartService.getRequest(environment.book_count_cart).subscribe(
       (Response: any) => {
         this.bookcount = Response.obj;
-        //this.book.bookcountincart = Response.obj;
+
         if (this.bookcount == 0) {
           this.placeOrder = false;
         }
@@ -131,7 +127,6 @@ export class ViewCartComponent implements OnInit {
     this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.Get_book_Cart).subscribe(
       (Response: any) => {
-        //console.log(Response);
         this.books = Response.obj;
         /**
          * cart Details
@@ -168,8 +163,9 @@ export class ViewCartComponent implements OnInit {
 
   quantitydetails: Cartdetails = new Cartdetails();
   onQuantity(book: any) {
-    console.log(book);
-
+    this.book.quantitybto[0]["quantityOfBook"] + 1;
+    this.book.totalPrice =
+      this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
     this.cartService
       .putRequest(
         environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
@@ -181,8 +177,6 @@ export class ViewCartComponent implements OnInit {
             this.snackbar.open("bookcount is more", "undo", { duration: 2500 });
           }
           book.quantitybto = Response.obj["quantityOfBooks"];
-          this.book.totalPrice =
-            this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
         },
         (error: any) => {
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
@@ -191,8 +185,9 @@ export class ViewCartComponent implements OnInit {
   }
 
   ondescQuantity(book: any) {
-    console.log(book);
-
+    this.book.quantitybto[0]["quantityOfBook"] + 1;
+    this.book.totalPrice =
+      this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
     this.cartService
       .putRequest(
         environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
@@ -343,10 +338,7 @@ export class ViewCartComponent implements OnInit {
           this.addModel.type = Response.obj["type"];
         }
       },
-      (error: any) => {
-        console.log(error.error.message);
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-      }
+      (error: any) => {}
     );
   }
 
@@ -367,7 +359,6 @@ export class ViewCartComponent implements OnInit {
       },
       (error: any) => {
         console.log(error.error.message);
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
     );
   }
@@ -390,7 +381,7 @@ export class ViewCartComponent implements OnInit {
       },
       (error: any) => {
         console.log(error.error.message);
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        //this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
     );
   }
