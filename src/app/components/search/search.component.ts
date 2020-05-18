@@ -35,18 +35,18 @@ export class SearchComponent implements OnInit {
     // this.getAvailableBooks();
   }
   searching() {
-  this.httpservice
-  .getMethod(
-  environment.baseUrl + "book/bookorauthorname?text=" + this.searchText,
-  this.httpservice.httpOptions
-  )
-  .subscribe((response: any) => {
-  this.searchedBook = response.obj;
-  });
+    this.httpservice
+      .getMethod(
+        environment.baseUrl + "book/bookorauthorname?text=" + this.searchText,
+        this.httpservice.httpOptions
+      )
+      .subscribe((response: any) => {
+        this.searchedBook = response.obj;
+      });
   }
   // getAvailableBooks() {
-    // this.bookservice.getAvailableBooks().subscribe((response: any) => {
-      // this.bookList = response["obj"];
-    // });
+  // this.bookservice.getAvailableBooks().subscribe((response: any) => {
+  // this.bookList = response["obj"];
+  // });
   // }
 }

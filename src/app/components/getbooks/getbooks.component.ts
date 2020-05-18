@@ -16,7 +16,7 @@ export class GetbooksComponent implements OnInit {
   sortTech2: any = "Price : High to Low";
   sortTech3: any = "Newest Arrivals";
   length: number = 0;
-  page: number;
+  page: number = 1;
   endPage: number = 0;
   pages: Array<Number> = [];
   constructor(
