@@ -214,6 +214,8 @@ export class ViewCartComponent implements OnInit {
   }
 
   count: boolean = true;
+  addressclose: boolean = true;
+
   onRemove(book: any) {
     console.log(book);
     this.token = localStorage.getItem("token");
@@ -232,8 +234,11 @@ export class ViewCartComponent implements OnInit {
             }
             this.bookcount -= 1;
             this.count = false;
+
             if (this.bookcount == 0) {
               this.placeOrder = false;
+              this.open = false;
+              // this.fields = false;
             }
           }
         },
@@ -256,11 +261,13 @@ export class ViewCartComponent implements OnInit {
   onplaceOrder() {
     this.open = true;
     this.fields = true;
+
     this.getaddress();
   }
 
   showSpinner = false;
   open2: boolean;
+  //Continueclose: boolean = true;
   addModel: Address = new Address();
   onContinue() {
     this.spinner.show();
@@ -276,6 +283,7 @@ export class ViewCartComponent implements OnInit {
           (Response: any) => {
             this.fields = false;
             this.open2 = true;
+            // this.Continueclose = false;
             this.snackbar.open(Response.message, "undo", {
               duration: 3000,
             });
