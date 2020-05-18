@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     }
     this.getcountofbooks();
     this.getprofileLink();
-    this.profile = localStorage.getItem('userimage');
+    this.profile = localStorage.getItem("userimage");
   }
 
   onBook() {
@@ -79,6 +79,7 @@ export class DashboardComponent implements OnInit {
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
+      this.bookcount = 0;
       this.router.navigate(["books"]);
     }, 1000);
   }

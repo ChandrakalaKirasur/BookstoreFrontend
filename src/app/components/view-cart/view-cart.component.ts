@@ -127,7 +127,6 @@ export class ViewCartComponent implements OnInit {
     );
   }
 
-  //totalPrice;
   getbooks() {
     this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.Get_book_Cart).subscribe(
@@ -178,6 +177,9 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
+          if (Response.obj == null) {
+            this.snackbar.open("bookcount is more", "undo", { duration: 2500 });
+          }
           book.quantitybto = Response.obj["quantityOfBooks"];
           this.book.totalPrice =
             this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
@@ -198,6 +200,9 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
+          if (Response.obj == null) {
+            this.snackbar.open("Atleast Book one", "undo", { duration: 2500 });
+          }
           book.quantitybto = Response.obj["quantityOfBooks"];
           this.book.totalPrice =
             this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
