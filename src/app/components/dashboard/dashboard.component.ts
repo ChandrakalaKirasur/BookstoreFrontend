@@ -80,8 +80,9 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
       this.bookcount = 0;
-      this.router.navigate(["books"]);
+      this.router.navigate(["/books"]);
     }, 1000);
+    window.location.reload();
   }
 
   searching(searchText: any) {
