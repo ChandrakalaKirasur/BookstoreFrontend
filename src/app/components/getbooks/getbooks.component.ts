@@ -17,7 +17,7 @@ export class GetbooksComponent implements OnInit {
   sortTech3: any = "Newest Arrivals";
   length: number = 0;
   page: number = 1;
-  endPage: number = 0;
+  endPage: number = 1;
   pages: Array<Number> = [];
   constructor(
     private bookService: BookService,
@@ -49,8 +49,6 @@ export class GetbooksComponent implements OnInit {
           this.pages[i] = i;
         }
         this.endPage = this.pages.length - 2;
-      } else {
-        this.page = 1;
       }
     });
   }
