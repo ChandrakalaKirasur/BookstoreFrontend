@@ -289,7 +289,10 @@ export class ViewCartComponent implements OnInit {
       this.addModel.type = this.person;
 
       this.addressService
-        .postRequest("address/add/" + this.token, this.addModel)
+        .postRequest(
+          "address/add/" + localStorage.getItem("token"),
+          this.addModel
+        )
         .subscribe(
           (Response: any) => {
             this.fields = false;
