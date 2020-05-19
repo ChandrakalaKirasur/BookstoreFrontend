@@ -66,25 +66,18 @@ export class BooksComponent implements OnInit {
   }
   //getting boolean as a output and finding whether book is already in cart
   isAddedToCart() {
-    this.bookService.isAddedTocart(this.book.bookId).subscribe(
-      (response: any) => {
+    this.bookService
+      .isAddedTocart(this.book.bookId)
+      .subscribe((response: any) => {
         this.book.isAdded = response["obj"];
-      },
-      (error: any) => {
-        console.error(error);
-        console.log(error.error.message);
-      }
-    );
+      });
   }
+  //getting boolean as a output and finding whether book is already in whishlist
   isAddedToWishList() {
-    this.bookService.isAddedToWishList(this.book.bookId).subscribe(
-      (response: any) => {
+    this.bookService
+      .isAddedToWishList(this.book.bookId)
+      .subscribe((response: any) => {
         this.book.isListed = response["obj"];
-      },
-      (error: any) => {
-        console.error(error);
-        console.log(error.error.message);
-      }
-    );
+      });
   }
 }

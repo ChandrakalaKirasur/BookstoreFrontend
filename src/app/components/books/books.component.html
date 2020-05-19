@@ -2,9 +2,7 @@
   autocomplete="off"
   role="combobox"
   flex="column"
-  matTooltip="Book Title : {{ book.bookName }}, Book Author : {{
-    book.bookAuthor
-  }} ,{{ book.bookDescription }} "
+  matTooltip="{{ book.bookDescription }}"
   matTooltipPosition="right"
   matTooltipClass="custom-tooltip"
 >
@@ -73,7 +71,7 @@
         WISHLIST
       </button>
       <button
-        class="boxwhish"
+        class="box"
         *ngIf="book.isListed && !book.isAdded"
         (click)="removeFromWishlist()"
       >
