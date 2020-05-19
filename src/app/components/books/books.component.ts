@@ -21,10 +21,10 @@ export class BooksComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.noOfBooks = this.book.noOfBooks;
-    this.isAddedToCart();
-    this.isAddedToWishList();
     if (localStorage.getItem("token") != null) {
       this.visible = true;
+      this.isAddedToCart();
+      this.isAddedToWishList();
     }
   }
   addToCart() {
