@@ -21,11 +21,11 @@ export class BooksComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.noOfBooks = this.book.noOfBooks;
-    this.isAddedToCart();
-    this.isAddedToWishList();
     if (localStorage.getItem("token") != null) {
       this.visible = true;
     }
+    this.isAddedToCart();
+    this.isAddedToWishList();
   }
   //adding book to cart if user login
   addToCart() {
@@ -67,18 +67,22 @@ export class BooksComponent implements OnInit {
   }
   //getting boolean as a output and finding whether book is already in cart
   isAddedToCart() {
-    this.bookService
-      .isAddedTocart(this.book.bookId)
-      .subscribe((response: any) => {
-        this.book.isAdded = response["obj"];
-      });
+    if (this.visible) {
+      this.bookService
+        .isAddedTocart(this.book.bookId)
+        .subscribe((response: any) => {
+          this.book.isAdded = response["obj"];
+        });
+    }
   }
   //getting boolean as a output and finding whether book is already in whishlist
   isAddedToWishList() {
-    this.bookService
-      .isAddedToWishList(this.book.bookId)
-      .subscribe((response: any) => {
-        this.book.isListed = response["obj"];
-      });
+    if (this.visible) {
+      this.bookService
+        .isAddedToWishList(this.book.bookId)
+        .subscribe((response: any) => {
+          this.book.isListed = response["obj"];
+        });
+    }
   }
 }

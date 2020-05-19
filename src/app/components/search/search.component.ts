@@ -16,7 +16,6 @@ export class SearchComponent implements OnInit {
   searchText: any;
   searchedBook: Book[];
   mySubscription: any;
-  bookList: Array<Book> = [];
   constructor(
     private httpservice: HttpService,
     private spinner: NgxSpinnerService,
@@ -30,10 +29,8 @@ export class SearchComponent implements OnInit {
     });
     this.bookservice.autoRefresh.subscribe(() => {
       this.searching();
-      // this.getAvailableBooks();
     });
     this.searching();
-    // this.getAvailableBooks();
   }
   searching() {
     this.httpservice
@@ -45,9 +42,4 @@ export class SearchComponent implements OnInit {
         this.searchedBook = response.obj;
       });
   }
-  // getAvailableBooks() {
-  // this.bookservice.getAvailableBooks().subscribe((response: any) => {
-  // this.bookList = response["obj"];
-  // });
-  // }
 }
