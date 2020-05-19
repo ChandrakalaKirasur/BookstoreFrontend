@@ -27,6 +27,7 @@ export class BooksComponent implements OnInit {
       this.visible = true;
     }
   }
+  //adding book to cart
   addToCart() {
     if (this.visible) {
       this.bookService
