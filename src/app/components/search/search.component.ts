@@ -15,6 +15,7 @@ import { BookService } from "src/app/service/book.service";
 export class SearchComponent implements OnInit {
   searchText: any;
   searchedBook: Book[];
+  mySubscription: any;
   bookList: Array<Book> = [];
   constructor(
     private httpservice: HttpService,

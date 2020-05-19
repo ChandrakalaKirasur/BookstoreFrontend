@@ -93,10 +93,8 @@ export class LoginComponent implements OnInit {
               this.snackBar.open(
                 "Login Successfull",
                 "undo",
-
                 { duration: 2500 }
               );
-
               this.router.navigate(["books"]);
             } else {
               this.spinner.hide();
@@ -112,4 +110,5 @@ export class LoginComponent implements OnInit {
         );
     }, 2000); //spinner
   }
+  
 }
