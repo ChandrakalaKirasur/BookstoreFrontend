@@ -223,7 +223,7 @@ export class ViewCartComponent implements OnInit {
   addressclose: boolean = true;
 
   onRemove(book: any) {
-    console.log(book);
+    //console.log(book);
     this.token = localStorage.getItem("token");
     this.cartService
       .deleteRequest(
