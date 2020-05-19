@@ -19,7 +19,7 @@ export const environment = {
   VERIFY_WHISHLIST_BOOK: "whishList/verify_book/",
   VERIFY_CART_BOOK: "cart/verify_book/",
   GET_BOOKS_COUNT: "book/bookscount",
-  PROFILE_CHANGE_OR_UPLOAD:"user/uploaduserimage",
+  PROFILE_CHANGE_OR_UPLOAD: "user/uploaduserimage",
   Get_book_Cart: "cart/cartdetials",
   book_count_cart: "cart/bookCount",
   cart_inc_bookquantity: "cart/incr_booksquantity",
@@ -32,6 +32,9 @@ export const environment = {
   orderlist_books: "orders/books/",
   orderlist_books_Count: "orders/books_count/",
   user_profile: "user/profileUrl",
+  cart_home_address: "address/getAddresstype/home",
+  cart_work_address: "address/getAddresstype/work",
+  cart_other_address: "address/getAddresstype/other",
 };
 
 /*

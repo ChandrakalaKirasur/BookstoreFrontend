@@ -32,11 +32,13 @@ export class ViewCartComponent implements OnInit {
     Validators.required,
     Validators.minLength(10),
     Validators.maxLength(10),
+    Validators.pattern("[6-9]\\d{9}"),
   ]);
   pincode = new FormControl([
     Validators.required,
     Validators.minLength(5),
     Validators.maxLength(6),
+    Validators.pattern("[5-6]\\d{6}"),
   ]);
 
   locality = new FormControl([
@@ -47,7 +49,8 @@ export class ViewCartComponent implements OnInit {
   address = new FormControl([
     Validators.required,
     Validators.minLength(8),
-    Validators.pattern("[a-zA-Z ]*"),
+    //Validators.pattern("[a-zA-Z ]*"),
+    Validators.pattern("[a-zA-Z0-9._%+-]*"),
   ]);
   city = new FormControl([
     Validators.required,
@@ -61,13 +64,21 @@ export class ViewCartComponent implements OnInit {
   ]);
 
   nameValidation() {
-    return this.name.hasError("required") ? "" : "";
+    return this.name.hasError("required")
+      ? ""
+      : this.name.hasError("name")
+      ? ""
+      : "";
   }
   phoneNumber() {
     return this.mobile.hasError("required") ? "" : "";
   }
   pincodeValidation() {
-    return this.name.hasError("required") ? "" : "";
+    return this.name.hasError("required")
+      ? "You must enter a value"
+      : this.pincode.hasError("pincode")
+      ? "Not a valid email"
+      : "";
   }
   localityValidation() {
     return this.locality.hasError("required") ? "" : "";
@@ -82,10 +93,6 @@ export class ViewCartComponent implements OnInit {
     return this.landmark.hasError("required") ? "" : "";
   }
 
-  // password = new FormControl(this.login.password, [
-  //   Validators.required,
-  //   Validators.minLength(7)
-  // ]);
   constructor(
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
@@ -116,7 +123,7 @@ export class ViewCartComponent implements OnInit {
     this.cartService.getRequest(environment.book_count_cart).subscribe(
       (Response: any) => {
         this.bookcount = Response.obj;
-        //this.book.bookcountincart = Response.obj;
+
         if (this.bookcount == 0) {
           this.placeOrder = false;
         }
@@ -131,7 +138,6 @@ export class ViewCartComponent implements OnInit {
     this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.Get_book_Cart).subscribe(
       (Response: any) => {
-        //console.log(Response);
         this.books = Response.obj;
         /**
          * cart Details
@@ -168,8 +174,9 @@ export class ViewCartComponent implements OnInit {
 
   quantitydetails: Cartdetails = new Cartdetails();
   onQuantity(book: any) {
-    console.log(book);
-
+    this.book.quantitybto[0]["quantityOfBook"] + 1;
+    this.book.totalPrice =
+      this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
     this.cartService
       .putRequest(
         environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
@@ -181,8 +188,6 @@ export class ViewCartComponent implements OnInit {
             this.snackbar.open("bookcount is more", "undo", { duration: 2500 });
           }
           book.quantitybto = Response.obj["quantityOfBooks"];
-          this.book.totalPrice =
-            this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
         },
         (error: any) => {
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
@@ -191,8 +196,9 @@ export class ViewCartComponent implements OnInit {
   }
 
   ondescQuantity(book: any) {
-    console.log(book);
-
+    this.book.quantitybto[0]["quantityOfBook"] + 1;
+    this.book.totalPrice =
+      this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
     this.cartService
       .putRequest(
         environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
@@ -329,7 +335,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   getaddress() {
-    this.addressService.getRequest("address/getAddresstype/home").subscribe(
+    this.addressService.getRequest(environment.cart_home_address).subscribe(
       (Response: any) => {
         console.log(Response);
         if (Response.status) {
@@ -343,15 +349,12 @@ export class ViewCartComponent implements OnInit {
           this.addModel.type = Response.obj["type"];
         }
       },
-      (error: any) => {
-        console.log(error.error.message);
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-      }
+      (error: any) => {}
     );
   }
 
   onwork() {
-    this.addressService.getRequest("address/getAddresstype/work").subscribe(
+    this.addressService.getRequest(environment.cart_work_address).subscribe(
       (Response: any) => {
         console.log(Response);
         if (Response.status) {
@@ -365,15 +368,12 @@ export class ViewCartComponent implements OnInit {
           this.addModel.type = Response.obj["type"];
         }
       },
-      (error: any) => {
-        console.log(error.error.message);
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-      }
+      (error: any) => {}
     );
   }
 
   onOther() {
-    this.addressService.getRequest("address/getAddresstype/other").subscribe(
+    this.addressService.getRequest(environment.cart_other_address).subscribe(
       (Response: any) => {
         console.log(Response);
         if (Response.status) {
@@ -388,10 +388,7 @@ export class ViewCartComponent implements OnInit {
           this.addModel.type = Response.obj["type"];
         }
       },
-      (error: any) => {
-        console.log(error.error.message);
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-      }
+      (error: any) => {}
     );
   }
 }

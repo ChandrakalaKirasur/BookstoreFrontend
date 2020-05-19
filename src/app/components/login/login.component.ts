@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   login: Login = new Login("", "");
   loginForm: FormGroup;
   token: string;
+
   email = new FormControl(this.login.mailOrMobile, [
     Validators.required,
     Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
@@ -71,33 +72,43 @@ export class LoginComponent implements OnInit {
   }
   onlogin() {
     this.spinner.show();
-    console.log(this.person + "/login:" + this.login.mailOrMobile);
+    this.showSpinner = true;
+    setTimeout(() => {
+      this.spinner.hide();
 
-    this.httpservice
-      .postRequest(this.person + "/login", this.login)
-      .subscribe((response: any) => {
-        if (response != null) {
-          this.spinner.hide();
-          console.log(response);
-          console.log(response.obj);
-          localStorage.setItem("token", response.obj);
-          this.token = localStorage.getItem("token");
-          console.log(this.token);
-          localStorage.setItem("email", response.mailOrMobile);
-          this.router.navigate(["/books"]);
-          this.snackBar.open(
-            "Login Successfull",
-            "undo",
+      console.log(this.person + "/login:" + this.login.mailOrMobile);
 
-            { duration: 2500 }
-          );
-        } else {
-          this.spinner.hide();
-          console.log(response);
-          console.log("Login:" + this.login.mailOrMobile);
-          this.snackBar.open("Login Failed", "undo", { duration: 2500 });
-        }
-      });
+      this.httpservice
+        .postRequest(this.person + "/login", this.login)
+        .subscribe(
+          (response: any) => {
+            if (response != null) {
+              this.spinner.hide();
+              console.log(response);
+              console.log("==============");
+              console.log(response.obj);
+              localStorage.setItem("token", response.obj);
+              this.token = localStorage.getItem("token");
+
+              this.snackBar.open(
+                "Login Successfull",
+                "undo",
+                { duration: 2500 }
+              );
+              this.router.navigate(["books"]);
+            } else {
+              this.spinner.hide();
+              console.log(response);
+              this.snackBar.open("Login Failed", "undo", { duration: 2500 });
+            }
+          },
+          (error: any) => {
+            // console.error(error);
+            // console.log(error.error.message);
+            this.snackBar.open(error.error.message, "undo", { duration: 2500 });
+          }
+        );
+    }, 2000); //spinner
   }
   
 }

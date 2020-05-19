@@ -38,6 +38,18 @@
         </a>
 
         <button
+          *ngIf="!profilepic"
+          mat-icon-button
+          fxShow="true"
+          width="30"
+          style="margin-left: 20%; background-color: whitesmoke;"
+          [matMenuTriggerFor]="beforeMenu"
+        >
+          <mat-icon>perm_identity</mat-icon>
+        </button>
+
+        <button
+          *ngIf="profilepic"
           mat-icon-button
           fxShow="true"
           width="30"
@@ -67,6 +79,7 @@
             </button>
             <button
               mat-menu-item
+              [disabled]="visible"
               style="text-align: center;"
               (click)="onLogin()"
             >
