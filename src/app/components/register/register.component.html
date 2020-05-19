@@ -7,34 +7,38 @@
     <br>
     <form class="example-form">
       <mat-card-content>
+        <!-- --------------------(name)---------------------------- -->
         <mat-form-field appearance="outline"  class="example-full-width">
           <mat-label>Name</mat-label>
           <mat-error *ngIf="name.invalid"> {{nameValidation()}}</mat-error>
-          <input type="name" matInput placeholder="Enter your name" [formControl]="name" [(ngModel)]="user.name"  required>
+          <input type="name" matInput placeholder="Enter your name" [formControl]="name" [(ngModel)]="user.name"  autocomplete="off" required>
           <mat-icon matSuffix>person_outline</mat-icon>
-          <mat-hint>Name</mat-hint>
+          <!-- <mat-hint>Name</mat-hint> -->
         </mat-form-field>
+        <!-- --------------------(email)---------------------------- -->
         <mat-form-field appearance="outline" class="example-full-width">
             <mat-label >Email</mat-label>
-            <mat-error *ngIf="email.invalid"> {{emailValidation()}}</mat-error>
-            <input type="email" matInput placeholder="Enter your email"   [formControl]="email" [(ngModel)]="user.email"  required>
+            <mat-error *ngIf="email.invalid&&email.touched"> {{emailValidation()}}</mat-error>
+            <input type="email" matInput placeholder="Enter your email"   [formControl]="email" [(ngModel)]="user.email"  autocomplete="off" required>
             <mat-icon matSuffix> mail_outline</mat-icon>
-            <mat-hint>Email</mat-hint>
+            <!-- <mat-hint>Email</mat-hint> -->
           </mat-form-field>
+          <!-- --------------------(password)---------------------------- -->
          <mat-form-field appearance="outline" class="example-full-width">
         <mat-label >Password</mat-label>
         <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
         <input type="password" matInput placeholder="Enter your password" [formControl]="password"
-        [(ngModel)]="user.password" [type]="!hide ? 'password' : 'text'"  required>
+        [(ngModel)]="user.password" [type]="!hide ? 'password' : 'text'"  autocomplete="off"  required>
         <mat-icon class="grab" matSuffix (click)="hide =! hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        <mat-hint>Password</mat-hint>
+        <!-- <mat-hint>Password</mat-hint> -->
       </mat-form-field>
+      <!-- --------------------(mobile)---------------------------- -->
       <mat-form-field appearance="outline"  class="example-full-width">
         <mat-label>MobileNumber</mat-label>
         <mat-error *ngIf="mobile.invalid"> {{MobileNumber()}}</mat-error>
-        <input type="text" matInput placeholder="Enter your mobileNumber" [(ngModel)]="user.mobile"
-        [formControl]="mobile"  required>
-        <mat-hint>mobileNumber</mat-hint>
+        <input type="text"   matInput placeholder="Enter your mobileNumber" [(ngModel)]="user.mobile"
+        [formControl]="mobile"  autocomplete="off" required>
+        <!-- <mat-hint>mobileNumber</mat-hint> -->
         <mat-icon matSuffix> phone</mat-icon>
       </mat-form-field>
       </mat-card-content>
@@ -44,12 +48,13 @@
           fxLayoutGap="30px"  fxLayoutAlign="center center" (change)="onChange($event)" >
           <mat-radio-button name="user" value="user">User</mat-radio-button>
           <mat-radio-button name="Seller" value="seller">Seller</mat-radio-button>
-          <mat-radio-button name="Admin" value="admin">Admin</mat-radio-button>
+          <mat-radio-button name="Admin"  [checked]='true' value="admin">Admin</mat-radio-button>
         </mat-radio-group>
       </div>
 <br>  
+<!-- [disabled]="name.errors?.required || email.errors?.required" -->
       <div   fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="150px" >
-        <button    mat-button color="primary" class="btn-block2" (click)="onRegister()">Sign Up</button>
+        <button [disabled]=" name.invalid ||email.invalid || password.invalid || mobile.invalid" mat-button color="primary" class="btn-block2" (click)="onRegister()">Sign Up</button>
       <button   mat-button color="accent" class="btn-block1" routerLink="/login">Sign in
        </button>
     </div>
@@ -59,7 +64,6 @@
     size="medium"
     color="#fff"
     type="ball-scale-multiple">
-  
     <p style="font-size: 20px; color: rgb(233, 221, 221)">Loading...</ngx-spinner>
   </mat-card>
 </div>

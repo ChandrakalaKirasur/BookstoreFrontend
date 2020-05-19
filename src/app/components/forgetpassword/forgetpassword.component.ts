@@ -30,7 +30,11 @@ export class ForgetpasswordComponent implements OnInit {
    this.person=mrChange.value
   }
   onforgot() {
+    this.showSpinner=true;
     this.spinner.show();
+    this.showSpinner = true;
+    setTimeout(() => {
+      this.spinner.hide();
     console.log(this.forgot);
     this.httpservice.putRequestForget( this.person+"/forgetPassword?email=" + this.forgot.email, this.forgot).subscribe(
       (response: any) => {
@@ -49,8 +53,15 @@ export class ForgetpasswordComponent implements OnInit {
             { duration: 2500 }
           )
         }
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackBar.open(error.error.message, "undo", { duration: 2500 });
       }
-    )
+  
+    );
+  }, 2000); //spinner
   }
 
 }

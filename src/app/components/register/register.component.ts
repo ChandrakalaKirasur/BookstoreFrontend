@@ -14,11 +14,10 @@ import { HttpService } from 'src/app/service/http.service';
 export class RegisterComponent implements OnInit {
  
   user: User = new User();
-nam=new FormControl('', );
   name = new FormControl(this.user.name, [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z ]*')]);
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9.%-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),]);
   password = new FormControl(this.user.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)])
-  mobile = new FormControl(this.user.mobile, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
+  mobile = new FormControl(this.user.mobile, [Validators.required, Validators.minLength(10), Validators.maxLength(10),Validators.pattern('[6-9]\\d{9}')]);
   showSpinner = false;
   person=String;
   constructor(private snackBar: MatSnackBar, 
@@ -37,7 +36,8 @@ nam=new FormControl('', );
   }
 
   MobileNumber() {
-    return this.mobile.hasError('required') ? 'must required' : '';
+    return this.mobile.hasError('required') ? 'must required' :
+     this.mobile.hasError('mobile') ? 'Not a valid mobilenumber' : '';
   }
 
   emailValidation() {
@@ -55,18 +55,16 @@ nam=new FormControl('', );
   }
   onRegister()
 {
-  console.log("==========");
-  console.log(this.person);
   this.showSpinner=true;
   console.log(this.user)
   this.spinner.show();
-    console.log(this.password)
-
+  this.showSpinner = true;
+  setTimeout(() => {
+    this.spinner.hide();
     this.httpservice.postRequest(this.person+"/registration", this.user).subscribe(
       (response: any) => {
         if (response!=null) {
           console.log(response);
-          this.spinner.hide();
           this.snackBar.open(
             "Link sent to mail for verification",
             "undo",
@@ -81,9 +79,14 @@ nam=new FormControl('', );
             { duration: 2500 }
           )
         }
-
+      } ,
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackBar.open(error.error.message, "undo", { duration: 2500 });
       }
-    )
+    );
+  }, 2000); //spinner
   }
 }
 
