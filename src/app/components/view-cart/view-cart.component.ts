@@ -177,53 +177,68 @@ export class ViewCartComponent implements OnInit {
     this.book.quantitybto[0]["quantityOfBook"] + 1;
     this.book.totalPrice =
       this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
-    this.cartService
-      .putRequest(
-        environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
-        book.quantitybto[0]
-      )
-      .subscribe(
-        (Response: any) => {
-          if (Response.obj == null) {
-            this.snackbar.open("bookcount is more", "undo", { duration: 2500 });
-          }
-          book.quantitybto = Response.obj["quantityOfBooks"];
-        },
-        (error: any) => {
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-        }
+    if (this.book.quantitybto[0]["quantityOfBook"] == book.noOfBooks) {
+      this.snackbar.open(
+        "Only " +
+          this.book.quantitybto[0]["quantityOfBook"] +
+          " books are avaliable",
+        "undo",
+        { duration: 2500 }
       );
+    } else {
+      this.cartService
+        .putRequest(
+          environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
+          book.quantitybto[0]
+        )
+        .subscribe(
+          (Response: any) => {
+            book.quantitybto = Response.obj["quantityOfBooks"];
+          },
+          (error: any) => {
+            this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+          }
+        );
+    }
   }
 
   ondescQuantity(book: any) {
     this.book.quantitybto[0]["quantityOfBook"] + 1;
     this.book.totalPrice =
       this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
-    this.cartService
-      .putRequest(
-        environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
-        book.quantitybto[0]
-      )
-      .subscribe(
-        (Response: any) => {
-          if (Response.obj == null) {
-            this.snackbar.open("Atleast Book one", "undo", { duration: 2500 });
-          }
-          book.quantitybto = Response.obj["quantityOfBooks"];
-          this.book.totalPrice =
-            this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
-        },
-        (error: any) => {
-          this.snackbar.open("cannot descrease", "undo", { duration: 2500 });
-        }
+
+    if (this.book.quantitybto[0]["quantityOfBook"] == 1) {
+      this.snackbar.open(
+        "Atleast " +
+          this.book.quantitybto[0]["quantityOfBook"] +
+          " In the cart",
+        "undo",
+        { duration: 2500 }
       );
+    } else {
+      this.cartService
+        .putRequest(
+          environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
+          book.quantitybto[0]
+        )
+        .subscribe(
+          (Response: any) => {
+            book.quantitybto = Response.obj["quantityOfBooks"];
+            this.book.totalPrice =
+              this.book.quantitybto[0]["quantityOfBook"] *
+              this.book["bookPrice"];
+          },
+          (error: any) => {
+            this.snackbar.open("cannot descrease", "undo", { duration: 2500 });
+          }
+        );
+    }
   }
 
   count: boolean = true;
   addressclose: boolean = true;
 
   onRemove(book: any) {
-    //console.log(book);
     this.token = localStorage.getItem("token");
     this.cartService
       .deleteRequest(
