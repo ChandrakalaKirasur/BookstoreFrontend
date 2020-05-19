@@ -45,7 +45,7 @@ export class GetbooksComponent implements OnInit {
     this.bookService.getBooksCount().subscribe((response: any) => {
       this.length = response["obj"];
       if (this.length > 10) {
-        for (var i = 1; i <= this.length / 10 + 1; i++) {
+        for (var i = 1; i <= this.length / 12 + 1; i++) {
           this.pages[i] = i;
         }
         this.endPage = this.pages.length - 2;
