@@ -99,7 +99,6 @@ export class DashboardComponent implements OnInit {
   token: string;
   // placeOrder: boolean = true;
   getcountofbooks() {
-    console.log("cart.......");
     this.token = localStorage.getItem("token");
     this.cartService
       .getRequest(environment.book_count_cart)
