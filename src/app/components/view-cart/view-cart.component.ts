@@ -111,7 +111,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   book: Book = new Book();
-  books: [];
+  bookArray: [];
   token: string;
   bookNquantityData: Array<Book> = [];
   quantitylist: [];
@@ -119,7 +119,6 @@ export class ViewCartComponent implements OnInit {
 
   placeOrder: boolean = true;
   getcountofbooks() {
-    this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.book_count_cart).subscribe(
       (Response: any) => {
         this.bookcount = Response.obj;
@@ -135,35 +134,29 @@ export class ViewCartComponent implements OnInit {
   }
 
   getbooks() {
-    this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.Get_book_Cart).subscribe(
       (Response: any) => {
-        this.books = Response.obj;
+        this.bookArray = Response.obj;
         /**
          * cart Details
          */
-        console.log(this.books);
         for (var len in Response.obj) {
-          this.books = Response.obj[len];
+          this.bookArray = Response.obj[len];
 
-          let bookDetails = this.books["booksList"];
-          let qt = this.books["quantityOfBooks"];
+          let bookDetails = this.bookArray["booksList"];
+          //let qt = this.books["quantityOfBooks"];
           /**
            * bookdetails
            */
           for (var index in bookDetails) {
             this.book = bookDetails[0]; //adding book details to bookmodel
-
-            this.quantitylist = this.books["quantityOfBooks"];
-            this.book.quantitybto = this.books["quantityOfBooks"];
-            this.book.totalPrice =
-              this.book.quantitybto[0]["quantityOfBook"] *
-              this.book["bookPrice"];
+            this.book.quantitybto = this.bookArray["quantityOfBooks"];
+            this.book.totalPrice = this.book.quantitybto[0]["totalprice"];
 
             this.bookNquantityData.push(this.book);
           }
         }
-        console.log(this.bookNquantityData);
+        //console.log(this.bookNquantityData);
         this.snackbar.open(Response.message, "undo", { duration: 2500 });
       },
       (error: any) => {
@@ -177,6 +170,9 @@ export class ViewCartComponent implements OnInit {
     this.book.quantitybto[0]["quantityOfBook"] + 1;
     this.book.totalPrice =
       this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
+    /**
+     * if bookcount is equal to noOfBooks available
+     */
     if (this.book.quantitybto[0]["quantityOfBook"] == book.noOfBooks) {
       this.snackbar.open(
         "Only " +
@@ -224,9 +220,6 @@ export class ViewCartComponent implements OnInit {
         .subscribe(
           (Response: any) => {
             book.quantitybto = Response.obj["quantityOfBooks"];
-            this.book.totalPrice =
-              this.book.quantitybto[0]["quantityOfBook"] *
-              this.book["bookPrice"];
           },
           (error: any) => {
             this.snackbar.open("cannot descrease", "undo", { duration: 2500 });
@@ -255,13 +248,11 @@ export class ViewCartComponent implements OnInit {
             }
             this.bookcount -= 1;
             this.count = false;
-
-            if (this.bookcount == 0) {
-              this.placeOrder = false;
-              this.open = false;
-              // this.fields = false;
-            }
           }
+
+          this.placeOrder = true;
+          this.open = false;
+          this.open2 = false;
         },
         (error: any) => {
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
@@ -349,8 +340,9 @@ export class ViewCartComponent implements OnInit {
   }
 
   getaddress() {
-    this.addressService.getRequest(environment.cart_home_address).subscribe(
-      (Response: any) => {
+    this.addressService
+      .getRequest(environment.cart_home_address)
+      .subscribe((Response: any) => {
         console.log(Response);
         if (Response.status) {
           this.addModel.address = Response.obj["address"];
@@ -362,14 +354,13 @@ export class ViewCartComponent implements OnInit {
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
         }
-      },
-      (error: any) => {}
-    );
+      });
   }
 
   onwork() {
-    this.addressService.getRequest(environment.cart_work_address).subscribe(
-      (Response: any) => {
+    this.addressService
+      .getRequest(environment.cart_work_address)
+      .subscribe((Response: any) => {
         console.log(Response);
         if (Response.status) {
           this.addModel.address = Response.obj["address"];
@@ -381,14 +372,13 @@ export class ViewCartComponent implements OnInit {
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
         }
-      },
-      (error: any) => {}
-    );
+      });
   }
 
   onOther() {
-    this.addressService.getRequest(environment.cart_other_address).subscribe(
-      (Response: any) => {
+    this.addressService
+      .getRequest(environment.cart_other_address)
+      .subscribe((Response: any) => {
         console.log(Response);
         if (Response.status) {
           console.log(Response.obj["type"]);
@@ -401,8 +391,6 @@ export class ViewCartComponent implements OnInit {
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
         }
-      },
-      (error: any) => {}
-    );
+      });
   }
 }

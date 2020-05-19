@@ -27,7 +27,6 @@ export class BooksComponent implements OnInit {
       this.visible = true;
     }
   }
-  //adding book to cart if user login
   addToCart() {
     if (this.visible) {
       this.bookService
@@ -73,7 +72,6 @@ export class BooksComponent implements OnInit {
         this.book.isAdded = response["obj"];
       });
   }
-  //getting boolean as a output and finding whether book is already in whishlist
   isAddedToWishList() {
     this.bookService
       .isAddedToWishList(this.book.bookId)

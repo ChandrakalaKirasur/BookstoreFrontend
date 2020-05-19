@@ -3,7 +3,7 @@
     <div *ngIf="count" class="mycart">My cart&nbsp;({{ bookcount }})</div>
     <div *ngIf="!count" class="mycart">My cart&nbsp;({{ bookcount }})</div>
     <div *ngFor="let book of bookNquantityData">
-      <div *ngIf="book.bookName != null">
+      <div *ngIf="book != null">
         <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
           <img class="bookimg" src="{{ book.bookImage }}" />
           <div class="bookdetails">
