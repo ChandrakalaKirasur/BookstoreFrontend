@@ -288,7 +288,6 @@ export class ViewCartComponent implements OnInit {
 
   showSpinner = false;
   open2: boolean;
-  //Continueclose: boolean = true;
   addModel: Address = new Address();
   onContinue() {
     this.spinner.show();
