@@ -32,11 +32,13 @@ export class ViewCartComponent implements OnInit {
     Validators.required,
     Validators.minLength(10),
     Validators.maxLength(10),
+    Validators.pattern("[6-9]\\d{9}"),
   ]);
   pincode = new FormControl([
     Validators.required,
     Validators.minLength(5),
     Validators.maxLength(6),
+    Validators.pattern("[5-6]\\d{6}"),
   ]);
 
   locality = new FormControl([
@@ -47,7 +49,8 @@ export class ViewCartComponent implements OnInit {
   address = new FormControl([
     Validators.required,
     Validators.minLength(8),
-    Validators.pattern("[a-zA-Z ]*"),
+    //Validators.pattern("[a-zA-Z ]*"),
+    Validators.pattern("[a-zA-Z0-9._%+-]*"),
   ]);
   city = new FormControl([
     Validators.required,
@@ -61,13 +64,21 @@ export class ViewCartComponent implements OnInit {
   ]);
 
   nameValidation() {
-    return this.name.hasError("required") ? "" : "";
+    return this.name.hasError("required")
+      ? ""
+      : this.name.hasError("name")
+      ? ""
+      : "";
   }
   phoneNumber() {
     return this.mobile.hasError("required") ? "" : "";
   }
   pincodeValidation() {
-    return this.name.hasError("required") ? "" : "";
+    return this.name.hasError("required")
+      ? "You must enter a value"
+      : this.pincode.hasError("pincode")
+      ? "Not a valid email"
+      : "";
   }
   localityValidation() {
     return this.locality.hasError("required") ? "" : "";
@@ -324,7 +335,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   getaddress() {
-    this.addressService.getRequest("address/getAddresstype/home").subscribe(
+    this.addressService.getRequest(environment.cart_home_address).subscribe(
       (Response: any) => {
         console.log(Response);
         if (Response.status) {
@@ -343,7 +354,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   onwork() {
-    this.addressService.getRequest("address/getAddresstype/work").subscribe(
+    this.addressService.getRequest(environment.cart_work_address).subscribe(
       (Response: any) => {
         console.log(Response);
         if (Response.status) {
@@ -357,14 +368,12 @@ export class ViewCartComponent implements OnInit {
           this.addModel.type = Response.obj["type"];
         }
       },
-      (error: any) => {
-        console.log(error.error.message);
-      }
+      (error: any) => {}
     );
   }
 
   onOther() {
-    this.addressService.getRequest("address/getAddresstype/other").subscribe(
+    this.addressService.getRequest(environment.cart_other_address).subscribe(
       (Response: any) => {
         console.log(Response);
         if (Response.status) {
@@ -379,10 +388,7 @@ export class ViewCartComponent implements OnInit {
           this.addModel.type = Response.obj["type"];
         }
       },
-      (error: any) => {
-        console.log(error.error.message);
-        //this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-      }
+      (error: any) => {}
     );
   }
 }

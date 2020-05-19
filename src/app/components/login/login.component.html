@@ -56,8 +56,11 @@
         >
           <mat-radio-button name="user" value="user">User</mat-radio-button>
           <mat-radio-button name="Seller" value="seller"
-            >Seller</mat-radio-button>
-          <mat-radio-button  [checked]='true' name="Admin" value="admin">Admin</mat-radio-button>
+            >Seller</mat-radio-button
+          >
+          <mat-radio-button [checked]="true" name="Admin" value="admin"
+            >Admin</mat-radio-button
+          >
         </mat-radio-group>
       </div>
       <br />
@@ -68,7 +71,12 @@
       </div>
       <br />
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="140px">
-        <button mat-button class="btn-block1" [disabled]=" email.invalid || password.invalid "  (click)="onlogin()">
+        <button
+          mat-button
+          class="btn-block1"
+          [disabled]="email.invalid || password.invalid"
+          (click)="onlogin()"
+        >
           Sign in
         </button>
         <button

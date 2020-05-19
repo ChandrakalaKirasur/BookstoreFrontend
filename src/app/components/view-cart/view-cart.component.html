@@ -241,6 +241,13 @@
           mat-raised-button
           *ngIf="!open2"
           class="button"
+          [disabled]="
+            name.invalid ||
+            mobile.invalid ||
+            pincode.invalid ||
+            locality.invalid ||
+            address.invalid
+          "
           (click)="onContinue()"
         >
           Continue
