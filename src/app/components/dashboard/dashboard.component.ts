@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   visible: boolean;
+  profilepic: boolean;
   ngOnInit() {
     if (localStorage.getItem("token") != null) {
       this.visible = true;
@@ -36,6 +37,11 @@ export class DashboardComponent implements OnInit {
     this.getcountofbooks();
     this.getprofileLink();
     this.profile = localStorage.getItem("userimage");
+    // if ((this.profile = null)) {
+    //   this.profilepic = false;
+    // } else {
+    //   this.profilepic = true;
+    // }
   }
 
   onBook() {
@@ -77,6 +83,7 @@ export class DashboardComponent implements OnInit {
     this.getcountofbooks();
     this.spinner.show();
     this.showSpinner = true;
+
     setTimeout(() => {
       this.spinner.hide();
       this.bookcount = 0;
@@ -113,12 +120,18 @@ export class DashboardComponent implements OnInit {
   }
 
   profile: String;
-  profilepic: boolean;
+
   getprofileLink() {
     this.userService.getRequest(environment.user_profile).subscribe(
       (Response: any) => {
         this.profile = Response.obj;
-        this.profilepic = true;
+        console.log("************");
+        console.log(this.profile);
+        if ((this.profilepic = null)) {
+          this.profilepic = false;
+        } else {
+          this.profilepic = true;
+        }
         // if (this.bookcount == 0) {
         //   this.placeOrder = false;
         // }
