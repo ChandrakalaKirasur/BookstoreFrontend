@@ -60,8 +60,6 @@ export class WhishlistComponent implements OnInit {
         this.snackbar.open(Response.message, "undo", { duration: 2500 });
       },
       (error: any) => {
-        console.error(error);
-        console.log(error.error.message);
         this.snackbar.open(error.error.message, "undo", { duration: 2500 });
       }
     );

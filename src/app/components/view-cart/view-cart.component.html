@@ -263,7 +263,7 @@
   <mat-card class="matcard2" *ngIf="open2">
     <div class="mycart">Order summery</div>
     <div *ngFor="let book of bookNquantityData">
-      <div *ngIf="book.bookName != null">
+      <div *ngIf="book != null">
         <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
           <img class="bookimg" src="{{ book.bookImage }}" />
           <div class="bookdetails">
@@ -272,8 +272,8 @@
             </div>
 
             <div class="sub">{{ book.bookAuthor }}</div>
-            <div style="font: Bold 18px/15px Lato; margin-bottom: 30px;">
-              Rs. {{ book.totalPrice }}
+            <div class="totalprice" *ngFor="let quaty of book.quantitybto">
+              {{ quaty.totalprice }}
             </div>
           </div>
         </div>

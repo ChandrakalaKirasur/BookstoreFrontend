@@ -112,7 +112,7 @@ export class ViewCartComponent implements OnInit {
 
   book: Book = new Book();
   bookArray: [];
-  token: string;
+  //token: string;
   bookNquantityData: Array<Book> = [];
   quantitylist: [];
   bookcount: number;
@@ -128,7 +128,7 @@ export class ViewCartComponent implements OnInit {
         }
       },
       (error: any) => {
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        this.snackbar.open(error.error.message, "undo", { duration: 1000 });
       }
     );
   }
@@ -142,46 +142,40 @@ export class ViewCartComponent implements OnInit {
          */
         for (var len in Response.obj) {
           this.bookArray = Response.obj[len];
-
-          let bookDetails = this.bookArray["booksList"];
-          //let qt = this.books["quantityOfBooks"];
           /**
            * bookdetails
            */
-          for (var index in bookDetails) {
-            this.book = bookDetails[0]; //adding book details to bookmodel
+          if (this.bookArray["booksList"][0] != null) {
+            this.book = this.bookArray["booksList"][0]; //adding book details to bookmodel
             this.book.quantitybto = this.bookArray["quantityOfBooks"];
-            this.book.totalPrice = this.book.quantitybto[0]["totalprice"];
-
             this.bookNquantityData.push(this.book);
           }
         }
-        //console.log(this.bookNquantityData);
-        this.snackbar.open(Response.message, "undo", { duration: 2500 });
+        // console.log(this.bookNquantityData);
+        this.snackbar.open(Response.message, "undo", { duration: 1500 });
       },
       (error: any) => {
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        this.snackbar.open(error.error.message, "undo", { duration: 1000 });
       }
     );
   }
 
-  quantitydetails: Cartdetails = new Cartdetails();
   onQuantity(book: any) {
-    this.book.quantitybto[0]["quantityOfBook"] + 1;
-    this.book.totalPrice =
-      this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
     /**
      * if bookcount is equal to noOfBooks available
      */
-    if (this.book.quantitybto[0]["quantityOfBook"] == book.noOfBooks) {
+    if (book.quantitybto[0]["quantityOfBook"] == book.noOfBooks) {
       this.snackbar.open(
         "Only " +
-          this.book.quantitybto[0]["quantityOfBook"] +
+          book.quantitybto[0]["quantityOfBook"] +
           " books are avaliable",
         "undo",
         { duration: 2500 }
       );
     } else {
+      book.quantitybto[0]["quantityOfBook"] + 1;
+      book.totalPrice =
+        book.quantitybto[0]["quantityOfBook"] * book["bookPrice"];
       this.cartService
         .putRequest(
           environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
@@ -192,26 +186,21 @@ export class ViewCartComponent implements OnInit {
             book.quantitybto = Response.obj["quantityOfBooks"];
           },
           (error: any) => {
-            this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+            this.snackbar.open(error.error.message, "undo", { duration: 1000 });
           }
         );
     }
   }
 
   ondescQuantity(book: any) {
-    this.book.quantitybto[0]["quantityOfBook"] + 1;
-    this.book.totalPrice =
-      this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
-
-    if (this.book.quantitybto[0]["quantityOfBook"] == 1) {
-      this.snackbar.open(
-        "Atleast " +
-          this.book.quantitybto[0]["quantityOfBook"] +
-          " In the cart",
-        "undo",
-        { duration: 2500 }
-      );
+    if (book.quantitybto[0]["quantityOfBook"] == 1) {
+      this.snackbar.open("Atleast 1 Book in the cart", "undo", {
+        duration: 2500,
+      });
     } else {
+      book.quantitybto[0]["quantityOfBook"] + 1;
+      book.totalPrice =
+        book.quantitybto[0]["quantityOfBook"] * book["bookPrice"];
       this.cartService
         .putRequest(
           environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
@@ -222,7 +211,7 @@ export class ViewCartComponent implements OnInit {
             book.quantitybto = Response.obj["quantityOfBooks"];
           },
           (error: any) => {
-            this.snackbar.open("cannot descrease", "undo", { duration: 2500 });
+            this.snackbar.open("cannot descrease", "undo", { duration: 1000 });
           }
         );
     }
@@ -232,10 +221,12 @@ export class ViewCartComponent implements OnInit {
   addressclose: boolean = true;
 
   onRemove(book: any) {
-    this.token = localStorage.getItem("token");
     this.cartService
       .deleteRequest(
-        environment.REMOVE_FROM_CART + this.token + "/" + book.bookId,
+        environment.REMOVE_FROM_CART +
+          localStorage.getItem("token") +
+          "/" +
+          book.bookId,
         ""
       )
       .subscribe(
@@ -255,7 +246,7 @@ export class ViewCartComponent implements OnInit {
           this.open2 = false;
         },
         (error: any) => {
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+          this.snackbar.open(error.error.message, "undo", { duration: 1000 });
         }
       );
   }
@@ -280,6 +271,7 @@ export class ViewCartComponent implements OnInit {
   showSpinner = false;
   open2: boolean;
   addModel: Address = new Address();
+  OrderDetails: Array<Book> = [];
   onContinue() {
     this.spinner.show();
     this.showSpinner = true;
@@ -297,15 +289,12 @@ export class ViewCartComponent implements OnInit {
           (Response: any) => {
             this.fields = false;
             this.open2 = true;
-            // this.Continueclose = false;
             this.snackbar.open(Response.message, "undo", {
               duration: 3000,
             });
           },
           (error: any) => {
-            console.error(error);
-            console.log(error.error.message);
-            this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+            this.snackbar.open(error.error.message, "undo", { duration: 1000 });
           }
         );
     }, 2000); //spinner
@@ -335,8 +324,6 @@ export class ViewCartComponent implements OnInit {
           }, 2000);
         },
         (error: any) => {
-          console.error(error);
-          console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
       );
