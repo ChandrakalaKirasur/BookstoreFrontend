@@ -29,19 +29,16 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   visible: boolean;
-  profilepic: boolean;
+  profilepic: boolean = false;
   ngOnInit() {
     if (localStorage.getItem("token") != null) {
       this.visible = true;
+    } else {
+      this.profilepic = false;
     }
     this.getcountofbooks();
     this.getprofileLink();
     this.profile = localStorage.getItem("userimage");
-    // if ((this.profile = null)) {
-    //   this.profilepic = false;
-    // } else {
-    //   this.profilepic = true;
-    // }
   }
 
   onBook() {
@@ -104,19 +101,11 @@ export class DashboardComponent implements OnInit {
   getcountofbooks() {
     console.log("cart.......");
     this.token = localStorage.getItem("token");
-    this.cartService.getRequest(environment.book_count_cart).subscribe(
-      (Response: any) => {
+    this.cartService
+      .getRequest(environment.book_count_cart)
+      .subscribe((Response: any) => {
         this.bookcount = Response.obj;
-        // if (this.bookcount == 0) {
-        //   this.placeOrder = false;
-        // }
-      },
-      (error: any) => {
-        //console.error(error);
-        console.log(error.error.message);
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-      }
-    );
+      });
   }
 
   profile: String;
@@ -125,21 +114,12 @@ export class DashboardComponent implements OnInit {
     this.userService.getRequest(environment.user_profile).subscribe(
       (Response: any) => {
         this.profile = Response.obj;
-        console.log("************");
-        console.log(this.profile);
-        if ((this.profilepic = null)) {
-          this.profilepic = false;
-        } else {
+        if (this.profile != null) {
           this.profilepic = true;
         }
-        // if (this.bookcount == 0) {
-        //   this.placeOrder = false;
-        // }
       },
       (error: any) => {
-        //console.error(error);
-        console.log(error.error.message);
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        this.snackbar.open("", "undo", { duration: 2500 });
       }
     );
   }
@@ -160,6 +140,7 @@ export class DashboardComponent implements OnInit {
         )
         .subscribe((response: any) => {
           localStorage.setItem("userprofile", response["msg"]);
+          this.profilepic = true;
           this.profile = response["msg"];
           console.log("upload", response);
         });
