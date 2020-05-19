@@ -23,9 +23,9 @@ export class BooksComponent implements OnInit {
     this.noOfBooks = this.book.noOfBooks;
     if (localStorage.getItem("token") != null) {
       this.visible = true;
+      this.isAddedToCart();
+      this.isAddedToWishList();
     }
-    this.isAddedToCart();
-    this.isAddedToWishList();
   }
   //adding book to cart if user login
   addToCart() {
@@ -67,22 +67,18 @@ export class BooksComponent implements OnInit {
   }
   //getting boolean as a output and finding whether book is already in cart
   isAddedToCart() {
-    if (this.visible) {
-      this.bookService
-        .isAddedTocart(this.book.bookId)
-        .subscribe((response: any) => {
-          this.book.isAdded = response["obj"];
-        });
-    }
+    this.bookService
+      .isAddedTocart(this.book.bookId)
+      .subscribe((response: any) => {
+        this.book.isAdded = response["obj"];
+      });
   }
   //getting boolean as a output and finding whether book is already in whishlist
   isAddedToWishList() {
-    if (this.visible) {
-      this.bookService
-        .isAddedToWishList(this.book.bookId)
-        .subscribe((response: any) => {
-          this.book.isListed = response["obj"];
-        });
-    }
+    this.bookService
+      .isAddedToWishList(this.book.bookId)
+      .subscribe((response: any) => {
+        this.book.isListed = response["obj"];
+      });
   }
 }
