@@ -52,7 +52,8 @@ import { OrderDetailsComponent } from "./components/order-details/order-details.
 import { VerifyComponent } from "./components/verify/verify.component";
 import { MatBadgeModule } from "@angular/material/badge";
 import { SearchComponent } from "./components/search/search.component";
-import { SearchPipe } from './pipes/search.pipe';
+import { SearchPipe } from "./pipes/search.pipe";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { SearchPipe } from './pipes/search.pipe';
     MatCardModule,
     MatButtonModule,
     MatSidenavModule,
+    MatSelectModule,
     MatListModule,
     MatMenuModule,
     MatTableModule,

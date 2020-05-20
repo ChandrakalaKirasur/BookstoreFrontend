@@ -4,7 +4,11 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Login } from "src/app/models/login";
 import { Address } from "src/app/models/address";
-import { MatSnackBar, MatRadioChange } from "@angular/material";
+import {
+  MatSnackBar,
+  MatRadioChange,
+  MatSelectChange,
+} from "@angular/material";
 import { ViewcartService } from "src/app/service/viewcart.service";
 import { Book } from "src/app/models/book";
 import { AddressService } from "src/app/service/address.service";
@@ -265,6 +269,15 @@ export class ViewCartComponent implements OnInit {
     this.person = mrChange.value;
   }
 
+  shippingCharge: number;
+  selected(event: MatSelectChange) {
+    if (event.value == "india") {
+      this.shippingCharge = 50;
+    } else {
+      this.shippingCharge = 100;
+    }
+  }
+
   onplaceOrder() {
     this.open = true;
     this.fields = true;
@@ -276,7 +289,9 @@ export class ViewCartComponent implements OnInit {
   open2: boolean;
   addModel: Address = new Address();
   OrderDetails: Array<Book> = [];
+  grandTotal: number;
   onContinue() {
+    this.grandTotal = 0;
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
@@ -302,6 +317,15 @@ export class ViewCartComponent implements OnInit {
           }
         );
     }, 2000); //spinner
+
+    for (var index in this.bookNquantityData) {
+      if (this.bookNquantityData[index] != null) {
+        this.grandTotal += this.bookNquantityData[index]["quantitybto"][0][
+          "totalprice"
+        ];
+      }
+    }
+    this.grandTotal += this.shippingCharge;
   }
 
   onEdit() {

@@ -134,20 +134,23 @@
         </mat-form-field>
         <!---------------------------- locality ------------------------------------->
         <div style="margin-left: 7px;">
-          <mat-form-field appearance="outline" class="input">
-            <mat-label>Locality</mat-label>
-            <mat-error *ngIf="locality.invalid">
-              {{ localityValidation() }}</mat-error
-            >
-            <input
-              type="text"
-              matInput
-              placeholder="Enter your Locality"
+          <mat-form-field style="width: 220px; margin-left: 15px;">
+            <mat-label>Country</mat-label>
+            <mat-select
+              (selectionChange)="selected($event)"
               required
-              [(ngModel)]="addModel.locality"
               [disabled]="!fields"
-              autocomplete="off"
-            />
+            >
+              <mat-option value="india">
+                India
+              </mat-option>
+              <mat-option value="america">
+                America
+              </mat-option>
+              <mat-option value="other">
+                Others
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
       </div>
@@ -221,13 +224,13 @@
           [disabled]="!fields"
           (change)="onChange($event)"
         >
-          <mat-radio-button [checked]="true" (click)="getaddress()" value="Home"
+          <mat-radio-button (click)="getaddress()" value="Home"
             >Home</mat-radio-button
           >
           <mat-radio-button (click)="onwork()" value="Work"
             >Work</mat-radio-button
           >
-          <mat-radio-button (click)="onOther()" value="Other"
+          <mat-radio-button [checked]="true" (click)="onOther()" value="Other"
             >Other</mat-radio-button
           >
         </mat-radio-group>
@@ -262,22 +265,44 @@
 
   <mat-card class="matcard2" *ngIf="open2">
     <div class="mycart">Order summery</div>
-    <div *ngFor="let book of bookNquantityData">
-      <div *ngIf="book != null">
-        <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-          <img class="bookimg" src="{{ book.bookImage }}" />
-          <div class="bookdetails">
-            <div class="booktitle">
-              {{ book.bookName }}
-            </div>
+    <div>
+      <div *ngFor="let book of bookNquantityData">
+        <div *ngIf="book != null">
+          <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
+            <img class="bookimg" src="{{ book.bookImage }}" />
+            <div class="bookdetails">
+              <div class="booktitle">
+                {{ book.bookName }}
+              </div>
 
-            <div class="sub">{{ book.bookAuthor }}</div>
-            <div class="totalprice" *ngFor="let quaty of book.quantitybto">
-              {{ quaty.totalprice }}
+              <div class="sub">{{ book.bookAuthor }}</div>
+              <div class="totalprice">Rs. {{ book.bookPrice }}</div>
+
+              <div class="totalprice2" *ngFor="let quaty of book.quantitybto">
+                qty:{{ quaty.quantityOfBook }} &nbsp; Totalprice:{{
+                  quaty.totalprice
+                }}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div
+        fxLayout="column"
+        fxLayoutAlign="start end"
+        style="margin-bottom: 10px;"
+      >
+        Shipping charge : {{ shippingCharge }}
+      </div>
+      <mat-divider></mat-divider><br />
+    </div>
+
+    <div
+      fxLayout="column"
+      fxLayoutAlign="start end"
+      style="margin-bottom: 10px;"
+    >
+      Grand Total:{{ grandTotal }}
     </div>
     <div fxLayout="column" fxLayoutAlign="end end">
       <button mat-raised-button class="button" (click)="onCheckOut(book)">
