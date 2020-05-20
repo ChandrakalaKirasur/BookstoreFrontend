@@ -45,6 +45,7 @@ export class OrderDetailsComponent implements OnInit {
         (Response: any) => {
           console.log(Response);
           for (var len in Response.obj) {
+            this.count += 1;
             this.books = Response.obj[len];
 
             let res = this.books["booksList"];
