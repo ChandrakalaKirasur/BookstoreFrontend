@@ -51,7 +51,7 @@ const routes: Routes = [
       },
       {
         path: "books/ordersucess",
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
         component: OrderSuccessComponent,
       },
       {

@@ -183,7 +183,9 @@ export class ViewCartComponent implements OnInit {
         )
         .subscribe(
           (Response: any) => {
-            book.quantitybto = Response.obj["quantityOfBooks"];
+            if (Response.obj["quantityOfBooks"] != null) {
+              book.quantitybto = Response.obj["quantityOfBooks"];
+            }
           },
           (error: any) => {
             this.snackbar.open(error.error.message, "undo", { duration: 1000 });
@@ -208,7 +210,9 @@ export class ViewCartComponent implements OnInit {
         )
         .subscribe(
           (Response: any) => {
-            book.quantitybto = Response.obj["quantityOfBooks"];
+            if (Response.obj["quantityOfBooks"] != null) {
+              book.quantitybto = Response.obj["quantityOfBooks"];
+            }
           },
           (error: any) => {
             this.snackbar.open("cannot descrease", "undo", { duration: 1000 });
@@ -306,7 +310,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   onCheckOut(book: any) {
-    console.log(book);
+    //console.log(book);
     this.spinner.show();
     this.showSpinner = true;
 
@@ -319,7 +323,10 @@ export class ViewCartComponent implements OnInit {
         (Response: any) => {
           setTimeout(() => {
             this.spinner.hide();
-            this.router.navigate(["/books/ordersucess"]);
+            this.router.navigate([
+              "/books/ordersucess/",
+              { orderId: Response.obj.orderId },
+            ]);
             this.snackbar.open(Response.message, "undo", { duration: 2500 });
           }, 2000);
         },
@@ -333,7 +340,7 @@ export class ViewCartComponent implements OnInit {
     this.addressService
       .getRequest(environment.cart_home_address)
       .subscribe((Response: any) => {
-        console.log(Response);
+        //console.log(Response);
         if (Response.status) {
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
@@ -351,7 +358,7 @@ export class ViewCartComponent implements OnInit {
     this.addressService
       .getRequest(environment.cart_work_address)
       .subscribe((Response: any) => {
-        console.log(Response);
+        //console.log(Response);
         if (Response.status) {
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
@@ -369,7 +376,7 @@ export class ViewCartComponent implements OnInit {
     this.addressService
       .getRequest(environment.cart_other_address)
       .subscribe((Response: any) => {
-        console.log(Response);
+        //console.log(Response);
         if (Response.status) {
           console.log(Response.obj["type"]);
           this.addModel.address = Response.obj["address"];

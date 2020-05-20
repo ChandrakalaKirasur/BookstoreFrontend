@@ -1,8 +1,7 @@
-<!-- <p>whishlist works!</p> -->
 <div role="combobox" flex="column" style="margin-left: 16%;">
   <mat-card class="matcard2">
-    <div *ngIf="count" class="mycart">My cart&nbsp;({{ bookcount }})</div>
-    <div *ngIf="!count" class="mycart">My cart&nbsp;({{ bookcount }})</div>
+    <div *ngIf="count" class="mycart">My WhishList&nbsp;({{ bookcount }})</div>
+    <div *ngIf="!count" class="mycart">My WhishList&nbsp;({{ bookcount }})</div>
     <div *ngFor="let book of books">
       <div *ngIf="book != null">
         <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">

@@ -28,7 +28,7 @@
         <a (click)="onCart()" class="cartimg">
           <mat-icon
             class="grab"
-            [matBadge]="bookcount"
+            [matBadge]="bookcountds"
             matBadgeSize="small"
             [matBadgeHidden]="badgeCounter == 0"
             matBadgePosition="above after"
@@ -60,7 +60,7 @@
         </button>
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <div style="width: 250px; height: 250px;">
+          <div style="width: 200px;">
             <button
               mat-menu-item
               [disabled]="!visible"
@@ -77,40 +77,41 @@
             >
               MyWhishList
             </button>
-            <button
-              mat-menu-item
-              [disabled]="visible"
-              style="text-align: center;"
-              (click)="onLogin()"
-            >
-              LogIn
-            </button>
+            <div *ngIf="!visible">
+              <button
+                mat-menu-item
+                style="text-align: center;"
+                (click)="onLogin()"
+              >
+                Login
+              </button>
+            </div>
             <button
               mat-menu-item
               [disabled]="!visible"
               style="text-align: center;"
               (click)="onLogout()"
             >
-              LogOut
+              Logout
             </button>
 
-            <label class="btn-upload">
-              <button
-                [disabled]="!visible"
-                value="uploadProfile"
-                class="uploadimage"
-                (click)="fileInput.click($event)"
-              >
-                uploadProfile
-                <input
-                  style="display: none;"
-                  #fileInput
-                  type="file"
-                  name="fileupload"
-                  (change)="fileChange($event)"
-                />
-              </button>
-            </label>
+            <!-- <label> -->
+            <button
+              [disabled]="!visible"
+              value="uploadProfile"
+              class="uploadimage"
+              (click)="fileInput.click($event)"
+            >
+              uploadProfile
+              <input
+                style="display: none;"
+                #fileInput
+                type="file"
+                name="fileupload"
+                (change)="fileChange($event)"
+              />
+            </button>
+            <!-- </label> -->
           </div>
         </mat-menu>
       </div>
