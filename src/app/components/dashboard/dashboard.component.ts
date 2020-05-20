@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
 
   visible: boolean;
   profilepic: boolean;
+  appName: string;
   ngOnInit() {
     if (localStorage.getItem("token") != null) {
       this.visible = true;
@@ -91,11 +92,20 @@ export class DashboardComponent implements OnInit {
     }, 1000);
     window.location.reload();
   }
-
+  myInput = new FormControl();
+  private obtainNotes = new BehaviorSubject([]);
+  currentMessage = this.obtainNotes.asObservable();
   searching(searchText: any) {
-    this.router.navigate(["/books/search"], {
-      queryParams: { searchText: searchText },
-    });
+    this.appName = "Search";
+    this.httpservice
+      .getMethod(
+        environment.baseUrl + "book/bookorauthorname?text=" + searchText,
+        this.httpservice.httpOptions
+      )
+      .subscribe((response: any) => {
+        this.obtainNotes.next(response.obj);
+        this.router.navigate(["/books/search"]);
+      });
   }
 
   bookcount: number;
