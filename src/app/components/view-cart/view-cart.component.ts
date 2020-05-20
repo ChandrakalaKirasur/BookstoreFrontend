@@ -111,15 +111,14 @@ export class ViewCartComponent implements OnInit {
   }
 
   book: Book = new Book();
-  books: [];
-  token: string;
+  bookArray: [];
+  //token: string;
   bookNquantityData: Array<Book> = [];
   quantitylist: [];
   bookcount: number;
 
   placeOrder: boolean = true;
   getcountofbooks() {
-    this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.book_count_cart).subscribe(
       (Response: any) => {
         this.bookcount = Response.obj;
@@ -129,105 +128,109 @@ export class ViewCartComponent implements OnInit {
         }
       },
       (error: any) => {
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        this.snackbar.open(error.error.message, "undo", { duration: 1000 });
       }
     );
   }
 
   getbooks() {
-    this.token = localStorage.getItem("token");
     this.cartService.getRequest(environment.Get_book_Cart).subscribe(
       (Response: any) => {
-        this.books = Response.obj;
+        this.bookArray = Response.obj;
         /**
          * cart Details
          */
-        console.log(this.books);
         for (var len in Response.obj) {
-          this.books = Response.obj[len];
-
-          let bookDetails = this.books["booksList"];
-          let qt = this.books["quantityOfBooks"];
+          this.bookArray = Response.obj[len];
           /**
            * bookdetails
            */
-          for (var index in bookDetails) {
-            this.book = bookDetails[0]; //adding book details to bookmodel
-
-            this.quantitylist = this.books["quantityOfBooks"];
-            this.book.quantitybto = this.books["quantityOfBooks"];
-            this.book.totalPrice =
-              this.book.quantitybto[0]["quantityOfBook"] *
-              this.book["bookPrice"];
-
+          if (this.bookArray["booksList"][0] != null) {
+            this.book = this.bookArray["booksList"][0]; //adding book details to bookmodel
+            this.book.quantitybto = this.bookArray["quantityOfBooks"];
             this.bookNquantityData.push(this.book);
           }
         }
-        console.log(this.bookNquantityData);
-        this.snackbar.open(Response.message, "undo", { duration: 2500 });
+        // console.log(this.bookNquantityData);
+        this.snackbar.open(Response.message, "undo", { duration: 1500 });
       },
       (error: any) => {
-        this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+        this.snackbar.open(error.error.message, "undo", { duration: 1000 });
       }
     );
   }
 
-  quantitydetails: Cartdetails = new Cartdetails();
   onQuantity(book: any) {
-    this.book.quantitybto[0]["quantityOfBook"] + 1;
-    this.book.totalPrice =
-      this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
-    this.cartService
-      .putRequest(
-        environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
-        book.quantitybto[0]
-      )
-      .subscribe(
-        (Response: any) => {
-          if (Response.obj == null) {
-            this.snackbar.open("bookcount is more", "undo", { duration: 2500 });
-          }
-          book.quantitybto = Response.obj["quantityOfBooks"];
-        },
-        (error: any) => {
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
-        }
+    /**
+     * if bookcount is equal to noOfBooks available
+     */
+    if (book.quantitybto[0]["quantityOfBook"] == book.noOfBooks) {
+      this.snackbar.open(
+        "Only " +
+          book.quantitybto[0]["quantityOfBook"] +
+          " books are avaliable",
+        "undo",
+        { duration: 2500 }
       );
+    } else {
+      book.quantitybto[0]["quantityOfBook"] + 1;
+      book.totalPrice =
+        book.quantitybto[0]["quantityOfBook"] * book["bookPrice"];
+      this.cartService
+        .putRequest(
+          environment.cart_inc_bookquantity + "?bookId=" + book.bookId,
+          book.quantitybto[0]
+        )
+        .subscribe(
+          (Response: any) => {
+            if (Response.obj["quantityOfBooks"] != null) {
+              book.quantitybto = Response.obj["quantityOfBooks"];
+            }
+          },
+          (error: any) => {
+            this.snackbar.open(error.error.message, "undo", { duration: 1000 });
+          }
+        );
+    }
   }
 
   ondescQuantity(book: any) {
-    this.book.quantitybto[0]["quantityOfBook"] + 1;
-    this.book.totalPrice =
-      this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
-    this.cartService
-      .putRequest(
-        environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
-        book.quantitybto[0]
-      )
-      .subscribe(
-        (Response: any) => {
-          if (Response.obj == null) {
-            this.snackbar.open("Atleast Book one", "undo", { duration: 2500 });
+    if (book.quantitybto[0]["quantityOfBook"] == 1) {
+      this.snackbar.open("Atleast 1 Book in the cart", "undo", {
+        duration: 2500,
+      });
+    } else {
+      book.quantitybto[0]["quantityOfBook"] + 1;
+      book.totalPrice =
+        book.quantitybto[0]["quantityOfBook"] * book["bookPrice"];
+      this.cartService
+        .putRequest(
+          environment.cart_desc_bookquantity + "?bookId=" + book.bookId,
+          book.quantitybto[0]
+        )
+        .subscribe(
+          (Response: any) => {
+            if (Response.obj["quantityOfBooks"] != null) {
+              book.quantitybto = Response.obj["quantityOfBooks"];
+            }
+          },
+          (error: any) => {
+            this.snackbar.open("cannot descrease", "undo", { duration: 1000 });
           }
-          book.quantitybto = Response.obj["quantityOfBooks"];
-          this.book.totalPrice =
-            this.book.quantitybto[0]["quantityOfBook"] * this.book["bookPrice"];
-        },
-        (error: any) => {
-          this.snackbar.open("cannot descrease", "undo", { duration: 2500 });
-        }
-      );
+        );
+    }
   }
 
   count: boolean = true;
   addressclose: boolean = true;
 
   onRemove(book: any) {
-    console.log(book);
-    this.token = localStorage.getItem("token");
     this.cartService
       .deleteRequest(
-        environment.REMOVE_FROM_CART + this.token + "/" + book.bookId,
+        environment.REMOVE_FROM_CART +
+          localStorage.getItem("token") +
+          "/" +
+          book.bookId,
         ""
       )
       .subscribe(
@@ -240,16 +243,14 @@ export class ViewCartComponent implements OnInit {
             }
             this.bookcount -= 1;
             this.count = false;
-
-            if (this.bookcount == 0) {
-              this.placeOrder = false;
-              this.open = false;
-              // this.fields = false;
-            }
           }
+
+          this.placeOrder = true;
+          this.open = false;
+          this.open2 = false;
         },
         (error: any) => {
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+          this.snackbar.open(error.error.message, "undo", { duration: 1000 });
         }
       );
   }
@@ -273,8 +274,8 @@ export class ViewCartComponent implements OnInit {
 
   showSpinner = false;
   open2: boolean;
-  //Continueclose: boolean = true;
   addModel: Address = new Address();
+  OrderDetails: Array<Book> = [];
   onContinue() {
     this.spinner.show();
     this.showSpinner = true;
@@ -284,20 +285,20 @@ export class ViewCartComponent implements OnInit {
       this.addModel.type = this.person;
 
       this.addressService
-        .postRequest("address/add/" + this.token, this.addModel)
+        .postRequest(
+          "address/add/" + localStorage.getItem("token"),
+          this.addModel
+        )
         .subscribe(
           (Response: any) => {
             this.fields = false;
             this.open2 = true;
-            // this.Continueclose = false;
             this.snackbar.open(Response.message, "undo", {
               duration: 3000,
             });
           },
           (error: any) => {
-            console.error(error);
-            console.log(error.error.message);
-            this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+            this.snackbar.open(error.error.message, "undo", { duration: 1000 });
           }
         );
     }, 2000); //spinner
@@ -309,7 +310,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   onCheckOut(book: any) {
-    console.log(book);
+    //console.log(book);
     this.spinner.show();
     this.showSpinner = true;
 
@@ -322,22 +323,24 @@ export class ViewCartComponent implements OnInit {
         (Response: any) => {
           setTimeout(() => {
             this.spinner.hide();
-            this.router.navigate(["/books/ordersucess"]);
+            this.router.navigate([
+              "/books/ordersucess/",
+              { orderId: Response.obj.orderId },
+            ]);
             this.snackbar.open(Response.message, "undo", { duration: 2500 });
           }, 2000);
         },
         (error: any) => {
-          console.error(error);
-          console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500 });
         }
       );
   }
 
   getaddress() {
-    this.addressService.getRequest(environment.cart_home_address).subscribe(
-      (Response: any) => {
-        console.log(Response);
+    this.addressService
+      .getRequest(environment.cart_home_address)
+      .subscribe((Response: any) => {
+        //console.log(Response);
         if (Response.status) {
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
@@ -348,15 +351,14 @@ export class ViewCartComponent implements OnInit {
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
         }
-      },
-      (error: any) => {}
-    );
+      });
   }
 
   onwork() {
-    this.addressService.getRequest(environment.cart_work_address).subscribe(
-      (Response: any) => {
-        console.log(Response);
+    this.addressService
+      .getRequest(environment.cart_work_address)
+      .subscribe((Response: any) => {
+        //console.log(Response);
         if (Response.status) {
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
@@ -367,15 +369,14 @@ export class ViewCartComponent implements OnInit {
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
         }
-      },
-      (error: any) => {}
-    );
+      });
   }
 
   onOther() {
-    this.addressService.getRequest(environment.cart_other_address).subscribe(
-      (Response: any) => {
-        console.log(Response);
+    this.addressService
+      .getRequest(environment.cart_other_address)
+      .subscribe((Response: any) => {
+        //console.log(Response);
         if (Response.status) {
           console.log(Response.obj["type"]);
           this.addModel.address = Response.obj["address"];
@@ -387,8 +388,6 @@ export class ViewCartComponent implements OnInit {
           this.addModel.pincode = Response.obj["pincode"];
           this.addModel.type = Response.obj["type"];
         }
-      },
-      (error: any) => {}
-    );
+      });
   }
 }

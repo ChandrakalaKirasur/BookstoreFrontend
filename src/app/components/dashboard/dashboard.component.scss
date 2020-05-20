@@ -94,11 +94,13 @@
 }
 
 .grab {
-  cursor: -webkit-grab;
-  cursor: grab;
+  cursor: pointer;
 }
 .uploadimage {
-  margin-left: 73px;
+  margin-left: 60px;
   margin-top: 15px;
   border: none;
+  cursor: pointer;
+  background-color: #ffff;
+  padding-bottom: 12px;
 }

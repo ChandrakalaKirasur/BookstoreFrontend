@@ -3,16 +3,13 @@
     <div *ngIf="count" class="mycart">My cart&nbsp;({{ bookcount }})</div>
     <div *ngIf="!count" class="mycart">My cart&nbsp;({{ bookcount }})</div>
     <div *ngFor="let book of bookNquantityData">
-      <div *ngIf="book.bookName != null">
+      <div *ngIf="book != null">
         <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-          <!-- "assets/images/Image 11@2x.png" -->
           <img class="bookimg" src="{{ book.bookImage }}" />
           <div class="bookdetails">
             <div class="booktitle">
-              <!-- Don't Make Me Think -->
               {{ book.bookName }}
             </div>
-            <!-- <div class="subtitle" fxLayout="column" fxLayoutAlign="center start"> -->
             <div class="sub">{{ book.bookAuthor }}</div>
             <div style="margin-bottom: 30px; font: Bold 18px/15px Lato;">
               Rs. {{ book.bookPrice }}
@@ -40,7 +37,7 @@
             </button>
           </div>
           <button
-            mat-icon-button
+            class="grab"
             (click)="onRemove(book)"
             style="background-color: white; border: none; outline: none;"
           >
@@ -265,21 +262,18 @@
 
   <mat-card class="matcard2" *ngIf="open2">
     <div class="mycart">Order summery</div>
-
     <div *ngFor="let book of bookNquantityData">
-      <div *ngIf="book.bookName != null">
+      <div *ngIf="book != null">
         <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-          <!-- <img class="bookimg" src="assets/images/Image 11@2x.png" /> -->
           <img class="bookimg" src="{{ book.bookImage }}" />
           <div class="bookdetails">
             <div class="booktitle">
-              <!-- Don't Make Me Think -->
               {{ book.bookName }}
             </div>
 
             <div class="sub">{{ book.bookAuthor }}</div>
-            <div style="font: Bold 18px/15px Lato; margin-bottom: 30px;">
-              Rs. {{ book.totalPrice }}
+            <div class="totalprice" *ngFor="let quaty of book.quantitybto">
+              {{ quaty.totalprice }}
             </div>
           </div>
         </div>
