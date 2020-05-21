@@ -266,6 +266,7 @@ export class ViewCartComponent implements OnInit {
           (Response: any) => {
             this.fields = false;
             this.open2 = true;
+            this.customerForm.disable();
             this.snackbar.open(Response.message, "undo", {
               duration: 3000,
             });
@@ -289,6 +290,7 @@ export class ViewCartComponent implements OnInit {
   onEdit() {
     this.fields = true;
     this.open2 = false;
+    this.customerForm.enable();
   }
 
   onCheckOut(book: any) {
