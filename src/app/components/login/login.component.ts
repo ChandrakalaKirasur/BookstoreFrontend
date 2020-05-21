@@ -25,12 +25,15 @@ export class LoginComponent implements OnInit {
   login: Login = new Login("", "");
   loginForm: FormGroup;
   token: string;
-  
+
   email = new FormControl(this.login.mailOrMobile, [
     Validators.required,
-    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
   ]);
-  password = new FormControl(this.login.password, [Validators.required, Validators.minLength(8),]);
+  password = new FormControl(this.login.password, [
+    Validators.required,
+    Validators.minLength(8),
+  ]);
   showSpinner = false;
   person = String;
   constructor(
@@ -39,13 +42,10 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private httpservice: HttpService,
-  
+    private httpservice: HttpService
   ) {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
   /**
    * Email validation
    */
@@ -67,11 +67,8 @@ export class LoginComponent implements OnInit {
       : "";
   }
   diableRadios = true;
-  favoriteSeason: string = 'user';
-  seasons = [
-    'user',
-    'seller',
-  ];
+  favoriteSeason: string = "user";
+  seasons = ["user", "seller"];
   isDisabled: boolean = true;
   onlogin() {
     this.spinner.show();
@@ -82,16 +79,15 @@ export class LoginComponent implements OnInit {
         .postRequest(this.favoriteSeason + "/login", this.login)
         .subscribe(
           (response: any) => {
-            if (response.status==200) {
+            if (response.status == 200) {
               this.spinner.hide();
               localStorage.setItem("token", response.obj);
               this.token = localStorage.getItem("token");
-              this.snackBar.open(
-                "Login Successfull",
-                "undo",
-                { duration: 2500 }
-              );
+              this.snackBar.open("Login Successfull", "undo", {
+                duration: 2500,
+              });
               this.router.navigate(["books"]);
+              window.location.reload();
             } else {
               this.spinner.hide();
               this.snackBar.open("Login Failed", "undo", { duration: 2500 });
@@ -103,5 +99,4 @@ export class LoginComponent implements OnInit {
         );
     }, 2000); //spinner
   }
-  
 }

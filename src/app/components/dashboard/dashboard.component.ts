@@ -10,8 +10,8 @@ import { MatSnackBar, MatDialog } from "@angular/material";
 import { DataService } from "src/app/service/data.service";
 import { UserService } from "src/app/service/user.service";
 import { BooksComponent } from "../books/books.component";
-import { LoginComponent } from '../login/login.component';
-import {MatDialogModule} from '@angular/material/dialog'; 
+import { LoginComponent } from "../login/login.component";
+import { MatDialogModule } from "@angular/material/dialog";
 
 @Component({
   selector: "app-dashboard",
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     private data: DataService,
     private snackbar: MatSnackBar,
     private router: Router,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {}
 
   visible: boolean;
@@ -82,10 +82,10 @@ export class DashboardComponent implements OnInit {
 
   onLogin() {
     const dialogRef = this.dialog.open(LoginComponent);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
-  
+
     // const dialogRef = this.dialog.open(LoginComponent, {
     //   width: '800px',
     // });
@@ -102,8 +102,8 @@ export class DashboardComponent implements OnInit {
       this.spinner.hide();
       this.bookcount = 0;
       this.router.navigate(["/books"]);
+      window.location.reload();
     }, 1000);
-    window.location.reload();
   }
   myInput = new FormControl();
   private obtainNotes = new BehaviorSubject([]);
