@@ -73,7 +73,6 @@ export class ViewCartComponent implements OnInit {
 
   book: Book = new Book();
   bookArray: [];
-  //token: string;
   bookNquantityData: Array<Book> = [];
   quantitylist: [];
   bookcount: number;

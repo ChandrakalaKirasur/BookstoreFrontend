@@ -96,11 +96,6 @@
         >
           <mat-form-field appearance="outline" class="input">
             <mat-label>Name</mat-label>
-            <!-- <mat-error *ngIf="name.invalid"> {{ nameValidation() }}</mat-error> -->
-            <!-- <mat-error *ngIf="f.name.errors"></mat-error> -->
-            <!-- <mat-error *ngIf="customerForm.get('name').hasError('required')"
-              >"</mat-error
-            > -->
             <input
               type="text"
               matInput
@@ -154,7 +149,7 @@
           </mat-form-field>
           <!---------------------------- locality ------------------------------------->
           <div style="margin-left: 7px;">
-            <mat-form-field style="width: 257px; margin-left: 15px;">
+            <mat-form-field style="width: 237px; margin-left: 15px;">
               <mat-label>Country</mat-label>
               <mat-select
                 (selectionChange)="selected($event)"
