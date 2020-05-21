@@ -1,3 +1,189 @@
+// html,body
+// {
+//     height:100%;
+//     margin:0;
+//     padding: 0;
+    
+// }
+// .login-wrapper{
+//     height:100%;
+
+// }
+// .box{    
+//     position:fixed;
+//     top:0;
+//     opacity:1;
+//     float:left;
+//     padding:60px 50px 40px 50px;
+//     width:100%;
+//     // background-image: url(/assets/images/amm.jpg);
+//     // color: rgb(255, 255, 255);
+//     border-radius:10px;
+//     transform:translate(50%,50%);
+//     -webkit-transform:scale(1);
+//     -ms-transform:scale(1);
+//     z-index:5;
+//     max-width:330px;
+// }
+
+// .box.back{
+//     transform:scale(.95);
+//     -webkit-transform:scale(.95);
+//     -ms-transform:scale(.95);
+//     top:-20px;
+//     opacity:.8;
+//     z-index:-1;
+    
+// }
+// before mat card we write content
+// .box:before{
+//     content:"";
+//     width:100%;
+//     height:30px;
+//     border-radius:10px;
+//     position:absolute;
+//     top:-10px;
+//     background:#a0161699;
+//     left:0;transform:scale(.95);
+//     -webkit-transform:scale(.95);
+//     -ms-transform:scale(.95);
+//     z-index:-1;}
+
+// .login-wrapper .example-form{
+//     min-width:100%;
+//     max-width:300px;
+//     width:100%;
+// }
+// .login-wrapper .example-full-width
+// {
+//     width:100%;
+    
+// }
+// .login-wrapper .btn-block1{
+//     font-size: 18px;
+//     text-align: center;
+//     color: white;
+//     background-color:#A03037;
+//     border-radius: 3px;
+//     border: none;
+//     opacity: 1;
+// }
+// .login-wrapper .btn-block2{
+//     font-size: 18px;
+//     text-align: center;
+//     color: white;
+//     background-color:#A03037;
+//     border-radius: 3px;
+//     border: none;
+//     opacity: 1;   
+// }
+// .login-wrapper .btn-block3{
+//     font-size: 18px;
+//     color:#A03037;
+// }
+// .login-wrapper mat-card-header{
+//     text-align:center;
+//     width:100%;
+//     display:
+//     block;
+//     font-weight:700;
+// }
+// .login-wrapper mat-card-header mat-card-title{
+//     font-size:30px;
+//     margin:0;
+// }
+// .login-wrapper .mat-card{
+//     padding:40px 70px 50px;
+// }
+// .login-wrapper .mat-stroked-button{
+//     border:1px solid currentColor;
+//     line-height:54px;
+//     background:#FFF7FA;}
+// .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix{
+//     padding:0.8375em 0;
+// }
+// .login-wrapper {
+//     background-image: url(/assets/images/bookstore.jpg);
+//     background-repeat: no-repeat;
+//     background-size: 100%;
+//     background-position: center center;
+//     background-attachment: fixed;
+//     background-size: cover;
+//     height: 100vh;
+
+//   }
+  
+//   .login-wrapper .login {
+//     min-height: 70vh;
+//   }
+  
+
+// // mat-label normal state style
+// ::ng-deep .mat-form-field-label {
+//     color: black(77, 224, 48, 0.6)!important;
+//     // color: $mainColor!important;
+// }
+
+
+// ::ng-deep {
+//     $custom-main-color: red;
+//     $custom-label-color: rgba(0, 0, 0, .6);
+ 
+//     // mat-icon-stepper selected color change
+//     .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+//        background-color: #A03037 !important;
+//     }
+ 
+//     // input outline color
+//     .mat-form-field-appearance-outline .mat-form-field-outline {
+//        color: rgb(152, 156, 152) !important;
+//     }
+ 
+//     // mat-input focused color
+//     .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+//        color: #A03037 !important;
+//     }
+ 
+//     // mat-input error outline color
+//     .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+//        color: $custom-main-color !important;
+//        opacity: 0.8 !important;
+//     }
+ 
+//     // mat-input caret color
+//     .mat-input-element {
+//        caret-color: $custom-main-color !important;
+//     }
+ 
+//     // mat-input error caret color
+//     .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+//        caret-color: $custom-main-color !important;
+//     }
+ 
+//     // mat-label normal state style
+//     .mat-form-field-label {
+//        color: rgb(175, 179, 175) !important;
+//     }
+ 
+//     // mat-label focused style
+//     .mat-form-field.mat-focused .mat-form-field-label {
+//        color: #0a0102 !important;
+//     }
+ 
+//     // mat-label error style
+//     .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+//        color: $custom-main-color !important;
+//     }
+// }
+    
+//     .grab {
+//         cursor:-webkit-grab;
+//         cursor:grab;
+//     }
+//     .example-radio-group {
+//         display: inline-flex;
+//         flex-direction: row;
+//       }
 html,body
 {
     height:100%;
@@ -7,7 +193,8 @@ html,body
 .login-wrapper{
     height:100%;
 }
-
+// .positronx
+// {text-decoration:none;color:#ffffff;}
 .box{
     
     position:relative;
@@ -25,6 +212,27 @@ html,body
     z-index:5;
     max-width:330px;
 }
+.box.back{
+    transform:scale(.95);
+    -webkit-transform:scale(.95);
+    -ms-transform:scale(.95);
+    top:-20px;opacity:.8;
+    z-index:-1;
+    
+}
+//before mat card we write content
+// .box:before{
+//     content:"";
+//     width:100%;
+//     height:30px;
+//     border-radius:10px;
+//     position:absolute;
+//     top:-10px;
+//     background:#a0161699;
+//     left:0;transform:scale(.95);
+//     -webkit-transform:scale(.95);
+//     -ms-transform:scale(.95);
+//     z-index:-1;}
 .login-wrapper .example-form{
     min-width:100%;
     max-width:300px;
@@ -33,13 +241,31 @@ html,body
 .login-wrapper .example-full-width
 {
     width:100%;
-    
+}
+button:disabled {
+    background-color: white; 
+    font-size: 18px;
+        text-align: center;
+        color:#A03037;
+        font-style: red;
+        
+ }
+ button:enabled {
+    background-color: white; 
+    font-size: 18px;
+        text-align: center;
+        color:#A03037;
+        
+        
+ }
+.login-wrapper .btn-block3{
+    font-size: 18px;
+    color:#A03037;
 }
 .login-wrapper .btn-block1{
     font-size: 18px;
     //  color: green;
-    // width:50%;
-    // margin-left: -10px;
+    width:100%;
     font-size: 18px;
     text-align: center;
     color: white;
@@ -48,23 +274,23 @@ html,body
     border: none;
     opacity: 1;
     
-    
+    // background-image: url(/assets/images/bookstore.jpg);
 }
 .login-wrapper .btn-block2{
+    font-size: 18px;
+    //  color: green;
+    width:100%;
     font-size: 18px;
     text-align: center;
     color: white;
     background-color:#A03037;
     border-radius: 3px;
     border: none;
-    opacity: 1;   
-}
-.login-wrapper .btn-block3{
-    font-size: 18px;
-    color:#A03037;
+    opacity: 1;
     
-   
+    // background-image: url(/assets/images/bookstore.jpg);
 }
+
 .login-wrapper mat-card-header{
     text-align:center;
     width:100%;
@@ -77,7 +303,7 @@ html,body
     margin:0;
 }
 .login-wrapper .mat-card{
-    padding:40px 70px 50px;
+    padding:50px 60px 50px;
 }
 .login-wrapper .mat-stroked-button{
     border:1px solid currentColor;
@@ -87,7 +313,7 @@ html,body
     padding:0.8375em 0;
 }
 .login-wrapper {
-    background-image: url(/assets/images/bookstore.jpg);
+    background-image: url(/assets/images/race1.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
    
@@ -98,16 +324,7 @@ html,body
   .login-wrapper .login {
     min-height: 70vh;
   }
-  
-
-// mat-label normal state style
-::ng-deep .mat-form-field-label {
-    color: black(77, 224, 48, 0.6)!important;
-    // color: $mainColor!important;
-}
-
-
-::ng-deep {
+  ::ng-deep {
     $custom-main-color: red;
     $custom-label-color: rgba(0, 0, 0, .6);
  
@@ -118,7 +335,7 @@ html,body
  
     // input outline color
     .mat-form-field-appearance-outline .mat-form-field-outline {
-       color: rgb(152, 156, 152) !important;
+       color: rgb(159, 161, 159) !important;
     }
  
     // mat-input focused color
@@ -144,7 +361,7 @@ html,body
  
     // mat-label normal state style
     .mat-form-field-label {
-       color: rgb(175, 179, 175) !important;
+       color: rgb(110, 114, 110) !important;
     }
  
     // mat-label focused style
@@ -157,16 +374,8 @@ html,body
        color: $custom-main-color !important;
     }
 }
-    .progress{
-        margin-top: 40;
-        
-    }
-    .grab {
-        cursor:-webkit-grab;
-        cursor:grab;
-    }
-    .example-radio-group {
-        display: inline-flex;
-        flex-direction: row;
-      }
-   
+.grab {cursor: -webkit-grab; cursor: grab;}
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: row;
+  }

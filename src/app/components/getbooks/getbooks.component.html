@@ -1,6 +1,6 @@
 <mat-card-content>
-  <div fxLayout="row" fxLayoutAlign="space-between end" class="bookheader">
-    <div style="font-size: 25px;" class="books">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="bookheader">
+    <div style="font-size: 100%;" class="books">
       Books
       <small style="font-size: 12px;">( {{ length }} itmes)</small>
     </div>
@@ -12,7 +12,7 @@
         [matMenuTriggerFor]="menu"
       >
         <div
-          style="font-size: 12px; padding-bottom: 3%;"
+          style="font-size: 11px; padding-bottom: 3%;"
           (click)="doSorting(sort)"
         >
           <label>{{ sort }}</label>
