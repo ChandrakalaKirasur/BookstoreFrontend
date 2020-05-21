@@ -8,8 +8,9 @@
             <img class="bookimg" src="assets/images/education@2x.png" />
           </mat-icon>
         </a>
-        <div class="booktext">BookStore</div>
       </div>
+      <div class="booktext" fxhide="10" fxHide.xs="true">BookStore</div>
+
       <!-------------------- search ------------------->
       <div class="searche">
         <img class="scicon" src="assets/images/searchicon.png" />
@@ -23,8 +24,10 @@
         />
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 20%;">
-        <div class="carttext" (click)="onCart()">Cart</div>
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 22%;">
+        <div class="carttext" (click)="onCart()" fxhide="10" fxHide.xs="true">
+          Cart
+        </div>
         <a (click)="onCart()" class="cartimg">
           <mat-icon
             class="grab"
