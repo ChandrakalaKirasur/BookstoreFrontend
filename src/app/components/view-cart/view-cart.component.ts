@@ -1,5 +1,10 @@
 import { Component, OnInit, Output } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import {
+  FormControl,
+  Validators,
+  FormGroup,
+  FormBuilder,
+} from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Login } from "src/app/models/login";
@@ -27,76 +32,6 @@ import { EventEmitter } from "events";
   styleUrls: ["./view-cart.component.scss"],
 })
 export class ViewCartComponent implements OnInit {
-  name = new FormControl([
-    Validators.required,
-    Validators.minLength(4),
-    Validators.pattern("[a-zA-Z ]*"),
-  ]);
-  mobile = new FormControl([
-    Validators.required,
-    Validators.minLength(10),
-    Validators.maxLength(10),
-    Validators.pattern("[6-9]\\d{9}"),
-  ]);
-  pincode = new FormControl([
-    Validators.required,
-    Validators.minLength(5),
-    Validators.maxLength(6),
-    Validators.pattern("[5-6]\\d{6}"),
-  ]);
-
-  locality = new FormControl([
-    Validators.required,
-    Validators.minLength(10),
-    Validators.pattern("[a-zA-Z ]*"),
-  ]);
-  address = new FormControl([
-    Validators.required,
-    Validators.minLength(8),
-    //Validators.pattern("[a-zA-Z ]*"),
-    Validators.pattern("[a-zA-Z0-9._%+-]*"),
-  ]);
-  city = new FormControl([
-    Validators.required,
-    Validators.minLength(10),
-    Validators.pattern("[a-zA-Z ]*"),
-  ]);
-  landmark = new FormControl([
-    Validators.required,
-    Validators.minLength(10),
-    Validators.pattern("[a-zA-Z ]*"),
-  ]);
-
-  nameValidation() {
-    return this.name.hasError("required")
-      ? ""
-      : this.name.hasError("name")
-      ? ""
-      : "";
-  }
-  phoneNumber() {
-    return this.mobile.hasError("required") ? "" : "";
-  }
-  pincodeValidation() {
-    return this.name.hasError("required")
-      ? "You must enter a value"
-      : this.pincode.hasError("pincode")
-      ? "Not a valid email"
-      : "";
-  }
-  localityValidation() {
-    return this.locality.hasError("required") ? "" : "";
-  }
-  addressValidation() {
-    return this.address.hasError("required") ? "" : "";
-  }
-  cityValidation() {
-    return this.city.hasError("required") ? "" : "";
-  }
-  landmarkValidation() {
-    return this.landmark.hasError("required") ? "" : "";
-  }
-
   constructor(
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
@@ -106,17 +41,38 @@ export class ViewCartComponent implements OnInit {
     private http_service: HttpService,
     private data: DataService,
     public location: Location,
+    private formBuilder: FormBuilder,
     private addressService: AddressService
   ) {}
 
+  customerForm: FormGroup;
   ngOnInit() {
+    this.customerForm = this.formBuilder.group({
+      name: ["", Validators.required],
+      contact: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ],
+      ],
+      pinCode: [
+        "",
+        [Validators.required, Validators.minLength(6), Validators.maxLength(6)],
+      ],
+      address: ["", [Validators.required]],
+      city: ["", [Validators.required]],
+      country: [""],
+      landMark: ["", [Validators.required]],
+    });
+
     this.getcountofbooks();
     this.getbooks();
   }
 
   book: Book = new Book();
   bookArray: [];
-  //token: string;
   bookNquantityData: Array<Book> = [];
   quantitylist: [];
   bookcount: number;
