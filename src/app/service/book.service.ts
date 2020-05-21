@@ -93,23 +93,30 @@ export class BookService {
   }
   getBooksCount() {
     return this.http_service.getMethod(
-      environment.baseUrl + environment.GET_BOOKS_COUNT + "/" + "get",
+      environment.baseUrl + environment.GET_BOOKS_COUNT,
       ""
     );
   }
   isAddedTocart(bookId: number) {
     return this.http_service.getMethod(
-      environment.baseUrl + environment.VERIFY_CART_BOOK + "?bookId=" + bookId,
-      this.http_service.httpOptions
+      environment.baseUrl +
+        environment.VERIFY_CART_BOOK +
+        localStorage.getItem("token") +
+        "/" +
+        "?bookId=" +
+        bookId,
+      {}
     );
   }
   isAddedToWishList(bookId: number) {
     return this.http_service.getMethod(
       environment.baseUrl +
         environment.VERIFY_WHISHLIST_BOOK +
+        localStorage.getItem("token") +
+        "/" +
         "?bookId=" +
         bookId,
-      this.http_service.httpOptions
+      {}
     );
   }
 }

@@ -9,7 +9,6 @@ import { ViewcartService } from "src/app/service/viewcart.service";
 import { MatSnackBar } from "@angular/material";
 import { DataService } from "src/app/service/data.service";
 import { UserService } from "src/app/service/user.service";
-import { GetbooksComponent } from "../getbooks/getbooks.component";
 import { BooksComponent } from "../books/books.component";
 
 @Component({
@@ -27,8 +26,7 @@ export class DashboardComponent implements OnInit {
     private userService: UserService,
     private data: DataService,
     private snackbar: MatSnackBar,
-    private router: Router,
-    private books: BooksComponent
+    private router: Router
   ) {}
 
   visible: boolean;

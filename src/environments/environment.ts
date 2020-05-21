@@ -18,7 +18,7 @@ export const environment = {
   SORT_BY_NEW_ARRIVALS: "book/sortbyarrival/",
   VERIFY_WHISHLIST_BOOK: "whishList/verify_book/",
   VERIFY_CART_BOOK: "cart/verify_book/",
-  GET_BOOKS_COUNT: "book/bookscount",
+  GET_BOOKS_COUNT: "book/count",
   PROFILE_CHANGE_OR_UPLOAD: "user/uploaduserimage",
   Get_book_Cart: "cart/cartdetials",
   book_count_cart: "cart/bookCount",

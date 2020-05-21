@@ -30,6 +30,7 @@ export class BooksComponent implements OnInit {
       this.visible = true;
       this.isAddedToCart();
       this.isAddedToWishList();
+      // this.getcountofbooks();
     }
   }
   addToCart() {
@@ -39,12 +40,12 @@ export class BooksComponent implements OnInit {
         .subscribe((response: any) => {
           console.log(response["obj"]);
           this.book.isAdded = response.obj;
-          this.getCount = response.obj;
+          // this.getCount = response.obj;
           this._matSnackBar.open("Book added to cart", "ok", {
             duration: 1000,
           });
           // if (this.getCount) {
-            // this.getcountofbooks();
+          // this.getcountofbooks();
           // }
         });
     } else {
@@ -88,15 +89,17 @@ export class BooksComponent implements OnInit {
         this.book.isListed = response["obj"];
       });
   }
+  // appName: string;
   // token: string;
   // private bookcount = new BehaviorSubject<number>(0);
   // countMessage = this.bookcount.asObservable();
   // getcountofbooks() {
-    // this.token = localStorage.getItem("token");
-    // this.cartService
-      // .getRequest(environment.book_count_cart)
-      // .subscribe((response: any) => {
-        // this.bookcount.next(response.obj);
-      // });
+  // this.appName = "Dashboard";
+  // this.token = localStorage.getItem("token");
+  // this.cartService
+  // .getRequest(environment.book_count_cart)
+  // .subscribe((response: any) => {
+  // this.bookcount.next(response.obj);
+  // });
   // }
 }

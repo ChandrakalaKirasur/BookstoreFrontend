@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { DashboardComponent } from "../dashboard/dashboard.component";
+import { Book } from 'src/app/models/book';
 
 @Component({
   selector: "app-search",
@@ -7,7 +8,7 @@ import { DashboardComponent } from "../dashboard/dashboard.component";
   styleUrls: ["./search.component.scss"],
 })
 export class SearchComponent implements OnInit {
-  data: any;
+  data: Array<Book> = [];
   constructor(private dashboard: DashboardComponent) {}
 
   ngOnInit() {
