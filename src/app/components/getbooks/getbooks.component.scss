@@ -5,8 +5,8 @@
 }
 .bookheader {
   flex-direction: row;
-  margin-left: 16%;
-  margin-right: 15.2%;
+  margin-left: 6%;
+  margin-right: 9%;
   position: relative;
   flex-wrap: wrap;
   display: block;
@@ -15,8 +15,10 @@
 .sort {
   text-align: center;
   font-size: 12px;
-  width: 161px;
-  height: 30px;
+  // width: 161px;
+  // height: 30px;
+  width: 120%;
+  height: 7%;
   font: Regular 12px/15px Lato;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #837070;
