@@ -27,7 +27,7 @@ export const environment = {
   cart_verify_book: "cart/verifybook",
   whishlist_books: "wishList/book",
   whishlist_books_remove: "wishList/book/",
-  whishList_book_count: "wishList/book_count",
+  whishList_book_count: "wishList/bookcount",
   orderlist_books_confrim: "orders/confrim/",
   orderlist_books: "orders/books/",
   orderlist_books_Count: "orders/bookscount/",
