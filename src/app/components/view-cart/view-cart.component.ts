@@ -183,7 +183,7 @@ export class ViewCartComponent implements OnInit {
 
   count: boolean = true;
   addressclose: boolean = true;
-
+  rmopen: boolean = true;
   onRemove(book: any) {
     this.cartService
       .deleteRequest(
@@ -208,6 +208,10 @@ export class ViewCartComponent implements OnInit {
           this.placeOrder = true;
           this.open = false;
           this.open2 = false;
+
+          if (this.bookcount == 0) {
+            this.placeOrder = false;
+          }
         },
         (error: any) => {
           this.snackbar.open(error.error.message, "undo", { duration: 1000 });
