@@ -170,3 +170,20 @@ before mat card we write content
     display: inline-flex;
     flex-direction: row;
   }
+  button:disabled {
+    background-color: white; 
+    font-size: 18px;
+        text-align: center;
+        color:#A03037;
+        font-style: red;
+        
+ }
+ button:enabled {
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    background-color:#A03037;
+    border-radius: 3px;
+    border: none;
+    opacity: 1;      
+ }

@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
   login: Login = new Login("", "");
   loginForm: FormGroup;
   token: string;
-
+  
   email = new FormControl(this.login.mailOrMobile, [
     Validators.required,
-    Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
+    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
   ]);
   password = new FormControl(this.login.password, [Validators.required, Validators.minLength(8),]);
   showSpinner = false;
@@ -39,10 +39,13 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private httpservice: HttpService
+    private httpservice: HttpService,
+  
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
   /**
    * Email validation
    */
@@ -63,17 +66,18 @@ export class LoginComponent implements OnInit {
       ? "Min 6 Elements"
       : "";
   }
+  diableRadios = true;
   favoriteSeason: string = 'user';
   seasons = [
     'user',
     'seller',
   ];
+  isDisabled: boolean = true;
   onlogin() {
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
-      console.log(this.favoriteSeason);
       this.httpservice
         .postRequest(this.favoriteSeason + "/login", this.login)
         .subscribe(

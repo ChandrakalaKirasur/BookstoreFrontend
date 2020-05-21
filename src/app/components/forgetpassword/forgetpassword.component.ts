@@ -16,7 +16,7 @@ export class ForgetpasswordComponent implements OnInit {
   person = String;
   email = new FormControl(this.forgot.email, [
     Validators.required,
-    Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
+    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
   ]);
   constructor(
     private snackBar: MatSnackBar,
