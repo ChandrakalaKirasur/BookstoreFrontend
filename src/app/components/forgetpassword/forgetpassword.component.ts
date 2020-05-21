@@ -32,10 +32,11 @@ export class ForgetpasswordComponent implements OnInit {
       ? "Not a valid email"
       : "";
   }
-  onChange(mrChange: MatRadioChange) {
-    console.log(mrChange.value);
-    this.person = mrChange.value;
-  }
+  favoriteSeason: string = 'user';
+  seasons = [
+    'user',
+    'seller',
+  ];
   onforgot() {
     this.showSpinner = true;
     this.spinner.show();
@@ -45,7 +46,7 @@ export class ForgetpasswordComponent implements OnInit {
       console.log(this.forgot);
       this.httpservice
         .putRequestForget(
-          this.person + "/forgetPassword?email=" + this.forgot.email,
+          this.favoriteSeason + "/forgetPassword?email=" + this.forgot.email,
           this.forgot
         )
         .subscribe(
