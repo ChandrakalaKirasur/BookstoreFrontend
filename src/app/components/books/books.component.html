@@ -71,14 +71,14 @@
         WISHLIST
       </button>
       <button
-        class="box"
+        class="inwish"
         *ngIf="book.isListed && !book.isAdded"
         (click)="removeFromWishlist()"
       >
         IN WISHLIST
       </button>
       <button
-        *ngIf="book.noOfBooks == 0 && !book.isAdded"
+        *ngIf="book.noOfBooks == 0 && !book.isListed"
         class="boxOutOfStockWishList"
         id="add-to-wishlist"
         (click)="addToWishlist()"
