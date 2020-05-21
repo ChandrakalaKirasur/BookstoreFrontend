@@ -261,15 +261,15 @@ export class ViewCartComponent implements OnInit {
 
   open: boolean;
   fields: boolean;
-  person: String;
+  person: String = "Home";
 
-  // onChange(mrChange: MatRadioChange) {
-  //   this.open2 = false;
-  //   console.log(mrChange.value);
-  //   this.person = mrChange.value;
-  // }
-  favoriteSeason: String = "Home";
-  seasons = ["Home", "Work", "Other"];
+  onChange(mrChange: MatRadioChange) {
+    this.open2 = false;
+    console.log(mrChange.value);
+    this.person = mrChange.value;
+  }
+  // favoriteSeason: String = "Home";
+  // seasons = ["Home", "Work", "Other"];
 
   shippingCharge: number;
   selected(event: MatSelectChange) {
@@ -299,8 +299,8 @@ export class ViewCartComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
 
-      // this.addModel.type = this.person;
-      this.addModel.type == this.favoriteSeason;
+      this.addModel.type = this.person;
+      //this.addModel.type == this.favoriteSeason;
       this.addressService
         .postRequest(
           "address/add/" + localStorage.getItem("token"),

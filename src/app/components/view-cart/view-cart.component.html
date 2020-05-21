@@ -218,7 +218,7 @@
       <div fxLayout="row" fxLayoutAlign="start center">Type</div>
       <br />
       <div fxLayout="column" fxLayoutAlign="start start">
-        <mat-radio-group
+        <!-- <mat-radio-group
           fxLayoutGap="110px"
           [disabled]="!fields"
           [(ngModel)]="favoriteSeason"
@@ -231,8 +231,8 @@
           >
             {{ season }}
           </mat-radio-button>
-        </mat-radio-group>
-        <!-- <mat-radio-group
+        </mat-radio-group> -->
+        <mat-radio-group
           aria-label="Select an option"
           fxLayoutGap="110px"
           [disabled]="!fields"
@@ -247,7 +247,7 @@
           <mat-radio-button [checked]="true" (click)="onOther()" value="Other"
             >Other</mat-radio-button
           >
-        </mat-radio-group> -->
+        </mat-radio-group>
       </div>
 
       <div fxLayout="column" fxLayoutAlign="end end">
