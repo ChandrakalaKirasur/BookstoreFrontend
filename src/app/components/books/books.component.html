@@ -72,7 +72,7 @@
       </button>
       <button
         class="box"
-        *ngIf="book.isListed && !book.isAdded"
+        *ngIf="book.isListed && !book.isAdded && book.noOfBooks != 0"
         (click)="removeFromWishlist()"
       >
         IN WISHLIST
@@ -84,6 +84,13 @@
         (click)="addToWishlist()"
       >
         WISHLIST
+      </button>
+      <button
+        class="inwish"
+        *ngIf="book.isListed && !book.isAdded && book.noOfBooks == 0"
+        (click)="removeFromWishlist()"
+      >
+        IN WISHLIST
       </button>
     </mat-card-actions>
   </div>
