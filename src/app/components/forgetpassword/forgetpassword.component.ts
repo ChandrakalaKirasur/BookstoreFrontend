@@ -32,18 +32,20 @@ export class ForgetpasswordComponent implements OnInit {
       ? "Not a valid email"
       : "";
   }
+  
   favoriteSeason: string = 'user';
   seasons = [
     'user',
     'seller',
   ];
+ 
   onforgot() {
+    
     this.showSpinner = true;
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
-      console.log(this.forgot);
       this.httpservice
         .putRequestForget(
           this.favoriteSeason + "/forgetPassword?email=" + this.forgot.email,
@@ -53,10 +55,8 @@ export class ForgetpasswordComponent implements OnInit {
           (response: any) => {
             if (response != null) {
               this.spinner.hide();
-              console.log(response);
               this.snackBar.open("Link sent", "undo", { duration: 2500 });
             } else {
-              console.log(response);
               this.snackBar.open("Failed", "undo", { duration: 2500 });
             }
           },
