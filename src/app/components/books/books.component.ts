@@ -4,6 +4,9 @@ import { MatSnackBar } from "@angular/material";
 import { Book } from "src/app/models/book";
 import { Router } from "@angular/router";
 import { BookService } from "src/app/service/book.service";
+import { environment } from "src/environments/environment";
+import { ViewcartService } from "src/app/service/viewcart.service";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "app-books",
@@ -14,10 +17,12 @@ export class BooksComponent implements OnInit {
   @Input() book: Book;
   noOfBooks: number;
   visible: boolean;
+  getCount: boolean = false;
   constructor(
     private _matSnackBar: MatSnackBar,
     private router: Router,
-    private bookService: BookService
+    private bookService: BookService,
+    private cartService: ViewcartService
   ) {}
   ngOnInit() {
     this.noOfBooks = this.book.noOfBooks;
@@ -33,10 +38,14 @@ export class BooksComponent implements OnInit {
         .addToCart(this.book.bookId)
         .subscribe((response: any) => {
           console.log(response["obj"]);
-          this.book.isAdded = true;
+          this.book.isAdded = response.obj;
+          this.getCount = response.obj;
           this._matSnackBar.open("Book added to cart", "ok", {
             duration: 1000,
           });
+          // if (this.getCount) {
+            // this.getcountofbooks();
+          // }
         });
     } else {
       this._matSnackBar.open("please login", "ok", {
@@ -79,4 +88,15 @@ export class BooksComponent implements OnInit {
         this.book.isListed = response["obj"];
       });
   }
+  // token: string;
+  // private bookcount = new BehaviorSubject<number>(0);
+  // countMessage = this.bookcount.asObservable();
+  // getcountofbooks() {
+    // this.token = localStorage.getItem("token");
+    // this.cartService
+      // .getRequest(environment.book_count_cart)
+      // .subscribe((response: any) => {
+        // this.bookcount.next(response.obj);
+      // });
+  // }
 }

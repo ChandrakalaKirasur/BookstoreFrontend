@@ -9,6 +9,8 @@ import { ViewcartService } from "src/app/service/viewcart.service";
 import { MatSnackBar } from "@angular/material";
 import { DataService } from "src/app/service/data.service";
 import { UserService } from "src/app/service/user.service";
+import { GetbooksComponent } from "../getbooks/getbooks.component";
+import { BooksComponent } from "../books/books.component";
 
 @Component({
   selector: "app-dashboard",
@@ -25,7 +27,8 @@ export class DashboardComponent implements OnInit {
     private userService: UserService,
     private data: DataService,
     private snackbar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private books: BooksComponent
   ) {}
 
   visible: boolean;
@@ -40,6 +43,9 @@ export class DashboardComponent implements OnInit {
     this.getcountofbooks();
     this.getprofileLink();
     this.profile = localStorage.getItem("userimage");
+    // this.books.countMessage.subscribe((response) => {
+    // (this.bookcount = response), console.log(this.bookcount);
+    // });
   }
 
   onBook() {
