@@ -85,212 +85,201 @@
       </div>
       <!--------------------- Name ------------------------>
     </button>
-
-    <div class="custom">
-      <div
-        fxLayout="row wrap"
-        style="justify-content: flex-start;"
-        fxLayoutAlign="flex-start"
-        style="margin-bottom: -13px;"
-      >
-        <mat-form-field appearance="outline" class="input">
-          <mat-label>Name</mat-label>
-          <mat-error *ngIf="name.invalid"> {{ nameValidation() }}</mat-error>
-          <input
-            type="text"
-            matInput
-            placeholder="Enter your Name"
-            required
-            [(ngModel)]="addModel.name"
-            [disabled]="!fields"
-          />
-        </mat-form-field>
-        <!------------------------ phoneNumber ------------------>
-        <div style="margin-left: 7px;">
-          <!-- &nbsp; -->
-          <mat-form-field appearance="outline" class="input">
-            <mat-label>phoneNumber</mat-label>
-            <mat-error *ngIf="mobile.invalid">{{ phoneNumber() }}</mat-error>
-            <input
-              type="text"
-              matInput
-              placeholder="Enter your phoneNumber"
-              required
-              [(ngModel)]="addModel.phoneNumber"
-              [disabled]="!fields"
-              autocomplete="off"
-            />
-          </mat-form-field>
-        </div>
-      </div>
-      <!------------------------------- pincode ------------------------->
-
-      <div
-        fxLayout="row wrap"
-        style="justify-content: flex-start;"
-        fxLayoutAlign="flex-start"
-        style="margin-bottom: -13px;"
-      >
-        <mat-form-field appearance="outline" class="input">
-          <mat-label>pincode</mat-label>
-          <mat-error *ngIf="pincode.invalid">
-            {{ pincodeValidation() }}</mat-error
-          >
-          <input
-            type="text"
-            matInput
-            placeholder="Enter your pincode"
-            required
-            [(ngModel)]="addModel.pincode"
-            [disabled]="!fields"
-            autocomplete="off"
-          />
-        </mat-form-field>
-        <!---------------------------- locality ------------------------------------->
-        <div style="margin-left: 7px;">
-          <mat-form-field style="width: 257px; margin-left: 15px;">
-            <mat-label>Country</mat-label>
-            <mat-select
-              (selectionChange)="selected($event)"
-              required
-              [disabled]="!fields"
-            >
-              <mat-option value="india">
-                India
-              </mat-option>
-              <mat-option value="america">
-                America
-              </mat-option>
-              <mat-option value="other">
-                Others
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <!-------------------------------- address ------------------------------------------>
-      <mat-form-field appearance="outline" class="address">
-        <mat-label>Address</mat-label>
-        <mat-error *ngIf="address.invalid">
-          {{ addressValidation() }}</mat-error
-        >
-        <input
-          type="text"
-          matInput
-          placeholder="Address"
-          required
-          [(ngModel)]="addModel.address"
-          [disabled]="!fields"
-          style="height: 51px;"
-          autocomplete="off"
-        />
-      </mat-form-field>
-      <!-- </div> -->
-      <!-- <div class="fieldtop"> -->
-      <br />
-
-      <div
-        fxLayout="row"
-        fxLayoutAlign="start center"
-        style="margin-top: 21px;"
-      >
-        <!---------------------------------- City ---------------------------------------->
+    <form [formGroup]="customerForm" (ngSubmit)="(customerForm.valid)">
+      <div class="custom">
         <div
           fxLayout="row wrap"
           fxLayoutGap="20px"
           style="justify-content: flex-start;"
           fxLayoutAlign="flex-start"
-          style="margin-top: 10px;"
+          style="margin-bottom: -13px;"
         >
           <mat-form-field appearance="outline" class="input">
-            <mat-label>City/town</mat-label>
-            <mat-error *ngIf="city.invalid"> {{ cityValidation() }}</mat-error>
+            <mat-label>Name</mat-label>
+            <!-- <mat-error *ngIf="name.invalid"> {{ nameValidation() }}</mat-error> -->
+            <!-- <mat-error *ngIf="f.name.errors"></mat-error> -->
+            <!-- <mat-error *ngIf="customerForm.get('name').hasError('required')"
+              >"</mat-error
+            > -->
             <input
               type="text"
               matInput
-              placeholder="Enter your city/town"
+              formControlName="name"
+              placeholder="Enter your Name"
               required
-              [(ngModel)]="addModel.city"
-              [disabled]="!fields"
-              autocomplete="off"
+              [(ngModel)]="addModel.name"
             />
           </mat-form-field>
-          <!----------------------------------- landmark ------------------------------------>
+          <!------------------------ phoneNumber ------------------>
           <div style="margin-left: 7px;">
+            <!-- &nbsp; -->
             <mat-form-field appearance="outline" class="input">
-              <mat-label>Landmark</mat-label>
-              <mat-error *ngIf="landmark.invalid">{{
-                landmarkValidation()
-              }}</mat-error>
+              <mat-label>phoneNumber</mat-label>
+              <!-- <mat-error *ngIf="mobile.invalid">{{ phoneNumber() }}</mat-error> -->
               <input
                 type="text"
                 matInput
-                placeholder="Enter your landmark"
+                formControlName="contact"
+                placeholder="Enter your phoneNumber"
                 required
-                [(ngModel)]="addModel.landmark"
-                [disabled]="!fields"
+                [(ngModel)]="addModel.phoneNumber"
                 autocomplete="off"
               />
             </mat-form-field>
           </div>
         </div>
-      </div>
-      <br />
-      <div fxLayout="row" fxLayoutAlign="start center">Type</div>
-      <br />
-      <div fxLayout="column" fxLayoutAlign="start start">
-        <!-- <mat-radio-group
-          fxLayoutGap="110px"
-          [disabled]="!fields"
-          [(ngModel)]="favoriteSeason"
-        >
-          <mat-radio-button
-            style="margin: 10px;"
-            class="example-radio-button"
-            *ngFor="let season of seasons"
-            [value]="season"
-          >
-            {{ season }}
-          </mat-radio-button>
-        </mat-radio-group> -->
-        <mat-radio-group
-          aria-label="Select an option"
-          fxLayoutGap="110px"
-          style="margin-bottom: 10px;"
-          [disabled]="!fields"
-          (change)="onChange($event)"
-        >
-          <mat-radio-button (click)="getaddress()" value="Home"
-            >Home</mat-radio-button
-          >
-          <mat-radio-button (click)="onwork()" value="Work"
-            >Work</mat-radio-button
-          >
-          <mat-radio-button [checked]="true" (click)="onOther()" value="Other"
-            >Other</mat-radio-button
-          >
-        </mat-radio-group>
-      </div>
+        <!------------------------------- pincode ------------------------->
 
-      <div fxLayout="column" fxLayoutAlign="end end">
-        <button
-          mat-raised-button
-          *ngIf="!open2"
-          class="button"
-          [disabled]="
-            name.invalid ||
-            mobile.invalid ||
-            pincode.invalid ||
-            locality.invalid ||
-            address.invalid
-          "
-          (click)="onContinue()"
+        <div
+          fxLayout="row wrap"
+          fxLayoutGap="20px"
+          style="justify-content: flex-start;"
+          fxLayoutAlign="flex-start"
+          style="margin-bottom: -13px;"
         >
-          Continue
-        </button>
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>pincode</mat-label>
+            <!-- <mat-error *ngIf="pincode.invalid">
+              {{ pincodeValidation() }}</mat-error
+            > -->
+            <input
+              type="text"
+              matInput
+              formControlName="pinCode"
+              placeholder="Enter your pincode"
+              required
+              [(ngModel)]="addModel.pincode"
+              autocomplete="off"
+            />
+          </mat-form-field>
+          <!---------------------------- locality ------------------------------------->
+          <div style="margin-left: 7px;">
+            <mat-form-field style="width: 257px; margin-left: 15px;">
+              <mat-label>Country</mat-label>
+              <mat-select
+                (selectionChange)="selected($event)"
+                required
+                formControlName="country"
+              >
+                <mat-option value="india">
+                  India
+                </mat-option>
+                <mat-option value="america">
+                  America
+                </mat-option>
+                <mat-option value="other">
+                  Others
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-------------------------------- address ------------------------------------------>
+        <mat-form-field appearance="outline" class="address">
+          <mat-label>Address</mat-label>
+          <!-- <mat-error *ngIf="address.invalid">
+            {{ addressValidation() }}</mat-error
+          > -->
+          <input
+            type="text"
+            matInput
+            formControlName="address"
+            placeholder="Address"
+            required
+            [(ngModel)]="addModel.address"
+            style="height: 51px;"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <!-- </div> -->
+        <!-- <div class="fieldtop"> -->
+        <br />
+
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          style="margin-top: 21px;"
+        >
+          <!---------------------------------- City ---------------------------------------->
+          <div
+            fxLayout="row wrap"
+            fxLayoutGap="20px"
+            style="justify-content: flex-start;"
+            fxLayoutAlign="flex-start"
+            style="margin-top: 10px;"
+          >
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>City/town</mat-label>
+              <!-- <mat-error *ngIf="city.invalid">
+                {{ cityValidation() }}</mat-error
+              > -->
+              <input
+                type="text"
+                matInput
+                formControlName="city"
+                placeholder="Enter your city/town"
+                required
+                [(ngModel)]="addModel.city"
+                [disabled]="!fields"
+                autocomplete="off"
+              />
+            </mat-form-field>
+            <!----------------------------------- landmark ------------------------------------>
+            <div style="margin-left: 7px;">
+              <mat-form-field appearance="outline" class="input">
+                <mat-label>Landmark</mat-label>
+                <!-- <mat-error *ngIf="landmark.invalid">{{
+                  landmarkValidation()
+                }}</mat-error> -->
+                <input
+                  type="text"
+                  matInput
+                  formControlName="landMark"
+                  placeholder="Enter your landmark"
+                  required
+                  [(ngModel)]="addModel.landmark"
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div fxLayout="row" fxLayoutAlign="start center">Type</div>
+        <br />
+        <div fxLayout="column" fxLayoutAlign="start start">
+          <mat-radio-group
+            aria-label="Select an option"
+            fxLayoutGap="110px"
+            style="margin-bottom: 10px;"
+            (change)="onChange($event)"
+          >
+            <mat-radio-button (click)="getaddress()" value="Home"
+              >Home</mat-radio-button
+            >
+            <mat-radio-button (click)="onwork()" value="Work"
+              >Work</mat-radio-button
+            >
+            <mat-radio-button [checked]="true" (click)="onOther()" value="Other"
+              >Other</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="end end">
+          <button
+            mat-raised-button
+            *ngIf="!open2"
+            class="button"
+            [disabled]="!customerForm.valid"
+            (click)="onContinue()"
+          >
+            Continue
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </mat-card>
 
   <br />
