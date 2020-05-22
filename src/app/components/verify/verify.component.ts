@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class VerifyComponent implements OnInit {
   ngOnInit() {}
- 
+  showSpinner = false;
   constructor(private snackBar: MatSnackBar, private httpservice: HttpService,
     private spinner: NgxSpinnerService, private router: ActivatedRoute,
     private matSnackBar: MatSnackBar,
@@ -24,14 +24,18 @@ export class VerifyComponent implements OnInit {
     let role = this.router.snapshot.paramMap.get("role");
    {
     this.spinner.show();
-
+    this.showSpinner = true;
+    setTimeout(() => {
+      this.spinner.hide();
+    
+     
     this.httpservice.putRequestverify(role,token).subscribe(
       (response: any) => {
         if (response!=null) {
           this.spinner.hide();
           console.log(response);
           this.snackBar.open(
-            "verified successfully", "undo",
+            "verified", "undo",
             { duration: 2500 }
           )
           this.route.navigate(["/login"]);
@@ -44,7 +48,8 @@ export class VerifyComponent implements OnInit {
           )
         }
       }
-    )
+    );
+  } , 2000);
   }
 
   }

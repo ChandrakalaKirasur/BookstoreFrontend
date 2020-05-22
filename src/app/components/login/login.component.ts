@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import {
   Validators,
   FormControl,
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   email = new FormControl(this.login.mailOrMobile, [
     Validators.required,
-    Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
+    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
   ]);
   password = new FormControl(this.login.password, [
     Validators.required,
@@ -66,49 +66,37 @@ export class LoginComponent implements OnInit {
       ? "Min 6 Elements"
       : "";
   }
-  onChange(mrChange: MatRadioChange) {
-    console.log(mrChange.value);
-    this.person = mrChange.value;
-  }
+  diableRadios = true;
+  favoriteSeason: string = "user";
+  seasons = ["user", "seller"];
+  isDisabled: boolean = true;
   onlogin() {
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
-
-      console.log(this.person + "/login:" + this.login.mailOrMobile);
-
       this.httpservice
-        .postRequest(this.person + "/login", this.login)
+        .postRequest(this.favoriteSeason + "/login", this.login)
         .subscribe(
           (response: any) => {
-            if (response != null) {
+            if (response.status == 200) {
               this.spinner.hide();
-              console.log(response);
-              console.log("==============");
-              console.log(response.obj);
               localStorage.setItem("token", response.obj);
               this.token = localStorage.getItem("token");
-
-              this.snackBar.open(
-                "Login Successfull",
-                "undo",
-                { duration: 2500 }
-              );
+              this.snackBar.open("Login Successfull", "undo", {
+                duration: 2500,
+              });
+              window.location.reload();
               this.router.navigate(["books"]);
             } else {
               this.spinner.hide();
-              console.log(response);
               this.snackBar.open("Login Failed", "undo", { duration: 2500 });
             }
           },
           (error: any) => {
-            // console.error(error);
-            // console.log(error.error.message);
             this.snackBar.open(error.error.message, "undo", { duration: 2500 });
           }
         );
     }, 2000); //spinner
   }
-  
 }

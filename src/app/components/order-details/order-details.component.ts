@@ -43,8 +43,9 @@ export class OrderDetailsComponent implements OnInit {
       .getRequest(environment.orderlist_books + localStorage.getItem("token"))
       .subscribe(
         (Response: any) => {
-          console.log(Response);
+          //console.log(Response);
           for (var len in Response.obj) {
+            this.count += 1;
             this.books = Response.obj[len];
 
             let res = this.books["booksList"];

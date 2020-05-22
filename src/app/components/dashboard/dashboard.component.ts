@@ -6,11 +6,12 @@ import { HttpService } from "src/app/service/http.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
 import { ViewcartService } from "src/app/service/viewcart.service";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatDialog } from "@angular/material";
 import { DataService } from "src/app/service/data.service";
 import { UserService } from "src/app/service/user.service";
 import { BooksComponent } from "../books/books.component";
-import { BookService } from "src/app/service/book.service";
+import { LoginComponent } from "../login/login.component";
+import { MatDialogModule } from "@angular/material/dialog";
 
 @Component({
   selector: "app-dashboard",
@@ -25,9 +26,9 @@ export class DashboardComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private cartService: ViewcartService,
     private userService: UserService,
-    private bookService: BookService,
     private snackbar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   visible: boolean;
@@ -77,8 +78,17 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["books/orderdetails"]);
     }, 1000);
   }
+
   onLogin() {
-    this.router.navigate(["login"]);
+    const dialogRef = this.dialog.open(LoginComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+
+    // const dialogRef = this.dialog.open(LoginComponent, {
+    //   width: '800px',
+    // });
+    // this.router.navigate(["login"]);
   }
   onLogout() {
     localStorage.clear();
@@ -91,8 +101,8 @@ export class DashboardComponent implements OnInit {
       this.spinner.hide();
       this.bookcount = 0;
       this.router.navigate(["/books"]);
+      window.location.reload();
     }, 1000);
-    window.location.reload();
   }
   myInput = new FormControl();
   private obtainNotes = new BehaviorSubject([]);

@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   email = new FormControl("", [
     Validators.required,
     Validators.email,
-    Validators.pattern("^[a-z0-9.%-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
   ]);
   password = new FormControl(this.user.password, [
     Validators.required,
@@ -74,27 +74,24 @@ export class RegisterComponent implements OnInit {
       ? "Min 6 Elements"
       : "";
   }
-  onChange(mrChange: MatRadioChange) {
-    console.log(mrChange.value);
-    this.person = mrChange.value;
-  }
+  favoriteSeason: string = 'user';
+  seasons = [
+    'user',
+    'seller',
+  ];
   onRegister() {
-    // this.showSpinner = true;
-    console.log(this.user);
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
       this.httpservice
-        .postRequest(this.person + "/registration", this.user)
+        .postRequest(this.favoriteSeason + "/registration", this.user)
         .subscribe(
           (response: any) => {
-            if (response != null) {
-              console.log(response);
-              this.snackBar.open("Link sent to mail for verification", "undo", {
+            if (response.status==200 || response.status=="OK") {
+              this.snackBar.open("verify your email before login", "undo", {
                 duration: 3000,
               });
-              // this.router.navigate(['/login'])
             } else {
               console.log(response);
               this.snackBar.open("Registration Failed", "undo", {
@@ -103,9 +100,7 @@ export class RegisterComponent implements OnInit {
             }
           },
           (error: any) => {
-            // console.error(error);
-            // console.log(error.error.message);
-            this.snackBar.open(error.error.message, "undo", { duration: 2500 });
+            this.snackBar.open("something went wrong.....!", "undo", { duration: 2500 });
           }
         );
     }, 2000); //spinner

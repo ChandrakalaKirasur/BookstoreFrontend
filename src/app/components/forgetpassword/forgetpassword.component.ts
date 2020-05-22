@@ -16,7 +16,7 @@ export class ForgetpasswordComponent implements OnInit {
   person = String;
   email = new FormControl(this.forgot.email, [
     Validators.required,
-    Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
+    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
   ]);
   constructor(
     private snackBar: MatSnackBar,
@@ -32,30 +32,31 @@ export class ForgetpasswordComponent implements OnInit {
       ? "Not a valid email"
       : "";
   }
-  onChange(mrChange: MatRadioChange) {
-    console.log(mrChange.value);
-    this.person = mrChange.value;
-  }
+  
+  favoriteSeason: string = 'user';
+  seasons = [
+    'user',
+    'seller',
+  ];
+ 
   onforgot() {
+    
     this.showSpinner = true;
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
-      console.log(this.forgot);
       this.httpservice
         .putRequestForget(
-          this.person + "/forgetPassword?email=" + this.forgot.email,
+          this.favoriteSeason + "/forgetPassword?email=" + this.forgot.email,
           this.forgot
         )
         .subscribe(
           (response: any) => {
             if (response != null) {
               this.spinner.hide();
-              console.log(response);
               this.snackBar.open("Link sent", "undo", { duration: 2500 });
             } else {
-              console.log(response);
               this.snackBar.open("Failed", "undo", { duration: 2500 });
             }
           },

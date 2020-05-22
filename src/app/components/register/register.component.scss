@@ -26,15 +26,16 @@ html,body
     z-index:5;
     max-width:330px;
 }
-.box.back{
-    transform:scale(.95);
-    -webkit-transform:scale(.95);
-    -ms-transform:scale(.95);
-    top:-20px;opacity:.8;
-    z-index:-1;
+// .box.back{
+//     transform:scale(.95);
+//     -webkit-transform:scale(.95);
+//     -ms-transform:scale(.95);
+//     top:-20px;
+//     opacity:.8;
+//     z-index:-1;
     
-}
-//before mat card we write content
+// }
+// before mat card we write content
 // .box:before{
 //     content:"";
 //     width:100%;
@@ -95,7 +96,7 @@ html,body
     margin:0;
 }
 .login-wrapper .mat-card{
-    padding:40px 70px 50px;
+    padding:50px 50px 50px;
 }
 .login-wrapper .mat-stroked-button{
     border:1px solid currentColor;
@@ -165,4 +166,24 @@ html,body
     }
 }
 .grab {cursor: -webkit-grab; cursor: grab;}
- 
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: row;
+  }
+  button:disabled {
+    background-color: white; 
+    font-size: 18px;
+        text-align: center;
+        color:#A03037;
+        font-style: red;
+        
+ }
+ button:enabled {
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    background-color:#A03037;
+    border-radius: 3px;
+    border: none;
+    opacity: 1;      
+ }
