@@ -10,6 +10,8 @@ import { MatSnackBar, MatRadioChange } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { HttpService } from "src/app/service/http.service";
+import {ViewEncapsulation} from '@angular/core';
+
 
 @Component({
   selector: "app-login",
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
   login: Login = new Login("", "");
   loginForm: FormGroup;
   token: string;
+  encapsulation: ViewEncapsulation.None 
 
   email = new FormControl(this.login.mailOrMobile, [
     Validators.required,
