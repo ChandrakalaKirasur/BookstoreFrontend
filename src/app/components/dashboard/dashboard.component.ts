@@ -26,7 +26,6 @@ export class DashboardComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private cartService: ViewcartService,
     private userService: UserService,
-    private data: DataService,
     private snackbar: MatSnackBar,
     private router: Router,
     public dialog: MatDialog
@@ -108,11 +107,11 @@ export class DashboardComponent implements OnInit {
   myInput = new FormControl();
   private obtainNotes = new BehaviorSubject([]);
   currentMessage = this.obtainNotes.asObservable();
-  searching(searchText: any) {
+  searching() {
     this.appName = "Search";
     this.httpservice
       .getMethod(
-        environment.baseUrl + "book/bookorauthorname?text=" + searchText,
+        environment.baseUrl + "book/bookorauthorname?text=" + this.searchText,
         this.httpservice.httpOptions
       )
       .subscribe((response: any) => {
