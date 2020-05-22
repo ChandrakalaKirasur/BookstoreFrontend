@@ -10,6 +10,7 @@ import { MatSnackBar } from "@angular/material";
 import { DataService } from "src/app/service/data.service";
 import { UserService } from "src/app/service/user.service";
 import { BooksComponent } from "../books/books.component";
+import { BookService } from "src/app/service/book.service";
 
 @Component({
   selector: "app-dashboard",
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private cartService: ViewcartService,
     private userService: UserService,
-    private data: DataService,
+    private bookService: BookService,
     private snackbar: MatSnackBar,
     private router: Router
   ) {}
@@ -96,11 +97,11 @@ export class DashboardComponent implements OnInit {
   myInput = new FormControl();
   private obtainNotes = new BehaviorSubject([]);
   currentMessage = this.obtainNotes.asObservable();
-  searching(searchText: any) {
+  searching() {
     this.appName = "Search";
     this.httpservice
       .getMethod(
-        environment.baseUrl + "book/bookorauthorname?text=" + searchText,
+        environment.baseUrl + "book/bookorauthorname?text=" + this.searchText,
         this.httpservice.httpOptions
       )
       .subscribe((response: any) => {

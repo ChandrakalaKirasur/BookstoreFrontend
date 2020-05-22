@@ -12,14 +12,18 @@
       </div>
       <!-------------------- search ------------------->
       <div class="searche">
-        <img class="scicon" src="assets/images/searchicon.png" />
+        <img
+          class="scicon"
+          src="assets/images/searchicon.png"
+          (click)="searching()"
+        />
         <input
           type="text"
           class="searchinput"
           placeholder="search.."
           autocomplete="off"
           [(ngModel)]="searchText"
-          (click)="searching(searchText)"
+          (click)="searching()"
         />
       </div>
 
