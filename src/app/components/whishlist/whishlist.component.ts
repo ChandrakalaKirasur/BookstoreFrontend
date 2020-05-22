@@ -32,7 +32,7 @@ export class WhishlistComponent implements OnInit {
   BookCount() {
     this.userService.getRequest(environment.whishList_book_count).subscribe(
       (Response: any) => {
-        console.log(Response);
+        //console.log(Response);
         this.bookcount = Response.obj;
         this.snackbar.open(Response.message, "undo", { duration: 2500 });
       },
@@ -54,9 +54,9 @@ export class WhishlistComponent implements OnInit {
   onwhishlist() {
     this.userService.getRequest(environment.whishlist_books).subscribe(
       (Response: any) => {
-        console.log(Response);
+        // console.log(Response);
         this.books = Response.obj;
-        console.log(this.books);
+        //console.log(this.books);
         this.snackbar.open(Response.message, "undo", { duration: 2500 });
       },
       (error: any) => {
@@ -67,7 +67,7 @@ export class WhishlistComponent implements OnInit {
 
   count: boolean = true;
   onRemove(book: any) {
-    console.log(book);
+    // console.log(book);
     this.token = localStorage.getItem("token");
     this.userService
       .deleteRequest(
@@ -76,9 +76,9 @@ export class WhishlistComponent implements OnInit {
       )
       .subscribe(
         (Response: any) => {
-          console.log(Response);
+          //console.log(Response);
           this.books = Response.obj;
-          console.log(this.books);
+          //console.log(this.books);
           this.bookcount -= 1;
           this.count = false;
           this.snackbar.open(Response.message, "undo", { duration: 2500 });
