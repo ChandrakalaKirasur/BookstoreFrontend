@@ -10,8 +10,6 @@ import { MatSnackBar, MatRadioChange } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { HttpService } from "src/app/service/http.service";
-import {ViewEncapsulation} from '@angular/core';
-
 
 @Component({
   selector: "app-login",
@@ -27,7 +25,6 @@ export class LoginComponent implements OnInit {
   login: Login = new Login("", "");
   loginForm: FormGroup;
   token: string;
-  encapsulation: ViewEncapsulation.None 
 
   email = new FormControl(this.login.mailOrMobile, [
     Validators.required,
@@ -69,7 +66,6 @@ export class LoginComponent implements OnInit {
       ? "Min 6 Elements"
       : "";
   }
-  
   diableRadios = true;
   favoriteSeason: string = "user";
   seasons = ["user", "seller"];
@@ -90,7 +86,6 @@ export class LoginComponent implements OnInit {
               this.snackBar.open("Login Successfull", "undo", {
                 duration: 2500,
               });
-              window.location.reload();
               this.router.navigate(["books"]);
             } else {
               this.spinner.hide();
