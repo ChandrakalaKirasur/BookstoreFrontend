@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
       ? "Min 6 Elements"
       : "";
   }
-  
+
   diableRadios = true;
   favoriteSeason: string = "user";
   seasons = ["user", "seller"];
@@ -87,8 +87,8 @@ export class LoginComponent implements OnInit {
               this.snackBar.open("Login Successfull", "undo", {
                 duration: 2500,
               });
-              window.location.reload();
               this.router.navigate(["books"]);
+              //window.location.reload();
             } else {
               this.spinner.hide();
               this.snackBar.open("Login Failed", "undo", { duration: 2500 });
