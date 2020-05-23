@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
       ? "Min 6 Elements"
       : "";
   }
+  
   diableRadios = true;
   favoriteSeason: string = "user";
   seasons = ["user", "seller"];

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormControl } from "@angular/forms";
 import { ForgotPassword } from "src/app/models/forgetpassword";
-import { MatSnackBar, MatRadioChange } from "@angular/material";
+import { MatSnackBar } from "@angular/material";
 import { HttpService } from "src/app/service/http.service";
 import { NgxSpinnerService } from "ngx-spinner";
 
@@ -33,6 +33,17 @@ export class ForgetpasswordComponent implements OnInit {
       : "";
   }
   
+  // @ViewChild('radio1', {static: true})
+  // public radio1: RadioButtonComponent;
+  // @ViewChild('radio2', {static: true})
+  // public radio2: RadioButtonComponent;
+  // public changeOption1 (args: ChangeEventArgs) {
+  //     document.getElementById('text').innerText = 'Selected : ' + this.radio1.label;
+  // }
+  // public changeOption2 (args: ChangeEventArgs) {
+  //     document.getElementById('text').innerText = 'Selected : ' + this.radio2.label;
+  // }
+
   favoriteSeason: string = 'user';
   seasons = [
     'user',
@@ -40,7 +51,6 @@ export class ForgetpasswordComponent implements OnInit {
   ];
  
   onforgot() {
-    
     this.showSpinner = true;
     this.spinner.show();
     this.showSpinner = true;
@@ -48,7 +58,7 @@ export class ForgetpasswordComponent implements OnInit {
       this.spinner.hide();
       this.httpservice
         .putRequestForget(
-          this.favoriteSeason + "/forgetPassword?email=" + this.forgot.email,
+          this.favoriteSeason+ "/forgetPassword?email=" + this.forgot.email,
           this.forgot
         )
         .subscribe(
