@@ -54,7 +54,8 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { SearchComponent } from "./components/search/search.component";
 import { SearchPipe } from "./pipes/search.pipe";
 import { MatSelectModule } from "@angular/material/select";
-import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import { AdminComponent } from './components/admin/admin.component'; 
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     VerifyComponent,
     SearchComponent,
     SearchPipe,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

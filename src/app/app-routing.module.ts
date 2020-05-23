@@ -14,6 +14,7 @@ import { BooksComponent } from "./components/books/books.component";
 import { OrderDetailsComponent } from "./components/order-details/order-details.component";
 import { SearchComponent } from "./components/search/search.component";
 import { VerifyComponent } from "./components/verify/verify.component";
+import { AdminComponent } from "./components/admin/admin.component";
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
         path: "books/ordersucess",
         // canActivate: [AuthGuardService],
         component: OrderSuccessComponent,
+      },
+      {
+        path: "admin",
+        component: AdminComponent,
       },
       {
         path: "books/whishlist",
