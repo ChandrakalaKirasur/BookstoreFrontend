@@ -147,24 +147,25 @@ container {
   height: 40px;
 }
 .address {
-  width: 70%;
+  width: 71%;
   height: 80px;
 }
 
 .input {
-  // width: 251px;
-  // height: 69px;
-  //flex-wrap: wrap;
-  width: 257px;
-  height: 23%;
+  width: 34%;
 }
 .input2 {
   // width: 251px;
   // height: 69px;
   //flex-wrap: wrap;
-  width: 50%;
-  height: 23%;
+  //width: 80%;
+  width: 255px;
+  // height: 45px;
 }
+.login-wrapper .example-full-width {
+  width: 100%;
+}
+
 .fieldtop {
   margin-top: 21px;
   margin-left: 36px;
