@@ -6,6 +6,7 @@ import { AddressService } from "src/app/service/address.service";
 import { Book } from "src/app/models/book";
 import { environment } from "src/environments/environment";
 import { UserService } from "src/app/service/user.service";
+import { HttpService } from "src/app/service/http.service";
 
 @Component({
   selector: "app-admin",
@@ -18,53 +19,90 @@ export class AdminComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
+    private httpservice: HttpService,
     private userService: UserService,
     private addressService: AddressService
   ) {}
 
+  visible: boolean;
+  profilepic: boolean = false;
+  profile: any;
   ngOnInit() {
-    this.onOrderlist();
+    this.unverifiedBooks();
+    if (localStorage.getItem("token") != null) {
+      this.visible = true;
+    } else {
+      this.profilepic = false;
+    }
+    this.getprofileLink();
+    this.profile = localStorage.getItem("userimage");
   }
 
   token: String;
   books: Array<Book> = [];
-  book: Book = new Book();
 
-  quantitylist: [];
-
-  //bookincart: number;
-  myDatas = new Array();
-  bookcount: number;
-
-  orderId = new Array();
-  count = 0;
-  onOrderlist() {
+  unVerifiedBooks: [];
+  unverifiedBooks() {
     this.userService
-      .getRequest(environment.orderlist_books + localStorage.getItem("token"))
-      .subscribe(
-        (Response: any) => {
-          console.log(Response.obj);
-          for (var len in Response.obj) {
-            this.count += 1;
-            this.books = Response.obj[len];
+      .getRequest("/book/bookdetails/unverified")
+      .subscribe((Response: any) => {
+        console.log(Response.obj[0]);
+        this.unVerifiedBooks = Response.obj;
+      });
+  }
 
-            let res = this.books["booksList"];
-            this.myDatas.push(this.books["booksList"]);
-            /**
-             * bookdetails
-             */
-            for (var index in res) {
-              this.book = res[index]; //book details
-              this.book.orderId = this.books["orderId"];
-              this.book.totalPrice = this.books["totalPrice"];
-              this.myDatas.push(this.book);
-            }
-          }
-          //console.log(this.myDatas);
-        },
-        (error: any) => {
-          this.snackbar.open(error.error.message, "undo", { duration: 2500 });
+  both: boolean = true;
+  disapprove: boolean = false;
+  approve: boolean = false;
+  onDisApprove() {
+    this.disapprove = true;
+    this.both = false;
+  }
+
+  onApprove(book: any) {
+    console.log(book);
+    this.userService
+      .putRequest("/book/bookdetails/verify?bookId=" + book.bookId, "")
+      .subscribe((Response: any) => {
+        console.log(Response.obj);
+        this.unVerifiedBooks = Response.obj;
+      });
+  }
+
+  getprofileLink() {
+    this.userService.getRequest(environment.user_profile).subscribe(
+      (Response: any) => {
+        this.profile = Response.obj;
+        if (this.profile != null) {
+          this.profilepic = true;
         }
-      );
+      },
+      (error: any) => {
+        this.snackbar.open("", "undo", { duration: 2500 });
+      }
+    );
+  }
+  file: File;
+  fileChange(event: any) {
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      this.file = event.target.files[0];
+      let body = new FormData();
+      body.append("file", this.file);
+      this.httpservice
+        .postMethod(
+          `${environment.baseUrl + environment.PROFILE_CHANGE_OR_UPLOAD}` +
+            "/" +
+            localStorage.getItem("token"),
+          body,
+          {}
+        )
+        .subscribe((response: any) => {
+          localStorage.setItem("userprofile", response["msg"]);
+          this.profilepic = true;
+          this.profile = response["msg"];
+          console.log("upload", response);
+        });
+    }
   }
 }
