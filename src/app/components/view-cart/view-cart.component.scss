@@ -267,10 +267,9 @@ container {
   text-align: center;
   color: #fff;
   bottom: 0;
-  width: 81%;
   max-height: 60%;
   margin-top: 160px;
-  margin-left: 100px;
+  margin-right: 8%;
 }
 .totalprice {
   font: Bold 15px/15px Lato;
@@ -279,4 +278,21 @@ container {
 .totalprice2 {
   //font: Bold 18px/15px Lato;
   margin-bottom: 30px;
+}
+@media (min-width: 728px) {
+  .footer {
+    margin-right: 13%;
+    margin-top: 272px;
+  }
+}
+@media (min-width: 1024px) {
+  .footer {
+    margin-right: 13%;
+    margin-top: 600px;
+  }
+}
+@media (max-width: 414px) {
+  .footer {
+    margin-right: 8%;
+  }
 }
