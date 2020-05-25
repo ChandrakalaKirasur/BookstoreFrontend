@@ -25,6 +25,7 @@ import { HttpService } from "src/app/service/http.service";
 import { environment } from "src/environments/environment";
 import { Location } from "@angular/common";
 import { EventEmitter } from "events";
+import { BookService } from "src/app/service/book.service";
 
 @Component({
   selector: "app-view-cart",
@@ -37,6 +38,7 @@ export class ViewCartComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
+    private bookService: BookService,
     private cartService: ViewcartService,
     private http_service: HttpService,
     private data: DataService,
