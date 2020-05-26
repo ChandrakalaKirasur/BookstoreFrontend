@@ -55,7 +55,8 @@ import { SearchComponent } from "./components/search/search.component";
 import { SearchPipe } from "./pipes/search.pipe";
 import { MatSelectModule } from "@angular/material/select";
 import {MatDialogModule} from '@angular/material/dialog';
-import { AdminComponent } from './components/admin/admin.component'; 
+import { AdminComponent } from './components/admin/admin.component';
+import { VerifyconfrimComponent } from './components/verifyconfrim/verifyconfrim.component'; 
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { AdminComponent } from './components/admin/admin.component';
     SearchComponent,
     SearchPipe,
     AdminComponent,
+    VerifyconfrimComponent,
   ],
   imports: [
     BrowserModule,

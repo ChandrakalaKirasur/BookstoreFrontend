@@ -1,12 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatDialog, MatDialogConfig } from "@angular/material";
 import { AddressService } from "src/app/service/address.service";
 import { Book } from "src/app/models/book";
 import { environment } from "src/environments/environment";
 import { UserService } from "src/app/service/user.service";
 import { HttpService } from "src/app/service/http.service";
+import { VerifyconfrimComponent } from "../verifyconfrim/verifyconfrim.component";
 
 @Component({
   selector: "app-admin",
@@ -21,6 +22,7 @@ export class AdminComponent implements OnInit {
     private snackbar: MatSnackBar,
     private httpservice: HttpService,
     private userService: UserService,
+    public dialog: MatDialog,
     private addressService: AddressService
   ) {}
 
@@ -61,12 +63,11 @@ export class AdminComponent implements OnInit {
 
   onApprove(book: any) {
     console.log(book);
-    this.userService
-      .putRequest("/book/bookdetails/verify?bookId=" + book.bookId, "")
-      .subscribe((Response: any) => {
-        console.log(Response.obj);
-        this.unVerifiedBooks = Response.obj;
-      });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      bookId: book.bookId,
+    };
+    const dialogRef = this.dialog.open(VerifyconfrimComponent, dialogConfig);
   }
 
   getprofileLink() {

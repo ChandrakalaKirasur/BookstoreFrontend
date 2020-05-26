@@ -15,6 +15,7 @@ import { OrderDetailsComponent } from "./components/order-details/order-details.
 import { SearchComponent } from "./components/search/search.component";
 import { VerifyComponent } from "./components/verify/verify.component";
 import { AdminComponent } from "./components/admin/admin.component";
+import { VerifyconfrimComponent } from "./components/verifyconfrim/verifyconfrim.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: ":role/resetpassword/:token",
     component: RestpasswordComponent,
+  },
+  {
+    path: "verifybook",
+    component: VerifyconfrimComponent,
   },
   {
     path: ":role/registration/verify/:token",
