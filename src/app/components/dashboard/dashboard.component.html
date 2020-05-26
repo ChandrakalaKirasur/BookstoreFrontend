@@ -2,7 +2,18 @@
   <mat-toolbar style="background-color: #a03037;">
     <mat-toolbar-row>
       <!--------------- bookimg and book --------------------------->
-      <div style="height: 40%; margin-left: 8%;">
+      <div
+        style="height: 40%; margin-left: 8%;"
+        fxShow="true"
+        fxHide.lt-md="true"
+      >
+        <a (click)="onBook()" class="bookicon">
+          <mat-icon color="primary" class="grab">
+            <img class="bookimg" src="assets/images/education@2x.png" />
+          </mat-icon>
+        </a>
+      </div>
+      <div style="height: 40%; margin-left: -3%;" fxHide fxShow.lt-md>
         <a (click)="onBook()" class="bookicon">
           <mat-icon color="primary" class="grab">
             <img class="bookimg" src="assets/images/education@2x.png" />
@@ -27,8 +38,9 @@
           (click)="searching()"
         />
       </div>
-      <div style="margin-left: 1%; margin-right: 11%;"></div>
-      <div fxLayout="row" fxLayoutAlign="end center" style="margin-left: 3%;">
+
+      <!-------------------- cart -------------------->
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 20%;">
         <div class="carttext" (click)="onCart()" fxhide="10" fxHide.xs="true">
           Cart
         </div>
@@ -44,12 +56,28 @@
           </mat-icon>
         </a>
 
+        <!-- <div style="margin-left: 1%; margin-right: 11%;"></div>
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 3%;">
+        <div class="carttext" (click)="onCart()" fxhide="10" fxHide.xs="true">
+          Cart
+        </div>
+        <a (click)="onCart()" class="cartimg">
+          <mat-icon
+            class="grab"
+            [matBadge]="bookcountds"
+            matBadgeSize="small"
+            [matBadgeHidden]="badgeCounter == 0"
+            matBadgePosition="above after"
+          >
+            <img class="image" src="assets/images/supermarket@2x.png" />
+          </mat-icon>
+        </a> -->
+
         <button
           *ngIf="!profilepic"
           mat-icon-button
-          fxShow="true"
           width="30"
-          style="margin-left: 20%; background-color: whitesmoke;"
+          style="margin-left: 21%; background-color: whitesmoke;"
           fxShow="true"
           fxHide.lt-md="true"
           [matMenuTriggerFor]="beforeMenu"
@@ -125,7 +153,7 @@
             <!-- </label> -->
           </div>
         </mat-menu>
-
+        <!--------------- app ---------------->
         <button
           mat-icon-button
           class="apps"
