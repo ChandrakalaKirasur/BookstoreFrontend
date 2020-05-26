@@ -13,7 +13,10 @@
             <div class="sub" style="word-wrap: break-word;">
               {{ book.bookAuthor }}
             </div>
-            <div style="margin-bottom: 30px; font: Bold 18px/15px Lato;">
+            <!-- <div style="margin-bottom: 30px; font: Bold 18px/15px Lato;">
+              Rs. {{ book.bookPrice }}
+            </div> -->
+            <div class="totalprice" fxLayout="row wrap">
               Rs. {{ book.bookPrice }}
             </div>
           </div>
@@ -290,7 +293,12 @@
               </div>
 
               <div class="sub2">{{ book.bookAuthor }}</div>
-              <div class="totalprice">Rs. {{ book.bookPrice }}</div>
+              <div class="totalprice" fxLayout="row wrap">
+                Rs. {{ book.bookPrice }}
+              </div>
+              <!-- <div style="margin-bottom: 20px; font: Bold 18px/15px Lato;" >
+                Rs. {{ book.bookPrice }}
+              </div> -->
 
               <div
                 class="totalprice2"

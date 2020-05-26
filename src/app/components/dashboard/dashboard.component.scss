@@ -18,13 +18,16 @@
   height: 24px;
   margin-left: 37px;
 }
+.spacer {
+  flex: 1 1 center;
+}
 .searche {
-  width: 32%;
+  width: 33%;
   height: 55%;
   background: #fcfcfc 0% 0% no-repeat padding-box;
   border-radius: 3px;
   opacity: 1;
-  margin-left: 55px;
+  margin-left: 60px;
 }
 .searchinput {
   width: 75%;
@@ -45,6 +48,7 @@
   font-size: 13px;
   padding-right: 7%;
   margin-bottom: 3%;
+  margin-left: 100px;
 }
 .cartimg {
   height: 32px;
