@@ -14,6 +14,8 @@ import { BooksComponent } from "./components/books/books.component";
 import { OrderDetailsComponent } from "./components/order-details/order-details.component";
 import { SearchComponent } from "./components/search/search.component";
 import { VerifyComponent } from "./components/verify/verify.component";
+import { AddbookComponent } from './components/addbook/addbook.component';
+import { SellerbooksComponent } from './components/sellerbooks/sellerbooks.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,7 @@ const routes: Routes = [
     path: ":role/registration/verify/:token",
     component: VerifyComponent,
   },
+  
   {
     path: "",
     component: DashboardComponent,
@@ -61,6 +64,10 @@ const routes: Routes = [
       {
         path: "books/orderdetails",
         component: OrderDetailsComponent,
+      },
+      {
+        path: "books/addbook",
+        component: SellerbooksComponent,
       },
     ],
   },

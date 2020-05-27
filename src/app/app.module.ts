@@ -54,7 +54,10 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { SearchComponent } from "./components/search/search.component";
 import { SearchPipe } from "./pipes/search.pipe";
 import { MatSelectModule } from "@angular/material/select";
-import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import { AddbookComponent } from './components/addbook/addbook.component';
+import { SellerbooksComponent } from './components/sellerbooks/sellerbooks.component';
+import { UpdatebookComponent } from './components/updatebook/updatebook.component';
 
 
 @NgModule({
@@ -76,6 +79,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     VerifyComponent,
     SearchComponent,
     SearchPipe,
+    AddbookComponent,
+    SellerbooksComponent,
+    UpdatebookComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,6 +116,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatBadgeModule,
     HttpClientModule,
   ],
+  exports: [ AddbookComponent,UpdatebookComponent],
+  entryComponents: [AddbookComponent,UpdatebookComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
