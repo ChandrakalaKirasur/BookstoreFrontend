@@ -16,6 +16,8 @@ import { SearchComponent } from "./components/search/search.component";
 import { VerifyComponent } from "./components/verify/verify.component";
 import { AddbookComponent } from './components/addbook/addbook.component';
 import { SellerbooksComponent } from './components/sellerbooks/sellerbooks.component';
+import { AdminComponent } from "./components/admin/admin.component";
+import { VerifyconfrimComponent } from "./components/verifyconfrim/verifyconfrim.component";
 
 const routes: Routes = [
   {
@@ -33,6 +35,10 @@ const routes: Routes = [
   {
     path: ":role/resetpassword/:token",
     component: RestpasswordComponent,
+  },
+  {
+    path: "verifybook",
+    component: VerifyconfrimComponent,
   },
   {
     path: ":role/registration/verify/:token",
@@ -56,6 +62,10 @@ const routes: Routes = [
         path: "books/ordersucess",
         // canActivate: [AuthGuardService],
         component: OrderSuccessComponent,
+      },
+      {
+        path: "admin",
+        component: AdminComponent,
       },
       {
         path: "books/whishlist",

@@ -1,18 +1,41 @@
 .cartdetails {
   display: flex;
-  margin-left: 36px;
+  margin-left: 4%;
   position: relative;
+  padding-top: 25px;
 }
 .bookdetails {
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
+  margin-left: 45px;
+  margin-bottom: 30px;
+  width: 15%;
+}
+mat-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  color: none;
+}
+::ng-deep .custom-tooltip {
+  width: 456px;
+  height: 250px;
+  text-align: left;
+  font: Regular 11px/13px Lato !important;
+  letter-spacing: 0px;
+  font-size: 15px;
+  text-align: center;
+  word-wrap: break-word;
+  //font-style: italic;
+  border: #e2e2e2 !important;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #9d9d9d !important;
+  box-shadow: 0px 3px 6px #00000029 !important;
+  opacity: 1;
 }
 .mycart {
   top: 135px;
   left: 213px;
   width: 120px;
-  //height: 62px;
   font-size: larger;
   font: bold;
 }
@@ -21,13 +44,16 @@
   margin-top: 12px;
 }
 .booktitle {
-  width: 90%;
+  width: 180%;
   text-align: left;
   letter-spacing: 0px;
   color: #0a0102;
   opacity: 1;
   display: flex;
   margin-left: -25px;
+}
+.footer {
+  width: 150%;
 }
 .sub {
   color: #9d9d9d;
@@ -38,19 +64,11 @@
 }
 
 .matcard2 {
-  // background: #ffffff 0% 0% no-repeat padding-box;
-  // display: flex;
-  // flex-direction: column;
-  // width: 55%;
-  // margin-bottom: 50px;
-  // border: 1px solid #9d9d9d;
-  // border-radius: 3px;
   //opacity: 1.1;
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  width: 64%;
-  padding-bottom: 4.2%;
+  width: 70%;
   border: 1px solid #9d9d9d;
   border-radius: 3px;
 }
@@ -58,43 +76,17 @@
   font-size: 17px;
   text-align: center;
   color: white;
-  background-color: #a03037;
+  background-color: #4bb543;
   margin-top: 32px;
-  margin-left: 100px;
+  margin-left: 10px;
 }
 .bookimg {
   top: 192px;
   left: 213px;
-  width: 65px;
-  height: 90px;
+  width: 80px;
+  height: 100px;
 }
 .totalprice {
   font: Bold 18px/15px Lato;
   margin-bottom: 30px;
-}
-@media (min-width: 728px) {
-  .footer {
-    margin-right: 13%;
-  }
-  .foot {
-    margin-top: 760px;
-    margin-right: 13%;
-  }
-}
-@media (min-width: 1024px) {
-  .footer {
-    margin-right: 13%;
-  }
-  .foot {
-    margin-right: 13%;
-  }
-}
-@media (max-width: 414px) {
-  .footer {
-    margin-right: 12%;
-  }
-  .foot {
-    margin-top: 450px;
-    margin-right: 8%;
-  }
 }

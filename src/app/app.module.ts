@@ -58,6 +58,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AddbookComponent } from './components/addbook/addbook.component';
 import { SellerbooksComponent } from './components/sellerbooks/sellerbooks.component';
 import { UpdatebookComponent } from './components/updatebook/updatebook.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { VerifyconfrimComponent } from './components/verifyconfrim/verifyconfrim.component'; 
 
 
 @NgModule({
@@ -82,6 +84,8 @@ import { UpdatebookComponent } from './components/updatebook/updatebook.componen
     AddbookComponent,
     SellerbooksComponent,
     UpdatebookComponent,
+    AdminComponent,
+    VerifyconfrimComponent,
   ],
   imports: [
     BrowserModule,

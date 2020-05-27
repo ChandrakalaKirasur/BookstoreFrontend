@@ -6,6 +6,7 @@ import { AddressService } from "src/app/service/address.service";
 import { Book } from "src/app/models/book";
 import { environment } from "src/environments/environment";
 import { UserService } from "src/app/service/user.service";
+import { BookService } from "src/app/service/book.service";
 
 @Component({
   selector: "app-whishlist",
@@ -20,12 +21,29 @@ export class WhishlistComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private userService: UserService,
+    private bookService: BookService,
+    private _matSnackBar: MatSnackBar,
     private addressService: AddressService
   ) {}
 
   ngOnInit() {
     this.BookCount();
     this.onwhishlist();
+  }
+
+  addToCart(book: any) {
+    this.bookService.addToCart(book.bookId).subscribe((response: any) => {
+      console.log(response["obj"]);
+      this.onRemove(book);
+      // this.book.isAdded = response.obj;
+      // this.getCount = response.obj;
+      this._matSnackBar.open("Book added to cart", "ok", {
+        duration: 1000,
+      });
+      // if (this.getCount) {
+      // this.getcountofbooks();
+      // }
+    });
   }
 
   bookcount: number;

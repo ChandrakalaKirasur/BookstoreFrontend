@@ -1,0 +1,124 @@
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import { MatSnackBar, MatDialog, MatDialogConfig } from "@angular/material";
+import { AddressService } from "src/app/service/address.service";
+import { Book } from "src/app/models/book";
+import { environment } from "src/environments/environment";
+import { UserService } from "src/app/service/user.service";
+import { HttpService } from "src/app/service/http.service";
+import { VerifyconfrimComponent } from "../verifyconfrim/verifyconfrim.component";
+import { Seller } from "src/app/models/seller";
+
+@Component({
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.scss"],
+})
+export class AdminComponent implements OnInit {
+  constructor(
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackbar: MatSnackBar,
+    private httpservice: HttpService,
+    private userService: UserService,
+    public dialog: MatDialog,
+    private addressService: AddressService
+  ) {}
+
+  visible: boolean;
+  profilepic: boolean = false;
+  profile: any;
+  ngOnInit() {
+    this.unverifiedBooks();
+    if (localStorage.getItem("token") != null) {
+      this.visible = true;
+    } else {
+      this.profilepic = false;
+    }
+    this.getprofileLink();
+    this.profile = localStorage.getItem("userimage");
+  }
+
+  token: String;
+  books: Array<Book> = [];
+  bookdto: Seller = new Seller();
+  unVerifiedBooks: [];
+  unverifiedBooks() {
+    this.userService
+      .getRequest("/book/bookdetails/unverified")
+      .subscribe((Response: any) => {
+        //console.log(Response.obj[0]["sellerId"]);
+        this.userService
+          .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
+          .subscribe((Res: any) => {
+            for (var len in Response.obj) {
+              this.bookdto = Response.obj[len];
+              this.bookdto.sellerName = Res.obj.sellerName;
+              this.bookdto.sellerEmail = Res.obj.email;
+              this.bookdto.sellerMobile = Res.obj.mobile;
+              this.books.push(this.bookdto);
+            }
+            // console.log(this.books);
+            // console.log(Response.obj.sellerName);
+          });
+      });
+  }
+
+  both: boolean = true;
+  disapprove: boolean = false;
+  approve: boolean = false;
+  onDisApprove() {
+    this.disapprove = true;
+    this.both = false;
+  }
+
+  onApprove(book: any) {
+    console.log(book);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      bookId: book.bookId,
+    };
+    const dialogRef = this.dialog.open(VerifyconfrimComponent, dialogConfig);
+    //console.log(dialogConfig.data);
+    //this.unverifiedBooks();
+  }
+
+  getprofileLink() {
+    this.userService.getRequest(environment.user_profile).subscribe(
+      (Response: any) => {
+        this.profile = Response.obj;
+        if (this.profile != null) {
+          this.profilepic = true;
+        }
+      },
+      (error: any) => {
+        this.snackbar.open("", "undo", { duration: 2500 });
+      }
+    );
+  }
+  file: File;
+  fileChange(event: any) {
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      this.file = event.target.files[0];
+      let body = new FormData();
+      body.append("file", this.file);
+      this.httpservice
+        .postMethod(
+          `${environment.baseUrl + environment.PROFILE_CHANGE_OR_UPLOAD}` +
+            "/" +
+            localStorage.getItem("token"),
+          body,
+          {}
+        )
+        .subscribe((response: any) => {
+          localStorage.setItem("userprofile", response["msg"]);
+          this.profilepic = true;
+          this.profile = response["msg"];
+          console.log("upload", response);
+        });
+    }
+  }
+}

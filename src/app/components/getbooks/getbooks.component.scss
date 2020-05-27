@@ -65,3 +65,17 @@ app-books {
 .footer {
   margin-top: 4%;
 }
+@media (min-width: 728px) {
+  .bookheader {
+    margin-left: 15%;
+    margin-right: 16%;
+  }
+  .footer {
+    margin-right: 13%;
+  }
+}
+@media (max-width: 414px) {
+  .footer {
+    margin-right: 8%;
+  }
+}
