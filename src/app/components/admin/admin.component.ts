@@ -8,6 +8,7 @@ import { environment } from "src/environments/environment";
 import { UserService } from "src/app/service/user.service";
 import { HttpService } from "src/app/service/http.service";
 import { VerifyconfrimComponent } from "../verifyconfrim/verifyconfrim.component";
+import { Seller } from "src/app/models/seller";
 
 @Component({
   selector: "app-admin",
@@ -42,14 +43,26 @@ export class AdminComponent implements OnInit {
 
   token: String;
   books: Array<Book> = [];
-
+  bookdto: Seller = new Seller();
   unVerifiedBooks: [];
   unverifiedBooks() {
     this.userService
       .getRequest("/book/bookdetails/unverified")
       .subscribe((Response: any) => {
-        console.log(Response.obj[0]);
-        this.unVerifiedBooks = Response.obj;
+        //console.log(Response.obj[0]["sellerId"]);
+        this.userService
+          .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
+          .subscribe((Res: any) => {
+            for (var len in Response.obj) {
+              this.bookdto = Response.obj[len];
+              this.bookdto.sellerName = Res.obj.sellerName;
+              this.bookdto.sellerEmail = Res.obj.email;
+              this.bookdto.sellerMobile = Res.obj.mobile;
+              this.books.push(this.bookdto);
+            }
+            // console.log(this.books);
+            // console.log(Response.obj.sellerName);
+          });
       });
   }
 
