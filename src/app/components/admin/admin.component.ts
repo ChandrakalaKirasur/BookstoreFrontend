@@ -68,6 +68,8 @@ export class AdminComponent implements OnInit {
       bookId: book.bookId,
     };
     const dialogRef = this.dialog.open(VerifyconfrimComponent, dialogConfig);
+    //console.log(dialogConfig.data);
+    //this.unverifiedBooks();
   }
 
   getprofileLink() {

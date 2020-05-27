@@ -32,7 +32,7 @@
         <input
           type="text"
           class="searchinput"
-          placeholder="search.."
+          placeholder="search"
           autocomplete="off"
           [(ngModel)]="searchText"
           (click)="searching()"
@@ -65,7 +65,7 @@
           fxHide.lt-md="true"
           [matMenuTriggerFor]="beforeMenu"
         >
-          <mat-icon>perm_identity</mat-icon>
+          <mat-icon id="cartimg">perm_identity</mat-icon>
         </button>
 
         <button

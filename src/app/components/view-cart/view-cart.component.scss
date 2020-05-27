@@ -16,7 +16,7 @@ container {
 .bookdetails {
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
+  margin-left: 6%;
 }
 .mycart {
   top: 135px;
@@ -155,6 +155,9 @@ container {
   //width: 80%;
   width: 90%;
   // height: 45px;
+}
+.custom-color.mat-select-value {
+  color: green;
 }
 .login-wrapper .example-full-width {
   width: 100%;
