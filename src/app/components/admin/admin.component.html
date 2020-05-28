@@ -1,20 +1,29 @@
 <div role="combobox" flex="column" style="margin-left: 15%;">
   <!-- <div fxLayout="column wrap" fxLayoutGap="10px" fxLayoutAlign="start center"> -->
-  <div *ngFor="let book of unVerifiedBooks">
+  <div *ngFor="let book of books">
     <!-- <div *ngIf="book.bookName != null"> -->
-    <mat-card class="matcard2">
+    <mat-card
+      class="matcard2"
+      matTooltip="sellerName:{{ book.sellerName }},
+                  sellerMobile:{{ book.sellerMobile }},
+                  sellerEmail:{{ book.sellerEmail }}"
+      matTooltipPosition="left"
+      matTooltipClass="custom-tooltip"
+    >
       <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
         <img class="bookimg" src="{{ book.bookImage }}" />
 
         <div class="bookdetails">
-          <div class="booktitle">
+          <div class="booktitle" style="word-wrap: break-word;">
             {{ book.bookName }}
           </div>
 
-          <div class="sub">{{ book.bookAuthor }}</div>
+          <div class="sub" style="word-wrap: break-word;">
+            {{ book.bookAuthor }}
+          </div>
           <div
             style="
-              margin-bottom: 30px;
+              margin-bottom: 11%;
               font: Bold 18px/15px Lato;
               margin-left: -25px;
             "

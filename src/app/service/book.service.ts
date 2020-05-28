@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpService } from "./http.service";
 import { environment } from "src/environments/environment";
-import { HttpParams } from "@angular/common/http";
+import { HttpParams, HttpHeaders, HttpClient } from "@angular/common/http";
 import { Subject, BehaviorSubject } from "rxjs";
 import { tap } from "rxjs/operators";
 
@@ -9,7 +9,8 @@ import { tap } from "rxjs/operators";
   providedIn: "root",
 })
 export class BookService {
-  constructor(private http_service: HttpService) {}
+  constructor(private http_service: HttpService,
+   private http:HttpClient) {}
   private subject = new Subject<any>();
   private content = new BehaviorSubject<number>(0);
   public share = this.content.asObservable();
@@ -23,6 +24,17 @@ export class BookService {
       {}
     );
   }
+  getAvailableSellerBooks()
+  {
+    return this.http_service.getbookMethod(
+      environment.baseUrl + environment.BOOK_SELLER_URL,
+      this.http_service.httpOptions) .pipe(
+        tap(() => {
+          this.subject.next();
+        })
+      );
+  }
+  
   getAvailableBooks() {
     let params = new HttpParams();
     params = params.append("pageNo", "1");
@@ -107,6 +119,23 @@ export class BookService {
         bookId,
       {}
     );
+  }
+  private _refreshNeeded$=new Subject<void>();
+  get refreshNeeded$()
+  {
+    return this._refreshNeeded$;
+  }
+  
+  public addBook( data: any ):any{
+    console.log("service add book");
+    return this.http.post( "http://localhost:8080/book/addbook",data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) }).pipe(tap(()=>{
+      this.subject.next();
+
+    }))
+  }
+  public updateBook(url:any, data: any ):any{
+    console.log("service add book");
+    return this.http.put( "http://localhost:8080/book/update/"+url,data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
   isAddedToWishList(bookId: number) {
     return this.http_service.getMethod(

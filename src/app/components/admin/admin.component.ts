@@ -1,12 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatDialog, MatDialogConfig } from "@angular/material";
 import { AddressService } from "src/app/service/address.service";
 import { Book } from "src/app/models/book";
 import { environment } from "src/environments/environment";
 import { UserService } from "src/app/service/user.service";
 import { HttpService } from "src/app/service/http.service";
+import { VerifyconfrimComponent } from "../verifyconfrim/verifyconfrim.component";
+import { Seller } from "src/app/models/seller";
 
 @Component({
   selector: "app-admin",
@@ -21,6 +23,7 @@ export class AdminComponent implements OnInit {
     private snackbar: MatSnackBar,
     private httpservice: HttpService,
     private userService: UserService,
+    public dialog: MatDialog,
     private addressService: AddressService
   ) {}
 
@@ -40,14 +43,26 @@ export class AdminComponent implements OnInit {
 
   token: String;
   books: Array<Book> = [];
-
+  bookdto: Seller = new Seller();
   unVerifiedBooks: [];
   unverifiedBooks() {
     this.userService
       .getRequest("/book/bookdetails/unverified")
       .subscribe((Response: any) => {
-        console.log(Response.obj[0]);
-        this.unVerifiedBooks = Response.obj;
+        //console.log(Response.obj[0]["sellerId"]);
+        this.userService
+          .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
+          .subscribe((Res: any) => {
+            for (var len in Response.obj) {
+              this.bookdto = Response.obj[len];
+              this.bookdto.sellerName = Res.obj.sellerName;
+              this.bookdto.sellerEmail = Res.obj.email;
+              this.bookdto.sellerMobile = Res.obj.mobile;
+              this.books.push(this.bookdto);
+            }
+            // console.log(this.books);
+            // console.log(Response.obj.sellerName);
+          });
       });
   }
 
@@ -61,12 +76,13 @@ export class AdminComponent implements OnInit {
 
   onApprove(book: any) {
     console.log(book);
-    this.userService
-      .putRequest("/book/bookdetails/verify?bookId=" + book.bookId, "")
-      .subscribe((Response: any) => {
-        console.log(Response.obj);
-        this.unVerifiedBooks = Response.obj;
-      });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      bookId: book.bookId,
+    };
+    const dialogRef = this.dialog.open(VerifyconfrimComponent, dialogConfig);
+    //console.log(dialogConfig.data);
+    //this.unverifiedBooks();
   }
 
   getprofileLink() {
