@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { BookService } from 'src/app/service/book.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Book } from 'src/app/models/book';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
-import { AddbookComponent } from '../addbook/addbook.component';
-import { ViewserviceService } from 'src/app/service/viewservice.service';
-import { DataserviceService } from 'src/app/service/dataservice.service';
-import { UpdatebookComponent } from '../updatebook/updatebook.component';
+import { Component, OnInit } from "@angular/core";
+import { BookService } from "src/app/service/book.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Book } from "src/app/models/book";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MatDialog } from "@angular/material";
+import { AddbookComponent } from "../addbook/addbook.component";
+import { ViewserviceService } from "src/app/service/viewservice.service";
+import { DataserviceService } from "src/app/service/dataservice.service";
+import { UpdatebookComponent } from "../updatebook/updatebook.component";
 
 @Component({
-  selector: 'app-sellerbooks',
-  templateUrl: './sellerbooks.component.html',
-  styleUrls: ['./sellerbooks.component.scss']
+  selector: "app-sellerbooks",
+  templateUrl: "./sellerbooks.component.html",
+  styleUrls: ["./sellerbooks.component.scss"],
 })
 export class SellerbooksComponent implements OnInit {
   bookList: Array<Book> = [];
@@ -33,10 +33,7 @@ export class SellerbooksComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private data: DataserviceService,
-    private viewservice: ViewserviceService,
-    
-    
-    
+    private viewservice: ViewserviceService
   ) {}
 
   ngOnInit() {
@@ -49,28 +46,15 @@ export class SellerbooksComponent implements OnInit {
     //     console.log(this.direction);
     //   });
 
-this.bookService.autoRefresh.subscribe(()=>{
-  this.getAvailableBooks();
+    this.bookService.autoRefresh.subscribe(() => {
+      this.getBooksCount();
+      this.getAvailableBooks();
+    });
 
-})
-    
-
-
-
-
-
-
-this.bookService.refreshNeeded$
-.subscribe(()=>{this.getAvailableBooks();})
-    
     this.getAvailableBooks();
   }
- 
+
   getBooksCount() {
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 2000);
     this.bookService.getBooksCount().subscribe((response: any) => {
       this.length = response["obj"];
       if (this.length > 10) {
@@ -81,40 +65,34 @@ this.bookService.refreshNeeded$
       }
     });
   }
-  
-  addbook()
-  {
+
+  addbook() {
     const dialogRef = this.dialog.open(AddbookComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed");
     });
-   }
-   updatebook(book:any)
-   {
+  }
+  updatebook(book: any) {
     const dialogRef = this.dialog.open(UpdatebookComponent, {
       data: {
-      'bookName': book.bookName,
-      'bookAuthor': book.bookAuthor,
-      'bookPrice': book.bookPrice,
-      'noOfBooks': book.noOfBooks,
-      'bookDescription': book.bookDescription,
-      'bookId':book.bookId
-    }
+        bookName: book.bookName,
+        bookAuthor: book.bookAuthor,
+        bookPrice: book.bookPrice,
+        noOfBooks: book.noOfBooks,
+        bookDescription: book.bookDescription,
+        bookId: book.bookId,
+      },
     });
-   
-      
-    
-   }
+  }
   getAvailableBooks() {
     this.bookService.getAvailableSellerBooks().subscribe((response: any) => {
-      this.bookList = response["obj"].reverse();
+      this.bookList = response["obj"];
       // this.ngOnInit();
     });
   }
   getAvailableBooksOfPage(pageNo: number) {
     this.bookService
-      .getAvailableBooksOfPage(pageNo)
+      .getAvailableBooksOfPageFromSeller(pageNo)
       .subscribe((response: any) => {
         this.bookList = response["obj"];
         this.page = pageNo;
