@@ -25,8 +25,8 @@ export class BookService {
   }
   getAvailableSellerBooks() {
     return this.http_service
-      .getbookMethod(
-        environment.baseUrl + environment.BOOK_SELLER_URL,
+      .getMethod(
+        environment.baseUrl + environment.BOOK_SELLER_URL + "/?pageNo=" + 1,
         this.http_service.httpOptions
       )
       .pipe(
@@ -161,6 +161,14 @@ export class BookService {
         "?bookId=" +
         bookId,
       {}
+    );
+  }
+  public getAvailableBooksOfPageFromSeller(pageNo: any) {
+    let params = new HttpParams();
+    params = params.append("pageNo", pageNo);
+    return this.http_service.getMethod(
+      environment.baseUrl + "seller/sellerbooks/?pageNo=" + pageNo,
+      this.http_service.httpOptions
     );
   }
 }
