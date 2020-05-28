@@ -120,9 +120,18 @@ export class BookService {
       {}
     );
   }
+  private _refreshNeeded$=new Subject<void>();
+  get refreshNeeded$()
+  {
+    return this._refreshNeeded$;
+  }
+  
   public addBook( data: any ):any{
     console.log("service add book");
-    return this.http.post( "http://localhost:8080/book/addbook",data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+    return this.http.post( "http://localhost:8080/book/addbook",data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) }).pipe(tap(()=>{
+      this.subject.next();
+
+    }))
   }
   public updateBook(url:any, data: any ):any{
     console.log("service add book");

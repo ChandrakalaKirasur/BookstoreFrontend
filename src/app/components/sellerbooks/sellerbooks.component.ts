@@ -41,7 +41,7 @@ export class SellerbooksComponent implements OnInit {
 
   ngOnInit() {
     this.sort;
-    this.data.currentMessage.subscribe(message => { this.message = message,  this.getAvailableBooks(); });
+    // this.data.currentMessage.subscribe(message => { this.message = message,  this.getAvailableBooks(); });
     // this.viewservice.getView().subscribe(
     //   (res) => {
     //   this.view = res;
@@ -49,9 +49,21 @@ export class SellerbooksComponent implements OnInit {
     //     console.log(this.direction);
     //   });
 
+this.bookService.autoRefresh.subscribe(()=>{
+  this.getAvailableBooks();
 
-    // this.getBooksCount();
-    // this.getAvailableBooks();
+})
+    
+
+
+
+
+
+
+this.bookService.refreshNeeded$
+.subscribe(()=>{this.getAvailableBooks();})
+    
+    this.getAvailableBooks();
   }
  
   getBooksCount() {
@@ -80,14 +92,14 @@ export class SellerbooksComponent implements OnInit {
    }
    updatebook(book:any)
    {
-    const dialogRef = this.dialog.open(UpdatebookComponent, {data: {
+    const dialogRef = this.dialog.open(UpdatebookComponent, {
+      data: {
       'bookName': book.bookName,
       'bookAuthor': book.bookAuthor,
       'bookPrice': book.bookPrice,
       'noOfBooks': book.noOfBooks,
       'bookDescription': book.bookDescription,
       'bookId':book.bookId
-
     }
     });
    
@@ -96,7 +108,7 @@ export class SellerbooksComponent implements OnInit {
    }
   getAvailableBooks() {
     this.bookService.getAvailableSellerBooks().subscribe((response: any) => {
-      this.bookList = response["obj"];
+      this.bookList = response["obj"].reverse();
       // this.ngOnInit();
     });
   }
