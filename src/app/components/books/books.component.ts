@@ -18,6 +18,8 @@ export class BooksComponent implements OnInit {
   noOfBooks: number;
   visible: boolean;
   getCount: boolean = false;
+  @Input("starCount") private starCount: number = 5;
+  private ratingArr = [];
   constructor(
     private _matSnackBar: MatSnackBar,
     private router: Router,
@@ -31,6 +33,9 @@ export class BooksComponent implements OnInit {
       this.isAddedToCart();
       this.isAddedToWishList();
       // this.getcountofbooks();
+    }
+    for (let index = 0; index < this.starCount; index++) {
+      this.ratingArr.push(index);
     }
   }
   addToCart() {
@@ -89,6 +94,14 @@ export class BooksComponent implements OnInit {
         this.book.isListed = response["obj"];
       });
   }
+  @Input("rating") private rating: number = 4;
+  showIcon(index: number) {
+    if (this.rating >= index + 1) {
+      return "star";
+    } else {
+      return "star_border";
+    }
+  }
   // appName: string;
   // token: string;
   // private bookcount = new BehaviorSubject<number>(0);
@@ -102,4 +115,15 @@ export class BooksComponent implements OnInit {
   // this.bookcount.next(response.obj);
   // });
   // }
+  private bookrating = new BehaviorSubject<any>(this.book);
+  ratingBookMessage = this.bookrating.asObservable();
+  ratingAndReviews(book: any) {
+    this.bookrating.next(book);
+    this.router.navigate(["books/orderdetails/rating"]);
+  }
+}
+export enum StarRatingColor {
+  primary = "primary",
+  accent = "accent",
+  warn = "warn",
 }

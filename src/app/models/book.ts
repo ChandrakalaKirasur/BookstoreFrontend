@@ -6,7 +6,10 @@ export class Book {
   public noOfBooks: number;
   public bookImage: any;
   public bookDescription: string;
-  public reviewRating: Array<any>;
+  public reviewRating: {
+    rating: number;
+    review: string;
+  };
   public quantitybto: any;
   public orderId: any;
   public isAdded: boolean;
