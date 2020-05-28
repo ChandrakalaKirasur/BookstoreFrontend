@@ -17,7 +17,7 @@ import { VerifyComponent } from "./components/verify/verify.component";
 import { AddbookComponent } from "./components/addbook/addbook.component";
 import { SellerbooksComponent } from "./components/sellerbooks/sellerbooks.component";
 import { AdminComponent } from "./components/admin/admin.component";
-import { RatingComponent } from "./components/rating/rating.component";
+//import { RatingComponent } from "./components/rating/rating.component";
 import { VerifyconfrimComponent } from "./components/verifyconfrim/verifyconfrim.component";
 import { RatingreviewComponent } from "./components/ratingreview/ratingreview.component";
 import { AdmindashboardComponent } from "./components/admindashboard/admindashboard.component";
@@ -49,11 +49,11 @@ const routes: Routes = [
     component: VerifyComponent,
   },
   {
-    path: "books",
+    path: "admin",
     component: AdmindashboardComponent,
     children: [
       {
-        path: "admin",
+        path: "books",
         component: AdminComponent,
       },
       {
@@ -88,10 +88,6 @@ const routes: Routes = [
       {
         path: "books/orderdetails",
         component: OrderDetailsComponent,
-      },
-      {
-        path: "books/rating",
-        component: RatingComponent,
       },
       {
         path: "books/addbook",

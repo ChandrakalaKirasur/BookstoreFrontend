@@ -74,12 +74,12 @@ export class AdmindashboardComponent implements OnInit {
   getDisApprove() {
     this.app = true;
     this.approve = false;
-    this.router.navigate(["books/disapprovebooks"]);
+    this.router.navigate(["admin/disapprovebooks"]);
   }
 
   getApprove() {
     this.approve = true;
 
-    this.router.navigate(["books/admin"]);
+    this.router.navigate(["admin/books"]);
   }
 }
