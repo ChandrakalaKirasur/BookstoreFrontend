@@ -14,8 +14,8 @@ import { BooksComponent } from "./components/books/books.component";
 import { OrderDetailsComponent } from "./components/order-details/order-details.component";
 import { SearchComponent } from "./components/search/search.component";
 import { VerifyComponent } from "./components/verify/verify.component";
-import { AddbookComponent } from './components/addbook/addbook.component';
-import { SellerbooksComponent } from './components/sellerbooks/sellerbooks.component';
+import { AddbookComponent } from "./components/addbook/addbook.component";
+import { SellerbooksComponent } from "./components/sellerbooks/sellerbooks.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { RatingComponent } from "./components/rating/rating.component";
 import { VerifyconfrimComponent } from "./components/verifyconfrim/verifyconfrim.component";
@@ -45,7 +45,7 @@ const routes: Routes = [
     path: ":role/registration/verify/:token",
     component: VerifyComponent,
   },
-  
+
   {
     path: "",
     component: DashboardComponent,
@@ -79,6 +79,8 @@ const routes: Routes = [
       {
         path: "books/rating",
         component: RatingComponent,
+      },
+      {
         path: "books/addbook",
         component: SellerbooksComponent,
       },
