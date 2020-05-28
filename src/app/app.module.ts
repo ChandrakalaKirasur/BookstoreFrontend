@@ -54,6 +54,8 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { SearchComponent } from "./components/search/search.component";
 import { SearchPipe } from "./pipes/search.pipe";
 import { MatSelectModule } from "@angular/material/select";
+import { RatingComponent } from "./components/rating/rating.component";
+import { GiverateComponent } from './components/giverate/giverate.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddbookComponent } from './components/addbook/addbook.component';
 import { SellerbooksComponent } from './components/sellerbooks/sellerbooks.component';
@@ -61,7 +63,6 @@ import { UpdatebookComponent } from './components/updatebook/updatebook.componen
 import { AdminComponent } from './components/admin/admin.component';
 import { VerifyconfrimComponent } from './components/verifyconfrim/verifyconfrim.component';
 import { RatingreviewComponent } from './components/ratingreview/ratingreview.component'; 
-
 
 @NgModule({
   declarations: [
@@ -86,6 +87,8 @@ import { RatingreviewComponent } from './components/ratingreview/ratingreview.co
     SellerbooksComponent,
     UpdatebookComponent,
     AdminComponent,
+    RatingComponent,
+    GiverateComponent,
     VerifyconfrimComponent,
     RatingreviewComponent,
   ],
@@ -122,9 +125,9 @@ import { RatingreviewComponent } from './components/ratingreview/ratingreview.co
     MatBadgeModule,
     HttpClientModule,
   ],
+  providers: [BooksComponent],
   exports: [ AddbookComponent,UpdatebookComponent],
   entryComponents: [AddbookComponent,UpdatebookComponent],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
