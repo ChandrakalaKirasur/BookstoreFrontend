@@ -1,4 +1,4 @@
-export class Book {
+export class Seller {
   public bookId: number;
   public bookName: string;
   public bookAuthor: string;
@@ -6,7 +6,10 @@ export class Book {
   public noOfBooks: number;
   public bookImage: any;
   public bookDescription: string;
-  public reviewRating: any;
+  public reviewRating: Array<any>;
+  public sellerName: any;
+  public sellerEmail: any;
+  public sellerMobile: any;
   public quantitybto: any;
   public orderId: any;
   public isAdded: boolean;

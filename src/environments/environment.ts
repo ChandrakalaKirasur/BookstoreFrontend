@@ -9,6 +9,7 @@ export const environment = {
   RESET_URL: "resetPassword/",
   VERIFY_URL: "/registration/verify/",
   BOOK_BASE_URL: "book/bookdetails/",
+  BOOK_SELLER_URL:"book/sellerbooks",
   ADD_TO_CART: "cart/bookdetails/",
   REMOVE_FROM_CART: "cart/book/",
   ADD_TO_WISHLIST: "wishList/book/",

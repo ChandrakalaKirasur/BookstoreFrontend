@@ -2,7 +2,18 @@
   <mat-toolbar style="background-color: #a03037;">
     <mat-toolbar-row>
       <!--------------- bookimg and book --------------------------->
-      <div style="height: 40%; margin-left: 8%;">
+      <div
+        style="height: 40%; margin-left: 8%;"
+        fxShow="true"
+        fxHide.lt-md="true"
+      >
+        <a (click)="onBook()" class="bookicon">
+          <mat-icon color="primary" class="grab">
+            <img class="bookimg" src="assets/images/education@2x.png" />
+          </mat-icon>
+        </a>
+      </div>
+      <div style="height: 40%; margin-left: -3%;" fxHide fxShow.lt-md>
         <a (click)="onBook()" class="bookicon">
           <mat-icon color="primary" class="grab">
             <img class="bookimg" src="assets/images/education@2x.png" />
@@ -21,14 +32,15 @@
         <input
           type="text"
           class="searchinput"
-          placeholder="search.."
+          placeholder="search"
           autocomplete="off"
           [(ngModel)]="searchText"
           (click)="searching()"
         />
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 22%;">
+      <!-------------------- cart -------------------->
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 20%;">
         <div class="carttext" (click)="onCart()" fxhide="10" fxHide.xs="true">
           Cart
         </div>
@@ -47,14 +59,13 @@
         <button
           *ngIf="!profilepic"
           mat-icon-button
-          fxShow="true"
           width="30"
-          style="margin-left: 20%; background-color: whitesmoke;"
+          style="margin-left: 21%; background-color: whitesmoke;"
           fxShow="true"
           fxHide.lt-md="true"
           [matMenuTriggerFor]="beforeMenu"
         >
-          <mat-icon>perm_identity</mat-icon>
+          <mat-icon id="cartimg">perm_identity</mat-icon>
         </button>
 
         <button
@@ -125,7 +136,7 @@
             <!-- </label> -->
           </div>
         </mat-menu>
-
+        <!--------------- app ---------------->
         <button
           mat-icon-button
           class="apps"
@@ -190,8 +201,6 @@
               </button>
               <!-- </label> -->
             </div>
-            <!-- <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button> -->
           </mat-menu>
         </button>
       </div>

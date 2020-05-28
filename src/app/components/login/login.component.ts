@@ -83,6 +83,7 @@ export class LoginComponent implements OnInit {
               this.spinner.hide();
               localStorage.setItem("token", response.obj);
               this.token = localStorage.getItem("token");
+              console.log(this.token)
               this.snackBar.open("Login Successfull", "undo", {
                 duration: 2500,
               });

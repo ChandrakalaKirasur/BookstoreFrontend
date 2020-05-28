@@ -16,7 +16,7 @@ container {
 .bookdetails {
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
+  margin-left: 6%;
 }
 .mycart {
   top: 135px;
@@ -60,13 +60,6 @@ container {
   opacity: 1;
   display: flex;
   position: relative;
-  // width: 50%;
-  // text-align: left;
-  // letter-spacing: 0px;
-  // color: #0a0102;
-  // opacity: 1;
-  // margin-left: 17%;
-  // position: relative;
 }
 
 .sub {
@@ -86,7 +79,7 @@ container {
 .mat {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 69%;
   border: 1px solid #9d9d9d;
   border-radius: 3px;
   //opacity: 1.1;
@@ -94,7 +87,7 @@ container {
 .mat2 {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 69%;
   margin-bottom: 100px;
   border: 1px solid #9d9d9d;
   border-radius: 3px;
@@ -110,7 +103,7 @@ container {
   background: #ffffff 0% 0% no-repeat padding-box;
   //display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 69%;
   border: 1px solid #9d9d9d;
   border-radius: 3px;
   //opacity: 1;
@@ -119,7 +112,7 @@ container {
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 69%;
   padding-bottom: 4.2%;
   border: 1px solid #9d9d9d;
   border-radius: 3px;
@@ -129,7 +122,7 @@ container {
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 69%;
   margin-bottom: 50px;
   border: 1px solid #9d9d9d;
   border-radius: 3px;
@@ -147,20 +140,24 @@ container {
   height: 40px;
 }
 .address {
-  width: 71%;
+  width: 72%;
   height: 80px;
 }
 
 .input {
-  width: 34%;
+  width: 35%;
+  //margin-right: 42px;
 }
 .input2 {
   // width: 251px;
   // height: 69px;
   //flex-wrap: wrap;
   //width: 80%;
-  width: 255px;
+  width: 90%;
   // height: 45px;
+}
+.custom-color.mat-select-value {
+  color: green;
 }
 .login-wrapper .example-full-width {
   width: 100%;
@@ -184,16 +181,6 @@ container {
   position: inherit;
 }
 .custom {
-  // position: relative;
-  // flex-wrap: wrap;
-  // padding: 10px;
-  // display: block;
-  // justify-content: center;
-  // align-items: flex-start;
-  // float: left;
-  // margin-left: 10%;
-  // margin-right: 10%;
-
   margin-top: 21px;
   margin-left: 36px;
 }
