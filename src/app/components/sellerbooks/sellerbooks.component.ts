@@ -45,22 +45,15 @@ export class SellerbooksComponent implements OnInit {
     //     this.direction = this.view.data;
     //     console.log(this.direction);
     //   });
-
-    // this.bookService.autoRefresh.subscribe(() => {
-    //   this.getAvailableBooks();
-    // });
-
-    // this.bookService.refreshNeeded$
-    // .subscribe(()=>{this.getAvailableBooks();})
+    this.bookService.autoRefresh.subscribe(() => {
+      this.getBooksCount();
+      this.getAvailableBooks();
+    });
 
     this.getAvailableBooks();
   }
 
   getBooksCount() {
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 2000);
     this.bookService.getBooksCount().subscribe((response: any) => {
       this.length = response["obj"];
       if (this.length > 10) {
@@ -74,9 +67,8 @@ export class SellerbooksComponent implements OnInit {
 
   addbook() {
     const dialogRef = this.dialog.open(AddbookComponent);
-
     dialogRef.afterClosed().subscribe((result) => {
-      this.getAvailableBooks();
+      console.log("The dialog was closed");
     });
   }
   updatebook(book: any) {
@@ -97,13 +89,13 @@ export class SellerbooksComponent implements OnInit {
   }
   getAvailableBooks() {
     this.bookService.getAvailableSellerBooks().subscribe((response: any) => {
-      this.bookList = response["obj"].reverse();
+      this.bookList = response["obj"];
       // this.ngOnInit();
     });
   }
   getAvailableBooksOfPage(pageNo: number) {
     this.bookService
-      .getAvailableBooksOfPage(pageNo)
+      .getAvailableBooksOfPageFromSeller(pageNo)
       .subscribe((response: any) => {
         this.bookList = response["obj"];
         this.page = pageNo;
