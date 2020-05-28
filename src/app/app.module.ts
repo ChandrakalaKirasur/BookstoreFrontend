@@ -62,7 +62,9 @@ import { SellerbooksComponent } from './components/sellerbooks/sellerbooks.compo
 import { UpdatebookComponent } from './components/updatebook/updatebook.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { VerifyconfrimComponent } from './components/verifyconfrim/verifyconfrim.component';
-import { RatingreviewComponent } from './components/ratingreview/ratingreview.component'; 
+import { RatingreviewComponent } from './components/ratingreview/ratingreview.component';
+import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
+import { DisApprovedBooksComponent } from './components/dis-approved-books/dis-approved-books.component'; 
 
 @NgModule({
   declarations: [
@@ -91,6 +93,8 @@ import { RatingreviewComponent } from './components/ratingreview/ratingreview.co
     GiverateComponent,
     VerifyconfrimComponent,
     RatingreviewComponent,
+    AdmindashboardComponent,
+    DisApprovedBooksComponent,
   ],
   imports: [
     BrowserModule,

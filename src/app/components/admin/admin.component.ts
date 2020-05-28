@@ -38,9 +38,9 @@ export class AdminComponent implements OnInit {
     } else {
       this.profilepic = false;
     }
-    this.bookService.autoRefresh.subscribe(() => {
-      this.unverifiedBooks();
-    });
+    // this.bookService.autoRefresh.subscribe(() => {
+    //   this.unverifiedBooks();
+    // });
     this.unverifiedBooks();
     //this.onDisApprovebooks();
     this.getprofileLink();
@@ -83,24 +83,7 @@ export class AdminComponent implements OnInit {
       this.books.splice(0);
       this.unverifiedBooks();
     });
-    // this.userService
-    //   .putRequest("book/bookdetails/unApproved?bookId=" + book.bookId, "")
-    //   .subscribe((Response: any) => {
-    //     this.snackbar.open("book DisApprove", "ok", {
-    //       duration: 2000,
-    //     });
-    //   });
   }
-
-  // onDisApprovebooks() {
-  //   this.userService
-  //     .getRequest("book/bookdetails/unApproved")
-  //     .subscribe((Response: any) => {
-  //       console.log(Response.obj);
-  //     });
-  //   // this.disapprove = true;
-  //   // this.both = false;
-  // }
 
   status: any;
   onApprove(book: any) {
