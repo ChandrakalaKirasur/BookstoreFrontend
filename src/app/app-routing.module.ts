@@ -19,6 +19,7 @@ import { SellerbooksComponent } from "./components/sellerbooks/sellerbooks.compo
 import { AdminComponent } from "./components/admin/admin.component";
 import { RatingComponent } from "./components/rating/rating.component";
 import { VerifyconfrimComponent } from "./components/verifyconfrim/verifyconfrim.component";
+import { RatingreviewComponent } from "./components/ratingreview/ratingreview.component";
 
 const routes: Routes = [
   {
@@ -65,7 +66,7 @@ const routes: Routes = [
         component: OrderSuccessComponent,
       },
       {
-        path: "admin",
+        path: "books/admin",
         component: AdminComponent,
       },
       {
@@ -83,6 +84,11 @@ const routes: Routes = [
       {
         path: "books/addbook",
         component: SellerbooksComponent,
+      },
+
+      {
+        path: "books/rating",
+        component: RatingreviewComponent,
       },
     ],
   },

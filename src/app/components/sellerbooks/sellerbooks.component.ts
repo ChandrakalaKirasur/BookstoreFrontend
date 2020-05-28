@@ -45,7 +45,6 @@ export class SellerbooksComponent implements OnInit {
     //     this.direction = this.view.data;
     //     console.log(this.direction);
     //   });
-
     this.bookService.autoRefresh.subscribe(() => {
       this.getBooksCount();
       this.getAvailableBooks();
@@ -82,6 +81,10 @@ export class SellerbooksComponent implements OnInit {
         bookDescription: book.bookDescription,
         bookId: book.bookId,
       },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result.data);
+      this.getAvailableBooks();
     });
   }
   getAvailableBooks() {

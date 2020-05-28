@@ -35,7 +35,15 @@ export class BookService {
         })
       );
   }
-
+  getUnverifiedBooks() {
+    return this.http_service
+      .getbookMethod(environment.baseUrl + "/book/bookdetails/unverified", "")
+      .pipe(
+        tap(() => {
+          this.subject.next();
+        })
+      );
+  }
   getAvailableBooks() {
     let params = new HttpParams();
     params = params.append("pageNo", "1");

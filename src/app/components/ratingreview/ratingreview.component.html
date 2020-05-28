@@ -1,0 +1,94 @@
+<div role="combobox" flex="column" style="margin-left: 10%;">
+  <mat-card class="matcard2">
+    <div
+      class="cartdetails"
+      fxLayout="row"
+      fxLayoutAlign="start start"
+      style="margin-left: 2%;"
+    >
+      <mat-card class="bookMatcard">
+        <img
+          class="bookimg"
+          src="https://msksaikiran.s3.us-east-2.amazonaws.com/book/wuthering.jpg"
+        />
+      </mat-card>
+      <div class="bookdetails">
+        <div class="booktitle" style="word-wrap: break-word;">
+          bookname
+        </div>
+
+        <div class="sub" style="word-wrap: break-word;">
+          bookAuthor
+        </div>
+        <div
+          style="
+            margin-bottom: 15%;
+            font: Bold 18px/15px Lato;
+            margin-left: -25px;
+          "
+        >
+          Rs.
+        </div>
+
+        <div
+          style="
+            margin-bottom: 5%;
+            font: Bold 18px/15px Lato;
+            margin-left: -25px;
+          "
+        >
+          SellerName:
+        </div>
+
+        <div
+          fxLayout="row"
+          style="width: 215%; margin-bottom: 20%;"
+          fxLayoutGap="100%"
+        >
+          <button
+            mat-raised-button
+            class="button"
+            style="background-color: #f44336;"
+          >
+            4.3 *
+          </button>
+          <button mat-raised-button class="button">
+            rate
+          </button>
+        </div>
+
+        <div
+          style="
+            margin-bottom: 10px;
+            font: Bold 18px/15px Lato;
+            margin-left: -25px;
+          "
+        >
+          Description:
+        </div>
+        <div>bookDescription</div>
+        <div fxLayout="row" style="width: 315%;">
+          <button
+            mat-raised-button
+            class="button"
+            style="background-color: #f44336;"
+          >
+            ADD TO BAG
+          </button>
+          <button mat-raised-button class="button">
+            WISHLIST
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <br />
+</div>
+<!-- <div class="footer" *ngIf="books.length > 2; else foot">
+  <app-footer></app-footer>
+</div> -->
+<ng-template #foot>
+  <div class="foot" style="top: 720px; margin-top: 55%;">
+    <app-footer></app-footer>
+  </div>
+</ng-template>
