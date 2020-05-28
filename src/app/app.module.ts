@@ -59,7 +59,8 @@ import { AddbookComponent } from './components/addbook/addbook.component';
 import { SellerbooksComponent } from './components/sellerbooks/sellerbooks.component';
 import { UpdatebookComponent } from './components/updatebook/updatebook.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { VerifyconfrimComponent } from './components/verifyconfrim/verifyconfrim.component'; 
+import { VerifyconfrimComponent } from './components/verifyconfrim/verifyconfrim.component';
+import { RatingreviewComponent } from './components/ratingreview/ratingreview.component'; 
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import { VerifyconfrimComponent } from './components/verifyconfrim/verifyconfrim
     UpdatebookComponent,
     AdminComponent,
     VerifyconfrimComponent,
+    RatingreviewComponent,
   ],
   imports: [
     BrowserModule,
