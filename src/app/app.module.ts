@@ -54,9 +54,10 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { SearchComponent } from "./components/search/search.component";
 import { SearchPipe } from "./pipes/search.pipe";
 import { MatSelectModule } from "@angular/material/select";
-import {MatDialogModule} from '@angular/material/dialog';
-import { AdminComponent } from './components/admin/admin.component'; 
-
+import { MatDialogModule } from "@angular/material/dialog";
+import { AdminComponent } from "./components/admin/admin.component";
+import { RatingComponent } from "./components/rating/rating.component";
+import { GiverateComponent } from './components/giverate/giverate.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,8 @@ import { AdminComponent } from './components/admin/admin.component';
     SearchComponent,
     SearchPipe,
     AdminComponent,
+    RatingComponent,
+    GiverateComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,7 +115,7 @@ import { AdminComponent } from './components/admin/admin.component';
     MatBadgeModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [BooksComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

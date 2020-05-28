@@ -15,6 +15,7 @@ import { OrderDetailsComponent } from "./components/order-details/order-details.
 import { SearchComponent } from "./components/search/search.component";
 import { VerifyComponent } from "./components/verify/verify.component";
 import { AdminComponent } from "./components/admin/admin.component";
+import { RatingComponent } from "./components/rating/rating.component";
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
       {
         path: "books/orderdetails",
         component: OrderDetailsComponent,
+      },
+      {
+        path: "books/orderdetails/rating",
+        component: RatingComponent,
       },
     ],
   },
