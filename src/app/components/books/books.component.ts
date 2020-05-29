@@ -119,7 +119,7 @@ export class BooksComponent implements OnInit {
   ratingBookMessage = this.bookrating.asObservable();
   ratingAndReviews(book: any) {
     this.bookrating.next(book);
-    this.router.navigate(["books/orderdetails/rating"]);
+    //this.router.navigate(["books/orderdetails/rating"]);
   }
 }
 export enum StarRatingColor {
