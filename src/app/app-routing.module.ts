@@ -17,9 +17,11 @@ import { VerifyComponent } from "./components/verify/verify.component";
 import { AddbookComponent } from "./components/addbook/addbook.component";
 import { SellerbooksComponent } from "./components/sellerbooks/sellerbooks.component";
 import { AdminComponent } from "./components/admin/admin.component";
-import { RatingComponent } from "./components/rating/rating.component";
+//import { RatingComponent } from "./components/rating/rating.component";
 import { VerifyconfrimComponent } from "./components/verifyconfrim/verifyconfrim.component";
 import { RatingreviewComponent } from "./components/ratingreview/ratingreview.component";
+import { AdmindashboardComponent } from "./components/admindashboard/admindashboard.component";
+import { DisApprovedBooksComponent } from "./components/dis-approved-books/dis-approved-books.component";
 
 const routes: Routes = [
   {
@@ -46,7 +48,20 @@ const routes: Routes = [
     path: ":role/registration/verify/:token",
     component: VerifyComponent,
   },
-
+  {
+    path: "admin",
+    component: AdmindashboardComponent,
+    children: [
+      {
+        path: "books",
+        component: AdminComponent,
+      },
+      {
+        path: "disapprovebooks",
+        component: DisApprovedBooksComponent,
+      },
+    ],
+  },
   {
     path: "",
     component: DashboardComponent,
@@ -65,10 +80,7 @@ const routes: Routes = [
         // canActivate: [AuthGuardService],
         component: OrderSuccessComponent,
       },
-      {
-        path: "books/admin",
-        component: AdminComponent,
-      },
+
       {
         path: "books/whishlist",
         component: WhishlistComponent,
@@ -78,7 +90,7 @@ const routes: Routes = [
         component: OrderDetailsComponent,
       },
       {
-        path: "books/addbook",
+        path: "seller/books",
         component: SellerbooksComponent,
       },
       {
