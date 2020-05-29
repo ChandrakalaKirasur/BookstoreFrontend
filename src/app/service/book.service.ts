@@ -171,4 +171,10 @@ export class BookService {
       this.http_service.httpOptions
     );
   }
+  public getBookById(bookId: number) {
+    return this.http_service.getMethod(
+      environment.baseUrl + "book/bookdetails/" + bookId,
+      {}
+    );
+  }
 }
