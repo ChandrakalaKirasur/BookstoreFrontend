@@ -81,10 +81,13 @@ export class DashboardComponent implements OnInit {
 
   onLogin() {
     const dialogRef = this.dialog.open(LoginComponent);
-  this.router.events
-   .subscribe(() => {
-     dialogRef.close();
-   });
+    dialogRef.afterClosed().subscribe((result) => {
+      window.location.reload();
+    });
+    // this.router.events
+    //  .subscribe(() => {
+    //    dialogRef.close();
+    //  });
 
     // const dialogRef = this.dialog.open(LoginComponent, {
     //   width: '800px',
