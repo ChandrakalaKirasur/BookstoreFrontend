@@ -89,4 +89,9 @@ export class RatingreviewComponent implements OnInit {
         this.book.isListed = response["obj"];
       });
   }
+  rateNow() {
+    if (this.visible) {
+      this.router.navigate(["books/ratingandreview"]);
+    }
+  }
 }

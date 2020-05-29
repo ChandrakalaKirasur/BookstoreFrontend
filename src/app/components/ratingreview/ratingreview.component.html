@@ -44,6 +44,7 @@
           <button
             mat-button
             class="rating"
+            (click)="rateNow()"
             style="color: #0a0102; background-color: white;"
           >
             <strong>RATE BOOK</strong>
@@ -68,6 +69,7 @@
             *ngIf="!book.isAdded"
             mat-button
             class="add"
+            (click)="addToCart()"
             style="color: white; background-color: #a03037;"
           >
             ADD TO BAG
@@ -87,6 +89,7 @@
             mat-button
             *ngIf="!book.isListed"
             class="add"
+            (click)="addToWishlist()"
             style="color: #0a0102; background-color: white;"
           >
             WISHLIST

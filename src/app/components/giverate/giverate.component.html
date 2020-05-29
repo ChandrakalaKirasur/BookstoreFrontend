@@ -1,23 +1,71 @@
-<div fxLayout="row" class="rating">
-  <!-- <button>Write a review</button> -->
-  <button
-    mat-icon-button
-    [color]="color"
-    *ngFor="let ratingId of ratingArr; index as i"
-    [id]="'star_' + i"
-    (click)="onClick(i + 1)"
-    fxLayout="row"
-    [matTooltip]="ratingId + 1"
-    matTooltipPosition="above"
-  >
-    <mat-icon>
-      {{ showIcon(i) }}
-    </mat-icon>
-  </button>
-  <mat-error *ngIf="starCount == null || starCount == 0">
-    Star count is <strong>required</strong> and cannot be zero
-  </mat-error>
+<div role="combobox" flex="column" style="margin-left: 10%; width: 85%;">
+  <div fxLayout="row" class="giverating" fxLayoutGap="5%">
+    <mat-card>
+      <div fxLayout="row" class="twocards">
+        <div>
+          <img class="bookimg" src="{{ book.bookImage }}" />
+        </div>
+        <div fxLayout="column" style="margin-left: 20px;">
+          <div
+            class="booktitle"
+            style="word-wrap: break-word; margin-bottom: 5%; font-size: 20px;"
+          >
+            <Strong>{{ book.bookName }}</Strong>
+          </div>
+          <div class="sub" style="word-wrap: break-word; margin-bottom: 5%;">
+            by {{ book.bookAuthor }}
+          </div>
+          <div>
+            <button
+              mat-button
+              class="rating"
+              style="background-color: darkgreen; color: white;"
+            >
+              4.3<mat-icon
+                style="font-size: 14px; margin-bottom: -8px; color: white;"
+                >star</mat-icon
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card>
+      <div class="twocards">
+        <strong>Rate the Book</strong>
+      </div>
+      <div fxLayout="row" class="rating">
+        <button
+          mat-icon-button
+          [color]="color"
+          *ngFor="let ratingId of ratingArr; index as i"
+          [id]="'star_' + i"
+          (click)="onClick(i + 1)"
+          fxLayout="row"
+          [matTooltip]="ratingId + 1"
+          matTooltipPosition="above"
+        >
+          <mat-icon>
+            {{ showIcon(i) }}
+          </mat-icon>
+        </button>
+        <mat-error *ngIf="starCount == null || starCount == 0">
+          Star count is <strong>required</strong> and cannot be zero
+        </mat-error>
+      </div>
+    </mat-card>
+  </div>
+  <div fxLayout="column" style="margin-top: 3%;" class="singlecard">
+    <mat-card>
+      <div>
+        <strong>Review the Book</strong>
+      </div>
+      <div>
+        <input mat-input style="width: 740px;" placeholder="Review here" />
+      </div>
+    </mat-card>
+  </div>
 </div>
-<div style="top: 1024px; margin-bottom: 4%; margin-top: 100%;" class="footer">
+<div style="top: 1024px; margin-bottom: 2%; margin-top: 10%;" class="footer">
   <app-footer></app-footer>
 </div>
