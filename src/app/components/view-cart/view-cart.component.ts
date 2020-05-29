@@ -331,7 +331,7 @@ export class ViewCartComponent implements OnInit {
       .getRequest(environment.cart_home_address)
       .subscribe((Response: any) => {
         //console.log(Response);
-        if (Response.status) {
+        if (Response.obj != null) {
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
           this.addModel.landmark = Response.obj["landmark"];
@@ -349,7 +349,7 @@ export class ViewCartComponent implements OnInit {
       .getRequest(environment.cart_work_address)
       .subscribe((Response: any) => {
         //console.log(Response);
-        if (Response.status) {
+        if (Response.obj != null) {
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
           this.addModel.landmark = Response.obj["landmark"];
@@ -367,8 +367,8 @@ export class ViewCartComponent implements OnInit {
       .getRequest(environment.cart_other_address)
       .subscribe((Response: any) => {
         //console.log(Response);
-        if (Response.status) {
-          console.log(Response.obj["type"]);
+        if (Response.obj != null) {
+          //console.log(Response.obj["type"]);
           this.addModel.address = Response.obj["address"];
           this.addModel.city = Response.obj["city"];
           this.addModel.landmark = Response.obj["landmark"];
