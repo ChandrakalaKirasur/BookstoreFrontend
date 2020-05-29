@@ -9,6 +9,7 @@ import { UserService } from "src/app/service/user.service";
 import { HttpService } from "src/app/service/http.service";
 import { VerifyconfrimComponent } from "../verifyconfrim/verifyconfrim.component";
 import { Seller } from "src/app/models/seller";
+import { BookService } from "src/app/service/book.service";
 
 @Component({
   selector: "app-admin",
@@ -24,6 +25,7 @@ export class AdminComponent implements OnInit {
     private httpservice: HttpService,
     private userService: UserService,
     public dialog: MatDialog,
+    private bookService: BookService,
     private addressService: AddressService
   ) {}
 
@@ -31,12 +33,16 @@ export class AdminComponent implements OnInit {
   profilepic: boolean = false;
   profile: any;
   ngOnInit() {
-    this.unverifiedBooks();
     if (localStorage.getItem("token") != null) {
       this.visible = true;
     } else {
       this.profilepic = false;
     }
+    // this.bookService.autoRefresh.subscribe(() => {
+    //   this.unverifiedBooks();
+    // });
+    this.unverifiedBooks();
+    //this.onDisApprovebooks();
     this.getprofileLink();
     this.profile = localStorage.getItem("userimage");
   }
@@ -49,7 +55,6 @@ export class AdminComponent implements OnInit {
     this.userService
       .getRequest("/book/bookdetails/unverified")
       .subscribe((Response: any) => {
-        //console.log(Response.obj[0]["sellerId"]);
         this.userService
           .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
           .subscribe((Res: any) => {
@@ -60,8 +65,6 @@ export class AdminComponent implements OnInit {
               this.bookdto.sellerMobile = Res.obj.mobile;
               this.books.push(this.bookdto);
             }
-            // console.log(this.books);
-            // console.log(Response.obj.sellerName);
           });
       });
   }
@@ -69,20 +72,32 @@ export class AdminComponent implements OnInit {
   both: boolean = true;
   disapprove: boolean = false;
   approve: boolean = false;
-  onDisApprove() {
-    this.disapprove = true;
-    this.both = false;
+  onDisApprove(book: any) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      bookId: book.bookId,
+      status: "DisApprove",
+    };
+    const dialogRef = this.dialog.open(VerifyconfrimComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((result) => {
+      this.books.splice(0);
+      this.unverifiedBooks();
+    });
   }
 
+  status: any;
   onApprove(book: any) {
     console.log(book);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       bookId: book.bookId,
+      status: "Approve",
     };
     const dialogRef = this.dialog.open(VerifyconfrimComponent, dialogConfig);
-    //console.log(dialogConfig.data);
-    //this.unverifiedBooks();
+    dialogRef.afterClosed().subscribe((result) => {
+      this.books.splice(0);
+      this.unverifiedBooks();
+    });
   }
 
   getprofileLink() {

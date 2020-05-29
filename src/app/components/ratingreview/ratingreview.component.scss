@@ -4,6 +4,13 @@
   position: relative;
   padding-top: 25px;
 }
+.bookMatcard {
+  background-color: whitesmoke;
+  padding-bottom: 5%;
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
 .bookdetails {
   display: flex;
   flex-direction: column;
@@ -11,10 +18,18 @@
   margin-bottom: 30px;
   width: 15%;
 }
-mat-card:hover {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
-  color: none;
+.button {
+  font-size: 17px;
+  text-align: center;
+  color: white;
+  background-color: #4bb543;
+  margin-top: 32px;
+  margin-left: 10px;
 }
+// mat-card {
+//   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+//   color: none;
+// }
 ::ng-deep .custom-tooltip {
   width: 456px;
   height: 250px;
@@ -52,6 +67,9 @@ mat-card:hover {
   display: flex;
   margin-left: -25px;
 }
+.footer {
+  width: 150%;
+}
 .sub {
   color: #9d9d9d;
   opacity: 1;
@@ -65,7 +83,7 @@ mat-card:hover {
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 75%;
   border: 1px solid #9d9d9d;
   border-radius: 3px;
 }
@@ -76,33 +94,17 @@ mat-card:hover {
   background-color: #4bb543;
   margin-top: 32px;
   margin-left: 10px;
+  width: 192px;
 }
 .bookimg {
   top: 192px;
   left: 213px;
-  width: 80px;
-  height: 100px;
+  width: 188px;
+  height: 225px;
+  //   width: 120px;
+  //   height: 135px;
 }
 .totalprice {
   font: Bold 18px/15px Lato;
   margin-bottom: 30px;
-}
-.footer {
-  margin-top: 4%;
-}
-@media (min-width: 728px) {
-  .footer {
-    margin-right: 13%;
-  }
-  .foot {
-    margin-right: 13%;
-  }
-}
-@media (max-width: 414px) {
-  .footer {
-    margin-right: 8%;
-  }
-  .foot {
-    margin-right: 13%;
-  }
 }

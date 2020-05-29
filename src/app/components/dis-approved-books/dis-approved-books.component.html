@@ -1,14 +1,12 @@
-<!-- <app-admindashboard></app-admindashboard> -->
 <div role="combobox" flex="column" style="margin-left: 15%;">
-  <!-- <div fxLayout="column wrap" fxLayoutGap="10px" fxLayoutAlign="start center"> -->
-
   <div *ngFor="let book of books">
-    <div *ngIf="!book.bookVerified && !book.bookApproveStatus">
+    <!-- <div *ngIf="book.bookName != null"> -->
+    <div *ngIf="book.bookApproveStatus">
       <mat-card
         class="matcard2"
         matTooltip="sellerName:{{ book.sellerName }},
-                  sellerMobile:{{ book.sellerMobile }},
-                  sellerEmail:{{ book.sellerEmail }}"
+                      sellerMobile:{{ book.sellerMobile }},
+                      sellerEmail:{{ book.sellerEmail }}"
         matTooltipPosition="left"
         matTooltipClass="custom-tooltip"
       >
@@ -39,20 +37,20 @@
         </div>
         <div>{{ book.bookDescription }}</div>
         <!-- </div> -->
-        <div fxLayout="row wrap" fxLayoutAlign="end end" *ngIf="both">
-          <button
-            mat-raised-button
-            class="button"
-            style="background-color: #f44336;"
-            (click)="onDisApprove(book)"
-          >
-            DISAPPROVE
-          </button>
-          <button mat-raised-button class="button" (click)="onApprove(book)">
-            APPROVE
-          </button>
-        </div>
-        <div *ngIf="disapprove">
+        <div fxLayout="row wrap" fxLayoutAlign="start end">
+          <!--     <button
+              mat-raised-button
+              class="button"
+              style="background-color: #f44336;"
+              (click)="onDisApprove(book)"
+            >
+              DISAPPROVE
+            </button>
+            <button mat-raised-button class="button" (click)="onApprove(book)">
+              APPROVE
+            </button>
+          </div> -->
+          <!-- <div *ngIf="disapprove"> -->
           <button
             mat-raised-button
             class="button"
@@ -62,18 +60,15 @@
             DISAPPROVED
           </button>
         </div>
-        <div *ngIf="approve">
-          <button mat-raised-button class="button" (click)="onplaceOrder()">
-            APPROVED
-          </button>
-        </div>
+        <!-- <div *ngIf="approve">
+            <button mat-raised-button class="button" (click)="onplaceOrder()">
+              APPROVED
+            </button>
+          </div> -->
       </mat-card>
       <br />
-      <!-- </div> -->
     </div>
   </div>
-  <!---------------------------- DisApproved Books --------------------->
-
   <!-- </div> -->
   <div class="footer" *ngIf="books.length > 2; else foot">
     <app-footer></app-footer>
