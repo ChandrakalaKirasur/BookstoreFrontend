@@ -1,4 +1,4 @@
-<div role="combobox" flex="column" style="margin-left: 10%;">
+<div role="combobox" flex="column" style="margin-left: 10%; width: 85%;">
   <mat-card class="matcard2">
     <div
       class="cartdetails"
@@ -7,76 +7,100 @@
       style="margin-left: 2%;"
     >
       <mat-card class="bookMatcard">
-        <img
-          class="bookimg"
-          src="https://msksaikiran.s3.us-east-2.amazonaws.com/book/wuthering.jpg"
-        />
+        <img class="bookimg" src="{{ book.bookImage }}" />
       </mat-card>
       <div class="bookdetails">
-        <div class="booktitle" style="word-wrap: break-word;">
-          bookname
-        </div>
-
-        <div class="sub" style="word-wrap: break-word;">
-          bookAuthor
-        </div>
         <div
-          style="
-            margin-bottom: 15%;
-            font: Bold 18px/15px Lato;
-            margin-left: -25px;
-          "
+          class="booktitle"
+          style="word-wrap: break-word; margin-bottom: 2%; font-size: 20px;"
         >
-          Rs.
+          <Strong>{{ book.bookName }}</Strong>
         </div>
 
-        <div
-          style="
-            margin-bottom: 5%;
-            font: Bold 18px/15px Lato;
-            margin-left: -25px;
-          "
-        >
-          SellerName:
+        <div class="sub" style="word-wrap: break-word; margin-bottom: 4%;">
+          by {{ book.bookAuthor }}
+        </div>
+        <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px;">
+          <Strong>Rs.{{ book.bookPrice }}</Strong>
         </div>
 
+        <div style="margin-bottom: 5%; font-size: 14px; margin-left: -25px;">
+          <strong>Seller:</strong>Chandrakala
+        </div>
         <div
           fxLayout="row"
-          style="width: 215%; margin-bottom: 20%;"
-          fxLayoutGap="100%"
+          style="margin-bottom: 5%; margin-left: -25px;"
+          fxLayoutGap="20%"
         >
           <button
-            mat-raised-button
-            class="button"
-            style="background-color: #f44336;"
+            mat-button
+            class="rating"
+            style="background-color: darkgreen; color: white;"
           >
-            4.3 *
+            4.3<mat-icon style="font-size: 14px; margin-bottom: -8px;"
+              >star</mat-icon
+            >
           </button>
-          <button mat-raised-button class="button">
-            rate
-          </button>
-        </div>
-
-        <div
-          style="
-            margin-bottom: 10px;
-            font: Bold 18px/15px Lato;
-            margin-left: -25px;
-          "
-        >
-          Description:
-        </div>
-        <div>bookDescription</div>
-        <div fxLayout="row" style="width: 315%;">
           <button
-            mat-raised-button
-            class="button"
-            style="background-color: #f44336;"
+            mat-button
+            class="rating"
+            style="color: #0a0102; background-color: white;"
+          >
+            <strong>RATE BOOK</strong>
+          </button>
+        </div>
+        <div fxLayout="row" style="margin-bottom: 5%;">
+          <div style="font-size: 18px; margin-left: -25px;">
+            <strong>Description:</strong>
+          </div>
+          <div
+            style="
+              margin-left: 6px;
+              color: #9d9d9d !important;
+              margin-top: 2px;
+            "
+          >
+            {{ book.bookDescription }}
+          </div>
+        </div>
+        <div fxLayout="row" style="margin-left: -25px;">
+          <button
+            *ngIf="!book.isAdded"
+            mat-button
+            class="add"
+            style="color: white; background-color: #a03037;"
           >
             ADD TO BAG
           </button>
-          <button mat-raised-button class="button">
+          <button
+            *ngIf="book.isAdded"
+            mat-button
+            class="add"
+            style="
+              color: white;
+              background-color: #3371b5 0% 0% no-repeat padding-box;
+            "
+          >
+            ADDED TO BAG
+          </button>
+          <button
+            mat-button
+            *ngIf="!book.isListed"
+            class="add"
+            style="color: #0a0102; background-color: white;"
+          >
             WISHLIST
+          </button>
+          <button
+            mat-button
+            *ngIf="book.isListed"
+            class="add"
+            style="
+              color: white;
+              background-color: #3371b5 0% 0% no-repeat padding-box;
+            "
+          >
+            IN WISHLIST
           </button>
         </div>
       </div>
@@ -84,11 +108,6 @@
   </mat-card>
   <br />
 </div>
-<!-- <div class="footer" *ngIf="books.length > 2; else foot">
+<div class="foot" style="top: 720px; margin-top: 55%;">
   <app-footer></app-footer>
-</div> -->
-<ng-template #foot>
-  <div class="foot" style="top: 720px; margin-top: 55%;">
-    <app-footer></app-footer>
-  </div>
-</ng-template>
+</div>
