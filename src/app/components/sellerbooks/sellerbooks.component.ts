@@ -41,25 +41,11 @@ export class SellerbooksComponent implements OnInit {
 
   ngOnInit() {
     this.sort;
-    // this.data.currentMessage.subscribe(message => { this.message = message,  this.getAvailableBooks(); });
-    // this.viewservice.getView().subscribe(
-    //   (res) => {
-    //   this.view = res;
-    //     this.direction = this.view.data;
-    //     console.log(this.direction);
-    //   });
-
 this.bookService.autoRefresh.subscribe(()=>{
   this.getAvailableBooks();
 
 })
     
-
-
-
-
-
-
 this.bookService.refreshNeeded$
 .subscribe(()=>{this.getAvailableBooks();})
     

@@ -4,7 +4,7 @@
       Books
       <small style="font-size: 12px;">( {{ length }} itmes)</small>
     </div>
-    <div>
+    <!-- <div>
       <button
         class="sort"
         fxLayout="row"
@@ -17,12 +17,12 @@
           <label>{{ sort }}</label>
         </div>
         <div>
-          <mat-icon style="color: #0a0102; opacity: 0.75;"
+          <mat-icon style="color: #f80d29; opacity: 0.75;"
             >expand_more</mat-icon
           >
         </div>
       </button>
-      <mat-menu #menu="matMenu" class="myMenu">
+      <mat-menu #menu="matMenu" class="myMenu"> -->
         <div
           style="
             width: 115px;
@@ -33,12 +33,13 @@
           class="box1"
           (click)="addbook()"
         >
-          ADD BOOK
+          ADD BOOKS 
         </button>
-        </div>
-      </mat-menu>
-    </div>
-  </div>
+        
+         </div>
+      <!--</mat-menu>
+    </div>-->
+  </div> 
   <div fxLayout="column" fxLayoutAlign="center center">
     <div fxLayout="row" class="display-notes">
       <div *ngFor="let book of bookList" class="book">
@@ -90,14 +91,14 @@
               Not available
             </div>
           </mat-card-content>
-          <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+          <mat-card-actions fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="center center">
             <button
               class="box1"
              (click)="updatebook(book)"
             >
             UPDATE BOOK
             </button>
-           
+            <!-- <mat-icon class="material-icons color_green" >delete</mat-icon> -->
           </mat-card-actions>
         </div>
       </mat-card>
