@@ -15,7 +15,7 @@ export class HttpService {
   public getMethod(url: string, options: any): Observable<any> {
     return this.http.get(url, options);
   }
-  public getbookMethod(url: string,options: any): Observable<any> {
+  public getbookMethod(url: string, options: any): Observable<any> {
     return this.http.get(url, options);
   }
   public putMethod(url: string, body: any, options: any): Observable<any> {
@@ -27,7 +27,8 @@ export class HttpService {
   public httpOptions = {
     headers: new HttpHeaders({
       "content-type": "application/json",
-      token: localStorage.getItem("token"),
+      token:
+        "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNTkwNzM3MTIzfQ.9s5uP5hbUqrQ_Wc1HWF4KuGaP4cZNLiITSZSvwvDG54uPETfWEpzGSfLZBqrUBks9l0nuDwUpfQDJ_9L5l_-Aw",
     }),
   };
   baseurl = environment.baseUrl;

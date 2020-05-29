@@ -78,14 +78,9 @@ const routes: Routes = [
         component: OrderDetailsComponent,
       },
       {
-        path: "books/rating",
-        component: RatingComponent,
-      },
-      {
         path: "books/addbook",
         component: SellerbooksComponent,
       },
-
       {
         path: "books/rating",
         component: RatingreviewComponent,
