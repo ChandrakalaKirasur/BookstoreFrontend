@@ -101,4 +101,12 @@ export class SellerbooksComponent implements OnInit {
         this.page = pageNo;
       });
   }
+  nextPage() {
+    this.page = this.page + 1;
+    this.getAvailableBooksOfPage(this.page);
+  }
+  previousPage() {
+    this.page = this.page - 1;
+    this.getAvailableBooksOfPage(this.page);
+  }
 }
