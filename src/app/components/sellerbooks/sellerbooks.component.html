@@ -2,7 +2,7 @@
   <div fxLayout="row" fxLayoutAlign="space-between center" class="bookheader">
     <div style="font-size: 100%;" class="books">
       Books
-      <small style="font-size: 12px;">({{ length }} itmes)</small>
+      <small style="font-size: 12px;">( {{ length }} itmes)</small>
     </div>
     <!-- <div>
       <button
@@ -13,8 +13,7 @@
       >
         <div
           style="font-size: 11px; padding-bottom: 3%;"
-          (click)="doSorting(sort)"
-        >
+          (click)="doSorting(sort)">
           <label>{{ sort }}</label>
         </div>
         <div>
@@ -29,10 +28,11 @@
             width: 115px;
             height: auto;
             text-align: left;
-            padding-left: 8px;
-          "
+            padding-left: 8px;">
+          <button
+          class="box1"
+          (click)="addbook()"
         >
-<<<<<<< HEAD
           ADD BOOKS 
         </button>
         
@@ -40,50 +40,51 @@
       <!--</mat-menu>
     </div>-->
   </div> 
-          <button class="box1" (click)="addbook()">
-            ADD BOOK
-          </button>
-        </div>
-      </mat-menu>
-    </div>
-  </div>
   <div fxLayout="column" fxLayoutAlign="center center">
     <div fxLayout="row" class="display-notes">
       <div *ngFor="let book of bookList" class="book">
         <!--  -->
         <mat-card
-          autocomplete="off"
-          role="combobox"
-          flex="column"
-          matTooltip="{{ book.bookDescription }}"
-          matTooltipPosition="right"
-          matTooltipClass="custom-tooltip"
-        >
-          <div class="header" style="background-color: #f5f5f5;">
-            <mat-card-header>
-              <div class="container">
-                <img
-                  mat-card-image
-                  fxLayoutAlign="center start"
-                  src="{{ book.bookImage }}"
-                  alt="Snow"
-                />
-                <button *ngIf="book.noOfBooks == 0" class="btn">
-                  OUT OF STOCK
-                </button>
-              </div>
-            </mat-card-header>
-          </div>
-          <div class="content">
-            <mat-card-content>
-              <div class="mat-title" fxLayoutAlign="center center">
-                {{ book.bookName }}
-              </div>
-              <!-- <mat-card-subtitle style="color: #9d9d9d; margin-top: -10px;"
+        autocomplete="off"
+        role="combobox"
+        flex="column"
+        matTooltip="{{ book.bookDescription }}"
+        matTooltipPosition="right"
+        matTooltipClass="custom-tooltip"
+      >
+        <div class="header" style="background-color: #f5f5f5;">
+          <mat-card-header>
+            <div class="container">
+              <img
+                mat-card-image
+                fxLayoutAlign="center start"
+                src="{{ book.bookImage }}"
+                alt="Snow"
+              />
+              <button *ngIf="book.noOfBooks == 0" class="btn">
+                OUT OF STOCK
+              </button>
+            </div>
+          </mat-card-header>
+        </div>
+        <div class="content"  >
+          <mat-card-content >
+            <div class="mat-title" fxLayoutAlign="center center">
+              {{ book.bookName }}
+            </div>
+            <!-- <mat-card-subtitle style="color: #9d9d9d; margin-top: -10px;"
               >by {{ book.bookAuthor }}</mat-card-subtitle
             > -->
-              <div class="mat-subheading-1" fxLayoutAlign="center center">
-                Rs. {{ book.bookPrice }}
+            <div class="mat-subheading-1" fxLayoutAlign="center center">Rs. {{ book.bookPrice }}</div>
+            <div
+              class="mat-subheading-2"
+              *ngIf="noOfBooks < 6 && noOfBooks > 0; else available"
+            >
+              Only {{ book.noOfBooks }} books are left
+            </div>
+            <ng-template #available>
+              <div class="mat-subheading-2" *ngIf="noOfBooks > 5">
+                Available({{ book.noOfBooks }})
               </div>
             </ng-template>
             <div class="mat-subheading-2" *ngIf="book.noOfBooks == 0">
@@ -101,29 +102,6 @@
           </mat-card-actions>
         </div>
       </mat-card>
-=======
-              <div
-                class="mat-subheading-2"
-                *ngIf="noOfBooks < 6 && noOfBooks > 0; else available"
-              >
-                Only {{ book.noOfBooks }} books are left
-              </div>
-              <ng-template #available>
-                <div class="mat-subheading-2" *ngIf="noOfBooks > 5">
-                  Available({{ book.noOfBooks }})
-                </div>
-              </ng-template>
-              <div class="mat-subheading-2" *ngIf="book.noOfBooks == 0">
-                Not available
-              </div>
-            </mat-card-content>
-            <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
-              <button class="box1" (click)="updatebook(book)">
-                UPDATE BOOK
-              </button>
-            </mat-card-actions>
-          </div>
-        </mat-card>
         <!--  -->
         <!-- <app-books [book]="book"></app-books> -->
       </div>

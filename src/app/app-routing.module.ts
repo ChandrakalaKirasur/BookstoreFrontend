@@ -90,7 +90,7 @@ const routes: Routes = [
         component: OrderDetailsComponent,
       },
       {
-        path: "books/addbook",
+        path: "seller/books",
         component: SellerbooksComponent,
       },
 

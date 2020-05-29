@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Inject } from "@angular/core";
 import {
   Validators,
   FormControl,
@@ -6,7 +6,7 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { Login } from "src/app/models/login";
-import { MatSnackBar, MatRadioChange } from "@angular/material";
+import { MatSnackBar, MatRadioChange, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { HttpService } from "src/app/service/http.service";
@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private httpservice: HttpService
+    private httpservice: HttpService,
+    public dialogRef: MatDialogRef<LoginComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit() {}
@@ -68,9 +70,10 @@ export class LoginComponent implements OnInit {
   }
   diableRadios = true;
   favoriteSeason: string = "user";
-  seasons = ["user", "seller"];
+  seasons = ["user", "seller","admin"];
   isDisabled: boolean = true;
   onlogin() {
+    this.dialogRef.close();
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
@@ -87,8 +90,15 @@ export class LoginComponent implements OnInit {
               this.snackBar.open("Login Successfull", "undo", {
                 duration: 2500,
               });
+              if(this.favoriteSeason=="user")
+              {
               this.router.navigate(["books"]);
-              //window.location.reload();
+              }
+              else if(this.favoriteSeason=="seller")
+              {
+                this.router.navigate(["seller/books"]);
+              }
+              
             } else {
               this.spinner.hide();
               this.snackBar.open("Login Failed", "undo", { duration: 2500 });

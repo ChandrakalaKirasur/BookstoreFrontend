@@ -78,6 +78,7 @@ export class RegisterComponent implements OnInit {
   seasons = [
     'user',
     'seller',
+    "admin"
   ];
   onRegister() {
     this.spinner.show();

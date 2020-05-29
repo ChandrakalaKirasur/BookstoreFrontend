@@ -48,6 +48,7 @@ export class ForgetpasswordComponent implements OnInit {
   seasons = [
     'user',
     'seller',
+    "admin"
   ];
  
   onforgot() {
