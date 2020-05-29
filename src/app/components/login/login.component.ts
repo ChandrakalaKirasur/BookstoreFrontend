@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
               {
               this.router.navigate(["books"]);
               }
-              else if(this.favoriteSeason=="seller")
+             if(this.favoriteSeason=="seller")
               {
                 this.router.navigate(["seller/books"]);
               }
