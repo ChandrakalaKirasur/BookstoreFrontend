@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from "@angular/core";
 
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatDialog } from "@angular/material";
 import { Book } from "src/app/models/book";
 import { Router } from "@angular/router";
 import { BookService } from "src/app/service/book.service";
 import { environment } from "src/environments/environment";
 import { ViewcartService } from "src/app/service/viewcart.service";
 import { BehaviorSubject } from "rxjs";
+import { LoginComponent } from "../login/login.component";
 
 @Component({
   selector: "app-books",
@@ -24,6 +25,7 @@ export class BooksComponent implements OnInit {
     private _matSnackBar: MatSnackBar,
     private router: Router,
     private bookService: BookService,
+    public dialog: MatDialog,
     private cartService: ViewcartService
   ) {}
   ngOnInit() {
@@ -54,10 +56,13 @@ export class BooksComponent implements OnInit {
           // }
         });
     } else {
+      const dialogRef = this.dialog.open(LoginComponent);
+      dialogRef.afterClosed().subscribe((result) => {
+        window.location.reload();
+      });
       this._matSnackBar.open("please login", "ok", {
         duration: 1000,
       });
-      this.router.navigateByUrl("/login");
     }
   }
   //adding book to wish list if user login
@@ -73,10 +78,13 @@ export class BooksComponent implements OnInit {
           });
         });
     } else {
-      this._matSnackBar.open("please login", "ok", {
-        duration: 2000,
+      const dialogRef = this.dialog.open(LoginComponent);
+      dialogRef.afterClosed().subscribe((result) => {
+        window.location.reload();
       });
-      this.router.navigateByUrl("/login");
+      this._matSnackBar.open("please login", "ok", {
+        duration: 1000,
+      });
     }
   }
   //getting boolean as a output and finding whether book is already in cart
