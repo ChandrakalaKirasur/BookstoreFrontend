@@ -26,7 +26,7 @@ export class BookService {
   getAvailableSellerBooks() {
     return this.http_service
       .getMethod(
-        environment.baseUrl + environment.BOOK_SELLER_URL + "/?pageNo=" + 1,
+        environment.baseUrl + "seller/sellerbooks/?pageNo=" + 1,
         this.http_service.httpOptions
       )
       .pipe(

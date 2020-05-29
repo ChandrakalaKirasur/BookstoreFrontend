@@ -93,7 +93,6 @@ const routes: Routes = [
         path: "seller/books",
         component: SellerbooksComponent,
       },
-
       {
         path: "books/rating",
         component: RatingreviewComponent,
