@@ -90,3 +90,11 @@
   border: 1px solid #9d9d9d;
   border-radius: 2px;
 }
+.singleuser {
+  width: 20px !important;
+  // min-width: unset !important;
+  display: inline-block;
+  text-align: center;
+  padding-left: -20% !important;
+  width: fit-content;
+}

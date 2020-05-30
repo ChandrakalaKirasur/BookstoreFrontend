@@ -35,7 +35,11 @@
           <button
             mat-button
             class="rating"
-            style="background-color: darkgreen; color: white;"
+            style="
+              background-color: rgb(18, 131, 18);
+              color: white;
+              border-radius: 3px;
+            "
           >
             4.3<mat-icon style="font-size: 14px; margin-bottom: -8px;"
               >star</mat-icon
@@ -110,7 +114,69 @@
     </div>
   </mat-card>
   <br />
+  <mat-card class="matcard2">
+    <div fxLayout="column" style="margin-left: 2%;">
+      <div style="font-size: 20px; margin-bottom: 4%;">
+        <strong>Ratings & Reviews</strong>
+      </div>
+      <button
+        mat-button
+        class="rating"
+        style="font-size: 20px; margin-right: 90%; border: none;"
+      >
+        <strong>4.3</strong
+        ><mat-icon style="font-size: 20px; margin-bottom: -1px;">star</mat-icon>
+      </button>
+      <div>
+        <div fxLayout="row" style="margin-top: 4%;">
+          <div>
+            <button
+              mat-button
+              class="singleuser"
+              style="background-color: rgb(18, 131, 18); color: white;"
+            >
+              4<mat-icon style="font-size: 14px; margin-bottom: -8px;"
+                >star</mat-icon
+              >
+            </button>
+          </div>
+          <div style="margin-left: 20px; margin-top: 8px;">
+            <strong>Chandrakala Kirasur</strong>
+          </div>
+        </div>
+        <div>
+          A very good book and if u have a reading habbit then start from it
+          bcuz the content of this book is very good enough it's very genuine as
+          compared to others this book has a 160 pages which fair to enough to
+          read
+        </div>
+        <div fxLayout="row" style="margin-top: 4%;">
+          <div>
+            <button
+              mat-button
+              class="singleuser"
+              [ngStyle]="{ 'background-color': color }"
+              style="background-color: rgb(18, 131, 18); color: white;"
+            >
+              4<mat-icon style="font-size: 14px; margin-bottom: -8px;"
+                >star</mat-icon
+              >
+            </button>
+          </div>
+          <div style="margin-left: 20px; margin-top: 8px;">
+            <strong>Chandrakala Kirasur</strong>
+          </div>
+        </div>
+        <div>
+          A very good book and if u have a reading habbit then start from it
+          bcuz the content of this book is very good enough it's very genuine as
+          compared to others this book has a 160 pages which fair to enough to
+          read
+        </div>
+      </div>
+    </div>
+  </mat-card>
 </div>
-<div class="foot" style="top: 720px; margin-top: 55%;">
+<div class="foot" style="top: 720px; margin-top: 5%;">
   <app-footer></app-footer>
 </div>
