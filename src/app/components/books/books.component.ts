@@ -123,11 +123,9 @@ export class BooksComponent implements OnInit {
   // this.bookcount.next(response.obj);
   // });
   // }
-  private bookrating = new BehaviorSubject<any>(this.book);
-  ratingBookMessage = this.bookrating.asObservable();
   ratingAndReviews(book: any) {
-    this.bookrating.next(book);
-    //this.router.navigate(["books/orderdetails/rating"]);
+    localStorage.setItem("bookId", book.bookId);
+    this.router.navigate(["books/rating"]);
   }
 }
 export enum StarRatingColor {

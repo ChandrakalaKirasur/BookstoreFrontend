@@ -6,12 +6,7 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { Login } from "src/app/models/login";
-import {
-  MatSnackBar,
-  MatRadioChange,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from "@angular/material";
+import { MatSnackBar, MatRadioChange, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { HttpService } from "src/app/service/http.service";
@@ -49,7 +44,7 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private httpservice: HttpService,
     public dialogRef: MatDialogRef<LoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit() {}
@@ -75,9 +70,10 @@ export class LoginComponent implements OnInit {
   }
   diableRadios = true;
   favoriteSeason: string = "user";
-  seasons = ["user", "seller", "admin"];
+  seasons = ["user", "seller","admin"];
   isDisabled: boolean = true;
   onlogin() {
+    this.dialogRef.close();
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
@@ -90,18 +86,21 @@ export class LoginComponent implements OnInit {
               this.spinner.hide();
               localStorage.setItem("token", response.obj);
               this.token = localStorage.getItem("token");
-              console.log(this.token);
-              this.dialogRef.close();
+              console.log(this.token)
               this.snackBar.open("Login Successfull", "undo", {
                 duration: 2500,
               });
-              if (this.favoriteSeason == "user") {
-                this.router.navigate(["books"]);
-              } else if (this.favoriteSeason == "seller") {
+              if(this.favoriteSeason=="user")
+              {
+              this.router.navigate(["books"]);
+              }
+             if(this.favoriteSeason=="seller")
+              {
                 this.router.navigate(["seller/books"]);
               } else if (this.favoriteSeason == "admin") {
                 this.router.navigate(["admin/books"]);
               }
+              
             } else {
               this.spinner.hide();
               this.snackBar.open("Login Failed", "undo", { duration: 2500 });

@@ -1,6 +1,3 @@
-.rating {
-  margin: 5%;
-}
 @media (min-width: 728px) {
   .footer {
     margin-right: 13%;
@@ -23,4 +20,31 @@ button {
   mat-icon {
     color: rgb(238, 175, 58);
   }
+}
+.bookimg {
+  width: 120px;
+  height: 150px;
+}
+.twocards {
+  width: 350px;
+}
+mat-card {
+  border: 1px solid #e2e2e2;
+  box-shadow: 0 0 8px 8px #fff inset !important;
+}
+.giverating {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+  width: 350px;
+}
+.rating {
+  margin-top: 4%;
+  margin-left: -1%;
+}
+.singlecard {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+  width: 71%;
 }
