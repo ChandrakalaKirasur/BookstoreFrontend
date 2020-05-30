@@ -8,6 +8,7 @@ import { environment } from "src/environments/environment";
 import { ViewcartService } from "src/app/service/viewcart.service";
 import { BehaviorSubject } from "rxjs";
 import { LoginComponent } from "../login/login.component";
+import { DataService } from "src/app/service/data.service";
 
 @Component({
   selector: "app-books",
@@ -20,15 +21,18 @@ export class BooksComponent implements OnInit {
   visible: boolean;
   getCount: boolean = false;
   @Input("starCount") private starCount: number = 5;
+  message: String;
   private ratingArr = [];
   constructor(
     private _matSnackBar: MatSnackBar,
+    private data: DataService,
     private router: Router,
     private bookService: BookService,
     public dialog: MatDialog,
     private cartService: ViewcartService
   ) {}
   ngOnInit() {
+    this.data.currentMessage.subscribe((message) => (this.message = message));
     this.noOfBooks = this.book.noOfBooks;
     if (localStorage.getItem("token") != null) {
       this.visible = true;
@@ -40,12 +44,13 @@ export class BooksComponent implements OnInit {
       this.ratingArr.push(index);
     }
   }
+
   addToCart() {
     if (this.visible) {
       this.bookService
         .addToCart(this.book.bookId)
         .subscribe((response: any) => {
-          console.log(response["obj"]);
+          this.data.changeMessage("count");
           this.book.isAdded = response.obj;
           // this.getCount = response.obj;
           this._matSnackBar.open("Book added to cart", "ok", {

@@ -27,8 +27,7 @@ export class HttpService {
   public httpOptions = {
     headers: new HttpHeaders({
       "content-type": "application/json",
-      token:
-        "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNTkwODUyOTEwfQ.GfvGbmAMGUCo8faF8AXMbqgihAsA46FYphwuKAJj6kimwJF8K4owYJYywNfy8a4SX0ACvs3nBnAm-Ay7_goSMw",
+      token: localStorage.getItem("token"),
     }),
   };
   baseurl = environment.baseUrl;
