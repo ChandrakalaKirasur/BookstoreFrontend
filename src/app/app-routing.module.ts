@@ -23,6 +23,7 @@ import { RatingreviewComponent } from "./components/ratingreview/ratingreview.co
 import { AdmindashboardComponent } from "./components/admindashboard/admindashboard.component";
 import { DisApprovedBooksComponent } from "./components/dis-approved-books/dis-approved-books.component";
 import { GiverateComponent } from "./components/giverate/giverate.component";
+import { SellerdashboardComponent } from "./components/sellerdashboard/sellerdashboard.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: ":role/registration/verify/:token",
     component: VerifyComponent,
+  },
+  {
+    path: "seller/books",
+    component: SellerdashboardComponent,
   },
   {
     path: "admin",
@@ -89,10 +94,6 @@ const routes: Routes = [
       {
         path: "books/orderdetails",
         component: OrderDetailsComponent,
-      },
-      {
-        path: "seller/books",
-        component: SellerbooksComponent,
       },
       {
         path: "books/rating",

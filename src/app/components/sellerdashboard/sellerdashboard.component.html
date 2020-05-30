@@ -42,7 +42,7 @@
       <!-------------------- cart -------------------->
       <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 20%;">
         <div class="carttext">
-          Admin
+          Seller
         </div>
 
         <button
@@ -72,22 +72,6 @@
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
           <div style="width: 200px;">
-            <button
-              mat-menu-item
-              [disabled]="approve"
-              style="text-align: center;"
-              (click)="getApprove()"
-            >
-              Approve Books
-            </button>
-            <button
-              mat-menu-item
-              [disabled]="!approve"
-              style="text-align: center;"
-              (click)="getDisApprove()"
-            >
-              DisApproved Books
-            </button>
             <div *ngIf="!visible">
               <button
                 mat-menu-item
@@ -138,22 +122,6 @@
           >
           <mat-menu #menu="matMenu">
             <div style="width: 200px;">
-              <button
-                mat-menu-item
-                [disabled]="approve"
-                style="text-align: center;"
-                (click)="getApprove()"
-              >
-                Approve Books
-              </button>
-              <button
-                mat-menu-item
-                [disabled]="!approve"
-                style="text-align: center;"
-                (click)="getDisApprove()"
-              >
-                DisApproved Books
-              </button>
               <div *ngIf="!visible">
                 <button
                   mat-menu-item
@@ -172,7 +140,6 @@
                 Logout
               </button>
 
-              <!-- <label> -->
               <button
                 [disabled]="!visible"
                 value="uploadProfile"
@@ -188,7 +155,6 @@
                   (change)="fileChange($event)"
                 />
               </button>
-              <!-- </label> -->
             </div>
           </mat-menu>
         </button>
@@ -198,6 +164,7 @@
 
   <mat-sidenav-container>
     <mat-sidenav-content>
+      <app-sellerbooks></app-sellerbooks>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
