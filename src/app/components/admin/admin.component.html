@@ -2,13 +2,11 @@
 <div role="combobox" flex="column" style="margin-left: 15%;">
   <!-- <div fxLayout="column wrap" fxLayoutGap="10px" fxLayoutAlign="start center"> -->
 
-  <div *ngFor="let book of books">
+  <div *ngFor="let book of unVerifiedBooks">
     <div *ngIf="!book.bookVerified && !book.bookApproveStatus">
       <mat-card
         class="matcard2"
-        matTooltip="sellerName:{{ book.sellerName }},
-                  sellerMobile:{{ book.sellerMobile }},
-                  sellerEmail:{{ book.sellerEmail }}"
+        matTooltip="sellerName:{{ book.sellerName }}"
         matTooltipPosition="left"
         matTooltipClass="custom-tooltip"
       >
@@ -38,6 +36,7 @@
           Description:
         </div>
         <div>{{ book.bookDescription }}</div>
+
         <!-- </div> -->
         <div fxLayout="row wrap" fxLayoutAlign="end end" *ngIf="both">
           <button

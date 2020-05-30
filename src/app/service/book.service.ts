@@ -138,7 +138,10 @@ export class BookService {
     console.log("service add book");
     return this.http
       .post("http://localhost:8080/book/addbook", data, {
-        headers: new HttpHeaders().set("token", localStorage.getItem("token")),
+        headers: new HttpHeaders().set(
+          "token",
+          "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNTkwODUyOTEwfQ.GfvGbmAMGUCo8faF8AXMbqgihAsA46FYphwuKAJj6kimwJF8K4owYJYywNfy8a4SX0ACvs3nBnAm-Ay7_goSMw"
+        ),
       })
       .pipe(
         tap(() => {
@@ -149,7 +152,10 @@ export class BookService {
   public updateBook(url: any, data: any): any {
     console.log("service add book");
     return this.http.put("http://localhost:8080/book/update/" + url, data, {
-      headers: new HttpHeaders().set("token", localStorage.getItem("token")),
+      headers: new HttpHeaders().set(
+        "token",
+        "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNTkwODUyOTEwfQ.GfvGbmAMGUCo8faF8AXMbqgihAsA46FYphwuKAJj6kimwJF8K4owYJYywNfy8a4SX0ACvs3nBnAm-Ay7_goSMw"
+      ),
     });
   }
   isAddedToWishList(bookId: number) {

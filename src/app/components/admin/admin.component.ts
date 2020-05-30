@@ -52,18 +52,20 @@ export class AdminComponent implements OnInit {
     this.userService
       .getRequest("/book/bookdetails/unverified")
       .subscribe((Response: any) => {
+        this.unVerifiedBooks = Response.obj;
         //console.log(Response.obj);
-        this.userService
-          .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
-          .subscribe((Res: any) => {
-            for (var len in Response.obj) {
-              this.bookdto = Response.obj[len];
-              this.bookdto.sellerName = Res.obj.sellerName;
-              this.bookdto.sellerEmail = Res.obj.email;
-              this.bookdto.sellerMobile = Res.obj.mobile;
-              this.books.push(this.bookdto);
-            }
-          });
+        // for (var len in Response.obj) {
+        // this.userService
+        //   .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
+        //   .subscribe((Res: any) => {
+        //     for (var len in Response.obj) {
+        //       this.bookdto = Response.obj[len];
+        //       this.bookdto.sellerName = Res.obj.sellerName;
+        //       this.bookdto.sellerEmail = Res.obj.email;
+        //       this.bookdto.sellerMobile = Res.obj.mobile;
+        //       this.books.push(this.bookdto);
+        //     }
+        //   });
         //}
       });
   }
