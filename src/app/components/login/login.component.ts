@@ -99,6 +99,8 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(["books"]);
               } else if (this.favoriteSeason == "seller") {
                 this.router.navigate(["seller/books"]);
+              } else if (this.favoriteSeason == "admin") {
+                this.router.navigate(["admin/books"]);
               }
             } else {
               this.spinner.hide();

@@ -38,12 +38,9 @@ export class AdminComponent implements OnInit {
     } else {
       this.profilepic = false;
     }
-    // this.bookService.autoRefresh.subscribe(() => {
-    //   this.unverifiedBooks();
-    // });
+
     this.unverifiedBooks();
-    //this.onDisApprovebooks();
-    this.getprofileLink();
+
     this.profile = localStorage.getItem("userimage");
   }
 
@@ -55,6 +52,7 @@ export class AdminComponent implements OnInit {
     this.userService
       .getRequest("/book/bookdetails/unverified")
       .subscribe((Response: any) => {
+        //console.log(Response.obj);
         this.userService
           .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
           .subscribe((Res: any) => {
@@ -66,6 +64,7 @@ export class AdminComponent implements OnInit {
               this.books.push(this.bookdto);
             }
           });
+        //}
       });
   }
 

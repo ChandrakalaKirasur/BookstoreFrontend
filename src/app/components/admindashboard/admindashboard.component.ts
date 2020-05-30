@@ -4,6 +4,8 @@ import { HttpService } from "src/app/service/http.service";
 import { UserService } from "src/app/service/user.service";
 import { environment } from "src/environments/environment";
 import { Router } from "@angular/router";
+import { LoginComponent } from "../login/login.component";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-admindashboard",
@@ -15,6 +17,7 @@ export class AdmindashboardComponent implements OnInit {
     private snackbar: MatSnackBar,
     private httpservice: HttpService,
     private userService: UserService,
+    private spinner: NgxSpinnerService,
     public dialog: MatDialog,
     private router: Router
   ) {}
@@ -30,8 +33,30 @@ export class AdmindashboardComponent implements OnInit {
       this.profilepic = false;
     }
 
-    //this.getprofileLink();
+    this.getprofileLink();
     this.profile = localStorage.getItem("userimage");
+  }
+
+  onLogin() {
+    const dialogRef = this.dialog.open(LoginComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      window.location.reload();
+    });
+  }
+  showSpinner = false;
+  onLogout() {
+    localStorage.clear();
+    this.visible = false;
+    //this.getcountofbooks();
+    this.spinner.show();
+    this.showSpinner = true;
+
+    setTimeout(() => {
+      this.spinner.hide();
+      //this.bookcount = 0;
+      this.router.navigate(["/books"]);
+      window.location.reload();
+    }, 1000);
   }
 
   getprofileLink() {

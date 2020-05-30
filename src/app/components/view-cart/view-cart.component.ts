@@ -230,8 +230,6 @@ export class ViewCartComponent implements OnInit {
     console.log(mrChange.value);
     this.person = mrChange.value;
   }
-  // favoriteSeason: String = "Home";
-  // seasons = ["Home", "Work", "Other"];
 
   shippingCharge: number;
   selected(event: MatSelectChange) {

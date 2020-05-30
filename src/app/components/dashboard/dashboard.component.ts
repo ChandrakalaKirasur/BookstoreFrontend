@@ -84,15 +84,6 @@ export class DashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       window.location.reload();
     });
-    // this.router.events
-    //  .subscribe(() => {
-    //    dialogRef.close();
-    //  });
-
-    // const dialogRef = this.dialog.open(LoginComponent, {
-    //   width: '800px',
-    // });
-    // this.router.navigate(["login"]);
   }
   onLogout() {
     localStorage.clear();
