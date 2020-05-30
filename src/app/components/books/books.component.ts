@@ -38,7 +38,6 @@ export class BooksComponent implements OnInit {
       this.visible = true;
       this.isAddedToCart();
       this.isAddedToWishList();
-      // this.getcountofbooks();
     }
     for (let index = 0; index < this.starCount; index++) {
       this.ratingArr.push(index);
@@ -56,9 +55,6 @@ export class BooksComponent implements OnInit {
           this._matSnackBar.open("Book added to cart", "ok", {
             duration: 1000,
           });
-          // if (this.getCount) {
-          // this.getcountofbooks();
-          // }
         });
     } else {
       const dialogRef = this.dialog.open(LoginComponent);
@@ -76,7 +72,6 @@ export class BooksComponent implements OnInit {
       this.bookService
         .addToWishList(this.book.bookId)
         .subscribe((response: any) => {
-          console.log(response["obj"]);
           this.book.isListed = response["obj"];
           this._matSnackBar.open("Book added to wishlist", "ok", {
             duration: 1000,
