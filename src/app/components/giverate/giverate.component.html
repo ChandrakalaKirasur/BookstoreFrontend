@@ -1,6 +1,6 @@
-<div role="combobox" flex="column" style="margin-left: 10%; width: 85%;">
-  <div fxLayout="row" class="giverating" fxLayoutGap="5%">
-    <mat-card>
+<div role="combobox" flex="column" class="rating-container">
+  <div fxLayout="row" class="giverating" fxLayoutAlign="space-between stretch">
+    <mat-card style="margin-bottom: 20px;">
       <div fxLayout="row" class="twocards">
         <div>
           <img class="bookimg" src="{{ book.bookImage }}" />
@@ -32,26 +32,28 @@
     </mat-card>
     <mat-card>
       <div class="twocards">
-        <strong>Rate the Book</strong>
-      </div>
-      <div fxLayout="row" class="rating">
-        <button
-          mat-icon-button
-          [color]="color"
-          *ngFor="let ratingId of ratingArr; index as i"
-          [id]="'star_' + i"
-          (click)="onClick(i + 1)"
-          fxLayout="row"
-          [matTooltip]="ratingId + 1"
-          matTooltipPosition="above"
-        >
-          <mat-icon>
-            {{ showIcon(i) }}
-          </mat-icon>
-        </button>
-        <mat-error *ngIf="starCount == null || starCount == 0">
-          Star count is <strong>required</strong> and cannot be zero
-        </mat-error>
+        <div>
+          <strong>Rate the Book</strong>
+        </div>
+        <div fxLayout="row" class="rating">
+          <button
+            mat-icon-button
+            [color]="color"
+            *ngFor="let ratingId of ratingArr; index as i"
+            [id]="'star_' + i"
+            (click)="onClick(i + 1)"
+            fxLayout="row"
+            [matTooltip]="ratingId + 1"
+            matTooltipPosition="above"
+          >
+            <mat-icon>
+              {{ showIcon(i) }}
+            </mat-icon>
+          </button>
+          <mat-error *ngIf="starCount == null || starCount == 0">
+            Star count is <strong>required</strong> and cannot be zero
+          </mat-error>
+        </div>
       </div>
     </mat-card>
   </div>
@@ -60,16 +62,19 @@
       <div style="margin-bottom: 2%;">
         <strong>Review the Book</strong>
       </div>
-      <div>
-        <input
-          mat-input
-          style="width: 740px; height: 40px;"
+      <div class="reviewtext">
+        <textarea
+          matTextareaAutosize
+          class="input"
           placeholder="Review here"
-        />
+        ></textarea>
+      </div>
+      <div>
+        <button mat-button>Submit</button>
       </div>
     </mat-card>
   </div>
 </div>
-<div style="top: 1024px; margin-bottom: 2%; margin-top: 10%;" class="footer">
+<div style="top: 1024px; margin-top: 8%;" class="footer">
   <app-footer></app-footer>
 </div>
