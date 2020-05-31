@@ -1,3 +1,7 @@
+.rating-container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
 @media (min-width: 728px) {
   .footer {
     margin-right: 13%;
@@ -26,17 +30,21 @@ button {
   height: 150px;
 }
 .twocards {
-  width: 350px;
+  width: 365px;
 }
 mat-card {
   border: 1px solid #e2e2e2;
   box-shadow: 0 0 8px 8px #fff inset !important;
 }
 .giverating {
+  position: relative;
+  flex-wrap: wrap;
+  display: block;
+  align-items: flex-start;
+  // float: left;
+  justify-content: center;
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 2%;
-  width: 350px;
 }
 .rating {
   margin-top: 4%;
@@ -46,5 +54,12 @@ mat-card {
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 2%;
-  width: 71%;
+  width: 80%;
+}
+.reviewtext {
+  textarea {
+    width: 99%;
+    min-height: 60px;
+    outline: none;
+  }
 }

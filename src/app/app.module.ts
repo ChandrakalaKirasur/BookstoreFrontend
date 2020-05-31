@@ -131,7 +131,12 @@ import { DisApprovedBooksComponent } from "./components/dis-approved-books/dis-a
   ],
   providers: [BooksComponent],
   exports: [AddbookComponent, UpdatebookComponent, LoginComponent],
-  entryComponents: [AddbookComponent, UpdatebookComponent, RatingreviewComponent, LoginComponent],
+  entryComponents: [
+    AddbookComponent,
+    UpdatebookComponent,
+    RatingreviewComponent,
+    LoginComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
