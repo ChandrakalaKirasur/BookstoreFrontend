@@ -7,21 +7,21 @@
       style="margin-left: 2%;"
     >
       <mat-card class="bookMatcard">
-        <img class="bookimg" src="{{ book.bookImage }}" />
+        <img class="bookimg" src="{{ bookImage }}" />
       </mat-card>
       <div class="bookdetails">
         <div
           class="booktitle"
           style="word-wrap: break-word; margin-bottom: 2%; font-size: 20px;"
         >
-          <Strong>{{ book.bookName }}</Strong>
+          <Strong>{{ bookName }}</Strong>
         </div>
 
         <div class="sub" style="word-wrap: break-word; margin-bottom: 4%;">
-          by {{ book.bookAuthor }}
+          by {{ bookAuthor }}
         </div>
         <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px;">
-          <Strong>Rs.{{ book.bookPrice }}</Strong>
+          <Strong>Rs.{{ bookPrice }}</Strong>
         </div>
 
         <div style="margin-bottom: 5%; font-size: 14px; margin-left: -25px;">
@@ -33,17 +33,26 @@
           fxLayoutGap="20%"
         >
           <button
-            mat-button
-            class="rating"
+            class="total"
+            fxLayout="row"
             style="
-              background-color: rgb(18, 131, 18);
-              color: white;
+              font-size: 14px;
+              text-align: center;
+              padding-top: 9px;
+              height: 40px;
+              width: fit-content !important;
+              padding-right: 1px;
               border-radius: 3px;
+              color: white;
+              background-color: rgb(16, 136, 16);
             "
           >
-            4.3<mat-icon style="font-size: 14px; margin-bottom: -8px;"
-              >star</mat-icon
-            >
+            <div>
+              {{ totalRate }}
+            </div>
+            <mat-icon style="font-size: 14px; padding-top: 1.8px;">
+              star
+            </mat-icon>
           </button>
           <button
             mat-button
@@ -65,7 +74,7 @@
               margin-top: 2px;
             "
           >
-            {{ book.bookDescription }}
+            {{ bookDescription }}
           </div>
         </div>
         <div fxLayout="row" style="margin-left: -25px;">
@@ -114,52 +123,37 @@
       <div style="font-size: 20px; margin-bottom: 2%;">
         <strong>Ratings & Reviews</strong>
       </div>
-      <div>
+      <div *ngFor="let rate of ratings">
         <div fxLayout="row" style="margin-top: 4%;">
           <div>
             <button
-              mat-button
-              class="singleuser"
-              style="background-color: rgb(18, 131, 18); color: white;"
+              class="single"
+              fxLayout="row"
+              style="
+                font-size: 14px;
+                text-align: center;
+                padding-top: 0px;
+                height: 20px;
+                width: fit-content !important;
+                padding-right: 1px;
+                border-radius: 3px;
+                color: white;
+                background-color: rgb(16, 136, 16);
+              "
             >
-              4<mat-icon style="font-size: 14px; margin-bottom: -8px;"
-                >star</mat-icon
-              >
+              <div>
+                {{ rate.rating }}
+              </div>
+              <mat-icon style="font-size: 14px; padding-top: 1.8px;">
+                star
+              </mat-icon>
             </button>
           </div>
           <div style="margin-left: 20px; margin-top: 8px;">
-            <strong>Chandrakala Kirasur</strong>
+            <strong>{{ rate.userName }}</strong>
           </div>
         </div>
-        <div>
-          A very good book and if u have a reading habbit then start from it
-          bcuz the content of this book is very good enough it's very genuine as
-          compared to others this book has a 160 pages which fair to enough to
-          read
-        </div>
-        <div fxLayout="row" style="margin-top: 4%;">
-          <div>
-            <button
-              mat-button
-              class="singleuser"
-              [ngStyle]="{ 'background-color': color }"
-              style="background-color: rgb(18, 131, 18); color: white;"
-            >
-              4<mat-icon style="font-size: 14px; margin-bottom: -8px;"
-                >star</mat-icon
-              >
-            </button>
-          </div>
-          <div style="margin-left: 20px; margin-top: 8px;">
-            <strong>Chandrakala Kirasur</strong>
-          </div>
-        </div>
-        <div>
-          A very good book and if u have a reading habbit then start from it
-          bcuz the content of this book is very good enough it's very genuine as
-          compared to others this book has a 160 pages which fair to enough to
-          read
-        </div>
+        <div>{{ rate.review }}</div>
       </div>
     </div>
   </mat-card>
