@@ -16,6 +16,9 @@
   .footer {
     margin-right: 8%;
   }
+  .rate-submit {
+    margin-left: 50% !important;
+  }
 }
 button {
   height: 20px;
@@ -62,4 +65,14 @@ mat-card {
     min-height: 60px;
     outline: none;
   }
+}
+.rate-submit {
+  margin-left: 70%;
+  margin-top: 10px;
+  height: 40px;
+  width: 70px;
+  text-align: center;
+  padding-left: 12px;
+  background-color: #a03037;
+  color: white;
 }

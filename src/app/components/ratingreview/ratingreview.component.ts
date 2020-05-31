@@ -14,6 +14,8 @@ export class RatingreviewComponent implements OnInit {
   book: Book;
   bookId: any;
   visible: boolean;
+  isAdded: boolean;
+  isListed: boolean;
   constructor(
     private bookService: BookService,
     private router: Router,
@@ -41,7 +43,7 @@ export class RatingreviewComponent implements OnInit {
     if (this.visible) {
       this.bookService.addToCart(this.bookId).subscribe((response: any) => {
         console.log(response["obj"]);
-        this.book.isAdded = response.obj;
+        this.isAdded = response.obj;
         this._matSnackBar.open("Book added to cart", "ok", {
           duration: 1000,
         });
@@ -61,7 +63,7 @@ export class RatingreviewComponent implements OnInit {
     if (this.visible) {
       this.bookService.addToWishList(this.bookId).subscribe((response: any) => {
         console.log(response["obj"]);
-        this.book.isListed = response["obj"];
+        this.isListed = response["obj"];
         this._matSnackBar.open("Book added to wishlist", "ok", {
           duration: 1000,
         });
@@ -79,14 +81,14 @@ export class RatingreviewComponent implements OnInit {
   //getting boolean as a output and finding whether book is already
   isAddedToCart() {
     this.bookService.isAddedTocart(this.bookId).subscribe((response: any) => {
-      this.book.isAdded = response["obj"];
+      this.isAdded = response["obj"];
     });
   }
   isAddedToWishList() {
     this.bookService
       .isAddedToWishList(this.bookId)
       .subscribe((response: any) => {
-        this.book.isListed = response["obj"];
+        this.isListed = response["obj"];
       });
   }
   rateNow() {

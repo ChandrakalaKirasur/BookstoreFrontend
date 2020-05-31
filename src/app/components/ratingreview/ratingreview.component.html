@@ -70,7 +70,7 @@
         </div>
         <div fxLayout="row" style="margin-left: -25px;">
           <button
-            *ngIf="!book.isAdded"
+            *ngIf="!isAdded; else added"
             mat-button
             class="add"
             (click)="addToCart()"
@@ -78,20 +78,18 @@
           >
             ADD TO BAG
           </button>
-          <button
-            *ngIf="book.isAdded"
-            mat-button
-            class="add"
-            style="
-              color: white;
-              background-color: #3371b5 0% 0% no-repeat padding-box;
-            "
-          >
-            ADDED TO BAG
-          </button>
+          <ng-template #added>
+            <button
+              mat-button
+              class="add"
+              style="color: white; background-color: #3371b5;"
+            >
+              ADDED TO BAG
+            </button>
+          </ng-template>
           <button
             mat-button
-            *ngIf="!book.isListed"
+            *ngIf="!isListed"
             class="add"
             (click)="addToWishlist()"
             style="color: #0a0102; background-color: white;"
@@ -100,12 +98,9 @@
           </button>
           <button
             mat-button
-            *ngIf="book.isListed"
+            *ngIf="isListed"
             class="add"
-            style="
-              color: white;
-              background-color: #3371b5 0% 0% no-repeat padding-box;
-            "
+            style="color: white; background-color: #3371b5;"
           >
             IN WISHLIST
           </button>

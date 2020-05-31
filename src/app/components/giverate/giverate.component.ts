@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output } from "@angular/core";
-import { EventEmitter } from "events";
 import { MatSnackBar } from "@angular/material";
-import { BooksComponent } from "../books/books.component";
 import { Book } from "src/app/models/book";
 import { BookService } from "src/app/service/book.service";
+import { ok } from "assert";
 
 @Component({
   selector: "app-giverate",
@@ -18,6 +17,7 @@ export class GiverateComponent implements OnInit {
   rating: number;
   book: Book;
   bookId: any;
+  review: any;
   constructor(
     private snackBar: MatSnackBar,
     private bookService: BookService
@@ -48,5 +48,18 @@ export class GiverateComponent implements OnInit {
     this.bookService.getBookById(this.bookId).subscribe((response: any) => {
       this.book = response["obj"];
     });
+  }
+  submitRate() {
+    const data = {
+      rating: this.rating,
+      review: this.review,
+    };
+    console.log("rating is", data.rating);
+    console.log("review is ", data.review);
+    this.bookService
+      .ratingandreview(this.bookId, data)
+      .subscribe((response: any) => {
+        this.snackBar.open("Thank you..", "ok", { duration: 1000 });
+      });
   }
 }

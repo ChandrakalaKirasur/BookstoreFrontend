@@ -170,8 +170,6 @@ export class BookService {
     );
   }
   public getAvailableBooksOfPageFromSeller(pageNo: any) {
-    let params = new HttpParams();
-    params = params.append("pageNo", pageNo);
     return this.http_service.getMethod(
       environment.baseUrl + "seller/sellerbooks/?pageNo=" + pageNo,
       this.http_service.httpOptions
@@ -182,5 +180,18 @@ export class BookService {
       environment.baseUrl + "book/bookdetails/" + bookId,
       {}
     );
+  }
+  public ratingandreview(bookId: number, data: any) {
+    return this.http_service
+      .putMethod(
+        environment.baseUrl + environment.WRITE_REVIEW + bookId,
+        data,
+        this.http_service.httpOptions
+      )
+      .pipe(
+        tap(() => {
+          this.subject.next();
+        })
+      );
   }
 }
