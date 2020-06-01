@@ -58,7 +58,7 @@ export class SellerbooksComponent implements OnInit {
   addbook() {
     const dialogRef = this.dialog.open(AddbookComponent);
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
+      this.getAvailableBooks();
     });
   }
   updatebook(book: any) {
