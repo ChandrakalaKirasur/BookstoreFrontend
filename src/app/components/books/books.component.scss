@@ -44,7 +44,6 @@ img {
 }
 button {
   width: 100%;
-  cursor: -webkit-grab;
   cursor: pointer;
 }
 .mat-card-actions,
@@ -76,17 +75,12 @@ button {
   height: 29px;
   margin-left: 4px;
 }
-.box4 {
-  font-size: 11px;
-  text-align: center;
-  color: white;
-  background-color: darkgreen;
-  border-radius: 3px;
+.boxx {
   border: none;
   opacity: 1;
-  width: 55px;
-  height: 20px;
-  margin-left: 4px;
+  margin-left: 1px;
+  margin-bottom: 12px;
+  cursor: unset;
 }
 .box {
   font-size: 11px;
@@ -155,6 +149,7 @@ button {
   letter-spacing: 0px;
   color: red;
   opacity: 1;
+  cursor: unset;
 }
 .boxOutOfStockWishList {
   font-size: 11px;

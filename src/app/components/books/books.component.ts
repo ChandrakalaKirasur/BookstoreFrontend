@@ -9,6 +9,7 @@ import { ViewcartService } from "src/app/service/viewcart.service";
 import { BehaviorSubject } from "rxjs";
 import { LoginComponent } from "../login/login.component";
 import { DataService } from "src/app/service/data.service";
+import { Rating } from "src/app/models/rating";
 
 @Component({
   selector: "app-books",
@@ -20,9 +21,10 @@ export class BooksComponent implements OnInit {
   noOfBooks: number;
   visible: boolean;
   getCount: boolean = false;
-  @Input("starCount") private starCount: number = 5;
+  totalRate: number = 0;
   message: String;
-  private ratingArr = [];
+  ratingArr: Array<any>;
+  ratenumber: number;
   constructor(
     private _matSnackBar: MatSnackBar,
     private data: DataService,
@@ -34,13 +36,11 @@ export class BooksComponent implements OnInit {
   ngOnInit() {
     this.data.currentMessage.subscribe((message) => (this.message = message));
     this.noOfBooks = this.book.noOfBooks;
+    this.getTotalRating();
     if (localStorage.getItem("token") != null) {
       this.visible = true;
       this.isAddedToCart();
       this.isAddedToWishList();
-    }
-    for (let index = 0; index < this.starCount; index++) {
-      this.ratingArr.push(index);
     }
   }
 
@@ -126,6 +126,24 @@ export class BooksComponent implements OnInit {
   ratingAndReviews(book: any) {
     localStorage.setItem("bookId", book.bookId);
     this.router.navigate(["books/rating"]);
+  }
+  rate: Rating;
+  getTotalRating() {
+    this.bookService
+      .getratingandreview(this.book.bookId)
+      .subscribe((response: any) => {
+        this.ratingArr = response.obj;
+        console.log("response in rate", this.ratingArr.length);
+        for (var index in this.ratingArr) {
+          this.rate = this.ratingArr[index];
+          this.totalRate += this.rate.rating;
+          console.log("rating here is", this.rate.rating);
+          this.ratenumber += 1;
+        }
+        if (this.ratenumber > 1) {
+          this.totalRate = this.totalRate / this.ratenumber;
+        }
+      });
   }
 }
 export enum StarRatingColor {

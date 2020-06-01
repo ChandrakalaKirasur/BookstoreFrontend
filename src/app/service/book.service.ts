@@ -181,7 +181,7 @@ export class BookService {
       {}
     );
   }
-  public ratingandreview(bookId: number, data: any) {
+  public ratingandreview(bookId: Number, data: any) {
     return this.http_service
       .putMethod(
         environment.baseUrl + environment.WRITE_REVIEW + bookId,
@@ -193,5 +193,11 @@ export class BookService {
           this.subject.next();
         })
       );
+  }
+  public getratingandreview(bookId: number) {
+    return this.http_service.getMethod(
+      environment.baseUrl + environment.WRITE_REVIEW + bookId,
+      {}
+    );
   }
 }
