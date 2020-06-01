@@ -1,3 +1,7 @@
+.rating-container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
 @media (min-width: 728px) {
   .footer {
     margin-right: 13%;
@@ -11,6 +15,9 @@
 @media (max-width: 414px) {
   .footer {
     margin-right: 8%;
+  }
+  .rate-submit {
+    margin-left: 50% !important;
   }
 }
 button {
@@ -26,17 +33,21 @@ button {
   height: 150px;
 }
 .twocards {
-  width: 350px;
+  width: 365px;
 }
 mat-card {
   border: 1px solid #e2e2e2;
   box-shadow: 0 0 8px 8px #fff inset !important;
 }
 .giverating {
+  position: relative;
+  flex-wrap: wrap;
+  display: block;
+  align-items: flex-start;
+  // float: left;
+  justify-content: center;
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 2%;
-  width: 350px;
 }
 .rating {
   margin-top: 4%;
@@ -46,5 +57,35 @@ mat-card {
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 2%;
-  width: 71%;
+  width: 80%;
+}
+.reviewtext {
+  textarea {
+    width: 99%;
+    min-height: 60px;
+    outline: none;
+  }
+}
+.rate-submit {
+  margin-left: 70%;
+  margin-top: 10px;
+  height: 40px;
+  width: 70px;
+  text-align: center;
+  padding-left: 12px;
+  background-color: #a03037;
+  color: white;
+}
+.single {
+  font-size: 14px;
+  text-align: center;
+  padding-top: 0px;
+  height: 20px;
+  width: fit-content !important;
+  padding-right: 1px;
+  border-radius: 3px;
+  border: none;
+  color: white !important;
+  background-color: rgb(16, 136, 16);
+  margin-top: 5%;
 }

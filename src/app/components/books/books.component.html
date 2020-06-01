@@ -37,17 +37,30 @@
         {{ book.bookName }}
       </div>
       <mat-card-subtitle
+        (click)="ratingAndReviews(book)"
         style="color: #9d9d9d; margin-top: -10px; margin-bottom: 7px;"
         >by {{ book.bookAuthor }}</mat-card-subtitle
       >
       <div class="mat-subheading-1">Rs. {{ book.bookPrice }}</div>
     </mat-card-content>
-    <mat-card-actions style="margin-bottom: -0.5%; margin-top: -1%;">
-      <button class="box4">
-        4.3
-        <mat-icon style="font-size: 14px; padding-bottom: -20px;"
-          >star</mat-icon
-        >
+    <mat-card-actions
+      (click)="ratingAndReviews(book)"
+      style="margin-bottom: -0.5%; margin-top: -1%; padding: 0 34px 0 4px;"
+    >
+      <button *ngIf="totalRate > 0" class="boxx" fxLayout="row">
+        <div>
+          {{ totalRate }}
+        </div>
+        <mat-icon style="font-size: 14px; padding-top: 1.8px;">
+          star
+        </mat-icon>
+      </button>
+      <button
+        class="boxx"
+        *ngIf="totalRate == 0"
+        style="padding-right: 6px; box-shadow: aliceblue;"
+      >
+        New
       </button>
     </mat-card-actions>
     <mat-card-actions fxLayout="row" fxLayoutGap="7%">
@@ -59,12 +72,7 @@
         ADD TO BAG
       </button>
       <ng-template #removeFromBag>
-        <button
-          *ngIf="!book.noOfBooks == 0"
-          class="added"
-          id="remove-from-bag"
-          (click)="removeFromCart()"
-        >
+        <button *ngIf="!book.noOfBooks == 0" class="added" id="remove-from-bag">
           ADDED TO BAG
         </button>
       </ng-template>
@@ -78,7 +86,6 @@
       <button
         class="box"
         *ngIf="book.isListed && !book.isAdded && book.noOfBooks != 0"
-        (click)="removeFromWishlist()"
       >
         IN WISHLIST
       </button>
@@ -93,7 +100,6 @@
       <button
         class="inwish"
         *ngIf="book.isListed && !book.isAdded && book.noOfBooks == 0"
-        (click)="removeFromWishlist()"
       >
         IN WISHLIST
       </button>

@@ -9,6 +9,8 @@ import { ViewcartService } from "src/app/service/viewcart.service";
 import { BehaviorSubject } from "rxjs";
 import { LoginComponent } from "../login/login.component";
 import { DataService } from "src/app/service/data.service";
+import { Rating } from "src/app/models/rating";
+import { HttpParams } from "@angular/common/http";
 
 @Component({
   selector: "app-books",
@@ -20,9 +22,10 @@ export class BooksComponent implements OnInit {
   noOfBooks: number;
   visible: boolean;
   getCount: boolean = false;
-  @Input("starCount") private starCount: number = 5;
+  totalRate: number = 0;
   message: String;
-  private ratingArr = [];
+  ratingArr: Array<any>;
+  ratenumber: number;
   constructor(
     private _matSnackBar: MatSnackBar,
     private data: DataService,
@@ -34,13 +37,11 @@ export class BooksComponent implements OnInit {
   ngOnInit() {
     this.data.currentMessage.subscribe((message) => (this.message = message));
     this.noOfBooks = this.book.noOfBooks;
+    this.getTotalRating();
     if (localStorage.getItem("token") != null) {
       this.visible = true;
       this.isAddedToCart();
       this.isAddedToWishList();
-    }
-    for (let index = 0; index < this.starCount; index++) {
-      this.ratingArr.push(index);
     }
   }
 
@@ -110,22 +111,34 @@ export class BooksComponent implements OnInit {
       return "star_border";
     }
   }
-  // appName: string;
-  // token: string;
-  // private bookcount = new BehaviorSubject<number>(0);
-  // countMessage = this.bookcount.asObservable();
-  // getcountofbooks() {
-  // this.appName = "Dashboard";
-  // this.token = localStorage.getItem("token");
-  // this.cartService
-  // .getRequest(environment.book_count_cart)
-  // .subscribe((response: any) => {
-  // this.bookcount.next(response.obj);
-  // });
-  // }
   ratingAndReviews(book: any) {
-    localStorage.setItem("bookId", book.bookId);
-    this.router.navigate(["books/rating"]);
+    this.router.navigate(["books/rating/" + book.bookId]);
+  }
+  rate: Rating;
+  color: any;
+  getTotalRating() {
+    this.bookService
+      .getratingandreview(this.book.bookId)
+      .subscribe((response: any) => {
+        this.ratingArr = response.obj;
+        for (var index in this.ratingArr) {
+          this.rate = this.ratingArr[index];
+          this.totalRate += this.rate.rating;
+          this.ratenumber += 1;
+        }
+        if (this.ratenumber > 1) {
+          this.totalRate = this.totalRate / this.ratenumber;
+        }
+        if (this.totalRate >= 3 || this.totalRate >= 2) {
+          this.color = "rgb(245, 182, 110)";
+        }
+        if (this.totalRate >= 4) {
+          this.color = "rgb(16, 136, 16)";
+        }
+        if (this.totalRate < 2) {
+          this.color = "rgb(216, 69, 59)";
+        }
+      });
   }
 }
 export enum StarRatingColor {
