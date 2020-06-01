@@ -139,7 +139,7 @@ export class BooksComponent implements OnInit {
           this.color = "rgb(16, 136, 16)";
         }
         if (this.totalRate < 2) {
-          this.color = "rgb(216, 69, 59)";
+          this.color = "rgb(250, 0, 0)";
         }
       });
   }
