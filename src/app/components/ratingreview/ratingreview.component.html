@@ -44,8 +44,8 @@
               padding-right: 1px;
               border-radius: 3px;
               color: white;
-              background-color: rgb(16, 136, 16);
             "
+            [ngStyle]="{ 'background-color': color }"
           >
             <div>
               {{ totalRate }}
@@ -149,7 +149,7 @@
               </mat-icon>
             </button>
           </div>
-          <div style="margin-left: 20px; margin-top: 8px;">
+          <div style="margin-left: 20px;">
             <strong>{{ rate.userName }}</strong>
           </div>
         </div>

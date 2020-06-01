@@ -96,11 +96,11 @@ const routes: Routes = [
         component: OrderDetailsComponent,
       },
       {
-        path: "books/rating",
+        path: "books/rating/:bookId",
         component: RatingreviewComponent,
       },
       {
-        path: "books/ratingandreview",
+        path: "books/ratingandreview/:bookId",
         component: GiverateComponent,
       },
     ],

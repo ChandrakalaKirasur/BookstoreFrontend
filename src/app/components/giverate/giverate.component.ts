@@ -3,6 +3,7 @@ import { MatSnackBar } from "@angular/material";
 import { Book } from "src/app/models/book";
 import { BookService } from "src/app/service/book.service";
 import { ok } from "assert";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-giverate",
@@ -18,16 +19,19 @@ export class GiverateComponent implements OnInit {
   book: Book;
   bookId: any;
   review: any;
+  totalRate: any;
   constructor(
     private snackBar: MatSnackBar,
-    private bookService: BookService
+    private bookService: BookService,
+    private route: ActivatedRoute
   ) {}
   ngOnInit() {
-    this.bookId = localStorage.getItem("bookId");
+    this.bookId = this.route.snapshot.paramMap.get("bookId");
     this.getBookById();
     for (let index = 0; index < this.starCount; index++) {
       this.ratingArr.push(index);
     }
+    this.totalRate = localStorage.getItem("totalRate");
   }
   onClick(rating: any) {
     console.log(rating);
