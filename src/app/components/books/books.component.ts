@@ -10,6 +10,7 @@ import { BehaviorSubject } from "rxjs";
 import { LoginComponent } from "../login/login.component";
 import { DataService } from "src/app/service/data.service";
 import { Rating } from "src/app/models/rating";
+import { HttpParams } from "@angular/common/http";
 
 @Component({
   selector: "app-books",
@@ -110,38 +111,32 @@ export class BooksComponent implements OnInit {
       return "star_border";
     }
   }
-  // appName: string;
-  // token: string;
-  // private bookcount = new BehaviorSubject<number>(0);
-  // countMessage = this.bookcount.asObservable();
-  // getcountofbooks() {
-  // this.appName = "Dashboard";
-  // this.token = localStorage.getItem("token");
-  // this.cartService
-  // .getRequest(environment.book_count_cart)
-  // .subscribe((response: any) => {
-  // this.bookcount.next(response.obj);
-  // });
-  // }
   ratingAndReviews(book: any) {
-    localStorage.setItem("bookId", book.bookId);
-    this.router.navigate(["books/rating"]);
+    this.router.navigate(["books/rating/" + book.bookId]);
   }
   rate: Rating;
+  color: any;
   getTotalRating() {
     this.bookService
       .getratingandreview(this.book.bookId)
       .subscribe((response: any) => {
         this.ratingArr = response.obj;
-        console.log("response in rate", this.ratingArr.length);
         for (var index in this.ratingArr) {
           this.rate = this.ratingArr[index];
           this.totalRate += this.rate.rating;
-          console.log("rating here is", this.rate.rating);
           this.ratenumber += 1;
         }
         if (this.ratenumber > 1) {
           this.totalRate = this.totalRate / this.ratenumber;
+        }
+        if (this.totalRate >= 3 || this.totalRate >= 2) {
+          this.color = "rgb(245, 182, 110)";
+        }
+        if (this.totalRate >= 4) {
+          this.color = "rgb(16, 136, 16)";
+        }
+        if (this.totalRate < 2) {
+          this.color = "rgb(216, 69, 59)";
         }
       });
   }

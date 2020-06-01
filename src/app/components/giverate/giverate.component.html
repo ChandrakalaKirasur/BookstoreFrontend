@@ -17,14 +17,17 @@
           </div>
           <div>
             <button
-              mat-button
-              class="ratingresult"
-              style="background-color: rgb(23, 134, 23); color: white;"
+              class="single"
+              fxLayout="row"
             >
-              4.3<mat-icon
-                style="font-size: 14px; margin-bottom: -8px; color: white;"
-                >star</mat-icon
+              <div>
+                {{ totalRate }}
+              </div>
+              <mat-icon
+                style="font-size: 14px; padding-top: 1.8px; color: white;"
               >
+                star
+              </mat-icon>
             </button>
           </div>
         </div>

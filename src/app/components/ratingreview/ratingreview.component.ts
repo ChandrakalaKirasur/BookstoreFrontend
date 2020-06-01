@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Book } from "src/app/models/book";
 import { BookService } from "src/app/service/book.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { MatSnackBar, MatDialog } from "@angular/material";
 import { LoginComponent } from "../login/login.component";
 import { Rating } from "src/app/models/rating";
@@ -29,15 +29,14 @@ export class RatingreviewComponent implements OnInit {
     private bookService: BookService,
     private router: Router,
     private _matSnackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.bookId = localStorage.getItem("bookId");
+    this.bookId = this.route.snapshot.paramMap.get("bookId");
     this.getBookById();
-    if (this.bookId != null) {
-      this.getRatings();
-    }
+    this.getRatings();
     if (localStorage.getItem("token") != null) {
       this.visible = true;
       this.isAddedToCart();
@@ -113,26 +112,34 @@ export class RatingreviewComponent implements OnInit {
   }
   rateNow() {
     if (this.visible) {
-      this.router.navigate(["books/ratingandreview"]);
+      localStorage.setItem("totalRate", this.totalRate + "");
+      this.router.navigate(["books/ratingandreview/" + this.bookId]);
     }
   }
   totalRate: number = 0;
   ratenumber: number;
+  color: any;
   getRatings() {
-    console.log("is this working", this.bookId);
     this.bookService
       .getratingandreview(this.bookId)
       .subscribe((response: any) => {
         this.ratings = response.obj;
-        console.log("response in rate", this.ratings.length);
         for (var index in this.ratings) {
           this.rate = this.ratings[index];
           this.totalRate += this.rate.rating;
-          console.log("rating here is", this.rate.rating);
           this.ratenumber += 1;
         }
         if (this.ratenumber > 1) {
           this.totalRate = this.totalRate / this.ratenumber;
+        }
+        if (this.totalRate >= 3 || this.totalRate >= 2) {
+          this.color = "rgb(245, 182, 110)";
+        }
+        if (this.totalRate >= 4) {
+          this.color = "rgb(16, 136, 16)";
+        }
+        if (this.totalRate < 2) {
+          this.color = "rgb(216, 69, 59)";
         }
       });
   }

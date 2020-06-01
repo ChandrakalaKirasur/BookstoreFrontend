@@ -196,7 +196,7 @@ export class BookService {
   }
   public getratingandreview(bookId: number) {
     return this.http_service.getMethod(
-      environment.baseUrl + environment.WRITE_REVIEW + bookId,
+      environment.baseUrl + environment.GET_REVIEWS + bookId,
       {}
     );
   }
