@@ -112,13 +112,14 @@ export class RatingreviewComponent implements OnInit {
   }
   rateNow() {
     if (this.visible) {
-      localStorage.setItem("totalRate", this.totalRate + "");
+      localStorage.setItem("totalRate", this.total);
       this.router.navigate(["books/ratingandreview/" + this.bookId]);
     }
   }
   totalRate: number = 0;
   ratenumber: number;
   color: any;
+  total: any;
   getRatings() {
     this.bookService
       .getratingandreview(this.bookId)
@@ -128,9 +129,11 @@ export class RatingreviewComponent implements OnInit {
           this.rate = this.ratings[index];
           this.totalRate += this.rate.rating;
           this.ratenumber += 1;
+          this.total = this.totalRate;
         }
         if (this.ratenumber > 1) {
           this.totalRate = this.totalRate / this.ratenumber;
+          this.total = Number.parseFloat(this.totalRate + "").toFixed(1);
         }
         if (this.totalRate >= 3 || this.totalRate >= 2) {
           this.color = "rgb(245, 182, 110)";
