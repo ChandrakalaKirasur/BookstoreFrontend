@@ -13,13 +13,15 @@
           <!-- <img class="bookimg" src="assets/images/Image 11@2x.png" /> -->
           <img class="bookimg" src="{{ book.bookImage }}" />
           <div class="bookdetails">
-            <div class="booktitle">
+            <div class="booktitle" style="word-wrap: break-word;">
               <!-- Don't Make Me Think -->
               {{ book.bookName }}
             </div>
 
-            <div class="sub">{{ book.bookAuthor }}</div>
-            <div class="price">
+            <div class="sub" style="word-wrap: break-word;">
+              {{ book.bookAuthor }}
+            </div>
+            <div class="price" style="word-wrap: break-word;">
               <!-- Rs. 1500 -->
               Rs. {{ book.bookPrice }}
             </div>

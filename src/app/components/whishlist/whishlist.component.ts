@@ -7,6 +7,7 @@ import { Book } from "src/app/models/book";
 import { environment } from "src/environments/environment";
 import { UserService } from "src/app/service/user.service";
 import { BookService } from "src/app/service/book.service";
+import { DataService } from "src/app/service/data.service";
 
 @Component({
   selector: "app-whishlist",
@@ -14,16 +15,12 @@ import { BookService } from "src/app/service/book.service";
   styleUrls: ["./whishlist.component.scss"],
 })
 export class WhishlistComponent implements OnInit {
-  images = [{}, {}, {}, {}];
   constructor(
-    private spinner: NgxSpinnerService,
-    private route: ActivatedRoute,
-    private router: Router,
     private snackbar: MatSnackBar,
+    private data: DataService,
     private userService: UserService,
     private bookService: BookService,
-    private _matSnackBar: MatSnackBar,
-    private addressService: AddressService
+    private _matSnackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -35,14 +32,11 @@ export class WhishlistComponent implements OnInit {
     this.bookService.addToCart(book.bookId).subscribe((response: any) => {
       console.log(response["obj"]);
       this.onRemove(book);
-      // this.book.isAdded = response.obj;
-      // this.getCount = response.obj;
+
+      this.data.changeMessage("count");
       this._matSnackBar.open("Book added to cart", "ok", {
         duration: 1000,
       });
-      // if (this.getCount) {
-      // this.getcountofbooks();
-      // }
     });
   }
 

@@ -6,9 +6,12 @@
       fxLayoutAlign="start start"
       style="margin-left: 2%;"
     >
-      <mat-card class="bookMatcard">
+      <mat-card class="bookMatcard" fxShow="true" fxHide.lt-md="true">
         <img class="bookimg" src="{{ bookImage }}" />
       </mat-card>
+      <div fxHide fxShow.lt-md style="margin-top: 20%;">
+        <img class="bookimg2" src="{{ bookImage }}" />
+      </div>
       <div class="bookdetails">
         <div
           class="booktitle"
@@ -25,10 +28,10 @@
         </div>
 
         <div style="margin-bottom: 5%; font-size: 14px; margin-left: -25px;">
-          <strong>Seller:</strong>Chandrakala
+          <strong>Seller:</strong>{{ sellerName }}
         </div>
         <div
-          fxLayout="row"
+          fxLayout="row wrap"
           style="margin-bottom: 5%; margin-left: -25px;"
           fxLayoutGap="20%"
         >
@@ -40,6 +43,7 @@
               text-align: center;
               padding-top: 9px;
               height: 40px;
+              margin-bottom: 5px;
               width: fit-content !important;
               padding-right: 1px;
               border-radius: 3px;
@@ -63,8 +67,10 @@
             <strong>RATE BOOK</strong>
           </button>
         </div>
-        <div fxLayout="row" style="margin-bottom: 5%;">
-          <div style="font-size: 18px; margin-left: -25px;">
+        <div fxLayout="row wrap" style="margin-bottom: 5%;">
+          <div
+            style="font-size: 18px; margin-left: -25px; word-wrap: break-word;"
+          >
             <strong>Description:</strong>
           </div>
           <div
@@ -72,6 +78,7 @@
               margin-left: 6px;
               color: #9d9d9d !important;
               margin-top: 2px;
+              word-wrap: break-word;
             "
           >
             {{ bookDescription }}
