@@ -29,10 +29,6 @@ export class OrderDetailsComponent implements OnInit {
   token: String;
   books: Array<Book> = [];
   book: Book = new Book();
-
-  quantitylist: [];
-
-  //bookincart: number;
   myDatas = new Array();
   bookcount: number;
 
@@ -60,7 +56,6 @@ export class OrderDetailsComponent implements OnInit {
               this.book.orderId = this.books["orderId"];
               this.book.totalPrice = qt[index]["totalprice"];
               this.book.quantity = qt[index]["quantityOfBook"];
-
               this.myDatas.push(this.book);
             }
           }
