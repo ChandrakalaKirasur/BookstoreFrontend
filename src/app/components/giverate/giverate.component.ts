@@ -75,7 +75,6 @@ export class GiverateComponent implements OnInit {
       });
   }
   getColor() {
-    this.totalRate = 1;
     if (this.totalRate >= 3 || this.totalRate >= 2) {
       this.color = "rgb(245,182,110)";
     }
