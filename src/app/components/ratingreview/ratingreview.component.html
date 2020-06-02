@@ -1,132 +1,130 @@
-<div role="combobox" flex="column" style="margin-left: 10%; width: 85%;">
-  <mat-card class="matcard2">
+<div role="combobox" flex="column" class="display">
+  <mat-card class="matcard2" fxLayout="row">
     <div
       class="cartdetails"
       fxLayout="row"
-      fxLayoutAlign="spacearound stretch"
+      fxLayoutAlign="start stretch"
       style="margin-left: 2%;"
     >
-      <mat-card class="bookMatcard">
+      <mat-card class="bookMatcard" fxLayoutAlign="center fit-content">
         <div class="image">
           <img class="bookimg" src="{{ bookImage }}" />
         </div>
       </mat-card>
-      <mat-card>
-        <div class="bookdetails">
-          <div
-            class="booktitle"
-            style="word-wrap: break-word; margin-bottom: 2%; font-size: 20px;"
-          >
-            <Strong>{{ bookName }}</Strong>
-          </div>
+      <div class="bookdetails">
+        <div
+          class="booktitle"
+          style="word-wrap: break-word; margin-bottom: 2%; font-size: 20px;"
+        >
+          <Strong>{{ bookName }}</Strong>
+        </div>
 
-          <div class="sub" style="word-wrap: break-word; margin-bottom: 4%;">
-            by {{ bookAuthor }}
-          </div>
-          <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px;">
-            <Strong>Rs.{{ bookPrice }}</Strong>
-          </div>
-          <div style="margin-bottom: 5%; font-size: 14px; margin-left: -25px;">
-            <strong>Seller:</strong>{{ sellerName }}
-          </div>
-          <div
+        <div class="sub" style="word-wrap: break-word; margin-bottom: 4%;">
+          by {{ bookAuthor }}
+        </div>
+        <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px;">
+          <Strong>Rs.{{ bookPrice }}</Strong>
+        </div>
+        <div style="margin-bottom: 5%; font-size: 14px; margin-left: -25px;">
+          <strong>Seller:</strong>{{ sellerName }}
+        </div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="spacearound stretch"
+          style="margin-bottom: 5%; margin-left: -25px;"
+          fxLayoutGap="35%"
+        >
+          <button
+            class="total"
             fxLayout="row"
-            fxLayoutAlign="spacearound end"
-            style="margin-bottom: 5%; margin-left: -25px;"
-            fxLayoutGap="5%"
+            style="
+              font-size: 14px;
+              text-align: center;
+              padding-top: 9px;
+              height: 40px;
+              margin-bottom: 5px;
+              width: fit-content !important;
+              padding-right: 1px;
+              border-radius: 3px;
+              color: white;
+            "
+            [ngStyle]="{ 'background-color': color }"
           >
-            <button
-              class="total"
-              fxLayout="row"
-              style="
-                font-size: 14px;
-                text-align: center;
-                padding-top: 9px;
-                height: 40px;
-                margin-bottom: 5px;
-                width: fit-content !important;
-                padding-right: 1px;
-                border-radius: 3px;
-                color: white;
-              "
-              [ngStyle]="{ 'background-color': color }"
-            >
-              <div>
-                {{ total }}
-              </div>
-              <mat-icon style="font-size: 14px; padding-top: 1.8px;">
-                star
-              </mat-icon>
-            </button>
-            <button
-              mat-button
-              class="rating"
-              (click)="rateNow()"
-              style="color: #0a0102; background-color: white;"
-            >
-              <strong>RATE BOOK</strong>
-            </button>
-          </div>
-          <div fxLayout="row wrap" style="margin-bottom: 5%;">
-            <div fxLayout="row" style="margin-bottom: 5%;">
-              <div style="font-size: 18px; margin-left: -25px;">
-                <strong>Description:</strong>
-              </div>
-              <div
-                style="
-                  margin-left: 6px;
-                  color: #9d9d9d !important;
-                  margin-top: 2px;
-                "
-              >
-                {{ bookDescription }}
-              </div>
+            <div>
+              {{ total }}
             </div>
-            <div fxLayout="row" style="margin-left: -25px;">
+            <mat-icon style="font-size: 14px; padding-top: 1.8px;">
+              star
+            </mat-icon>
+          </button>
+          <button
+            mat-button
+            class="rating"
+            (click)="rateNow()"
+            style="color: #0a0102; background-color: white;"
+          >
+            <strong>RATE</strong>
+          </button>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxLayout="row" style="margin-bottom: 5%;">
+            <div style="font-size: 18px; margin-left: -25px;">
+              <strong>Description:</strong>
+            </div>
+            <div
+              style="
+                margin-left: 6px;
+                color: #9d9d9d !important;
+                margin-top: 2px;
+              "
+            >
+              {{ bookDescription }}
+            </div>
+          </div>
+          <div fxLayout="row" style="margin-left: -25px;">
+            <button
+              *ngIf="!isAdded; else added"
+              mat-button
+              class="add"
+              (click)="addToCart()"
+              style="color: white; background-color: #a03037;"
+            >
+              ADD TO BAG
+            </button>
+            <ng-template #added>
               <button
-                *ngIf="!isAdded; else added"
                 mat-button
-                class="add"
-                (click)="addToCart()"
-                style="color: white; background-color: #a03037;"
-              >
-                ADD TO BAG
-              </button>
-              <ng-template #added>
-                <button
-                  mat-button
-                  class="add"
-                  style="color: white; background-color: #3371b5;"
-                >
-                  ADDED TO BAG
-                </button>
-              </ng-template>
-              <button
-                mat-button
-                *ngIf="!isListed"
-                class="add"
-                (click)="addToWishlist()"
-                style="color: #0a0102; background-color: white;"
-              >
-                WISHLIST
-              </button>
-              <button
-                mat-button
-                *ngIf="isListed"
                 class="add"
                 style="color: white; background-color: #3371b5;"
               >
-                IN WISHLIST
+                ADDED TO BAG
               </button>
-            </div>
+            </ng-template>
+            <button
+              mat-button
+              *ngIf="!isListed"
+              class="add"
+              (click)="addToWishlist()"
+              style="color: #0a0102; background-color: white;"
+            >
+              WISHLIST
+            </button>
+            <button
+              mat-button
+              *ngIf="isListed"
+              class="add"
+              style="color: white; background-color: #3371b5;"
+            >
+              IN WISHLIST
+            </button>
           </div>
         </div>
-      </mat-card>
+      </div>
     </div>
   </mat-card>
   <mat-card class="matcard2">
-    <div fxLayout="column" style="margin-left: 2%;">
-      <div style="font-size: 20px; margin-bottom: 2%;">
+    <div fxLayout="column" style="margin-left: 2%; margin-right: 2%;">
+      <div style="font-size: 20px;">
         <strong>Ratings & Reviews</strong>
       </div>
       <div *ngFor="let rate of ratings">

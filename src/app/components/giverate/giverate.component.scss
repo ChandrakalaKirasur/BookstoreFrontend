@@ -25,7 +25,7 @@ button {
   width: 25px;
   line-height: 20px;
   mat-icon {
-    color: rgb(238, 175, 58);
+    color: rgb(255, 196, 0);
   }
 }
 .bookimg {
@@ -44,7 +44,6 @@ mat-card {
   flex-wrap: wrap;
   display: block;
   align-items: flex-start;
-  // float: left;
   justify-content: center;
   margin-left: 10%;
   margin-right: 10%;
@@ -67,7 +66,7 @@ mat-card {
   }
 }
 .rate-submit {
-  margin-left: 70%;
+  margin-left: 85%;
   margin-top: 10px;
   height: 40px;
   width: 70px;
