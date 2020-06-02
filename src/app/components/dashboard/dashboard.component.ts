@@ -69,7 +69,17 @@ export class DashboardComponent implements OnInit {
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
-      this.router.navigate(["books/viewcart"]);
+      if (localStorage.getItem("token") != null) {
+        this.router.navigate(["books/viewcart"]);
+      } else {
+        const dialogRef = this.dialog.open(LoginComponent);
+        dialogRef.afterClosed().subscribe((result) => {
+          window.location.reload();
+        });
+        this.snackbar.open("please login", "ok", {
+          duration: 1000,
+        });
+      }
     }, 1000);
   }
   onwhishlist() {

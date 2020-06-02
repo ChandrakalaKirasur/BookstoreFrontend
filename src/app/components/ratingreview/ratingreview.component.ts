@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { MatSnackBar, MatDialog } from "@angular/material";
 import { LoginComponent } from "../login/login.component";
 import { Rating } from "src/app/models/rating";
+import { DataService } from "src/app/service/data.service";
 
 @Component({
   selector: "app-ratingreview",
@@ -24,10 +25,12 @@ export class RatingreviewComponent implements OnInit {
   bookAuthor: any;
   bookPrice: any;
   bookDescription: any;
+  sellerName: any;
   show: boolean;
   constructor(
     private bookService: BookService,
     private router: Router,
+    private data: DataService,
     private _matSnackBar: MatSnackBar,
     public dialog: MatDialog,
     private route: ActivatedRoute
@@ -54,6 +57,7 @@ export class RatingreviewComponent implements OnInit {
         this.bookPrice = response.obj["bookPrice"];
         this.bookAuthor = response.obj["bookAuthor"];
         this.bookDescription = response.obj["bookDescription"];
+        this.sellerName = response.obj["sellerName"];
         this.show = true;
       }
     });
@@ -61,6 +65,7 @@ export class RatingreviewComponent implements OnInit {
   addToCart() {
     if (this.visible) {
       this.bookService.addToCart(this.bookId).subscribe((response: any) => {
+        this.data.changeMessage("count");
         console.log(response["obj"]);
         this.isAdded = response.obj;
         this._matSnackBar.open("Book added to cart", "ok", {

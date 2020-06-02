@@ -6,10 +6,13 @@
       fxLayoutAlign="spacearound stretch"
       style="margin-left: 2%;"
     >
-      <mat-card class="bookMatcard">
+      <mat-card class="bookMatcard" fxShow="true" fxHide.lt-md="true">
         <div class="image">
           <img class="bookimg" src="{{ bookImage }}" />
         </div>
+      <div fxHide fxShow.lt-md style="margin-top: 20%;">
+        <img class="bookimg2" src="{{ bookImage }}" />
+      </div>
       </mat-card>
       <mat-card>
         <div class="bookdetails">
@@ -26,15 +29,60 @@
           <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px;">
             <Strong>Rs.{{ bookPrice }}</Strong>
           </div>
-
           <div style="margin-bottom: 5%; font-size: 14px; margin-left: -25px;">
-            <strong>Seller:</strong>Chandrakala
+            <strong>Seller:</strong>{{ sellerName }}
           </div>
           <div
             fxLayout="row"
             fxLayoutAlign="spacearound end"
             style="margin-bottom: 5%; margin-left: -25px;"
             fxLayoutGap="5%"
+        >
+          <button
+            class="total"
+            fxLayout="row"
+            style="
+              font-size: 14px;
+              text-align: center;
+              padding-top: 9px;
+              height: 40px;
+              margin-bottom: 5px;
+              width: fit-content !important;
+              padding-right: 1px;
+              border-radius: 3px;
+              color: white;
+            "
+            [ngStyle]="{ 'background-color': color }"
+          >
+            <div>
+              {{ total }}
+            </div>
+            <mat-icon style="font-size: 14px; padding-top: 1.8px;">
+              star
+            </mat-icon>
+          </button>
+          <button
+            mat-button
+            class="rating"
+            (click)="rateNow()"
+            style="color: #0a0102; background-color: white;"
+          >
+            <strong>RATE BOOK</strong>
+          </button>
+        </div>
+        <div fxLayout="row wrap" style="margin-bottom: 5%;">
+          <div
+            style="font-size: 18px; margin-left: -25px; word-wrap: break-word;"
+          >
+            <strong>Description:</strong>
+          </div>
+          <div
+            style="
+              margin-left: 6px;
+              color: #9d9d9d !important;
+              margin-top: 2px;
+              word-wrap: break-word;
+            "
           >
             <button
               *ngIf="totalRate > 0"

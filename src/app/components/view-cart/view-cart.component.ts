@@ -305,6 +305,7 @@ export class ViewCartComponent implements OnInit {
     this.customerForm.enable();
   }
 
+  orderId: any;
   onCheckOut(book: any) {
     //console.log(book);
     this.spinner.show();
@@ -320,10 +321,8 @@ export class ViewCartComponent implements OnInit {
           setTimeout(() => {
             this.spinner.hide();
             this.data.changeMessage("checkout");
-            this.router.navigate([
-              "/books/ordersucess/",
-              { orderId: Response.obj.orderId },
-            ]);
+            this.orderId = Response.obj.orderId;
+            this.router.navigate(["/books/ordersucess/" + this.orderId]);
             this.snackbar.open(Response.message, "undo", { duration: 2500 });
           }, 2000);
         },

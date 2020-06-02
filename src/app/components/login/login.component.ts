@@ -88,20 +88,23 @@ export class LoginComponent implements OnInit {
           (response: any) => {
             if (response.status == 200) {
               this.spinner.hide();
-              localStorage.setItem("token", response.obj);
+
               this.token = localStorage.getItem("token");
               console.log(this.token);
               this.snackBar.open("Login Successfull", "undo", {
                 duration: 2500,
               });
               if (this.favoriteSeason == "user") {
+                localStorage.setItem("token", response.obj);
                 this.dialogRef.close();
                 this.router.navigate(["books"]);
               }
               if (this.favoriteSeason == "seller") {
+                localStorage.setItem("token", response.obj);
                 this.dialogRef.close();
                 this.router.navigate(["seller/books"]);
               } else if (this.favoriteSeason == "admin") {
+                localStorage.setItem("token", response.obj);
                 this.dialogRef.close();
                 this.router.navigate(["admin/books"]);
               }

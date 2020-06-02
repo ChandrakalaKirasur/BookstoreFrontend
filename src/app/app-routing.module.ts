@@ -71,19 +71,17 @@ const routes: Routes = [
   {
     path: "",
     component: DashboardComponent,
-    //canActivateChild: [AuthGuardService],
     children: [
       { path: "", redirectTo: "/books", pathMatch: "full" },
       { path: "books", component: GetbooksComponent },
       { path: "books/search", component: SearchComponent },
       {
         path: "books/viewcart",
-        canActivate: [AuthGuardService],
+        //canActivate: [AuthGuardService],
         component: ViewCartComponent,
       },
       {
-        path: "books/ordersucess",
-        // canActivate: [AuthGuardService],
+        path: "books/ordersucess/:orderId",
         component: OrderSuccessComponent,
       },
 

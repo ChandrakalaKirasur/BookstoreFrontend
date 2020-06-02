@@ -1,8 +1,9 @@
-// .cartdetails {
-//   display: flex;
-//   margin-left: 36px;
-//   position: relative;
-// }
+.cartdetails {
+  display: flex;
+  //margin-left: 36px;
+  margin-left: 5%;
+  position: relative;
+}
 .bookdetails {
   display: flex;
   flex-direction: column;
@@ -23,7 +24,7 @@
   color: #0a0102;
   opacity: 1;
   display: flex;
-  margin-left: -25px;
+  margin-left: -46px;
 
   // width: 80%;
   // text-align: left;
@@ -37,7 +38,7 @@
   opacity: 1;
   margin-bottom: 15%;
   margin-top: 5%;
-  margin-left: -25px;
+  margin-left: -46px;
 }
 .matcard2 {
   // background: #ffffff 0% 0% no-repeat padding-box;
@@ -74,7 +75,7 @@
 .price {
   font: Bold 18px/15px Lato;
   margin-bottom: 30px;
-  margin-left: -27px;
+  margin-left: -46px;
 }
 @media (min-width: 728px) {
   .footer {
