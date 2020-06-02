@@ -17,6 +17,7 @@
           </div>
           <div>
             <button
+              *ngIf="totalRate > 0"
               class="single"
               fxLayout="row"
               [ngStyle]="{ 'background-color': color }"

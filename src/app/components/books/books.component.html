@@ -17,17 +17,17 @@
           (click)="ratingAndReviews(book)"
         />
         <button *ngIf="book.noOfBooks == 0" class="btn">
-          OUT OF STOCK
+          <strong>OUT OF STOCK</strong>
         </button>
         <button
           *ngIf="noOfBooks < 6 && noOfBooks > 1; else available"
           class="btn"
           style="color: green;"
         >
-          Hurry! only {{ book.noOfBooks }} books are left
+          <strong>Hurry! only {{ book.noOfBooks }} books are left</strong>
         </button>
         <button *ngIf="noOfBooks == 1; else available" class="btn">
-          Hurry! only {{ book.noOfBooks }} book is left
+          <strong>Hurry! only {{ book.noOfBooks }} book is left</strong>
         </button>
       </div>
     </mat-card-header>
@@ -72,7 +72,7 @@
           color: black;
         "
       >
-        New
+        <strong>New</strong>
       </button>
     </mat-card-actions>
     <mat-card-actions fxLayout="row" fxLayoutGap="7%">
