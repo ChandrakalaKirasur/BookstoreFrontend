@@ -1,17 +1,15 @@
+.display {
+  margin-left: 10%;
+}
 .cartdetails {
-  // flex-wrap: wrap;
+  flex-wrap: wrap;
   display: block;
-  margin-left: 4%;
   position: relative;
   align-items: flex-start;
   padding-top: 25px;
 }
 .bookMatcard {
   background-color: whitesmoke;
-  // padding-bottom: 3.5%;
-  // padding-top: 3.5%;
-  // padding-left: 10%;
-  // padding-right: 10%;
   padding-bottom: 2.5%;
   padding-top: 2.5%;
   padding-left: 5%;
@@ -20,26 +18,15 @@
 .bookdetails {
   flex-wrap: wrap;
   display: block;
-  flex-direction: column;
+  // flex-direction: column;
   margin-left: 45px;
   margin-bottom: 30px;
-  width: 85%;
+  width: 50%;
 }
 .image {
-  display: block;
+  display: inline-block;
   flex-wrap: wrap;
   justify-content: center;
-}
-.mycart {
-  top: 135px;
-  left: 213px;
-  width: 120px;
-  font-size: larger;
-  font: bold;
-}
-.mycart2 {
-  height: 35px;
-  margin-top: 12px;
 }
 .booktitle {
   width: 100%;
@@ -67,10 +54,8 @@
 .bookimg {
   top: 192px;
   left: 213px;
-  // width: 200px;
-  // height: 304px;
-  width: 187px;
-  height: 260px;
+  width: 200px;
+  height: 312px;
 }
 .bookimg2 {
   top: 192px;
@@ -99,17 +84,20 @@
   .foot {
     margin-right: 8%;
   }
-  .bookimg {
-    width: 100px;
-    height: 204px;
+  .matcard2 {
+    margin-left: -15%;
+    width: 120%;
   }
-  .cartdetails {
-    flex-wrap: wrap;
-    display: block;
+  .bookdetails {
+    margin-left: 5%;
+    width: 85%;
+    .add {
+      width: fit-content !important;
+    }
   }
 }
 .add {
-  width: 100%;
+  width: 220px;
   border: 1px solid #9d9d9d;
   border-radius: 1px;
   margin-right: 3%;

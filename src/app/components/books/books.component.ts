@@ -112,7 +112,7 @@ export class BooksComponent implements OnInit {
     }
   }
   ratingAndReviews(book: any) {
-    this.router.navigate(["books/rating/" + book.bookId]);
+    this.router.navigate(["books/details/" + book.bookId]);
   }
   rate: Rating;
   color: any;
