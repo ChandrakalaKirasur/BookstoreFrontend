@@ -11,6 +11,7 @@ container {
 .cartdetails {
   display: flex;
   margin-left: 5%;
+  margin-bottom: 5px;
   position: relative;
 }
 .bookdetails {
@@ -171,8 +172,8 @@ container {
 .bookimg {
   top: 192px;
   left: 213px;
-  width: 65px;
-  height: 90px;
+  width: 85px;
+  height: 110px;
 }
 .checkout {
   border-radius: 3px;

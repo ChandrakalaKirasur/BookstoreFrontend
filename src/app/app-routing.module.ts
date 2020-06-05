@@ -22,6 +22,8 @@ import { VerifyconfrimComponent } from "./components/verifyconfrim/verifyconfrim
 import { RatingreviewComponent } from "./components/ratingreview/ratingreview.component";
 import { AdmindashboardComponent } from "./components/admindashboard/admindashboard.component";
 import { DisApprovedBooksComponent } from "./components/dis-approved-books/dis-approved-books.component";
+import { GiverateComponent } from "./components/giverate/giverate.component";
+import { SellerdashboardComponent } from "./components/sellerdashboard/sellerdashboard.component";
 
 const routes: Routes = [
   {
@@ -49,6 +51,10 @@ const routes: Routes = [
     component: VerifyComponent,
   },
   {
+    path: "seller/books",
+    component: SellerdashboardComponent,
+  },
+  {
     path: "admin",
     component: AdmindashboardComponent,
     children: [
@@ -65,19 +71,17 @@ const routes: Routes = [
   {
     path: "",
     component: DashboardComponent,
-    //canActivateChild: [AuthGuardService],
     children: [
       { path: "", redirectTo: "/books", pathMatch: "full" },
       { path: "books", component: GetbooksComponent },
       { path: "books/search", component: SearchComponent },
       {
         path: "books/viewcart",
-        canActivate: [AuthGuardService],
+        //canActivate: [AuthGuardService],
         component: ViewCartComponent,
       },
       {
-        path: "books/ordersucess",
-        // canActivate: [AuthGuardService],
+        path: "books/ordersucess/:orderId",
         component: OrderSuccessComponent,
       },
 
@@ -90,12 +94,12 @@ const routes: Routes = [
         component: OrderDetailsComponent,
       },
       {
-        path: "seller/books",
-        component: SellerbooksComponent,
+        path: "books/details/:bookId",
+        component: RatingreviewComponent,
       },
       {
-        path: "books/rating",
-        component: RatingreviewComponent,
+        path: "books/ratingandreview/:bookId",
+        component: GiverateComponent,
       },
     ],
   },

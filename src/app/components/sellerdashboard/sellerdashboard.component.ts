@@ -8,11 +8,11 @@ import { LoginComponent } from "../login/login.component";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
-  selector: "app-admindashboard",
-  templateUrl: "./admindashboard.component.html",
-  styleUrls: ["./admindashboard.component.scss"],
+  selector: "app-sellerdashboard",
+  templateUrl: "./sellerdashboard.component.html",
+  styleUrls: ["./sellerdashboard.component.scss"],
 })
-export class AdmindashboardComponent implements OnInit {
+export class SellerdashboardComponent implements OnInit {
   constructor(
     private snackbar: MatSnackBar,
     private httpservice: HttpService,

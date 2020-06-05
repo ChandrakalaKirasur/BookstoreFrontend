@@ -41,20 +41,9 @@
 
       <!-------------------- cart -------------------->
       <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 20%;">
-        <div class="carttext" (click)="onCart()" fxhide="10" fxHide.xs="true">
-          Cart
+        <div class="carttext">
+          Seller
         </div>
-        <a (click)="onCart()" class="cartimg">
-          <mat-icon
-            class="grab"
-            [matBadge]="bookcount"
-            matBadgeSize="small"
-            [matBadgeHidden]="badgeCounter == 0"
-            matBadgePosition="above after"
-          >
-            <img class="image" src="assets/images/supermarket@2x.png" />
-          </mat-icon>
-        </a>
 
         <button
           *ngIf="!profilepic"
@@ -83,22 +72,6 @@
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
           <div style="width: 200px;">
-            <button
-              mat-menu-item
-              [disabled]="!visible"
-              style="text-align: center;"
-              (click)="onOrderDetails()"
-            >
-              My Orders
-            </button>
-            <button
-              mat-menu-item
-              [disabled]="!visible"
-              style="text-align: center;"
-              (click)="onwhishlist()"
-            >
-              My WishList
-            </button>
             <div *ngIf="!visible">
               <button
                 mat-menu-item
@@ -149,22 +122,6 @@
           >
           <mat-menu #menu="matMenu">
             <div style="width: 200px;">
-              <button
-                mat-menu-item
-                [disabled]="!visible"
-                style="text-align: center;"
-                (click)="onOrderDetails()"
-              >
-                My Orders
-              </button>
-              <button
-                mat-menu-item
-                [disabled]="!visible"
-                style="text-align: center;"
-                (click)="onwhishlist()"
-              >
-                My WishList
-              </button>
               <div *ngIf="!visible">
                 <button
                   mat-menu-item
@@ -183,7 +140,6 @@
                 Logout
               </button>
 
-              <!-- <label> -->
               <button
                 [disabled]="!visible"
                 value="uploadProfile"
@@ -199,15 +155,16 @@
                   (change)="fileChange($event)"
                 />
               </button>
-              <!-- </label> -->
             </div>
           </mat-menu>
         </button>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
+
   <mat-sidenav-container>
     <mat-sidenav-content>
+      <app-sellerbooks></app-sellerbooks>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

@@ -8,6 +8,9 @@ import { environment } from "src/environments/environment";
 import { ViewcartService } from "src/app/service/viewcart.service";
 import { BehaviorSubject } from "rxjs";
 import { LoginComponent } from "../login/login.component";
+import { DataService } from "src/app/service/data.service";
+import { Rating } from "src/app/models/rating";
+import { HttpParams } from "@angular/common/http";
 
 @Component({
   selector: "app-books",
@@ -19,41 +22,40 @@ export class BooksComponent implements OnInit {
   noOfBooks: number;
   visible: boolean;
   getCount: boolean = false;
-  @Input("starCount") private starCount: number = 5;
-  private ratingArr = [];
+  totalRate: number = 0;
+  message: String;
+  ratingArr: Array<any>;
+  ratenumber: number;
   constructor(
     private _matSnackBar: MatSnackBar,
+    private data: DataService,
     private router: Router,
     private bookService: BookService,
     public dialog: MatDialog,
     private cartService: ViewcartService
   ) {}
   ngOnInit() {
+    this.data.currentMessage.subscribe((message) => (this.message = message));
     this.noOfBooks = this.book.noOfBooks;
+    this.getTotalRating();
     if (localStorage.getItem("token") != null) {
       this.visible = true;
       this.isAddedToCart();
       this.isAddedToWishList();
-      // this.getcountofbooks();
-    }
-    for (let index = 0; index < this.starCount; index++) {
-      this.ratingArr.push(index);
     }
   }
+
   addToCart() {
     if (this.visible) {
       this.bookService
         .addToCart(this.book.bookId)
         .subscribe((response: any) => {
-          console.log(response["obj"]);
+          this.data.changeMessage("count");
           this.book.isAdded = response.obj;
           // this.getCount = response.obj;
           this._matSnackBar.open("Book added to cart", "ok", {
             duration: 1000,
           });
-          // if (this.getCount) {
-          // this.getcountofbooks();
-          // }
         });
     } else {
       const dialogRef = this.dialog.open(LoginComponent);
@@ -71,7 +73,6 @@ export class BooksComponent implements OnInit {
       this.bookService
         .addToWishList(this.book.bookId)
         .subscribe((response: any) => {
-          console.log(response["obj"]);
           this.book.isListed = response["obj"];
           this._matSnackBar.open("Book added to wishlist", "ok", {
             duration: 1000,
@@ -110,24 +111,37 @@ export class BooksComponent implements OnInit {
       return "star_border";
     }
   }
-  // appName: string;
-  // token: string;
-  // private bookcount = new BehaviorSubject<number>(0);
-  // countMessage = this.bookcount.asObservable();
-  // getcountofbooks() {
-  // this.appName = "Dashboard";
-  // this.token = localStorage.getItem("token");
-  // this.cartService
-  // .getRequest(environment.book_count_cart)
-  // .subscribe((response: any) => {
-  // this.bookcount.next(response.obj);
-  // });
-  // }
-  private bookrating = new BehaviorSubject<any>(this.book);
-  ratingBookMessage = this.bookrating.asObservable();
   ratingAndReviews(book: any) {
-    this.bookrating.next(book);
-    //this.router.navigate(["books/orderdetails/rating"]);
+    this.router.navigate(["books/details/" + book.bookId]);
+  }
+  rate: Rating;
+  color: any;
+  total: any;
+  getTotalRating() {
+    this.bookService
+      .getratingandreview(this.book.bookId)
+      .subscribe((response: any) => {
+        this.ratingArr = response.obj;
+        for (var index in this.ratingArr) {
+          this.rate = this.ratingArr[index];
+          this.totalRate += this.rate.rating;
+          this.total = this.totalRate;
+          this.ratenumber += 1;
+        }
+        if (this.ratenumber > 1) {
+          this.totalRate = this.totalRate / this.ratenumber;
+          this.total = Number.parseFloat(this.totalRate + "").toFixed(1);
+        }
+        if (this.totalRate >= 3 || this.totalRate >= 2) {
+          this.color = "rgb(245, 182, 110)";
+        }
+        if (this.totalRate >= 4) {
+          this.color = "rgb(16, 136, 16)";
+        }
+        if (this.totalRate < 2) {
+          this.color = "rgb(250, 0, 0)";
+        }
+      });
   }
 }
 export enum StarRatingColor {

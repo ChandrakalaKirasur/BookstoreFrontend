@@ -38,12 +38,9 @@ export class AdminComponent implements OnInit {
     } else {
       this.profilepic = false;
     }
-    // this.bookService.autoRefresh.subscribe(() => {
-    //   this.unverifiedBooks();
-    // });
+
     this.unverifiedBooks();
-    //this.onDisApprovebooks();
-    this.getprofileLink();
+
     this.profile = localStorage.getItem("userimage");
   }
 
@@ -55,17 +52,21 @@ export class AdminComponent implements OnInit {
     this.userService
       .getRequest("/book/bookdetails/unverified")
       .subscribe((Response: any) => {
-        this.userService
-          .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
-          .subscribe((Res: any) => {
-            for (var len in Response.obj) {
-              this.bookdto = Response.obj[len];
-              this.bookdto.sellerName = Res.obj.sellerName;
-              this.bookdto.sellerEmail = Res.obj.email;
-              this.bookdto.sellerMobile = Res.obj.mobile;
-              this.books.push(this.bookdto);
-            }
-          });
+        this.unVerifiedBooks = Response.obj;
+        //console.log(Response.obj);
+        // for (var len in Response.obj) {
+        // this.userService
+        //   .getRequest("seller/singleSeller/" + Response.obj[0]["sellerId"])
+        //   .subscribe((Res: any) => {
+        //     for (var len in Response.obj) {
+        //       this.bookdto = Response.obj[len];
+        //       this.bookdto.sellerName = Res.obj.sellerName;
+        //       this.bookdto.sellerEmail = Res.obj.email;
+        //       this.bookdto.sellerMobile = Res.obj.mobile;
+        //       this.books.push(this.bookdto);
+        //     }
+        //   });
+        //}
       });
   }
 

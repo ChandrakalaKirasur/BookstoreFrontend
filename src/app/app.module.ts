@@ -65,6 +65,7 @@ import { VerifyconfrimComponent } from "./components/verifyconfrim/verifyconfrim
 import { RatingreviewComponent } from "./components/ratingreview/ratingreview.component";
 import { AdmindashboardComponent } from "./components/admindashboard/admindashboard.component";
 import { DisApprovedBooksComponent } from "./components/dis-approved-books/dis-approved-books.component";
+import { SellerdashboardComponent } from "./components/sellerdashboard/sellerdashboard.component";
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { DisApprovedBooksComponent } from "./components/dis-approved-books/dis-a
     RatingreviewComponent,
     AdmindashboardComponent,
     DisApprovedBooksComponent,
+    SellerdashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,8 +132,13 @@ import { DisApprovedBooksComponent } from "./components/dis-approved-books/dis-a
     HttpClientModule,
   ],
   providers: [BooksComponent],
-  exports: [AddbookComponent, UpdatebookComponent],
-  entryComponents: [AddbookComponent, UpdatebookComponent],
+  exports: [AddbookComponent, UpdatebookComponent, LoginComponent],
+  entryComponents: [
+    AddbookComponent,
+    UpdatebookComponent,
+    RatingreviewComponent,
+    LoginComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

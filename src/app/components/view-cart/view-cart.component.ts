@@ -49,6 +49,13 @@ export class ViewCartComponent implements OnInit {
 
   customerForm: FormGroup;
   ngOnInit() {
+    this.data.currentMessage.subscribe((message) => {
+      if ((message = "remove")) {
+        this.bookNquantityData.splice(0);
+        this.getbooks();
+      }
+    });
+
     this.customerForm = this.formBuilder.group({
       name: ["", Validators.required],
       contact: [
@@ -70,7 +77,7 @@ export class ViewCartComponent implements OnInit {
     });
 
     this.getcountofbooks();
-    this.getbooks();
+    //this.getbooks();
   }
 
   book: Book = new Book();
@@ -198,11 +205,12 @@ export class ViewCartComponent implements OnInit {
       .subscribe(
         (Response: any) => {
           if (Response.obj) {
-            for (var index in this.bookNquantityData) {
-              if (this.bookNquantityData[index] == book) {
-                this.bookNquantityData[index] = null;
-              }
-            }
+            this.data.changeMessage("remove");
+            // for (var index in this.bookNquantityData) {
+            //   if (this.bookNquantityData[index] == book) {
+            //     this.bookNquantityData[index] = null;
+            //   }
+            // }
             this.bookcount -= 1;
             this.count = false;
           }
@@ -230,8 +238,6 @@ export class ViewCartComponent implements OnInit {
     console.log(mrChange.value);
     this.person = mrChange.value;
   }
-  // favoriteSeason: String = "Home";
-  // seasons = ["Home", "Work", "Other"];
 
   shippingCharge: number;
   selected(event: MatSelectChange) {
@@ -299,6 +305,7 @@ export class ViewCartComponent implements OnInit {
     this.customerForm.enable();
   }
 
+  orderId: any;
   onCheckOut(book: any) {
     //console.log(book);
     this.spinner.show();
@@ -313,10 +320,9 @@ export class ViewCartComponent implements OnInit {
         (Response: any) => {
           setTimeout(() => {
             this.spinner.hide();
-            this.router.navigate([
-              "/books/ordersucess/",
-              { orderId: Response.obj.orderId },
-            ]);
+            this.data.changeMessage("checkout");
+            this.orderId = Response.obj.orderId;
+            this.router.navigate(["/books/ordersucess/" + this.orderId]);
             this.snackbar.open(Response.message, "undo", { duration: 2500 });
           }, 2000);
         },

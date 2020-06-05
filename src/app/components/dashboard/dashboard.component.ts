@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
     private httpservice: HttpService,
     private spinner: NgxSpinnerService,
     private cartService: ViewcartService,
+    private data: DataService,
     private userService: UserService,
     private snackbar: MatSnackBar,
     private router: Router,
@@ -35,6 +36,16 @@ export class DashboardComponent implements OnInit {
   appName: string;
   profilepic: boolean = false;
   ngOnInit() {
+    this.data.currentMessage.subscribe((message) => {
+      if ((message = "count")) {
+        this.getcountofbooks();
+      } else if ((message = "removeBook")) {
+        this.getcountofbooks();
+      } else if ((message = "checkout")) {
+        this.getcountofbooks();
+      }
+    });
+
     if (localStorage.getItem("token") != null) {
       this.visible = true;
     } else {
@@ -50,7 +61,7 @@ export class DashboardComponent implements OnInit {
 
   onBook() {
     this.router.navigate(["books"]);
-    this.getcountofbooks();
+    //this.getcountofbooks();
   }
   showSpinner = false;
   onCart() {
@@ -58,8 +69,17 @@ export class DashboardComponent implements OnInit {
     this.showSpinner = true;
     setTimeout(() => {
       this.spinner.hide();
-      this.getcountofbooks();
-      this.router.navigate(["books/viewcart"]);
+      if (localStorage.getItem("token") != null) {
+        this.router.navigate(["books/viewcart"]);
+      } else {
+        const dialogRef = this.dialog.open(LoginComponent);
+        dialogRef.afterClosed().subscribe((result) => {
+          window.location.reload();
+        });
+        this.snackbar.open("please login", "ok", {
+          duration: 1000,
+        });
+      }
     }, 1000);
   }
   onwhishlist() {
@@ -84,15 +104,6 @@ export class DashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       window.location.reload();
     });
-    // this.router.events
-    //  .subscribe(() => {
-    //    dialogRef.close();
-    //  });
-
-    // const dialogRef = this.dialog.open(LoginComponent, {
-    //   width: '800px',
-    // });
-    // this.router.navigate(["login"]);
   }
   onLogout() {
     localStorage.clear();
@@ -124,7 +135,7 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  bookcount: number;
+  bookcount: any;
   token: string;
   // placeOrder: boolean = true;
   getcountofbooks() {
