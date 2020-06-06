@@ -1,5 +1,5 @@
 <div role="combobox" flex="column" class="display">
-  <mat-card class="matcard2" fxLayout="row">
+  <mat-card class="matcard" fxLayout="row">
     <div
       class="cartdetails"
       fxLayout="row"
@@ -83,7 +83,7 @@
           </div>
           <div fxLayout="row" style="margin-left: -25px;">
             <button
-              *ngIf="!isAdded; else added"
+              *ngIf="!isAdded && !book.noOfBooks == 0; else added"
               mat-button
               class="add"
               (click)="addToCart()"
@@ -94,6 +94,7 @@
             <ng-template #added>
               <button
                 mat-button
+                *ngIf="!book.noOfBooks == 0"
                 class="add"
                 style="color: white; background-color: #3371b5;"
               >

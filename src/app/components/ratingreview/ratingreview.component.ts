@@ -19,6 +19,7 @@ export class RatingreviewComponent implements OnInit {
   visible: boolean;
   isAdded: boolean;
   isListed: boolean;
+  noOfBooks: number;
   book: Book;
   bookImage: any;
   bookName: any;
@@ -58,6 +59,7 @@ export class RatingreviewComponent implements OnInit {
         this.bookAuthor = response.obj["bookAuthor"];
         this.bookDescription = response.obj["bookDescription"];
         this.sellerName = response.obj["sellerName"];
+        this.noOfBooks = response.obj["noOfBooks"];
         this.show = true;
       }
     });
