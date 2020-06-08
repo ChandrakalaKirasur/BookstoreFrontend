@@ -6,16 +6,12 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { Login } from "src/app/models/login";
-import {
-  MatSnackBar,
-  MAT_DIALOG_DATA,
-} from "@angular/material";
-import {
-   MatDialogRef,
-} from "@angular/material";
+import { MatSnackBar, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialogRef } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { HttpService } from "src/app/service/http.service";
+import { DataService } from "src/app/service/data.service";
 
 @Component({
   selector: "app-login",
@@ -31,7 +27,6 @@ export class LoginComponent implements OnInit {
   login: Login = new Login("", "");
   loginForm: FormGroup;
   token: string;
-  
 
   email = new FormControl(this.login.mailOrMobile, [
     Validators.required,
@@ -50,9 +45,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private httpservice: HttpService,
-    // public dialogRef: MatDialogRef<LoginComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+    private data: DataService // @Inject(MAT_DIALOG_DATA) public data: any
+  ) //public dialogRef: MatDialogRef<LoginComponent>
+  {}
 
   ngOnInit() {}
   /**
@@ -97,14 +92,16 @@ export class LoginComponent implements OnInit {
               });
               if (this.favoriteSeason == "user") {
                 localStorage.setItem("token", response.obj);
-               
+
                 this.router.navigate(["books"]);
               }
               if (this.favoriteSeason == "seller") {
-                localStorage.setItem("token", response.obj)
+                localStorage.setItem("token", response.obj);
+
                 this.router.navigate(["seller/books"]);
               } else if (this.favoriteSeason == "admin") {
                 localStorage.setItem("token", response.obj);
+
                 this.router.navigate(["admin/books"]);
               }
             } else {
