@@ -8,9 +8,10 @@ import {
 import { Login } from "src/app/models/login";
 import {
   MatSnackBar,
-  MatRadioChange,
-  MatDialogRef,
   MAT_DIALOG_DATA,
+} from "@angular/material";
+import {
+   MatDialogRef,
 } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
   login: Login = new Login("", "");
   loginForm: FormGroup;
   token: string;
+  
 
   email = new FormControl(this.login.mailOrMobile, [
     Validators.required,
@@ -48,8 +50,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private httpservice: HttpService,
-    public dialogRef: MatDialogRef<LoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    // public dialogRef: MatDialogRef<LoginComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit() {}
@@ -78,6 +80,7 @@ export class LoginComponent implements OnInit {
   seasons = ["user", "seller", "admin"];
   isDisabled: boolean = true;
   onlogin() {
+    // this.dialogRef.close();
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
@@ -88,7 +91,6 @@ export class LoginComponent implements OnInit {
           (response: any) => {
             if (response.status == 200) {
               this.spinner.hide();
-
               this.token = localStorage.getItem("token");
               console.log(this.token);
               this.snackBar.open("Login Successfull", "undo", {
@@ -96,16 +98,14 @@ export class LoginComponent implements OnInit {
               });
               if (this.favoriteSeason == "user") {
                 localStorage.setItem("token", response.obj);
-                this.dialogRef.close();
+               
                 this.router.navigate(["books"]);
               }
               if (this.favoriteSeason == "seller") {
-                localStorage.setItem("token", response.obj);
-                this.dialogRef.close();
+                localStorage.setItem("token", response.obj)
                 this.router.navigate(["seller/books"]);
               } else if (this.favoriteSeason == "admin") {
                 localStorage.setItem("token", response.obj);
-                this.dialogRef.close();
                 this.router.navigate(["admin/books"]);
               }
             } else {
