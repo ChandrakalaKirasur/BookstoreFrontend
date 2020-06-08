@@ -80,7 +80,6 @@ export class LoginComponent implements OnInit {
   seasons = ["user", "seller", "admin"];
   isDisabled: boolean = true;
   onlogin() {
-    // this.dialogRef.close();
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
