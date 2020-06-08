@@ -106,6 +106,7 @@ export class DashboardComponent implements OnInit {
    dialogRef.close();
    window.location.reload();
  });
+ 
     // dialogRef.afterClosed().subscribe((result) => {
       
     // });
