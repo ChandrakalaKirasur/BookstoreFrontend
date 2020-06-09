@@ -107,6 +107,7 @@ export class DashboardComponent implements OnInit {
      .subscribe(() =>{
        dialogRef.close();
      });  
+    
   }
   onLogout() {
     localStorage.clear();
@@ -184,7 +185,7 @@ export class DashboardComponent implements OnInit {
           localStorage.setItem("userprofile", response["msg"]);
           this.profilepic = true;
           this.profile = response["msg"];
-          console.log("upload", response);
+          ///  console.log("upload", response);
         });
     }
   }
