@@ -66,6 +66,7 @@ import { RatingreviewComponent } from "./components/ratingreview/ratingreview.co
 import { AdmindashboardComponent } from "./components/admindashboard/admindashboard.component";
 import { DisApprovedBooksComponent } from "./components/dis-approved-books/dis-approved-books.component";
 import { SellerdashboardComponent } from "./components/sellerdashboard/sellerdashboard.component";
+import { LogindailogComponent } from './components/logindailog/logindailog.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { SellerdashboardComponent } from "./components/sellerdashboard/sellerdas
     AdmindashboardComponent,
     DisApprovedBooksComponent,
     SellerdashboardComponent,
+    LogindailogComponent,
   ],
   imports: [
     BrowserModule,
@@ -132,12 +134,12 @@ import { SellerdashboardComponent } from "./components/sellerdashboard/sellerdas
     HttpClientModule,
   ],
   providers: [BooksComponent],
-  exports: [AddbookComponent, UpdatebookComponent, LoginComponent],
+  exports: [AddbookComponent, UpdatebookComponent,LogindailogComponent],
   entryComponents: [
     AddbookComponent,
+    LogindailogComponent,
     UpdatebookComponent,
     RatingreviewComponent,
-    LoginComponent,
   ],
   bootstrap: [AppComponent],
 })

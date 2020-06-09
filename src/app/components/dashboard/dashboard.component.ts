@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, NavigationStart } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { BehaviorSubject } from "rxjs";
 import { HttpService } from "src/app/service/http.service";
@@ -11,7 +11,8 @@ import { DataService } from "src/app/service/data.service";
 import { UserService } from "src/app/service/user.service";
 import { BooksComponent } from "../books/books.component";
 import { LoginComponent } from "../login/login.component";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { LogindailogComponent } from '../logindailog/logindailog.component';
 
 @Component({
   selector: "app-dashboard",
@@ -29,9 +30,9 @@ export class DashboardComponent implements OnInit {
     private userService: UserService,
     private snackbar: MatSnackBar,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+  
   ) {}
-
   visible: boolean;
   appName: string;
   profilepic: boolean = false;
@@ -56,7 +57,7 @@ export class DashboardComponent implements OnInit {
     this.profile = localStorage.getItem("userimage");
     // this.books.countMessage.subscribe((response) => {
     // (this.bookcount = response), console.log(this.bookcount);
-    // });
+    // });  
   }
 
   onBook() {
@@ -98,18 +99,14 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["books/orderdetails"]);
     }, 1000);
   }
-
   onLogin() {
-    const dialogRef = this.dialog.open(LoginComponent);
+      const dialogRef = this.dialog.open(LogindailogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+    });
     this.router.events
- .subscribe(() => {
-   dialogRef.close();
-   window.location.reload();
- });
- 
-    // dialogRef.afterClosed().subscribe((result) => {
-      
-    // });
+     .subscribe(() =>{
+       dialogRef.close();
+     });  
   }
   onLogout() {
     localStorage.clear();

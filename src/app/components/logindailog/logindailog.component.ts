@@ -1,28 +1,18 @@
-import { Component, OnInit, Input, Inject } from "@angular/core";
-import {
-  Validators,
-  FormControl,
-  FormGroup,
-  FormBuilder,
-} from "@angular/forms";
-import { Login } from "src/app/models/login";
-import {
-  MatSnackBar,
-  MAT_DIALOG_DATA,
-} from "@angular/material";
-import {
-   MatDialogRef,
-} from "@angular/material";
-import { ActivatedRoute, Router } from "@angular/router";
-import { NgxSpinnerService } from "ngx-spinner";
-import { HttpService } from "src/app/service/http.service";
+import { Component, OnInit, Inject } from '@angular/core';
+import { Login } from 'src/app/models/login';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpService } from 'src/app/service/http.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  selector: 'app-logindailog',
+  templateUrl: './logindailog.component.html',
+  styleUrls: ['./logindailog.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LogindailogComponent implements OnInit {
+
   /**
    * login object about consist of
    * 1)email
@@ -50,8 +40,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private httpservice: HttpService,
-    // public dialogRef: MatDialogRef<LoginComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: any
+    public dialogRef: MatDialogRef<LogindailogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit() {}
@@ -80,7 +70,7 @@ export class LoginComponent implements OnInit {
   seasons = ["user", "seller", "admin"];
   isDisabled: boolean = true;
   onlogin() {
-    // this.dialogRef.close();
+    this.dialogRef.close();
     this.spinner.show();
     this.showSpinner = true;
     setTimeout(() => {
